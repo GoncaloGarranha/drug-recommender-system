@@ -1,0 +1,15 @@
+# Ignore Python virtual environment
+venv/
+# Ignore MedJsonify-main/NER/data
+MedJsonify-main/NER/data/
+
+# Ignore MedJsonify-main/jsonify/input
+MedJsonify-main/jsonify/input/
+
+# Ignore MedJsonify-main/jsonify/output
+MedJsonify-main/jsonify/output/
+
+# Ignore kg_constructor/data/input
+kg_constructor/data/input/
+
+/MedJsonify-main/NER/ontologies/data

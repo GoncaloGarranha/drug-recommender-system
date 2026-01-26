@@ -59,10 +59,12 @@ def train():
         if epoch % 10 == 0:
             print(f"Epoch {epoch:03d} | Loss: {loss.item():.4f}")
 
-    # Guardar o modelo treinado
-    os.makedirs("../checkpoints", exist_ok=True)
-    torch.save(model.state_dict(), "../checkpoints/rgcn_model.pth")
-    print(f"\n✅ Treino concluído! Modelo guardado em checkpoints/rgcn_model.pth")
+    # Guardar o modelo treinado (caminho absoluto baseado no script)
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    CHECKPOINT_PATH = os.path.join(BASE_DIR, "../checkpoints/rgcn_model.pth")
+    os.makedirs(os.path.dirname(CHECKPOINT_PATH), exist_ok=True)
+    torch.save(model.state_dict(), CHECKPOINT_PATH)
+    print(f"\n✅ Treino concluído! Modelo guardado em {os.path.relpath(CHECKPOINT_PATH, BASE_DIR)}")
 
 if __name__ == "__main__":
     train()

@@ -1,0 +1,10 @@
+{
+  "input_triples": 32164,
+  "output_triples": 31364,
+  "removed": {
+    "generic_doid_blacklist": 800
+  },
+  "generic_doid_blacklist": [
+    "DOID:4"
+  ]
+}

@@ -109,3 +109,14 @@ Transforma um erro em mérito: Explica que os IDs "feios" eram necessários para
 Demonstra Interoperabilidade: Mencionar o OLS (Europa/EBI) e o openFDA (EUA) mostra que o teu trabalho segue padrões internacionais.
 
 Destaque para o Júri: O exemplo da Azacitidina é a prova real de que o teu código "descobriu" informação que estava escondida.
+
+
+
+
+*** Ambiente Computacional ***
+
+O treino dos modelos foi realizado em ambiente local, recorrendo a execução em CPU. Embora o pipeline de aprendizagem profunda adotado (baseado em PyTorch e DGL) seja compatível com aceleração por GPU, a utilização de GPU requer suporte CUDA, atualmente disponível apenas para hardware NVIDIA. O sistema utilizado dispunha de uma GPU AMD Radeon RX 5600 XT, a qual não é suportada para aceleração CUDA em ambiente Windows.
+
+Dado o tamanho moderado do grafo de conhecimento construído — composto por 2 208 nós e aproximadamente 11 000 arestas no grafo de treino — a execução em CPU revelou-se suficiente para o treino dos modelos R-GCN, permitindo obter resultados consistentes num tempo computacional aceitável. Esta opção contribui ainda para maior reprodutibilidade experimental, uma vez que evita dependências de hardware especializado e potencia comportamentos determinísticos durante o treino.
+
+Importa salientar que as decisões arquiteturais adotadas são independentes do dispositivo de execução, sendo o modelo totalmente compatível com treino em GPU em contextos onde o suporte adequado esteja disponível.

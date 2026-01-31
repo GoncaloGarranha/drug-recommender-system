@@ -1,0 +1,20 @@
+{
+  "n_entities": 4684,
+  "n_relations": 3,
+  "relations": {
+    "CONTRAINDICATION": 0,
+    "HAS_INGREDIENT": 1,
+    "INDICATION": 2
+  },
+  "train_graph_edges": 29432,
+  "splits_counts": {
+    "all_triples": 31364,
+    "prediction_edges": 9656,
+    "structural_edges": 21708,
+    "train_graph_edges": 29432,
+    "train": 7724,
+    "valid": 965,
+    "test": 967
+  },
+  "seed": 42
+}

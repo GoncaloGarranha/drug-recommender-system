@@ -43,3 +43,52 @@ Validação (10% - 1.194 triplos): Destinado ao ajuste de hiperparâmetros e pre
 Teste (10% - 1.194 triplos): Reservado exclusivamente para a avaliação final do desempenho do modelo em tarefas de Link Prediction.
 
 A divisão foi realizada através de amostragem estratificada, garantindo que a proporção original das relações (ex: a raridade de has_organization vs. a abundância de indicated_for) se mantém consistente em todos os conjuntos de dados.
+
+*** 🔄 Por que é que recuar agora é o passo mais inteligente da Tese? ***
+No desenvolvimento de sistemas de Inteligência Artificial, existe um princípio sagrado: "Garbage In, Garbage Out" (Lixo entra, Lixo sai). Se os alicerces de dados são frágeis, o modelo mais sofisticado do mundo — como o teu R-GCN — torna-se apenas uma "caixa preta" que cospe números sem significado.
+
+Recuar para o kg_constructor não é um atraso; é uma recalibragem estratégica por três razões fundamentais:
+
+A Preservação da "Linhagem de Dados": Até agora, estávamos a tentar "adivinhar" nomes que o sistema já conhecia no momento da extração. É como traduzir um livro para uma língua que não dominamos e depois tentar traduzi-lo de volta com um dicionário incompleto. Ao voltarmos à extração, garantimos que cada entidade nasce com a sua identidade (o nome clínico) colada ao seu BI (o ID técnico).
+
+Soberania e Independência Semântica: Depender de APIs externas (FDA, OLS) para identificar o que está no nosso próprio grafo é um risco académico. Se a API estiver offline ou o ID for antigo, o teu modelo fica "mudo". Ao integrarmos os nomes diretamente no construtor, o teu sistema torna-se autossuficiente e robusto.
+
+Interpretabilidade: O Coração de uma Tese de Mestrado: Um júri de mestrado não avalia apenas se o modelo "acerta"; avalia se tu sabes porque é que ele acerta. Se o modelo prevê que o fármaco A é indicado para o nó 8893, e tu não consegues dizer imediatamente que o 8893 é "Asma", a validade científica do trabalho é posta em causa. Recuamos para garantir que cada predição seja uma frase legível e não um enigma matemático.
+
+*** Para mitigar a redundância semântica causada pela co-existência de nomes comerciais e genéricos nas bulas da FDA, implementou-se uma camada de Resolução de Entidades (Entity Resolution). Utilizou-se uma hierarquia de normalização que prioriza o identificador universal ChEBI, fundindo múltiplas instâncias de produtos na sua substância ativa canónica. Esta estratégia aumentou a densidade do grafo e evitou a dispersão de gradientes durante o treino da rede R-GCN.
+
+*** 📝 Notas de Desenvolvimento: Refinação da Ontologia e Pipeline DGL ***
+Contexto: Após os testes preliminares com o modelo R-GCN, observou-se que a inferência clínica, embora funcional, apresentava ruído semântico significativo (ex: associações a termos genéricos como "Disease" e confusão entre marcas comerciais e substâncias genéricas).
+
+Decisão de "Backtracking": Decidiu-se retroceder no pipeline de dados para a fase de extração pós-MedJsonify pelas seguintes razões:
+
+Resolução de Entidades (Entity Resolution): A presença de múltiplos nós para a mesma substância ativa (ex: Advil, Motrin, Ibuprofeno) dispersava a densidade do grafo. Implementou-se uma hierarquia de normalização baseada no ChEBI ID como identificador canónico, fundindo nomes comerciais na sua substância base.
+
+Mitigação de Ruído Estrutural: Identificou-se que nós de topo da Disease Ontology (como DOID:4 - Disease) funcionavam como "hubs" artificiais, enviesando as predições. Criou-se uma blacklist de exclusão para estes termos genéricos.
+
+Adoção de Padrões de Estado-da-Arte (DGL): Para garantir a defesa académica da tese, optou-se por migrar a implementação para a biblioteca DGL (Deep Graph Library). Esta mudança permite:
+
+Seguir rigorosamente a arquitetura do paper original (Schlichtkrull et al.).
+
+Utilizar um descodificador DistMult para Link Prediction.
+
+Garantir a reprodutibilidade através de métricas padrão da literatura (MRR e Hits@K).
+
+Objetivo Final: Transformar um protótipo de extração textual num Grafo de Conhecimento Clínico estruturado, onde a topologia do grafo reflita relações biológicas reais e não apenas co-ocorrências estatísticas de palavras em bulas.
+
+*** A execução do novo pipeline de extração resultou numa redução de 21% no volume de triplos (de 7059 para 5581), confirmando a eficácia da estratégia de deduplicação canónica (ChEBI/Genéricos). A consolidação de múltiplas marcas comerciais num único nó substância permitiu aumentar a densidade informativa do grafo, enquanto a exclusão seletiva de 5 nós estruturais (hubs genéricos) eliminou 'atalhos' semânticos que prejudicavam a precisão da inferência.
+
+*** A análise estatística pós-purificação revelou um grafo composto por 5.581 triplos únicos, conectando 1.505 fármacos a 703 patologias distintas. A consolidação de entidades resultou num rácio de conectividade média de 3.7 arestas por nó de fármaco. A verificação da distribuição de grau em escala logarítmica confirmou a natureza topológica da rede, validando a sua adequação para o uso de algoritmos de Message Passing como a R-GCN.
+
+*** 📝 Caracterização Estatística do Grafo de Conhecimento (EDA)  ***
+Contexto e Dimensão: Após a fase de extração e normalização canónica, o Grafo de Conhecimento (KG) consolidou-se com 5.581 triplos únicos, estabelecendo relações entre 1.505 fármacos e 703 patologias. A manutenção de uma única relação semântica (indicated_for) nesta fase assegura um foco rigoroso na tarefa de recomendação terapêutica.
+
+Análise de Conetividade (Degree Distribution): A estrutura apresenta uma conetividade média de 3,7 indicações por fármaco, com uma mediana de 2,0. A análise dos percentis revela uma distribuição de "cauda longa" (long-tail distribution):
+
+P90 (7,0): 90% dos fármacos possuem até 7 indicações.
+
+P99 (19,0): Existe uma elite de fármacos altamente versáteis.
+
+Máximo (78): A presença de hubs (nós altamente conetados) é fundamental para a propagação de mensagens (message passing) na R-GCN, pois estes nós funcionam como pontes de conhecimento entre diferentes áreas da ontologia.
+
+Validação de Qualidade: A redução do volume total de triplos (em comparação com a extração bruta) sem perda de diversidade de entidades confirma a eficácia da Deduplicação Canónica e da Filtragem de Nós Genéricos. O grafo resultante possui uma topologia "Scale-Free" típica de redes biológicas reais, o que valida a sua robustez para o treino de modelos de Graph Neural Networks.

@@ -60,10 +60,9 @@ split:
 # ---------------------------------------------------------
 filters:
   remove_obsolete_doid_labels: true
-
-  # Very generic diseases that should be removed
-  generic_doid_blacklist:
-    - "DOID:4"        # disease
+  
+  # Generic disease blacklist is now loaded from:
+  # kg_constructor/configs/blacklist.txt
 
 # ---------------------------------------------------------
 # Entity resolution options (used in 03_resolve_entities)

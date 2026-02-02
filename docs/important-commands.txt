@@ -21,4 +21,4 @@ Copiar ficheiros do container para o host
 docker cp airflow_webserver:/opt/airflow/dags/final_output/final_dataset.csv "CAMINHO/NO/WINDOWS/final_dataset.csv"
 
 
-D:\FacudadeGoncalo\Mestrado\Tese\drug-recommender-system\venv\Scripts\Activate.ps1 -- ativar o venv
+D:\FacudadeGoncalo\Mestrado\Tese\drug-recommender-system\venv\Scripts\Activate.ps1 -- ativar o venv no WINDOWS

@@ -24,6 +24,23 @@ def _write_csv(path: Path, header: List[str], rows: List[List[Any]]) -> None:
         w.writerows(rows)
 
 
+def _load_blacklist(blacklist_path: Path) -> set:
+    """Load blacklist from a text file, ignoring comments and empty lines."""
+    if not blacklist_path.exists():
+        logger.warning(f"Blacklist file not found: {blacklist_path}")
+        return set()
+    
+    blacklist = set()
+    with blacklist_path.open("r", encoding="utf-8") as f:
+        for line in f:
+            line = line.split("#")[0].strip()  # Remove comments
+            if line:
+                blacklist.add(line)
+    
+    logger.info(f"Loaded {len(blacklist)} entries from blacklist: {blacklist_path}")
+    return blacklist
+
+
 def run(cfg: Dict[str, Any], paths, force: bool = False) -> None:
     """
     Step 05_filter_graph: apply basic cleaning filters to canonical triples.
@@ -53,8 +70,11 @@ def run(cfg: Dict[str, Any], paths, force: bool = False) -> None:
 
     triples = _read_csv(triples_in)
 
-    # Blacklist of generic disease IDs (config-driven)
-    generic_blacklist = set(cfg.get("filters", {}).get("generic_doid_blacklist", ["DOID:4"]))
+    # Load blacklist from external file
+    config_dir = Path(__file__).parent.parent.parent / "configs"
+    blacklist_path = config_dir / "blacklist.txt"
+    generic_blacklist = _load_blacklist(blacklist_path)
+    
     remove_obsolete = bool(cfg.get("filters", {}).get("remove_obsolete_doid_labels", True))
 
     removed = Counter()

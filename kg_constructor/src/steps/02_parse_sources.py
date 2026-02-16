@@ -1,3 +1,7 @@
+"""
+Step 02: Parse input JSON files and generate clean, normalized CSV tables for drugs, ingredients, diseases, and edges.
+All names and IDs are normalized here para garantir consistência e facilitar o mapeamento canônico nos próximos passos.
+"""
 from __future__ import annotations
 
 import csv
@@ -10,104 +14,98 @@ from kg_constructor.src.utils.log import get_logger
 
 logger = get_logger(__name__)
 
-DOID_URL_RE = re.compile(r"(DOID[_:])(\d+)$", re.IGNORECASE)
+DOID_PATTERN = re.compile(r"(DOID[_:])(\d+)$", re.IGNORECASE)
 
 
-def _iter_json_files(folder: Path) -> Iterable[Path]:
+
+def get_json_files(folder: Path) -> Iterable[Path]:
     if not folder.exists():
         return
-    for p in folder.iterdir():
-        if p.is_file() and p.suffix.lower() == ".json":
-            yield p
+    for file in folder.iterdir():
+        if file.is_file() and file.suffix.lower() == ".json":
+            yield file
 
 
-def _safe_load_json(path: Path) -> Dict[str, Any]:
+def load_json(path: Path) -> Dict[str, Any]:
     try:
         return json.loads(path.read_text(encoding="utf-8"))
     except Exception as e:
         raise RuntimeError(f"Failed to parse JSON: {path} | Error: {e}") from e
 
 
-def _normalize_whitespace(s: str) -> str:
-    return " ".join(s.strip().split())
+def clean_whitespace(text: str) -> str:
+    return " ".join(text.strip().split())
 
 
-def _normalize_name(s: str) -> str:
-    # Keep it simple and deterministic (good for a thesis)
-    return _normalize_whitespace(s).upper()
-
-
-def _normalize_doid(doid_raw: str) -> str:
+def normalize_name(text: str) -> str:
     """
-    Convert DOID identifiers to a canonical format: DOID:xxxx
-    Accepts:
-      - http://purl.obolibrary.org/obo/DOID_10763
-      - DOID_10763
-      - DOID:10763
+    Normalize a drug, ingredient, or disease name for canonical mapping.
+    Removes extra whitespace and converts to uppercase.
+    """
+    return clean_whitespace(text).upper()
+
+
+def normalize_doid(doid_raw: str) -> str:
+    """
+    Normalize a DOID identifier to the canonical format 'DOID:xxxx'.
+    Handles URLs, DOID:xxxx, and fallback cases.
     """
     s = doid_raw.strip()
-
     # URL case
     if s.lower().startswith("http"):
-        tail = s.rsplit("/", 1)[-1]  # e.g., DOID_10763
-        s = tail
-
-    m = DOID_URL_RE.search(s)
+        s = s.rsplit("/", 1)[-1]
+    m = DOID_PATTERN.search(s)
     if m:
         return f"DOID:{m.group(2)}"
-
     # Already DOID:xxxx
     if s.upper().startswith("DOID:"):
         return f"DOID:{s.split(':', 1)[1].strip()}"
-
     # Fallback: return as-is (still helpful for debugging)
     return s
 
 
-def _extract_drug_records(obj: Dict[str, Any]) -> List[Dict[str, Any]]:
-    drug = obj.get("drug", [])
-    if isinstance(drug, list):
-        return [d for d in drug if isinstance(d, dict)]
+def get_drugs(data: Dict[str, Any]) -> List[Dict[str, Any]]:
+    drugs = data.get("drug", [])
+    if isinstance(drugs, list):
+        return [d for d in drugs if isinstance(d, dict)]
     return []
 
 
-def _extract_ingredients(obj: Dict[str, Any]) -> List[Dict[str, Any]]:
-    ing = obj.get("ingredients", [])
-    if isinstance(ing, list):
-        return [x for x in ing if isinstance(x, dict)]
+def get_ingredients(data: Dict[str, Any]) -> List[Dict[str, Any]]:
+    ingredients = data.get("ingredients", [])
+    if isinstance(ingredients, list):
+        return [x for x in ingredients if isinstance(x, dict)]
     return []
 
 
-def _extract_doid_entities(obj: Dict[str, Any], block_key: str) -> List[str]:
-    block = obj.get(block_key, {})
+def get_doid_ids(data: Dict[str, Any], section: str) -> List[str]:
+    block = data.get(section, {})
     if not isinstance(block, dict):
         return []
-
-    ents = block.get("doid_entities", [])
-    if not isinstance(ents, list):
+    entities = block.get("doid_entities", [])
+    if not isinstance(entities, list):
         return []
-
-    doids: List[str] = []
-    for e in ents:
-        if isinstance(e, dict):
-            d = e.get("doid_id")
+    doid_ids: List[str] = []
+    for entity in entities:
+        if isinstance(entity, dict):
+            d = entity.get("doid_id")
             if isinstance(d, str) and d.strip():
-                doids.append(_normalize_doid(d))
-    return doids
+                doid_ids.append(normalize_doid(d))
+    return doid_ids
 
 
-def _write_csv(path: Path, header: List[str], rows: List[List[Any]]) -> None:
+def write_csv(path: Path, header: List[str], rows: List[List[Any]]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", newline="", encoding="utf-8") as f:
-        w = csv.writer(f)
-        w.writerow(header)
-        w.writerows(rows)
+        writer = csv.writer(f)
+        writer.writerow(header)
+        writer.writerows(rows)
 
 
-def run(cfg: Dict[str, Any], paths, force: bool = False) -> None:
+
+def parse_sources(cfg: Dict[str, Any], paths, force: bool = False) -> None:
     """
-    Step 02_parse_sources: parse raw JSON files into clean intermediate tables.
-
+    Step 02: Parse input JSON files and generate clean CSV tables.
     Outputs (data/output/interim):
       - drugs_raw.csv
       - ingredients_raw.csv
@@ -119,12 +117,12 @@ def run(cfg: Dict[str, Any], paths, force: bool = False) -> None:
     interim_dir = output_dir / "interim"
     interim_dir.mkdir(parents=True, exist_ok=True)
 
-    drugs_path = interim_dir / "drugs_raw.csv"
-    ingredients_path = interim_dir / "ingredients_raw.csv"
-    diseases_path = interim_dir / "diseases_raw.csv"
-    edges_path = interim_dir / "edges_raw.csv"
+    drugs_csv = interim_dir / "drugs_raw.csv"
+    ingredients_csv = interim_dir / "ingredients_raw.csv"
+    diseases_csv = interim_dir / "diseases_raw.csv"
+    edges_csv = interim_dir / "edges_raw.csv"
 
-    if not force and all(p.exists() for p in [drugs_path, ingredients_path, diseases_path, edges_path]):
+    if not force and all(p.exists() for p in [drugs_csv, ingredients_csv, diseases_csv, edges_csv]):
         logger.info("Interim outputs already exist. Skipping (use --force to re-run).")
         return
 
@@ -138,43 +136,40 @@ def run(cfg: Dict[str, Any], paths, force: bool = False) -> None:
     seen_drugs = set()
     seen_ingredients = set()
 
-    # We parse all sources, but most relations come from xml_files
-    sources = ("xml_files", "txt_files", "csv_files")
-
-    for src in sources:
-        folder = input_dir / src
+    for folder_name in ("xml_files", "txt_files", "csv_files"):
+        folder = input_dir / folder_name
         if not folder.exists():
             logger.warning(f"Missing input folder: {folder}")
             continue
 
-        for jf in _iter_json_files(folder):
-            obj = _safe_load_json(jf)
+        for json_file in get_json_files(folder):
+            data = load_json(json_file)
 
-            # --- Drugs (raw) ---
-            for d in _extract_drug_records(obj):
-                name = d.get("name")
+            # Drugs
+            for drug in get_drugs(data):
+                name = drug.get("name")
                 if not isinstance(name, str) or not name.strip():
                     continue
 
-                name_original = _normalize_whitespace(name)
-                name_norm = _normalize_name(name_original)
+                name_original = clean_whitespace(name)
+                name_norm = normalize_name(name_original)
 
-                drugbank_id = d.get("drugbank_id") if isinstance(d.get("drugbank_id"), str) else ""
-                chebi_id = d.get("chebi_id") if isinstance(d.get("chebi_id"), str) else ""
+                drugbank_id = drug.get("drugbank_id") if isinstance(drug.get("drugbank_id"), str) else ""
+                chebi_id = drug.get("chebi_id") if isinstance(drug.get("chebi_id"), str) else ""
 
                 key = (name_norm, drugbank_id.strip(), chebi_id.strip())
                 if key not in seen_drugs:
                     seen_drugs.add(key)
-                    drug_rows.append([src, name_original, name_norm, drugbank_id.strip(), chebi_id.strip(), jf.name])
+                    drug_rows.append([folder_name, name_original, name_norm, drugbank_id.strip(), chebi_id.strip(), json_file.name])
 
-            # --- Ingredients (mostly from xml_files) ---
-            for ing in _extract_ingredients(obj):
-                iname = ing.get("name")
-                icode = ing.get("code")
+            # Ingredients
+            for ingredient in get_ingredients(data):
+                iname = ingredient.get("name")
+                icode = ingredient.get("code")
 
-                iname_original = _normalize_whitespace(iname) if isinstance(iname, str) and iname.strip() else ""
-                iname_norm = _normalize_name(iname_original) if iname_original else ""
-                icode_val = _normalize_whitespace(icode) if isinstance(icode, str) and icode.strip() else ""
+                iname_original = clean_whitespace(iname) if isinstance(iname, str) and iname.strip() else ""
+                iname_norm = normalize_name(iname_original) if iname_original else ""
+                icode_val = clean_whitespace(icode) if isinstance(icode, str) and icode.strip() else ""
 
                 if not iname_norm and not icode_val:
                     continue
@@ -182,23 +177,21 @@ def run(cfg: Dict[str, Any], paths, force: bool = False) -> None:
                 ikey = (iname_norm, icode_val)
                 if ikey not in seen_ingredients:
                     seen_ingredients.add(ikey)
-                    ingredient_rows.append([src, iname_original, iname_norm, icode_val, jf.name])
+                    ingredient_rows.append([folder_name, iname_original, iname_norm, icode_val, json_file.name])
 
-            # --- Diseases + Edges (from indications/contraindications) ---
-            # We attach edges to drug names for now; Step 03 will resolve canonical IDs.
-            # Use the first drug name in the file as the "primary" drug reference.
-            drug_recs = _extract_drug_records(obj)
+            # Diseases and Edges
+            drug_recs = get_drugs(data)
             primary_drug_name_norm = ""
             primary_drug_name_original = ""
             if drug_recs:
                 dn = drug_recs[0].get("name")
                 if isinstance(dn, str) and dn.strip():
-                    primary_drug_name_original = _normalize_whitespace(dn)
-                    primary_drug_name_norm = _normalize_name(primary_drug_name_original)
+                    primary_drug_name_original = clean_whitespace(dn)
+                    primary_drug_name_norm = normalize_name(primary_drug_name_original)
 
             if primary_drug_name_norm:
-                for rel_key, block_key in [("INDICATION", "indications"), ("CONTRAINDICATION", "contraindications")]:
-                    doids = _extract_doid_entities(obj, block_key)
+                for rel_type, section in [("INDICATION", "indications"), ("CONTRAINDICATION", "contraindications")]:
+                    doids = get_doid_ids(data, section)
                     for doid in doids:
                         if doid not in seen_diseases:
                             seen_diseases.add(doid)
@@ -206,22 +199,21 @@ def run(cfg: Dict[str, Any], paths, force: bool = False) -> None:
 
                         edge_rows.append([
                             primary_drug_name_norm,
-                            rel_key,
+                            rel_type,
                             doid,
-                            src,
-                            jf.name
+                            folder_name,
+                            json_file.name
                         ])
 
                 # HAS_INGREDIENT edges
-                for ing in _extract_ingredients(obj):
-                    iname = ing.get("name")
-                    icode = ing.get("code")
+                for ingredient in get_ingredients(data):
+                    iname = ingredient.get("name")
+                    icode = ingredient.get("code")
 
-                    iname_original = _normalize_whitespace(iname) if isinstance(iname, str) and iname.strip() else ""
-                    iname_norm = _normalize_name(iname_original) if iname_original else ""
-                    icode_val = _normalize_whitespace(icode) if isinstance(icode, str) and icode.strip() else ""
+                    iname_original = clean_whitespace(iname) if isinstance(iname, str) and iname.strip() else ""
+                    iname_norm = normalize_name(iname_original) if iname_original else ""
+                    icode_val = clean_whitespace(icode) if isinstance(icode, str) and icode.strip() else ""
 
-                    # Define an ingredient key string (stable, deterministic)
                     if icode_val:
                         ing_id = f"UNII:{icode_val}"
                     elif iname_norm:
@@ -233,16 +225,27 @@ def run(cfg: Dict[str, Any], paths, force: bool = False) -> None:
                         primary_drug_name_norm,
                         "HAS_INGREDIENT",
                         ing_id,
-                        src,
-                        jf.name
+                        folder_name,
+                        json_file.name
                     ])
 
-    _write_csv(drugs_path, ["source", "name_original", "name_norm", "drugbank_id", "chebi_id", "file"], drug_rows)
-    _write_csv(ingredients_path, ["source", "name_original", "name_norm", "unii_code", "file"], ingredient_rows)
-    _write_csv(diseases_path, ["doid"], disease_rows)
-    _write_csv(edges_path, ["src", "rel", "dst", "source", "file"], edge_rows)
+    write_csv(drugs_csv, ["source", "name_original", "name_norm", "drugbank_id", "chebi_id", "file"], drug_rows)
+    write_csv(ingredients_csv, ["source", "name_original", "name_norm", "unii_code", "file"], ingredient_rows)
+    write_csv(diseases_csv, ["doid"], disease_rows)
+    write_csv(edges_csv, ["src", "rel", "dst", "source", "file"], edge_rows)
 
-    logger.info(f"Saved: {drugs_path}")
-    logger.info(f"Saved: {ingredients_path}")
-    logger.info(f"Saved: {diseases_path}")
-    logger.info(f"Saved: {edges_path}")
+    logger.info(f"Saved: {drugs_csv}")
+    logger.info(f"Saved: {ingredients_csv}")
+    logger.info(f"Saved: {diseases_csv}")
+    logger.info(f"Saved: {edges_csv}")
+
+
+# Alias for pipeline compatibility
+run = parse_sources
+
+
+if __name__ == "__main__":
+    class Paths:
+        input_dir = "kg_constructor/data/input"
+        output_dir = "kg_constructor/data/output"
+    parse_sources(config={}, paths=Paths(), force=True)

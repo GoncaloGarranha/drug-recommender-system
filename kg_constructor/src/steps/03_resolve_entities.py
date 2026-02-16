@@ -11,98 +11,88 @@ from kg_constructor.src.utils.log import get_logger
 logger = get_logger(__name__)
 
 
-def _read_csv(path: Path) -> List[Dict[str, str]]:
+def read_csv(path: Path) -> List[Dict[str, str]]:
     with path.open("r", encoding="utf-8") as f:
         return list(csv.DictReader(f))
 
 
-def _write_csv(path: Path, header: List[str], rows: List[List[Any]]) -> None:
+def write_csv(path: Path, header: List[str], rows: List[List[Any]]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", newline="", encoding="utf-8") as f:
-        w = csv.writer(f)
-        w.writerow(header)
-        w.writerows(rows)
+        writer = csv.writer(f)
+        writer.writerow(header)
+        writer.writerows(rows)
 
 
-def run(cfg: Dict[str, Any], paths, force: bool = False) -> None:
-    """
-    Step 03_resolve_entities: build canonical entity IDs and alias mappings.
-
-    Inputs:
-      - data/output/interim/drugs_raw.csv
-      - data/output/interim/ingredients_raw.csv
-      - data/output/interim/edges_raw.csv
-
-    Outputs:
-      - data/output/mappings/entity_table.csv
-      - data/output/mappings/aliases.csv
-      - data/output/mappings/resolution_report.json
-      - data/output/mappings/drug_name_to_entity.json
-    """
+def resolve_entities(cfg: Dict[str, Any], paths, force: bool = False) -> None:
+        """
+        Step 03: Build canonical entity IDs and create alias mappings for drugs, ingredients, and diseases.
+        All drug name variants (brand, generic, synonyms) are mapped to a single canonical entity ID.
+        Inputs:
+            - data/output/interim/drugs_raw.csv
+            - data/output/interim/ingredients_raw.csv
+            - data/output/interim/edges_raw.csv
+        Outputs:
+            - data/output/mappings/entity_table.csv (canonical entities)
+            - data/output/mappings/aliases.csv (all aliases mapped to canonical IDs)
+            - data/output/mappings/resolution_report.json (stats)
+            - data/output/mappings/drug_name_to_entity.json (mapping dict)
+        """
     output_dir = Path(paths.output_dir)
     interim_dir = output_dir / "interim"
     mappings_dir = output_dir / "mappings"
     mappings_dir.mkdir(parents=True, exist_ok=True)
 
-    drugs_path = interim_dir / "drugs_raw.csv"
-    ingredients_path = interim_dir / "ingredients_raw.csv"
-    edges_path = interim_dir / "edges_raw.csv"
+    drugs_csv = interim_dir / "drugs_raw.csv"
+    ingredients_csv = interim_dir / "ingredients_raw.csv"
+    edges_csv = interim_dir / "edges_raw.csv"
 
-    entity_table_path = mappings_dir / "entity_table.csv"
-    aliases_path = mappings_dir / "aliases.csv"
-    report_path = mappings_dir / "resolution_report.json"
-    drug_map_path = mappings_dir / "drug_name_to_entity.json"
+    entity_table_csv = mappings_dir / "entity_table.csv"
+    aliases_csv = mappings_dir / "aliases.csv"
+    report_json = mappings_dir / "resolution_report.json"
+    drug_map_json = mappings_dir / "drug_name_to_entity.json"
 
-    if not force and all(p.exists() for p in [entity_table_path, aliases_path, report_path, drug_map_path]):
+    if not force and all(p.exists() for p in [entity_table_csv, aliases_csv, report_json, drug_map_json]):
         logger.info("Mapping outputs already exist. Skipping (use --force to re-run).")
         return
 
-    if not drugs_path.exists() or not edges_path.exists():
+    if not drugs_csv.exists() or not edges_csv.exists():
         raise FileNotFoundError("Missing interim inputs. Run step 02_parse_sources first.")
 
-    drugs = _read_csv(drugs_path)
-    ingredients = _read_csv(ingredients_path) if ingredients_path.exists() else []
-    edges = _read_csv(edges_path)
+    # Read input CSVs as lists of dicts
+    drug_rows = read_csv(drugs_csv)
+    ingredient_rows = read_csv(ingredients_csv) if ingredients_csv.exists() else []
+    edge_rows = read_csv(edges_csv)
 
-    # ------------------------------------------------------------
-    # 1) Resolve DRUG entities: build name_norm -> canonical entity_id
-    # ------------------------------------------------------------
-    name_to_drugbank_ids: Dict[str, Counter] = defaultdict(Counter)
-
-    for r in drugs:
-        name_norm = (r.get("name_norm") or "").strip()
-        drugbank_id = (r.get("drugbank_id") or "").strip()
-
-        if not name_norm:
+    # --- DRUG ENTITY RESOLUTION ---
+    # Map normalized drug names to DrugBank IDs (if available)
+    normalized_name_to_drugbank_ids: Dict[str, Counter] = defaultdict(Counter)
+    for drug_row in drug_rows:
+        normalized_name = (drug_row.get("name_norm") or "").strip()
+        drugbank_id = (drug_row.get("drugbank_id") or "").strip()
+        if not normalized_name:
             continue
         if drugbank_id:
-            name_to_drugbank_ids[name_norm][drugbank_id] += 1
+            normalized_name_to_drugbank_ids[normalized_name][drugbank_id] += 1
 
-    drug_name_to_entity: Dict[str, str] = {}
+    # Map each normalized name to a canonical entity ID (DrugBank or fallback)
+    drug_name_to_entity_id: Dict[str, str] = {}
     drug_resolution_stats = Counter()
-
-    for r in drugs:
-        name_norm = (r.get("name_norm") or "").strip()
-        if not name_norm:
+    for drug_row in drug_rows:
+        normalized_name = (drug_row.get("name_norm") or "").strip()
+        if not normalized_name:
             continue
-
-        # If the same name_norm appears with multiple drugbank IDs, pick the most frequent
-        if name_to_drugbank_ids.get(name_norm):
-            best_dbid, _ = name_to_drugbank_ids[name_norm].most_common(1)[0]
+        if normalized_name_to_drugbank_ids.get(normalized_name):
+            best_dbid, _ = normalized_name_to_drugbank_ids[normalized_name].most_common(1)[0]
             entity_id = f"DRUGBANK:{best_dbid}"
             drug_resolution_stats["resolved_by_drugbank"] += 1
         else:
-            entity_id = f"DRUG:{name_norm}"
+            entity_id = f"DRUG:{normalized_name}"
             drug_resolution_stats["resolved_by_name"] += 1
+        drug_name_to_entity_id[normalized_name] = entity_id
 
-        drug_name_to_entity[name_norm] = entity_id
-
-    # ------------------------------------------------------------
-    # 2) Resolve INGREDIENT entities
-    # ------------------------------------------------------------
+    # Resolve INGREDIENT entities
     ingredient_entities: Dict[str, Tuple[str, str]] = {}
-    # entity_id -> (type, label)
-    # We'll use UNII if available, else ING:<NAME_NORM>
 
     for r in ingredients:
         name_norm = (r.get("name_norm") or "").strip()
@@ -116,18 +106,14 @@ def run(cfg: Dict[str, Any], paths, force: bool = False) -> None:
             iid = f"ING:{name_norm}"
             ingredient_entities[iid] = ("INGREDIENT", name_norm)
 
-    # ------------------------------------------------------------
-    # 3) Resolve DISEASE entities (from edges destination)
-    # ------------------------------------------------------------
+    # Resolve DISEASE entities
     disease_entities: Dict[str, Tuple[str, str]] = {}
     for e in edges:
         dst = (e.get("dst") or "").strip()
         if dst.startswith("DOID:"):
             disease_entities[dst] = ("DISEASE", dst)
 
-    # ------------------------------------------------------------
-    # 4) Build entity_table.csv
-    # ------------------------------------------------------------
+    # Build entity_table.csv
     entity_rows: List[List[Any]] = []
 
     # Drugs
@@ -144,16 +130,12 @@ def run(cfg: Dict[str, Any], paths, force: bool = False) -> None:
     for eid, (etype, label) in sorted(ingredient_entities.items()):
         entity_rows.append([eid, etype, label])
 
-    _write_csv(entity_table_path, ["entity_id", "entity_type", "label"], entity_rows)
-    logger.info(f"Saved: {entity_table_path}")
+    write_csv(entity_table_csv, ["entity_id", "entity_type", "label"], entity_rows)
+    logger.info(f"Saved: {entity_table_csv}")
 
-    # ------------------------------------------------------------
-    # 5) Build aliases.csv
-    # ------------------------------------------------------------
+    # Build aliases.csv
     alias_rows: List[List[Any]] = []
 
-    # Drug aliases: map both original and normalized names to the canonical entity
-    # We use drugs_raw for original name coverage
     for r in drugs:
         name_original = (r.get("name_original") or "").strip()
         name_norm = (r.get("name_norm") or "").strip()
@@ -168,7 +150,6 @@ def run(cfg: Dict[str, Any], paths, force: bool = False) -> None:
             alias_rows.append([name_original, eid, "DRUG_NAME_ORIGINAL"])
         alias_rows.append([name_norm, eid, "DRUG_NAME_NORM"])
 
-    # Ingredient aliases
     for r in ingredients:
         name_original = (r.get("name_original") or "").strip()
         name_norm = (r.get("name_norm") or "").strip()
@@ -188,18 +169,11 @@ def run(cfg: Dict[str, Any], paths, force: bool = False) -> None:
         if unii:
             alias_rows.append([unii, iid, "UNII_CODE"])
 
-    _write_csv(aliases_path, ["alias", "entity_id", "alias_type"], alias_rows)
-    logger.info(f"Saved: {aliases_path}")
+    write_csv(aliases_csv, ["alias", "entity_id", "alias_type"], alias_rows)
+    logger.info(f"Saved: {aliases_csv}")
 
-    # ------------------------------------------------------------
-    # 6) Save drug_name_to_entity.json (useful for edge remapping + inference)
-    # ------------------------------------------------------------
-    drug_map_path.write_text(json.dumps(drug_name_to_entity, indent=2, ensure_ascii=False), encoding="utf-8")
-    logger.info(f"Saved: {drug_map_path}")
-
-    # ------------------------------------------------------------
-    # 7) Report
-    # ------------------------------------------------------------
+    drug_map_json.write_text(json.dumps(drug_name_to_entity, indent=2, ensure_ascii=False), encoding="utf-8")
+    logger.info(f"Saved: {drug_map_json}")
     report = {
         "drug_resolution": dict(drug_resolution_stats),
         "unique_drug_entities": len(unique_drug_entities),
@@ -207,5 +181,16 @@ def run(cfg: Dict[str, Any], paths, force: bool = False) -> None:
         "unique_ingredient_entities": len(ingredient_entities),
         "note": "Drug entities prefer DRUGBANK:<id> when available; otherwise DRUG:<NAME_NORM>.",
     }
-    report_path.write_text(json.dumps(report, indent=2, ensure_ascii=False), encoding="utf-8")
-    logger.info(f"Saved: {report_path}")
+    report_json.write_text(json.dumps(report, indent=2, ensure_ascii=False), encoding="utf-8")
+    logger.info(f"Saved: {report_json}")
+
+
+# Alias for pipeline compatibility
+run = resolve_entities
+
+
+if __name__ == "__main__":
+    class Paths:
+        input_dir = "kg_constructor/data/input"
+        output_dir = "kg_constructor/data/output"
+    resolve_entities(config={}, paths=Paths(), force=True)

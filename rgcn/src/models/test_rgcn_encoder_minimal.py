@@ -8,21 +8,21 @@ def test_second_layer_behavior():
     h_dim = 8
     num_rels = 3
     num_bases = 3
-    # Grafo simples
+    # Simple graph
     src = torch.tensor([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
     dst = torch.tensor([1, 2, 3, 4, 5, 6, 7, 8, 9, 0])
     etype = torch.randint(0, num_rels, (10,))
     g = dgl.graph((src, dst), num_nodes=num_nodes)
     g.edata['etype'] = etype
     g.edata['norm'] = torch.ones(10, 1)
-    # Input para segunda camada: muitos zeros, alguns positivos
+    # Input for the second layer: many zeros, a few positives
     x = torch.zeros(num_nodes, h_dim)
     x[0, 0] = 1.0
     x[1, 1] = 2.0
     x[2, 2] = 3.0
     x[3, 3] = 4.0
     x[4, 4] = 5.0
-    # Instanciar camada igual à do modelo
+    # Instantiate the same layer configuration as the model
     layer = RelGraphConv(
         in_feat=h_dim,
         out_feat=h_dim,
@@ -34,8 +34,8 @@ def test_second_layer_behavior():
     )
     # Forward
     out = layer(g, x, g.edata['etype'], g.edata['norm'])
-    print("Input para segunda camada (x):\n", x)
-    print("Output da segunda camada:\n", out)
+    print("Input for the second layer (x):\n", x)
+    print("Second layer output:\n", out)
     print("Output min:", out.min().item(), "max:", out.max().item(), "mean:", out.mean().item())
 
 if __name__ == "__main__":

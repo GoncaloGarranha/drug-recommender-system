@@ -1,10 +1,9 @@
 {
   "input_triples": 32164,
-  "output_triples": 31364,
+  "output_triples": 8951,
   "removed": {
-    "generic_doid_blacklist": 800
+    "blacklisted_disease": 1505,
+    "has_ingredient_removed": 21708
   },
-  "generic_doid_blacklist": [
-    "DOID:4"
-  ]
+  "blacklist_size": 4
 }

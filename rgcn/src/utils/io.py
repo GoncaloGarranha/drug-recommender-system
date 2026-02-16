@@ -4,13 +4,13 @@ import dgl
 
 
 def load_processed_artifacts(processed_dir: str):
-    p = Path(processed_dir)
+    processed_path = Path(processed_dir)
 
-    graph_path = p / "train_graph.bin"
-    meta_path = p / "graph_metadata.json"
-    splits_path = p / "edge_splits.json"
-    entity2id_path = p / "entity2id.json"
-    rel2id_path = p / "rel2id.json"
+    graph_path = processed_path / "train_graph.bin"
+    meta_path = processed_path / "graph_metadata.json"
+    splits_path = processed_path / "edge_splits.json"
+    entity2id_path = processed_path / "entity2id.json"
+    rel2id_path = processed_path / "rel2id.json"
 
     for fp in [graph_path, meta_path, splits_path, entity2id_path, rel2id_path]:
         if not fp.exists():
@@ -27,14 +27,14 @@ def load_processed_artifacts(processed_dir: str):
     prediction_rels = set(raw_splits.get("prediction_relations", ["INDICATION", "CONTRAINDICATION"]))
 
     def to_split_ids(edge_list):
-        src, rel, dst = [], [], []
-        for s, r, t in edge_list:
-            if s not in entity2id or t not in entity2id or r not in rel2id:
+        src_ids, rel_ids, dst_ids = [], [], []
+        for src, rel, dst in edge_list:
+            if src not in entity2id or dst not in entity2id or rel not in rel2id:
                 continue
-            src.append(entity2id[s])
-            rel.append(rel2id[r])
-            dst.append(entity2id[t])
-        return {"src": src, "rel": rel, "dst": dst}
+            src_ids.append(entity2id[src])
+            rel_ids.append(rel2id[rel])
+            dst_ids.append(entity2id[dst])
+        return {"src": src_ids, "rel": rel_ids, "dst": dst_ids}
 
     train_graph_edges = raw_splits.get("train_graph_edges", [])
     # Training positives should be prediction edges only (avoid HAS_INGREDIENT in the loss)

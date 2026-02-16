@@ -1,3 +1,10 @@
+"""
+KG Pipeline Orchestration Module
+
+This module provides dynamic loading and execution of pipeline steps for the Knowledge Graph constructor.
+Each step is a Python script in src/steps/ with a `run(cfg, paths, force=False)` function.
+The pipeline can execute all steps or a selected subset, supporting flexible workflows.
+"""
 from __future__ import annotations
 
 import importlib.util
@@ -11,8 +18,16 @@ logger = get_logger(__name__)
 
 def _load_step_run(steps_dir: Path, step_name: str) -> Callable[..., None]:
     """
-    Dynamically load src/steps/<step_name>.py (e.g., 01_stats.py) and return its `run` function.
-    This allows numeric filenames (00_unpack.py, 01_stats.py, ...) without normal imports.
+    Dynamically import a pipeline step script and return its `run` function.
+    Args:
+        steps_dir: Path to the steps directory (src/steps/).
+        step_name: Name of the step (e.g., '01_stats').
+    Returns:
+        Callable run function for the step.
+    Raises:
+        FileNotFoundError: If the step file does not exist.
+        ImportError: If the module cannot be loaded.
+        AttributeError: If the module does not define a callable `run`.
     """
     step_path = steps_dir / f"{step_name}.py"
     if not step_path.exists():
@@ -41,7 +56,18 @@ def _select_steps(
     from_step: Optional[str] = None,
     to_step: Optional[str] = None,
 ) -> List[str]:
-    """Select steps based on CLI flags."""
+    """
+    Select which steps to run based on CLI flags.
+    Args:
+        pipeline_order: List of all step names in order.
+        only: If set, run only this step.
+        from_step: If set, start from this step (inclusive).
+        to_step: If set, end at this step (inclusive).
+    Returns:
+        List of step names to execute.
+    Raises:
+        ValueError: If any step name is invalid or range is inconsistent.
+    """
     if only:
         if only not in pipeline_order:
             raise ValueError(f"Invalid --only step: {only}")
@@ -76,21 +102,33 @@ def run_pipeline(
     force: bool = False,
 ) -> None:
     """
-    Run the KG pipeline by dynamically loading each step from src/steps.
+    Run the Knowledge Graph pipeline by dynamically loading and executing each step.
+    Args:
+        cfg: Configuration dictionary (from YAML or CLI).
+        paths: Object with resolved paths for input/output directories.
+        pipeline_order: List of all step names in execution order.
+        only: If set, run only this step.
+        from_step: If set, start from this step (inclusive).
+        to_step: If set, end at this step (inclusive).
+        force: If True, force re-execution of steps even if outputs exist.
     """
+    # Resolve the steps directory (src/steps/)
     steps_dir = Path(paths.kg_root) / "src" / "steps"
     if not steps_dir.exists():
         raise FileNotFoundError(f"Steps directory not found: {steps_dir}")
 
+    # Determine which steps to run based on CLI flags
     selected = _select_steps(pipeline_order, only=only, from_step=from_step, to_step=to_step)
 
     logger.info("Starting KG pipeline")
     logger.info(f"Selected steps: {selected}")
     logger.info(f"Force execution: {force}")
 
+    # Execute each selected step in order
     for step_name in selected:
         logger.info(f"--> Running step: {step_name}")
         run_fn = _load_step_run(steps_dir, step_name)
+        # Each step must define a function: run(cfg, paths, force=False)
         run_fn(cfg=cfg, paths=paths, force=force)
         logger.info(f"<-- Finished step: {step_name}")
 

@@ -12,30 +12,28 @@ from kg_constructor.src.utils.log import get_logger
 logger = get_logger(__name__)
 
 
-def _collect_entities_and_relations(edges: List[List[str]]) -> Tuple[Dict[str, int], Dict[str, int]]:
+def collect_entities_and_relations(edges: List[List[str]]) -> Tuple[Dict[str, int], Dict[str, int]]:
     """
     Build stable entity2id and rel2id mappings from a list of [src, rel, dst] edges.
     """
     entities = set()
-    rels = set()
+    relations = set()
 
-    for s, r, t in edges:
-        entities.add(s)
-        entities.add(t)
-        rels.add(r)
+    for src, rel, dst in edges:
+        entities.add(src)
+        entities.add(dst)
+        relations.add(rel)
 
-    entity2id = {e: i for i, e in enumerate(sorted(entities))}
-    rel2id = {r: i for i, r in enumerate(sorted(rels))}
-    return entity2id, rel2id
+    entity_to_id = {e: i for i, e in enumerate(sorted(entities))}
+    relation_to_id = {r: i for i, r in enumerate(sorted(relations))}
+    return entity_to_id, relation_to_id
 
 
-def run(cfg: Dict[str, Any], paths, force: bool = False) -> None:
+def index_dgl(cfg: Dict[str, Any], paths, force: bool = False) -> None:
     """
-    Step 07_index_dgl: create the DGL training graph and metadata.
-
+    Step 07: Create the DGL training graph and metadata.
     Inputs:
       - data/processed/edge_splits.json
-
     Outputs:
       - data/processed/train_graph.bin
       - data/processed/graph_metadata.json
@@ -45,83 +43,92 @@ def run(cfg: Dict[str, Any], paths, force: bool = False) -> None:
     processed_dir = Path(paths.processed_dir)
     processed_dir.mkdir(parents=True, exist_ok=True)
 
-    splits_path = processed_dir / "edge_splits.json"
-    graph_path = processed_dir / "train_graph.bin"
-    meta_path = processed_dir / "graph_metadata.json"
-    entity2id_path = processed_dir / "entity2id.json"
-    rel2id_path = processed_dir / "rel2id.json"
+    splits_json = processed_dir / "edge_splits.json"
+    graph_bin = processed_dir / "train_graph.bin"
+    metadata_json = processed_dir / "graph_metadata.json"
+    entity_to_id_json = processed_dir / "entity2id.json"
+    relation_to_id_json = processed_dir / "rel2id.json"
 
-    if not force and all(p.exists() for p in [graph_path, meta_path, entity2id_path, rel2id_path]):
+    if not force and all(p.exists() for p in [graph_bin, metadata_json, entity_to_id_json, relation_to_id_json]):
         logger.info("DGL artifacts already exist. Skipping (use --force to re-run).")
         return
 
-    if not splits_path.exists():
+    if not splits_json.exists():
         raise FileNotFoundError("Missing edge_splits.json. Run 06_split_edges first.")
 
-    splits = json.loads(splits_path.read_text(encoding="utf-8"))
+    splits = json.loads(splits_json.read_text(encoding="utf-8"))
     train_graph_edges: List[List[str]] = splits["train_graph_edges"]
 
-    # Build mappings from training graph edges only (important: prevents leakage)
-    entity2id, rel2id = _collect_entities_and_relations(train_graph_edges)
+    entity_to_id, relation_to_id = collect_entities_and_relations(train_graph_edges)
 
-    # Build graph edge tensors
     src_ids = []
     dst_ids = []
     rel_ids = []
 
-    num_original_rels = len(rel2id)
+    num_original_rels = len(relation_to_id)
 
-    for s, r, t in train_graph_edges:
-        if s not in entity2id or t not in entity2id or r not in rel2id:
+    for src, rel, dst in train_graph_edges:
+        if src not in entity_to_id or dst not in entity_to_id or rel not in relation_to_id:
             continue
-        s_idx, r_idx, t_idx = entity2id[s], rel2id[r], entity2id[t]
-        # Aresta Direta (Drug -> Disease)
-        src_ids.append(s_idx)
-        dst_ids.append(t_idx)
-        rel_ids.append(r_idx)
-        # ARESTA INVERSA (Disease -> Drug)
-        src_ids.append(t_idx)
-        dst_ids.append(s_idx)
-        rel_ids.append(r_idx + num_original_rels)  # Novo ID de relação inversa
+        src_idx = entity_to_id[src]
+        rel_idx = relation_to_id[rel]
+        dst_idx = entity_to_id[dst]
+        
+        src_ids.append(src_idx)
+        dst_ids.append(dst_idx)
+        rel_ids.append(rel_idx)
+        
+        src_ids.append(dst_idx)
+        dst_ids.append(src_idx)
+        rel_ids.append(rel_idx + num_original_rels)
 
-    print("[DEBUG KG_CONSTRUCTOR] Num entidades:", len(entity2id))
-    print("[DEBUG KG_CONSTRUCTOR] Num relações:", len(rel2id))
-    print("[DEBUG KG_CONSTRUCTOR] Num arestas:", len(src_ids))
-    print("[DEBUG KG_CONSTRUCTOR] Exemplos src_ids:", src_ids[:10])
-    print("[DEBUG KG_CONSTRUCTOR] Exemplos dst_ids:", dst_ids[:10])
-    print("[DEBUG KG_CONSTRUCTOR] Exemplos rel_ids:", rel_ids[:10])
+    logger.info(f"Num entities: {len(entity_to_id)}")
+    logger.info(f"Num relations: {len(relation_to_id)}")
+    logger.info(f"Num edges (with inverses): {len(src_ids)}")
 
     src_tensor = torch.tensor(src_ids, dtype=torch.int64)
     dst_tensor = torch.tensor(dst_ids, dtype=torch.int64)
     rel_tensor = torch.tensor(rel_ids, dtype=torch.int64)
 
-    g = dgl.graph((src_tensor, dst_tensor), num_nodes=len(entity2id))
+    graph = dgl.graph((src_tensor, dst_tensor), num_nodes=len(entity_to_id))
+    graph.edata["etype"] = rel_tensor
+    graph.edata["norm"] = torch.ones(graph.num_edges(), 1)
 
-    # Store relation type per edge (DGL convention for RGCN)
-    g.edata["etype"] = rel_tensor
-    # Add edge normalization (all ones, shape [num_edges, 1])
-    g.edata["norm"] = torch.ones(g.num_edges(), 1)
+    dgl.save_graphs(str(graph_bin), [graph])
+    logger.info(f"Saved training graph: {graph_bin}")
 
-    # Persist DGL graph
-    dgl.save_graphs(str(graph_path), [g])
-    logger.info(f"Saved training graph: {graph_path}")
+    entity_to_id_json.write_text(json.dumps(entity_to_id, indent=2, ensure_ascii=False), encoding="utf-8")
+    relation_to_id_json.write_text(json.dumps(relation_to_id, indent=2, ensure_ascii=False), encoding="utf-8")
+    logger.info(f"Saved: {entity_to_id_json}")
+    logger.info(f"Saved: {relation_to_id_json}")
 
-    # Save mappings
-    entity2id_path.write_text(json.dumps(entity2id, indent=2, ensure_ascii=False), encoding="utf-8")
-    rel2id_path.write_text(json.dumps(rel2id, indent=2, ensure_ascii=False), encoding="utf-8")
-    logger.info(f"Saved: {entity2id_path}")
-    logger.info(f"Saved: {rel2id_path}")
-
-    # Metadata for downstream training scripts
     metadata = {
-        "n_entities": len(entity2id),
-        "n_relations": len(rel2id),
-        "relations": {r: rel2id[r] for r in sorted(rel2id.keys())},
+        "n_entities": len(entity_to_id),
+        "n_relations": len(relation_to_id),
+        "relations": {r: relation_to_id[r] for r in sorted(relation_to_id.keys())},
         "train_graph_edges": len(train_graph_edges),
         "splits_counts": splits.get("counts", {}),
         "seed": splits.get("seed", None),
     }
-    meta_path.write_text(json.dumps(metadata, indent=2, ensure_ascii=False), encoding="utf-8")
-    logger.info(f"Saved metadata: {meta_path}")
+    metadata_json.write_text(json.dumps(metadata, indent=2, ensure_ascii=False), encoding="utf-8")
+    logger.info(f"Saved metadata: {metadata_json}")
 
-    logger.info(f"Nodes: {metadata['n_entities']} | Edges: {g.num_edges()} | Relations: {metadata['n_relations']}")
+    logger.info(f"Nodes: {metadata['n_entities']} | Edges: {graph.num_edges()} | Relations: {metadata['n_relations']}")
+
+
+run = index_dgl
+
+
+if __name__ == "__main__":
+    from kg_constructor.src.utils.config import load_config
+
+    class Paths:
+        def __init__(self, root: Path):
+            self.root = root
+            self.processed_dir = root / "kg_constructor" / "data" / "processed"
+
+    root = Path(__file__).parent.parent.parent.parent
+    config = load_config(root / "kg_constructor" / "configs" / "config.yaml")
+    paths = Paths(root)
+    
+    index_dgl(config, paths, force=True)

@@ -11,21 +11,21 @@ from kg_constructor.src.utils.log import get_logger
 logger = get_logger(__name__)
 
 
-def _read_csv(path: Path) -> List[Dict[str, str]]:
+def read_csv(path: Path) -> List[Dict[str, str]]:
     with path.open("r", encoding="utf-8") as f:
         return list(csv.DictReader(f))
 
 
-def _write_csv(path: Path, header: List[str], rows: List[List[Any]]) -> None:
+def write_csv(path: Path, header: List[str], rows: List[List[Any]]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", newline="", encoding="utf-8") as f:
-        w = csv.writer(f)
-        w.writerow(header)
-        w.writerows(rows)
+        writer = csv.writer(f)
+        writer.writerow(header)
+        writer.writerows(rows)
 
 
-def _load_blacklist(blacklist_path: Path) -> set:
-    """Load blacklist from a text file, ignoring comments and empty lines."""
+def load_blacklist(blacklist_path: Path) -> set:
+    """Load blacklist from text file, ignoring comments and empty lines."""
     if not blacklist_path.exists():
         logger.warning(f"Blacklist file not found: {blacklist_path}")
         return set()
@@ -33,7 +33,7 @@ def _load_blacklist(blacklist_path: Path) -> set:
     blacklist = set()
     with blacklist_path.open("r", encoding="utf-8") as f:
         for line in f:
-            line = line.split("#")[0].strip()  # Remove comments
+            line = line.split("#")[0].strip()
             if line:
                 blacklist.add(line)
     
@@ -41,80 +41,106 @@ def _load_blacklist(blacklist_path: Path) -> set:
     return blacklist
 
 
-def run(cfg: Dict[str, Any], paths, force: bool = False) -> None:
+def filter_graph(cfg: Dict[str, Any], paths, force: bool = False) -> None:
     """
-    Step 05_filter_graph: apply basic cleaning filters to canonical triples.
-
+    Step 05: Apply cleaning filters to canonical triples.
     Inputs:
       - data/output/triples/triples.csv
-
     Outputs:
       - data/output/triples/triples.filtered.csv
       - data/output/reports/filter_report.json
+    
+    Filters applied:
+      1. Remove blacklisted diseases (generic hubs like DOID:4)
+      2. Remove self-loops (src == dst)
+      3. Remove obsolete DOID labels
+      4. Remove HAS_INGREDIENT relations (focus on predictive relations only)
+    
+    This step ensures only high-quality, task-relevant triples remain.
     """
     output_dir = Path(paths.output_dir)
     triples_dir = output_dir / "triples"
     reports_dir = output_dir / "reports"
     reports_dir.mkdir(parents=True, exist_ok=True)
 
-    triples_in = triples_dir / "triples.csv"
-    triples_out = triples_dir / "triples.filtered.csv"
-    report_path = reports_dir / "filter_report.json"
+    triples_csv_in = triples_dir / "triples.csv"
+    triples_csv_out = triples_dir / "triples.filtered.csv"
+    report_json = reports_dir / "filter_report.json"
 
-    if not force and triples_out.exists() and report_path.exists():
+    if not force and triples_csv_out.exists() and report_json.exists():
         logger.info("Filtered outputs already exist. Skipping (use --force to re-run).")
         return
 
-    if not triples_in.exists():
+    if not triples_csv_in.exists():
         raise FileNotFoundError("Missing triples.csv. Run 04_build_triples first.")
 
-    triples = _read_csv(triples_in)
+    triples = read_csv(triples_csv_in)
 
-    # Load blacklist from external file
     config_dir = Path(__file__).parent.parent.parent / "configs"
     blacklist_path = config_dir / "blacklist.txt"
-    generic_blacklist = _load_blacklist(blacklist_path)
+    blacklist = load_blacklist(blacklist_path)
     
     remove_obsolete = bool(cfg.get("filters", {}).get("remove_obsolete_doid_labels", True))
+    remove_ingredients = bool(cfg.get("filters", {}).get("remove_has_ingredient", True))
 
-    removed = Counter()
+    skip_reasons = Counter()
     kept_rows: List[List[str]] = []
 
-    for r in triples:
-        src = (r.get("src") or "").strip()
-        rel = (r.get("rel") or "").strip()
-        dst = (r.get("dst") or "").strip()
+    for row in triples:
+        src = (row.get("src") or "").strip()
+        rel = (row.get("rel") or "").strip()
+        dst = (row.get("dst") or "").strip()
 
         if not src or not rel or not dst:
-            removed["empty_fields"] += 1
+            skip_reasons["empty_fields"] += 1
             continue
 
         if src == dst:
-            removed["self_loops"] += 1
+            skip_reasons["self_loops"] += 1
             continue
 
-        # Remove generic diseases (only for disease nodes)
-        if dst in generic_blacklist:
-            removed["generic_doid_blacklist"] += 1
+        # Remove HAS_INGREDIENT relations (focus on predictive relations only)
+        if remove_ingredients and rel == "HAS_INGREDIENT":
+            skip_reasons["has_ingredient_removed"] += 1
             continue
 
-        # Optional: remove obsolete DOID labels if your pipeline ever includes such flags
-        # (Kept here for completeness; actual obsolete detection usually needs a DOID label map.)
+        if dst in blacklist:
+            skip_reasons["blacklisted_disease"] += 1
+            continue
+
         if remove_obsolete and dst.upper().endswith("OBSOLETE"):
-            removed["obsolete_doid"] += 1
+            skip_reasons["obsolete_doid"] += 1
             continue
 
         kept_rows.append([src, rel, dst])
 
-    _write_csv(triples_out, ["src", "rel", "dst"], kept_rows)
-    logger.info(f"Saved: {triples_out}")
-    logger.info(f"Kept triples: {len(kept_rows)} | Removed: {sum(removed.values())}")
+    write_csv(triples_csv_out, ["src", "rel", "dst"], kept_rows)
+    logger.info(f"Saved: {triples_csv_out}")
+    logger.info(f"Kept triples: {len(kept_rows)} | Removed: {sum(skip_reasons.values())}")
 
     report = {
         "input_triples": len(triples),
         "output_triples": len(kept_rows),
-        "removed": dict(removed),
-        "generic_doid_blacklist": sorted(list(generic_blacklist)),
+        "removed": dict(skip_reasons),
+        "blacklist_size": len(blacklist),
     }
-    report_path.write_text(json.dumps(report, indent=2, ensure_ascii=False), encoding="utf-8")
-    logger.info(f"Saved: {report_path}")
+    report_json.write_text(json.dumps(report, indent=2, ensure_ascii=False), encoding="utf-8")
+    logger.info(f"Saved: {report_json}")
+
+
+run = filter_graph
+
+
+if __name__ == "__main__":
+    from kg_constructor.src.utils.config import load_config
+
+    class Paths:
+        def __init__(self, root: Path):
+            self.root = root
+            self.output_dir = root / "kg_constructor" / "data" / "output"
+
+    root = Path(__file__).parent.parent.parent.parent
+    config = load_config(root / "kg_constructor" / "configs" / "config.yaml")
+    paths = Paths(root)
+    
+    filter_graph(config, paths, force=True)

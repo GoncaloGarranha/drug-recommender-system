@@ -11,7 +11,7 @@ class RGCNEncoder(nn.Module):
         self.num_rels = num_rels
 
         self.emb = nn.Embedding(num_nodes, h_dim)
-        # INICIALIZAÇÃO: Garante que os embeddings não ficam a zeros
+        # Initialization keeps embeddings away from all zeros
         with torch.no_grad():
             nn.init.xavier_uniform_(self.emb.weight)
 
@@ -24,7 +24,7 @@ class RGCNEncoder(nn.Module):
                     num_rels=num_rels,
                     regularizer="basis",
                     num_bases=num_bases,
-                    self_loop=True,  # OBRIGATÓRIO: Permite que o fármaco mantenha o seu próprio embedding
+                    self_loop=True,  # Keep a node's own embedding in the update
                     dropout=dropout
                 )
             )

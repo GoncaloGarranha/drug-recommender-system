@@ -1,17 +1,16 @@
 {
   "relation_counts_in_filtered_triples": {
-    "INDICATION": 7061,
-    "CONTRAINDICATION": 2595,
-    "HAS_INGREDIENT": 21708
+    "INDICATION": 6568,
+    "CONTRAINDICATION": 2383
   },
   "counts": {
-    "all_triples": 31364,
-    "prediction_edges": 9656,
-    "structural_edges": 21708,
-    "train_graph_edges": 29432,
-    "train": 7724,
-    "valid": 965,
-    "test": 967
+    "all_triples": 8951,
+    "prediction_edges": 8951,
+    "structural_edges": 0,
+    "train_graph_edges": 7160,
+    "train": 7160,
+    "valid": 895,
+    "test": 896
   },
   "note": "train_graph_edges = structural_edges + train prediction edges"
 }

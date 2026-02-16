@@ -1,3 +1,8 @@
+"""
+Main entry point for the Knowledge Graph construction pipeline.
+
+This script parses CLI arguments, loads configuration, resolves paths, and invokes the pipeline runner.
+"""
 from __future__ import annotations
 
 import argparse
@@ -8,6 +13,10 @@ from kg_constructor.src.utils.config import build_paths, load_config
 
 
 def main():
+    """
+    Parse command-line arguments, load config, and run the pipeline.
+    """
+    # Set up argument parser for CLI usage
     parser = argparse.ArgumentParser(description="Knowledge Graph construction pipeline")
     parser.add_argument("--config", required=True, help="Path to YAML config file")
     parser.add_argument("--only", default=None, help="Run a single pipeline step (e.g., 01_stats)")
@@ -17,12 +26,15 @@ def main():
 
     args = parser.parse_args()
 
+    # Load YAML config and resolve project paths
     cfg = load_config(args.config)
     project_root = Path(".").resolve()
     paths = build_paths(cfg, project_root=project_root)
 
+    # Get the ordered list of pipeline steps from config
     pipeline_order = cfg["pipeline"]["steps"]
 
+    # Run the pipeline with the selected options
     run_pipeline(
         cfg=cfg,
         paths=paths,
@@ -35,4 +47,5 @@ def main():
 
 
 if __name__ == "__main__":
+    # Allow running as a script: python -m kg_constructor.src.run_kg_pipeline --config ...
     main()

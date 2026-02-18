@@ -16,3 +16,5 @@ kg_constructor/data/input/
 /old/kg_constructor/data/input
 /rgcn/src/models/__pycache__
 /rgcn/src/__pycache__
+/rgcn/runs
+/rgcn/src/__pycache__

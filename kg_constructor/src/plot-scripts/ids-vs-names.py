@@ -3,7 +3,7 @@ import numpy as np
 from pathlib import Path
 
 # Dados
-categories = ['Fármacos (Drugs)', 'Excipientes (Ingredients)']
+categories = ['Drugs', 'Ingredients']
 names_counts = [3359, 2552]  
 ids_counts = [584, 2021]     
 

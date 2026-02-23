@@ -80,18 +80,20 @@ def infer_typed_partitions(splits: dict) -> Tuple[List[int], List[int]]:
     return sorted(list(drug_ids)), sorted(list(disease_ids))
 
 @torch.no_grad()
-def evaluate_indications(node_emb, decoder, edges, candidate_diseases, known_fwd, hits_k, device):
+def evaluate_indications(node_emb, decoder, edges, candidate_drugs, known_fwd, hits_k, device):
     """
-    Evaluate INDICATION prediction: rank the correct disease among all candidate diseases.
+    Evaluate INDICATION prediction: rank the correct drug among all candidate drugs.
     
-    For each (drug, disease) pair, computes scores for all candidate diseases and
-    ranks the true disease using filtered ranking (removes known triples).
+    For each (drug, disease) pair in edges, computes scores for all candidate drugs
+    given the disease, and ranks the true drug using filtered ranking (removes known triples).
+    
+    Task: Given a disease, predict the drug (Disease → Drug)
     
     Args:
         node_emb: Node embeddings from R-GCN encoder [num_nodes, emb_dim]
         decoder: Trained DistMult decoder
         edges: Dict with 'src' (drugs), 'dst' (diseases), 'rel' (INDICATION)
-        candidate_diseases: List of all disease node IDs
+        candidate_drugs: List of all drug node IDs
         known_fwd: Set of known (drug, INDICATION, disease) triples to filter
         hits_k: List of K values for Hits@K metrics
         device: torch device (cpu/cuda)
@@ -100,32 +102,33 @@ def evaluate_indications(node_emb, decoder, edges, candidate_diseases, known_fwd
         Dict with 'mrr' and 'hits@K' metrics
     """
     drug_ids = [int(x) for x in edges["src"]]
-    true_disease_ids = [int(x) for x in edges["dst"]]
+    disease_ids = [int(x) for x in edges["dst"]]
     rel_fwd_id = int(edges["rel"][0])
 
-    candidate_tensor = torch.tensor(candidate_diseases, dtype=torch.long, device=device)
+    candidate_tensor = torch.tensor(candidate_drugs, dtype=torch.long, device=device)
     candidate_embeddings = node_emb[candidate_tensor]
 
     ranks = []
     hits = {k: 0 for k in hits_k}
 
-    for drug_id, true_disease_id in zip(drug_ids, true_disease_ids):
-        head_emb = node_emb[drug_id]
+    for true_drug_id, disease_id in zip(drug_ids, disease_ids):
+        disease_emb = node_emb[disease_id]
         rel_emb = decoder.rel_emb(torch.tensor([rel_fwd_id], device=device)).squeeze(0)
 
-        # Scoring DistMult: <h * r, t>
-        query_vec = (head_emb * rel_emb).unsqueeze(0)
+        # Scoring DistMult: score(drug, INDICATION, disease) = <drug * INDICATION, disease>
+        # For Disease -> Drug, we compute: drug_emb * rel_emb and dot with disease_emb
+        query_vec = (disease_emb * rel_emb).unsqueeze(0)
         scores = torch.matmul(query_vec, candidate_embeddings.T).squeeze(0)
 
-        # Filtered Ranking: ignore other known diseases for this drug
-        for j, candidate_id in enumerate(candidate_diseases):
-            if candidate_id == true_disease_id:
+        # Filtered Ranking: ignore other known drugs for this disease
+        for j, candidate_drug_id in enumerate(candidate_drugs):
+            if candidate_drug_id == true_drug_id:
                 continue
-            if (drug_id, rel_fwd_id, candidate_id) in known_fwd:
+            if (candidate_drug_id, rel_fwd_id, disease_id) in known_fwd:
                 scores[j] = -1e9
 
         try:
-            true_pos = candidate_diseases.index(true_disease_id)
+            true_pos = candidate_drugs.index(true_drug_id)
             order = torch.argsort(scores, descending=True)
             rank = int((order == true_pos).nonzero(as_tuple=False)[0].item()) + 1
             ranks.append(rank)
@@ -178,7 +181,7 @@ def main():
     rel_fwd = metadata["rel2id"]["INDICATION"]
     known_fwd = build_known_forward_triples(splits, rel_fwd)
 
-    # 3) Prepare task: (Drug, indicated_for, ?)
+    # 3) Prepare task: (?, INDICATION, Disease) -> Predict Drug
     eval_edges = {
         "src": splits[args.split]["src"],
         "rel": [rel_fwd] * len(splits[args.split]["rel"]),
@@ -186,12 +189,12 @@ def main():
     }
 
     # 4) Evaluate
-    print(f"\nEvaluating Drug Repurposing (Drug -> Disease) on '{args.split}' split...")
+    print(f"\nEvaluating Disease-to-Drug Recommendation (Disease → Drug) on '{args.split}' split...")
     results = evaluate_indications(
         node_emb,
         decoder,
         eval_edges,
-        disease_ids,
+        drug_ids,
         known_fwd,
         cfg["training"]["hits_k"],
         device,
@@ -199,7 +202,7 @@ def main():
 
     # 5) Output
     print("-" * 60)
-    print(f"RESULTS FOR TASK: DRUG -> DISEASE")
+    print(f"RESULTS FOR TASK: DISEASE → DRUG")
     print("-" * 60)
     print(f"Mean Reciprocal Rank (MRR): {results['mrr']:.4f}")
     for k in cfg["training"]["hits_k"]:

@@ -18,4 +18,4 @@ training:
 
 runs:
   out_dir: "rgcn/runs"
-  name: "drug_to_disease_focused"
+  name: "disease_to_drug_focused"

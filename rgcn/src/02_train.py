@@ -43,7 +43,7 @@ def build_known_forward_triples(splits: dict, relation_id: int) -> set:
 
 
 @torch.no_grad()
-def evaluate_drug_to_disease(
+def evaluate_disease_to_drug(
     encoder,
     decoder,
     graph,
@@ -52,37 +52,43 @@ def evaluate_drug_to_disease(
     relation_id: int,
     known_triples: set,
     device,
-    all_diseases_tensor,
+    all_drugs_tensor,
     hits_k=(1, 3, 10),
 ):
-    """Evaluate Drug -> Disease ranking with filtered metrics."""
+    """
+    Evaluate Disease → Drug ranking with filtered metrics.
+    
+    Given a disease, rank the correct drug among all candidate drugs.
+    """
     encoder.eval()
     decoder.eval()
 
     node_embeddings = encoder(graph, edge_types)
     drug_ids = torch.tensor(eval_edges["src"], dtype=torch.long, device=device)
-    true_disease_ids = torch.tensor(eval_edges["dst"], dtype=torch.long, device=device)
+    disease_ids = torch.tensor(eval_edges["dst"], dtype=torch.long, device=device)
 
-    candidate_diseases = all_diseases_tensor
+    candidate_drugs = all_drugs_tensor
     ranks = []
     hits = {k: 0 for k in hits_k}
 
-    for i in range(drug_ids.shape[0]):
-        drug_id = drug_ids[i].item()
-        true_disease_id = true_disease_ids[i].item()
+    for i in range(len(drug_ids)):
+        true_drug_id = drug_ids[i].item()
+        disease_id = disease_ids[i].item()
 
-        head = node_embeddings[drug_id].unsqueeze(0).repeat(len(candidate_diseases), 1)
-        rel = decoder.rel_emb(torch.tensor([relation_id], device=device)).repeat(len(candidate_diseases), 1)
-        tail = node_embeddings[candidate_diseases]
-        scores = torch.sum(head * rel * tail, dim=1)
+        # Score all candidate drugs given the disease
+        disease_emb = node_embeddings[disease_id].unsqueeze(0).repeat(len(candidate_drugs), 1)
+        rel = decoder.rel_emb(torch.tensor([relation_id], device=device)).repeat(len(candidate_drugs), 1)
+        drug_candidates = node_embeddings[candidate_drugs]
+        scores = torch.sum(disease_emb * rel * drug_candidates, dim=1)
 
-        for idx, candidate_id in enumerate(candidate_diseases.tolist()):
-            if candidate_id == true_disease_id:
+        # Filtered ranking: remove known drugs for this disease
+        for idx, candidate_id in enumerate(candidate_drugs.tolist()):
+            if candidate_id == true_drug_id:
                 continue
-            if (drug_id, relation_id, candidate_id) in known_triples:
+            if (candidate_id, relation_id, disease_id) in known_triples:
                 scores[idx] = -1e9
 
-        true_score = scores[candidate_diseases == true_disease_id].item()
+        true_score = scores[candidate_drugs == true_drug_id].item()
         num_better = torch.sum(scores > true_score).item()
         num_equal = torch.sum(scores == true_score).item()
         rank = 1 + num_better + (num_equal - 1) / 2.0
@@ -105,18 +111,17 @@ def negative_sampling_disease(
     positive_diseases: torch.Tensor,
     k: int,
     device,
-    all_diseases_tensor: torch.Tensor,
+    all_drugs_tensor: torch.Tensor,
 ):
-    """Create negative samples by corrupting the disease target."""
+    """
+    Create negative samples by corrupting the drug (head) during Disease→Drug training.
+    
+    For each (drug, INDICATION, disease) triple, create k negatives by replacing the drug.
+    """
     batch_size = positive_drugs.shape[0]
-    src_neg = positive_drugs.repeat_interleave(k)
+    src_neg = all_drugs_tensor[torch.randint(0, len(all_drugs_tensor), (batch_size * k,), device=device)]
     rel_neg = torch.full((batch_size * k,), relation_id, dtype=torch.long, device=device)
-
-    if len(all_diseases_tensor) < 2:
-        raise ValueError("Disease set for negative sampling is too small.")
-
-    idxs = torch.randint(0, len(all_diseases_tensor), (batch_size * k,), device=device)
-    dst_neg = all_diseases_tensor[idxs]
+    dst_neg = positive_diseases.repeat_interleave(k)
     return src_neg, rel_neg, dst_neg
 
 
@@ -142,10 +147,10 @@ def main() -> None:
     if relation_id is None:
         raise ValueError("Relation 'INDICATION' was not found in metadata.")
 
-    all_diseases = sorted(
-        set(splits["train"]["dst"] + splits["valid"]["dst"] + splits["test"]["dst"])
+    all_drugs = sorted(
+        set(splits["train"]["src"] + splits["valid"]["src"] + splits["test"]["src"])
     )
-    all_diseases_tensor = torch.tensor(all_diseases, dtype=torch.long, device=device)
+    all_drugs_tensor = torch.tensor(all_drugs, dtype=torch.long, device=device)
 
     encoder = RGCNEncoder(
         num_nodes,
@@ -167,10 +172,10 @@ def main() -> None:
     train_diseases = torch.tensor(splits["train"]["dst"], dtype=torch.long, device=device)
     known_triples = build_known_forward_triples(splits, relation_id)
 
-    run_dir = os.path.join(cfg["runs"]["out_dir"], f"{timestamp()}_drug_to_disease")
+    run_dir = os.path.join(cfg["runs"]["out_dir"], f"{timestamp()}_disease_to_drug")
     ensure_dir(os.path.join(run_dir, "checkpoints"))
 
-    print(f"Targeting: Drug -> Disease | Device: {device}")
+    print(f"Targeting: Disease → Drug | Device: {device}")
     best_mrr = -1.0
 
     for epoch in range(1, cfg["training"]["epochs"] + 1):
@@ -190,7 +195,7 @@ def main() -> None:
             train_diseases,
             cfg["training"]["neg_k"],
             device,
-            all_diseases_tensor,
+            all_drugs_tensor,
         )
         negative_scores = decoder(node_embeddings, src_neg, rel_neg, dst_neg)
 
@@ -205,7 +210,7 @@ def main() -> None:
         optimizer.step()
 
         if epoch % cfg["training"]["eval_every"] == 0 or epoch == cfg["training"]["epochs"]:
-            metrics = evaluate_drug_to_disease(
+            metrics = evaluate_disease_to_drug(
                 encoder,
                 decoder,
                 graph,
@@ -214,12 +219,12 @@ def main() -> None:
                 relation_id,
                 known_triples,
                 device,
-                all_diseases_tensor,
+                all_drugs_tensor,
                 hits_k=cfg["training"]["hits_k"],
             )
             print(
                 f"Epoch {epoch:03d} | Loss: {loss.item():.4f} | "
-                f"Valid MRR (Drug->Dis): {metrics['mrr']:.4f}"
+                f"Valid MRR (Disease→Drug): {metrics['mrr']:.4f}"
             )
             if metrics["mrr"] > best_mrr:
                 best_mrr = metrics["mrr"]

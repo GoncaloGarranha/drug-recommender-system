@@ -1,24 +1,24 @@
 """
 R-GCN Inference Script
 
-Generates top-K disease predictions for a given drug using a trained R-GCN model.
+Generates top-K drug recommendations for a given disease using a trained R-GCN model.
 Supports both fuzzy name matching and exact entity ID lookup.
 
 Usage:
-    # Search by drug name (fuzzy match)
-    python -m rgcn.src.04_infer --query "Albuterol" --topk 10
+    # Search by disease name (fuzzy match)
+    python -m rgcn.src.04_infer --query "diabetes" --topk 10
     
     # Search by exact entity ID
-    python -m rgcn.src.04_infer --entity_id "DRUG:ALBUTEROL SULFATE" --topk 10
+    python -m rgcn.src.04_infer --entity_id "DOID:9352" --topk 10
     
     # Save results to JSON
-    python -m rgcn.src.04_infer --query "Metformin" --topk 10 --json_out predictions.json
+    python -m rgcn.src.04_infer --query "hypertension" --topk 10 --json_out predictions.json
     
     # Show internal entity IDs
-    python -m rgcn.src.04_infer --query "Aspirin" --topk 5 --show_ids
+    python -m rgcn.src.04_infer --query "asthma" --topk 5 --show_ids
 
 Output:
-    - Top-K disease predictions with scores and disease names
+    - Top-K drug recommendations with scores and drug names
     - Optional JSON output file with detailed results
 """
 
@@ -101,8 +101,8 @@ def main():
         7. Optionally save to JSON
     """
     ap = argparse.ArgumentParser()
-    ap.add_argument("--query", required=False, help="Drug name (e.g., Albuterol)")
-    ap.add_argument("--entity_id", required=False, help="Exact drug entity ID (e.g., DRUG:ALBUTEROL SULFATE)")
+    ap.add_argument("--query", required=False, help="Disease name (e.g., diabetes)")
+    ap.add_argument("--entity_id", required=False, help="Exact disease entity ID (e.g., DOID:9352)")
     ap.add_argument("--topk", type=int, default=10)
     ap.add_argument("--show_ids", action="store_true", help="Show entity IDs (recommended for debugging)")
     ap.add_argument("--json_out", default=None, help="Save results to JSON file (e.g., out.json)")
@@ -125,23 +125,23 @@ def main():
         raise KeyError("Relation 'INDICATION' does not exist in rel2id.")
     indication_rel_id = metadata["rel2id"]["INDICATION"]
 
-    # 3) Candidate diseases (dst from train/valid/test for consistent ranking)
-    disease_node_ids = list(
-        set(splits["train"]["dst"] + splits["valid"]["dst"] + splits["test"]["dst"])
+    # 3) Candidate drugs (src from train/valid/test for consistent ranking)
+    drug_node_ids = list(
+        set(splits["train"]["src"] + splits["valid"]["src"] + splits["test"]["src"])
     )
-    disease_tensor = torch.tensor(disease_node_ids)
+    drug_tensor = torch.tensor(drug_node_ids)
 
-    # 4) Resolve drug (exact ID or query)
-    drug_node_id = None
-    drug_entity_id = None
+    # 4) Resolve disease (exact ID or query)
+    disease_node_id = None
+    disease_entity_id = None
 
     if args.entity_id:
         if args.entity_id not in entity_to_id:
             print(f"Error: entity_id '{args.entity_id}' does not exist in the graph.")
             return
-        drug_entity_id = args.entity_id
-        drug_node_id = entity_to_id[drug_entity_id]
-        print(f"Drug selected by ID: {entity_labels.get(drug_entity_id, drug_entity_id)} (ID: {drug_entity_id})")
+        disease_entity_id = args.entity_id
+        disease_node_id = entity_to_id[disease_entity_id]
+        print(f"Disease selected by ID: {entity_labels.get(disease_entity_id, disease_entity_id)} (ID: {disease_entity_id})")
 
     else:
         if not args.query:
@@ -150,32 +150,32 @@ def main():
 
         query = args.query.lower()
 
-        # Only consider entities that appear as src in splits (real drugs)
-        drug_node_ids = set(splits["train"]["src"] + splits["valid"]["src"] + splits["test"]["src"])
-        drug_entity_ids = [id_to_entity[idx] for idx in drug_node_ids if idx in id_to_entity]
+        # Only consider entities that appear as dst in splits (real diseases)
+        disease_node_ids_all = set(splits["train"]["dst"] + splits["valid"]["dst"] + splits["test"]["dst"])
+        disease_entity_ids = [id_to_entity[idx] for idx in disease_node_ids_all if idx in id_to_entity]
 
         def label_for(entity_id: str) -> str:
             return entity_labels.get(entity_id, entity_id)
 
         exact = [
             eid
-            for eid in drug_entity_ids
+            for eid in disease_entity_ids
             if label_for(eid).lower() == query or eid.lower() == query
         ]
         starts = [
             eid
-            for eid in drug_entity_ids
+            for eid in disease_entity_ids
             if label_for(eid).lower().startswith(query) or eid.lower().startswith(query)
         ]
         subs = [
             eid
-            for eid in drug_entity_ids
+            for eid in disease_entity_ids
             if query in label_for(eid).lower() or query in eid.lower()
         ]
 
         candidates = exact or starts or subs
         if not candidates:
-            print(f"Error: drug '{args.query}' was not found in the graph.")
+            print(f"Error: disease '{args.query}' was not found in the graph.")
             return
 
         # If there are multiple matches, show suggestions (user friendly)
@@ -183,21 +183,22 @@ def main():
         candidates = sorted(set(candidates), key=lambda eid: len(label_for(eid)))
 
         if len(candidates) > 1:
-            print("\nMultiple possible drugs found. Suggestions:")
+            print("\nMultiple possible diseases found. Suggestions:")
             for i, eid in enumerate(candidates[:5], start=1):
                 print(f"  {i}) {label_for(eid)} (ID: {eid})")
             print("Tip: use --entity_id to choose the exact one.\n")
 
-        drug_entity_id = candidates[0]
-        drug_node_id = entity_to_id[drug_entity_id]
-        print(f"Detected drug: {entity_labels.get(drug_entity_id, drug_entity_id)} (ID: {drug_entity_id})")
+        disease_entity_id = candidates[0]
+        disease_node_id = entity_to_id[disease_entity_id]
+        print(f"Detected disease: {entity_labels.get(disease_entity_id, disease_entity_id)} (ID: {disease_entity_id})")
 
-    # 5) “Known vs Novel”: indications already present in the training graph
+    # 5) "Known vs Novel": drug recommendations already present in the training graph
     known_indications = set()
     tg = splits["train_graph"]  # training graph edges (also includes non-prediction edges)
     for s, r, t in zip(tg["src"], tg["rel"], tg["dst"]):
-        if s == drug_node_id and r == indication_rel_id:
-            known_indications.add(t)  # t is node id (int)
+        # Check: (drug, INDICATION, disease) triples where disease matches our query
+        if t == disease_node_id and r == indication_rel_id:
+            known_indications.add(int(s))  # s is drug node id
 
     # 6) Inference
     encoder = RGCNEncoder(
@@ -217,9 +218,11 @@ def main():
     with torch.no_grad():
         emb = encoder(graph, graph.edata["etype"])
 
-        h = emb[drug_node_id].unsqueeze(0).repeat(len(disease_node_ids), 1)
-        r = decoder.rel_emb(torch.tensor([indication_rel_id]).repeat(len(disease_node_ids)))
-        t = emb[disease_tensor]
+        # Score all candidate drugs for this disease using DistMult
+        # Note: INDICATION is directed (drug -> disease), so we score (drug, INDICATION, disease)
+        h = emb[drug_tensor]  # candidate drugs as heads
+        r = decoder.rel_emb(torch.tensor([indication_rel_id]).repeat(len(drug_node_ids)))
+        t = emb[disease_node_id].unsqueeze(0).repeat(len(drug_node_ids), 1)  # disease as tail
 
         scores = torch.sum(h * r * t, dim=1)  # DistMult raw score
         probs = sigmoid(scores)               # interpretable (not calibrated, but helpful)
@@ -227,31 +230,29 @@ def main():
         topk = min(args.topk, len(scores))
         topk_scores, topk_idx = torch.topk(scores, k=topk)
         topk_probs = probs[topk_idx]
-
-    # 7) Show results (more user friendly)
-    print(f"\nTop-{topk} Likely Indications (Drug → Disease):")
+    print(f"\nTop-{topk} Recommended Drugs (Disease → Drug):")
     print("-" * 92)
-    print(f"{'RK':>2}  {'Disease':40}  {'DOID':14}  {'Score':>8}  {'Sigmoid':>8}  {'Status':>7}")
+    print(f"{'RK':>2}  {'Drug':40}  {'ID':14}  {'Score':>8}  {'Sigmoid':>8}  {'Status':>7}")
     print("-" * 92)
 
     results = []
     for rank in range(topk):
-        dis_node = disease_node_ids[topk_idx[rank].item()]
-        dis_eid = id_to_entity[dis_node]
-        dis_name = entity_labels.get(dis_eid, dis_eid)
+        drug_node = drug_node_ids[topk_idx[rank].item()]
+        drug_eid = id_to_entity[drug_node]
+        drug_name = entity_labels.get(drug_eid, drug_eid)
 
-        status = "KNOWN" if dis_node in known_indications else "CANDIDATE"
+        status = "KNOWN" if drug_node in known_indications else "CANDIDATE"
 
-        doid_str = dis_eid if dis_eid.startswith("DOID:") else ("-" if not args.show_ids else dis_eid)
+        id_str = drug_eid if drug_eid.startswith("DRUG") or drug_eid.startswith("DRUGBANK") else ("-" if not args.show_ids else drug_eid)
 
         print(
-            f"{rank+1:02d}  {dis_name[:40]:40}  {doid_str:14}  {topk_scores[rank].item():8.4f}  {topk_probs[rank].item():8.4f}  {status:>7}"
+            f"{rank+1:02d}  {drug_name[:40]:40}  {id_str:14}  {topk_scores[rank].item():8.4f}  {topk_probs[rank].item():8.4f}  {status:>7}"
         )
 
         results.append({
             "rank": rank + 1,
-            "drug": {"id": drug_entity_id, "name": entity_labels.get(drug_entity_id, drug_entity_id)},
-            "disease": {"id": dis_eid, "name": dis_name},
+            "disease": {"id": disease_entity_id, "name": entity_labels.get(disease_entity_id, disease_entity_id)},
+            "drug": {"id": drug_eid, "name": drug_name},
             "score": float(topk_scores[rank].item()),
             "sigmoid": float(topk_probs[rank].item()),
             "status": status,

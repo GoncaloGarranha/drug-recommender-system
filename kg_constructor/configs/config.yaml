@@ -36,24 +36,6 @@ pipeline:
     - "03_resolve_entities"
     - "04_build_triples"
     - "05_filter_graph"
-    - "06_split_edges"
-    - "07_index_dgl"
-    - "08_analytics"
-
-# ---------------------------------------------------------
-# Train / validation / test split configuration
-# (used in 06_split_edges)
-# ---------------------------------------------------------
-split:
-  train: 0.8
-  valid: 0.1
-  test: 0.1
-
-  prediction_relations:
-    - "INDICATION"
-    - "CONTRAINDICATION"
-  structural_relations:
-    - "HAS_INGREDIENT"
 
 # ---------------------------------------------------------
 # Filtering rules (used in 05_filter_graph)

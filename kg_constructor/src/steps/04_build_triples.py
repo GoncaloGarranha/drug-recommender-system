@@ -1,7 +1,10 @@
 """
 Step 04: Convert raw edges into canonical triples (src, rel, dst).
-Usa o mapeamento de nomes para entidades canônicas gerado no passo 03 para garantir que todos os triplos usam apenas nós normalizados.
+
+This step uses the canonical drug mapping generated in Step 03 to ensure
+that all triples refer only to normalized canonical entities.
 """
+
 from __future__ import annotations
 
 import csv
@@ -15,29 +18,56 @@ logger = get_logger(__name__)
 
 
 def read_csv(path: Path) -> List[Dict[str, str]]:
-    with path.open("r", encoding="utf-8") as f:
-        return list(csv.DictReader(f))
+    """
+    Read a CSV file into a list of dictionaries.
+
+    Args:
+        path: Path to the CSV file.
+
+    Returns:
+        List of rows as dictionaries.
+    """
+    with path.open("r", encoding="utf-8") as file_obj:
+        return list(csv.DictReader(file_obj))
 
 
 def write_csv(path: Path, header: List[str], rows: List[List[Any]]) -> None:
+    """
+    Write rows to a CSV file.
+
+    Args:
+        path: Output CSV path.
+        header: CSV header row.
+        rows: Data rows.
+    """
     path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open("w", newline="", encoding="utf-8") as f:
-        writer = csv.writer(f)
+
+    with path.open("w", newline="", encoding="utf-8") as file_obj:
+        writer = csv.writer(file_obj)
         writer.writerow(header)
         writer.writerows(rows)
 
 
 def build_triples(cfg: Dict[str, Any], paths, force: bool = False) -> None:
-        """
-        Step 04: Convert raw edges into canonical triples (src, rel, dst).
-        Inputs:
-            - data/output/interim/edges_raw.csv
-            - data/output/mappings/drug_name_to_entity.json
-        Output:
-            - data/output/triples/triples.csv
-        Usa o mapeamento de nomes normalizados para entidades canônicas (drug_name_to_entity.json)
-        para garantir que todos os triplos usam apenas nós canônicos, evitando duplicidade.
-        """
+    """
+    Step 04: Convert raw edges into canonical triples.
+
+    This step reads the raw edge table and replaces each source drug name
+    with its canonical entity identifier using the mapping generated in
+    Step 03.
+
+    Inputs:
+        - data/output/interim/edges_raw.csv
+        - data/output/mappings/drug_name_to_entity.json
+
+    Output:
+        - data/output/triples/triples.csv
+
+    Args:
+        cfg: Pipeline configuration dictionary. Kept for interface consistency.
+        paths: Object containing pipeline paths. Must provide `output_dir`.
+        force: If True, overwrite existing outputs.
+    """
     output_dir = Path(paths.output_dir)
     interim_dir = output_dir / "interim"
     mappings_dir = output_dir / "mappings"
@@ -49,44 +79,52 @@ def build_triples(cfg: Dict[str, Any], paths, force: bool = False) -> None:
     triples_csv = triples_dir / "triples.csv"
 
     if not force and triples_csv.exists():
-        logger.info("Triples output already exists. Skipping (use --force to re-run).")
+        logger.info("Triples output already exists. Skipping step (use --force to re-run).")
         return
 
     if not edges_csv.exists():
-        raise FileNotFoundError("Missing edges_raw.csv. Run 02_parse_sources first.")
-    if not drug_map_json.exists():
-        raise FileNotFoundError("Missing drug_name_to_entity.json. Run 03_resolve_entities first.")
+        raise FileNotFoundError("Missing edges_raw.csv. Run step 02_parse_sources first.")
 
-    edges = read_csv(edges_csv)
-    # Carrega o mapeamento de nomes normalizados para IDs canônicos de fármacos
+    if not drug_map_json.exists():
+        raise FileNotFoundError("Missing drug_name_to_entity.json. Run step 03_resolve_entities first.")
+
+    edge_rows = read_csv(edges_csv)
+
+    # Load the mapping from normalized drug names to canonical entity IDs
     drug_name_to_entity = json.loads(drug_map_json.read_text(encoding="utf-8"))
 
-    triples: List[List[str]] = []
-    skipped_no_drug_mapping = 0
-    skipped_bad_row = 0
+    triple_rows: List[List[str]] = []
+    skipped_missing_mapping = 0
+    skipped_invalid_rows = 0
 
-    for edge in edges:
-        src_name_norm = (edge.get("src") or "").strip()
-        rel = (edge.get("rel") or "").strip()
-        dst = (edge.get("dst") or "").strip()
+    for row in edge_rows:
+        src_name_norm = (row.get("src") or "").strip()
+        relation = (row.get("rel") or "").strip()
+        dst_entity = (row.get("dst") or "").strip()
 
-        if not src_name_norm or not rel or not dst:
-            skipped_bad_row += 1
+        if not src_name_norm or not relation or not dst_entity:
+            skipped_invalid_rows += 1
             continue
 
         src_entity = drug_name_to_entity.get(src_name_norm)
         if not src_entity:
-            skipped_no_drug_mapping += 1
+            skipped_missing_mapping += 1
             continue
 
-        triples.append([src_entity, rel, dst])
+        triple_rows.append([src_entity, relation, dst_entity])
 
-    write_csv(triples_csv, ["src", "rel", "dst"], triples)
-    logger.info(f"Saved: {triples_csv}")
-    logger.info(f"Triples: {len(triples)} | Skipped (no drug mapping): {skipped_no_drug_mapping} | Skipped (bad row): {skipped_bad_row}")
+    write_csv(triples_csv, ["src", "rel", "dst"], triple_rows)
+
+    logger.info("Saved: %s", triples_csv)
+    logger.info(
+        "Triples: %d | Skipped (missing drug mapping): %d | Skipped (invalid row): %d",
+        len(triple_rows),
+        skipped_missing_mapping,
+        skipped_invalid_rows,
+    )
 
 
-# Alias for pipeline compatibility
+# Alias used by the pipeline runner
 run = build_triples
 
 
@@ -94,4 +132,5 @@ if __name__ == "__main__":
     class Paths:
         input_dir = "kg_constructor/data/input"
         output_dir = "kg_constructor/data/output"
-    build_triples(config={}, paths=Paths(), force=True)
+
+    build_triples(cfg={}, paths=Paths(), force=True)

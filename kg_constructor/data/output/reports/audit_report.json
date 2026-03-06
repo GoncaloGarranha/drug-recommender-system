@@ -1,6 +1,6 @@
 {
   "inputs": {
-    "input_dir": "kg_constructor/data/input",
+    "input_dir": "/Users/garranha/workspace/ISEL/Mestrado/Tese/tese/kg_constructor/data/input",
     "file_counts": {
       "xml_files": 2650,
       "txt_files": 114,

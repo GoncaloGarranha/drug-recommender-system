@@ -53,23 +53,6 @@ Applies cleaning filters to canonical triples (removes self-loops, blacklisted d
 ### Run command
 python -m kg_constructor.src.steps.05_filter_graph
 
-## 06_split_edges.py
+---
 
-Splits filtered triples into train/valid/test edge sets for graph learning.
-
-### Run command
-python -m kg_constructor.src.steps.06_split_edges
-
-## 07_index_dgl.py
-
-Creates DGL training graph and entity/relation mappings for model training.
-
-### Run command
-python -m kg_constructor.src.steps.07_index_dgl
-
-## 08_analytics.py
-
-Generates analytics plots and reports over the training graph structure.
-
-### Run command
-python -m kg_constructor.src.steps.08_analytics
+**Note**: Train/validation/test splitting and DGL artifact generation now happen inside the R-GCN pipeline (`rgcn/src/utils/io.py`). The KG constructor produces `triples.filtered.csv` as its final output.

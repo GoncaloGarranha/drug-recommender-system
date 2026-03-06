@@ -3,97 +3,184 @@ from __future__ import annotations
 import json
 from collections import Counter
 from pathlib import Path
-from typing import Any, Dict, Iterable, List, Tuple
+from typing import Any, Dict, Iterable, List
 
 from kg_constructor.src.utils.log import get_logger
 
 logger = get_logger(__name__)
 
-def get_json_files(folder: Path) -> Iterable[Path]:
-    """Return all .json files in a folder."""
+SOURCE_FOLDERS = ("xml_files", "txt_files", "csv_files")
+
+
+def iter_json_files(folder: Path) -> Iterable[Path]:
+    """
+    Yield all JSON files in a given folder.
+
+    Args:
+        folder: Folder to scan.
+
+    Yields:
+        Path objects for files with the .json extension.
+    """
     if not folder.exists():
         return
-    for file in folder.iterdir():
-        if file.is_file() and file.suffix.lower() == ".json":
-            yield file
+
+    for file_path in folder.iterdir():
+        if file_path.is_file() and file_path.suffix.lower() == ".json":
+            yield file_path
 
 
-def load_json(path: Path) -> Dict[str, Any]:
-    """Load a JSON file and raise a clear error if it fails."""
+def load_json_file(path: Path) -> Dict[str, Any]:
+    """
+    Load a JSON file and raise a clear error message if parsing fails.
+
+    Args:
+        path: Path to the JSON file.
+
+    Returns:
+        Parsed JSON content as a dictionary.
+    """
     try:
         return json.loads(path.read_text(encoding="utf-8"))
-    except Exception as e:
-        raise RuntimeError(f"Failed to parse JSON: {path} | Error: {e}") from e
+    except Exception as exc:
+        raise RuntimeError(f"Failed to parse JSON file: {path} | Error: {exc}") from exc
 
 
-def get_drugs(data: Dict[str, Any]) -> List[Dict[str, Any]]:
-    """Return the list under 'drug' if present."""
+def extract_drugs(data: Dict[str, Any]) -> List[Dict[str, Any]]:
+    """
+    Extract valid drug records from the input JSON structure.
+
+    Args:
+        data: Parsed JSON content.
+
+    Returns:
+        A list of drug dictionaries.
+    """
     drugs = data.get("drug", [])
     if isinstance(drugs, list):
-        return [d for d in drugs if isinstance(d, dict)]
+        return [drug for drug in drugs if isinstance(drug, dict)]
     return []
 
 
-def get_doid_ids(data: Dict[str, Any]) -> List[str]:
-    """Extract DOID IDs from indications and contraindications."""
+def extract_doid_ids(data: Dict[str, Any]) -> List[str]:
+    """
+    Extract DOID identifiers from indications and contraindications.
+
+    Args:
+        data: Parsed JSON content.
+
+    Returns:
+        A list of DOID identifiers.
+    """
     doid_ids: List[str] = []
-    for section in ("indications", "contraindications"):
-        block = data.get(section, {})
-        if not isinstance(block, dict):
+
+    for section_name in ("indications", "contraindications"):
+        section = data.get(section_name, {})
+        if not isinstance(section, dict):
             continue
-        entities = block.get("doid_entities", [])
+
+        entities = section.get("doid_entities", [])
         if not isinstance(entities, list):
             continue
+
         for entity in entities:
-            if isinstance(entity, dict):
-                doid = entity.get("doid_id")
-                if isinstance(doid, str) and doid.strip():
-                    doid_ids.append(doid.strip())
+            if not isinstance(entity, dict):
+                continue
+
+            doid_id = entity.get("doid_id")
+            if isinstance(doid_id, str) and doid_id.strip():
+                doid_ids.append(doid_id.strip())
+
     return doid_ids
 
 
-def get_ordo_ids(data: Dict[str, Any]) -> List[str]:
-    """Extract ORDO IDs from indications and contraindications."""
+def extract_ordo_ids(data: Dict[str, Any]) -> List[str]:
+    """
+    Extract ORDO identifiers from indications and contraindications.
+
+    Args:
+        data: Parsed JSON content.
+
+    Returns:
+        A list of ORDO identifiers.
+    """
     ordo_ids: List[str] = []
-    for section in ("indications", "contraindications"):
-        block = data.get(section, {})
-        if not isinstance(block, dict):
+
+    for section_name in ("indications", "contraindications"):
+        section = data.get(section_name, {})
+        if not isinstance(section, dict):
             continue
-        entities = block.get("orphanet_entities", [])
+
+        entities = section.get("orphanet_entities", [])
         if not isinstance(entities, list):
             continue
+
         for entity in entities:
-            if isinstance(entity, dict):
-                ordo = entity.get("ordo_id")
-                if isinstance(ordo, str) and ordo.strip():
-                    ordo_ids.append(ordo.strip())
+            if not isinstance(entity, dict):
+                continue
+
+            ordo_id = entity.get("ordo_id")
+            if isinstance(ordo_id, str) and ordo_id.strip():
+                ordo_ids.append(ordo_id.strip())
+
     return ordo_ids
 
 
-def get_ingredients(data: Dict[str, Any]) -> List[Dict[str, Any]]:
-    """Extract ingredient records from 'ingredients' if present."""
+def extract_ingredients(data: Dict[str, Any]) -> List[Dict[str, Any]]:
+    """
+    Extract valid ingredient records from the input JSON structure.
+
+    Args:
+        data: Parsed JSON content.
+
+    Returns:
+        A list of ingredient dictionaries.
+    """
     ingredients = data.get("ingredients", [])
     if isinstance(ingredients, list):
-        return [item for item in ingredients if isinstance(item, dict)]
+        return [ingredient for ingredient in ingredients if isinstance(ingredient, dict)]
     return []
 
 
 def count_json_files(input_dir: Path) -> Dict[str, int]:
-    """Count number of JSON files in each input folder."""
-    counts = {}
-    for folder_name in ("xml_files", "txt_files", "csv_files"):
-        folder = input_dir / folder_name
-        counts[folder_name] = sum(1 for _ in get_json_files(folder)) if folder.exists() else 0
-    return counts
+    """
+    Count the number of JSON files available in each source folder.
 
+    Args:
+        input_dir: Root input directory.
+
+    Returns:
+        Dictionary mapping folder name to JSON file count.
+    """
+    counts: Dict[str, int] = {}
+
+    for folder_name in SOURCE_FOLDERS:
+        folder_path = input_dir / folder_name
+        counts[folder_name] = sum(1 for _ in iter_json_files(folder_path)) if folder_path.exists() else 0
+
+    return counts
 
 
 def run_stats(cfg: Dict[str, Any], paths, force: bool = False) -> None:
     """
-    Step 01: Generate a report with statistics about the input JSON files.
+    Generate an audit report with basic statistics about the input JSON files.
+
+    This step scans all JSON files available in the MedJsonify-derived input folders
+    and reports:
+        - number of input files per folder
+        - number of unique drugs
+        - number of unique identifiers (DrugBank, ChEBI)
+        - number of unique ingredients
+        - most frequent DOID and ORDO occurrences
+
     Outputs:
-      - data/output/reports/audit_report.json
-      - data/output/reports/top_doids.csv
+        - data/output/reports/audit_report.json
+        - data/output/reports/top_doids.csv
+
+    Args:
+        cfg: Pipeline configuration dictionary. Kept for interface consistency.
+        paths: Object containing pipeline paths. Must provide `input_dir` and `output_dir`.
+        force: If True, overwrite existing outputs.
     """
     input_dir = Path(paths.input_dir)
     output_dir = Path(paths.output_dir)
@@ -104,7 +191,7 @@ def run_stats(cfg: Dict[str, Any], paths, force: bool = False) -> None:
     top_doids_csv_path = reports_dir / "top_doids.csv"
 
     if not force and audit_report_path.exists() and top_doids_csv_path.exists():
-        logger.info("Audit outputs already exist. Skipping (use --force to re-run).")
+        logger.info("Audit outputs already exist. Skipping step (use --force to re-run).")
         return
 
     file_counts = count_json_files(input_dir)
@@ -117,34 +204,43 @@ def run_stats(cfg: Dict[str, Any], paths, force: bool = False) -> None:
     doid_counts = Counter()
     ordo_counts = Counter()
 
-    for folder_name in ("xml_files", "txt_files", "csv_files"):
-        folder = input_dir / folder_name
-        if not folder.exists():
-            logger.warning(f"Missing input folder: {folder}")
+    for folder_name in SOURCE_FOLDERS:
+        folder_path = input_dir / folder_name
+
+        if not folder_path.exists():
+            logger.warning("Missing input folder: %s", folder_path)
             continue
-        for json_file in get_json_files(folder):
-            data = load_json(json_file)
-            for drug in get_drugs(data):
+
+        for json_file in iter_json_files(folder_path):
+            data = load_json_file(json_file)
+
+            for drug in extract_drugs(data):
                 name = drug.get("name")
                 if isinstance(name, str) and name.strip():
                     drug_names.add(name.strip())
-                dbid = drug.get("drugbank_id")
-                if isinstance(dbid, str) and dbid.strip():
-                    drugbank_ids.add(dbid.strip())
-                chebi = drug.get("chebi_id")
-                if isinstance(chebi, str) and chebi.strip():
-                    chebi_ids.add(chebi.strip())
-            for doid in get_doid_ids(data):
-                doid_counts[doid] += 1
-            for ordo in get_ordo_ids(data):
-                ordo_counts[ordo] += 1
-            for ingredient in get_ingredients(data):
-                name = ingredient.get("name")
-                if isinstance(name, str) and name.strip():
-                    ingredient_names.add(name.strip())
-                code = ingredient.get("code")
-                if isinstance(code, str) and code.strip():
-                    ingredient_codes.add(code.strip())
+
+                drugbank_id = drug.get("drugbank_id")
+                if isinstance(drugbank_id, str) and drugbank_id.strip():
+                    drugbank_ids.add(drugbank_id.strip())
+
+                chebi_id = drug.get("chebi_id")
+                if isinstance(chebi_id, str) and chebi_id.strip():
+                    chebi_ids.add(chebi_id.strip())
+
+            for doid_id in extract_doid_ids(data):
+                doid_counts[doid_id] += 1
+
+            for ordo_id in extract_ordo_ids(data):
+                ordo_counts[ordo_id] += 1
+
+            for ingredient in extract_ingredients(data):
+                ingredient_name = ingredient.get("name")
+                if isinstance(ingredient_name, str) and ingredient_name.strip():
+                    ingredient_names.add(ingredient_name.strip())
+
+                ingredient_code = ingredient.get("code")
+                if isinstance(ingredient_code, str) and ingredient_code.strip():
+                    ingredient_codes.add(ingredient_code.strip())
 
     report = {
         "inputs": {
@@ -164,20 +260,27 @@ def run_stats(cfg: Dict[str, Any], paths, force: bool = False) -> None:
         "top_ordos": ordo_counts.most_common(20),
     }
 
-    audit_report_path.write_text(json.dumps(report, indent=2, ensure_ascii=False), encoding="utf-8")
-    logger.info(f"Saved audit report: {audit_report_path}")
+    audit_report_path.write_text(
+        json.dumps(report, indent=2, ensure_ascii=False),
+        encoding="utf-8",
+    )
+    logger.info("Saved audit report: %s", audit_report_path)
 
-    lines = ["doid,count"]
-    for doid, count in doid_counts.most_common(200):
-        lines.append(f"{doid},{count}")
-    top_doids_csv_path.write_text("\n".join(lines), encoding="utf-8")
-    logger.info(f"Saved top DOIDs CSV: {top_doids_csv_path}")
+    csv_lines = ["doid,count"]
+    for doid_id, count in doid_counts.most_common(200):
+        csv_lines.append(f"{doid_id},{count}")
 
-# Alias for pipeline compatibility
+    top_doids_csv_path.write_text("\n".join(csv_lines), encoding="utf-8")
+    logger.info("Saved top DOIDs CSV: %s", top_doids_csv_path)
+
+
+# Alias used by the pipeline runner
 run = run_stats
+
 
 if __name__ == "__main__":
     class Paths:
         input_dir = "kg_constructor/data/input"
         output_dir = "kg_constructor/data/output"
-    run_stats(config={}, paths=Paths(), force=True)
+
+    run_stats(cfg={}, paths=Paths(), force=True)

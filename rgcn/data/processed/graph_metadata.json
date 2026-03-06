@@ -1,0 +1,13 @@
+{
+  "num_entities": 2273,
+  "num_relations": 2,
+  "num_triples": 8951,
+  "relation_distribution": {
+    "INDICATION": 6568,
+    "CONTRAINDICATION": 2383
+  },
+  "entity_type_distribution": {
+    "DISEASE": 749,
+    "DRUG": 1524
+  }
+}

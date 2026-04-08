@@ -10,10 +10,11 @@ A knowledge graph-based system for drug-disease relationship prediction using R-
 │   ├── configs/          # Configuration files
 │   ├── data/             # Input, processed, and output data
 │   └── src/              # Source code for the 9-step pipeline
-├── rgcn/                 # R-GCN model for link prediction
+├── models/rgcn/          # R-GCN model for link prediction
 │   ├── configs/          # Model configurations
 │   ├── runs/             # Training outputs and checkpoints
 │   └── src/              # Training, evaluation, and inference scripts
+├── models/performance_leaderboard.csv  # Central results table for all models
 ├── MedJsonify-main/      # Data extraction and NER pipeline
 ├── tools/                # Utility scripts
 ├── docs/                 # Documentation
@@ -74,20 +75,21 @@ See detailed documentation in `kg_constructor/src/steps/README.md`
 Train the neural network to predict drug-disease relationships:
 
 ```bash
-python -m rgcn.src.02_train --config rgcn/configs/baseline.yaml
+python -m models.rgcn.src.02_train --config models/rgcn/configs/disease_to_drug.yaml
 ```
 
 This will:
 - Load the knowledge graph from `kg_constructor/data/processed/`
 - Train an R-GCN encoder with DistMult decoder
 - Evaluate on validation set every 10 epochs
-- Save checkpoints to `rgcn/runs/<timestamp>_<name>/`
+- Save checkpoints to `models/rgcn/runs/<timestamp>_<name>/`
 
 **Output**: 
-- Best model: `rgcn/runs/.../checkpoints/best.pt`
-- Training logs: `rgcn/runs/.../train_log.json`
+- Best model: `models/rgcn/runs/.../checkpoints/best.pt`
+- Training logs: `models/rgcn/runs/.../train_log.json`
+- Evaluation results: `models/performance_leaderboard.csv`
 
-See detailed documentation in `rgcn/README.md`
+See detailed documentation in `models/rgcn/README.md`
 
 ### 4. Make Predictions
 
@@ -95,14 +97,20 @@ Generate drug-disease predictions for a specific drug:
 
 ```bash
 # Search by drug name
-python -m rgcn.src.04_infer --query "Albuterol" --topk 10
+python -m models.rgcn.src.04_infer --query "Albuterol" --topk 10
 
 # Search by exact entity ID
-python -m rgcn.src.04_infer --entity_id "DRUG:ALBUTEROL SULFATE" --topk 10
+python -m models.rgcn.src.04_infer --entity_id "DRUG:ALBUTEROL SULFATE" --topk 10
 
 # Save results to JSON
-python -m rgcn.src.04_infer --query "Metformin" --topk 10 --json_out predictions.json
+python -m models.rgcn.src.04_infer --query "Metformin" --topk 10 --json_out predictions.json
 ```
+
+### 5. Track Results
+
+The project keeps a central leaderboard at `models/performance_leaderboard.csv`.
+The evaluation scripts append new rows automatically, so this file becomes the
+single place to compare model performance across experiments.
 
 ## System Overview
 
@@ -182,7 +190,7 @@ edge_split:
 
 ### R-GCN Model
 
-Edit `rgcn/configs/baseline.yaml`:
+Edit `models/rgcn/configs/disease_to_drug.yaml`:
 
 ```yaml
 training:
@@ -205,13 +213,13 @@ training:
 python -m kg_constructor.src.run_kg_pipeline --config kg_constructor/configs/config.yaml
 
 # Train model
-python -m rgcn.src.02_train --config rgcn/configs/baseline.yaml
+python -m models.rgcn.src.02_train --config models/rgcn/configs/disease_to_drug.yaml
 
 # Evaluate model
-python -m rgcn.src.03_evaluate
+python -m models.rgcn.src.03_evaluate --runs_dir models/rgcn/runs
 
 # Make predictions
-python -m rgcn.src.04_infer --query "Aspirin" --topk 10
+python -m models.rgcn.src.04_infer --query "Aspirin" --topk 10
 ```
 
 ### Run from Specific KG Constructor Step
@@ -224,7 +232,7 @@ python -m kg_constructor.src.run_kg_pipeline --from_step 05_filter_graph --force
 ### Load and Validate Graph Data
 
 ```bash
-python -m rgcn.src.01_load_data --processed_dir kg_constructor/data/processed
+python -m models.rgcn.src.01_load_data --processed_dir kg_constructor/data/processed
 ```
 
 ## Troubleshooting

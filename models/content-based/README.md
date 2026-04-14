@@ -22,11 +22,11 @@ At a high level, the pipeline does the following:
 
 1. Load the full triple set from `kg_constructor/data/output/triples/triples.csv`.
 2. Extract all `HAS_INGREDIENT` relations.
-3. Load `models/rgcn/data/processed/entity2id.json` to keep only mapped drug entities.
-4. Build one ingredient-based text profile per drug.
+3. Load R-GCN prepared artifacts from `models/rgcn/data/processed/`.
+4. Build one ingredient-based text profile per drug candidate from the same DRUG pool used by R-GCN.
 5. Vectorize the profiles with TF-IDF.
-6. Rank candidate drugs by cosine similarity.
-7. Report ranking metrics on a random test split.
+6. Recreate the target split using the same seed and split ratios from the R-GCN config.
+7. Evaluate with filtered ranking metrics on the selected split (`valid` or `test`).
 
 This makes the baseline fast, interpretable, and useful as a reference point for the learned model.
 
@@ -61,8 +61,9 @@ The script relies on the project-wide Python environment plus:
 The required data artifacts are:
 
 - `kg_constructor/data/output/triples/triples.csv`
-- `kg_constructor/data/output/triples/triples.filtered.csv`
+- `models/rgcn/data/processed/triples_indexed.csv`
 - `models/rgcn/data/processed/entity2id.json`
+- `models/rgcn/data/processed/entity_types.json`
 
 ---
 
@@ -71,15 +72,15 @@ The required data artifacts are:
 From the repository root:
 
 ```bash
-python models/content-based/src/baseline.py
+python models/content-based/src/baseline.py --config models/rgcn/configs/disease_to_drug.yaml --split test
 ```
 
 The script will:
 
-- load the triples and entity mapping
-- create a random 90/10 train-test split from the filtered triples
-- build the TF-IDF similarity matrix
-- compute ranking metrics for the held-out triples
+- load ingredient triples and R-GCN processed artifacts
+- use the same split policy from the provided R-GCN config
+- build the TF-IDF similarity matrix over the same DRUG candidate pool
+- compute filtered ranking metrics on `valid` or `test`
 
 ---
 
@@ -106,7 +107,7 @@ This baseline follows the same project philosophy used in the other pipelines:
 - keep the baseline lightweight so it can be compared directly with R-GCN
 
 The implementation is intentionally minimal. It is not a production recommender,
-but a clean reference system for testing whether ingredient-based similarity alone can recover useful drug-disease patterns.
+but a clean reference system for testing whether ingredient-based similarity alone can recover useful drug-disease patterns under the same evaluation protocol used by R-GCN.
 
 Each run also logs its metrics to `models/performance_leaderboard.csv`, so the
 content-based baseline stays comparable with the R-GCN experiments.
@@ -117,7 +118,7 @@ content-based baseline stays comparable with the R-GCN experiments.
 
 - It only uses ingredient-level information.
 - It depends on the availability of `HAS_INGREDIENT` relations in the full triples file.
-- The train/test split is created inside the script, so results may vary slightly across runs.
+- It depends on ingredient coverage for the candidate DRUG pool.
 - It does not model graph structure, relation semantics, or learned latent features.
 
 If you want, this README can be extended with a comparison section against R-GCN, or with a small example of the ranking output.

@@ -1,3 +1,4 @@
 Date,Model,Hits@1,Hits@3,Hits@10,MRR,Notes
 2026-04-08 17:53,R-GCN (disease_to_drug),0.5562,0.6489,0.7508,0.6201,Run: 2026-04-08_14-14-33_disease_to_drug | Split: test
+2026-04-11 19:59,Content-Based (TF-IDF baseline),0.4772,0.5471,0.5912,0.5215,Aligned with R-GCN protocol | Config: disease_to_drug.yaml | Split: test
 2026-04-08 17:50,Content-Based (TF-IDF baseline),0.0582,0.1517,0.3489,0.1472,TF-IDF over HAS_INGREDIENT profiles; 90/10 split over filtered triples

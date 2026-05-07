@@ -1,0 +1,6042 @@
+[
+  {
+    "src_id": "1399",
+    "rel_id": "2",
+    "dst_id": "659",
+    "src": "DRUG:HULIO",
+    "rel": "INDICATION",
+    "dst": "DOID:8577"
+  },
+  {
+    "src_id": "1732",
+    "rel_id": "2",
+    "dst_id": "15",
+    "src": "DRUG:NEUPRO",
+    "rel": "INDICATION",
+    "dst": "DOID:0050425"
+  },
+  {
+    "src_id": "852",
+    "rel_id": "2",
+    "dst_id": "582",
+    "src": "DRUG:ATORVASTATIN CALCIUM",
+    "rel": "INDICATION",
+    "dst": "DOID:5844"
+  },
+  {
+    "src_id": "1208",
+    "rel_id": "2",
+    "dst_id": "180",
+    "src": "DRUG:DOXYCYCLINE",
+    "rel": "INDICATION",
+    "dst": "DOID:11256"
+  },
+  {
+    "src_id": "1930",
+    "rel_id": "2",
+    "dst_id": "611",
+    "src": "DRUG:PREDNISONE",
+    "rel": "INDICATION",
+    "dst": "DOID:7166"
+  },
+  {
+    "src_id": "2482",
+    "rel_id": "2",
+    "dst_id": "351",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB06700",
+    "rel": "INDICATION",
+    "dst": "DOID:1596"
+  },
+  {
+    "src_id": "988",
+    "rel_id": "2",
+    "dst_id": "2",
+    "src": "DRUG:CASPOFUNGIN ACETATE",
+    "rel": "INDICATION",
+    "dst": "DOID:0050073"
+  },
+  {
+    "src_id": "1024",
+    "rel_id": "2",
+    "dst_id": "589",
+    "src": "DRUG:CIPROFLOXACIN",
+    "rel": "INDICATION",
+    "dst": "DOID:6132"
+  },
+  {
+    "src_id": "1699",
+    "rel_id": "2",
+    "dst_id": "55",
+    "src": "DRUG:MULTAQ",
+    "rel": "INDICATION",
+    "dst": "DOID:0060224"
+  },
+  {
+    "src_id": "1930",
+    "rel_id": "2",
+    "dst_id": "10",
+    "src": "DRUG:PREDNISONE",
+    "rel": "INDICATION",
+    "dst": "DOID:0050185"
+  },
+  {
+    "src_id": "1201",
+    "rel_id": "2",
+    "dst_id": "553",
+    "src": "DRUG:DOXEPIN HCL",
+    "rel": "INDICATION",
+    "dst": "DOID:4964"
+  },
+  {
+    "src_id": "2583",
+    "rel_id": "2",
+    "dst_id": "683",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB13404",
+    "rel": "INDICATION",
+    "dst": "DOID:8893"
+  },
+  {
+    "src_id": "1419",
+    "rel_id": "2",
+    "dst_id": "616",
+    "src": "DRUG:HYOSCYAMINE SULFATE",
+    "rel": "INDICATION",
+    "dst": "DOID:7475"
+  },
+  {
+    "src_id": "2084",
+    "rel_id": "2",
+    "dst_id": "515",
+    "src": "DRUG:SOLU-MEDROL",
+    "rel": "INDICATION",
+    "dst": "DOID:4"
+  },
+  {
+    "src_id": "1231",
+    "rel_id": "2",
+    "dst_id": "586",
+    "src": "DRUG:ENALAPRIL MALEATE",
+    "rel": "INDICATION",
+    "dst": "DOID:6000"
+  },
+  {
+    "src_id": "1267",
+    "rel_id": "2",
+    "dst_id": "555",
+    "src": "DRUG:ETHACRYNIC ACID",
+    "rel": "INDICATION",
+    "dst": "DOID:4977"
+  },
+  {
+    "src_id": "1682",
+    "rel_id": "2",
+    "dst_id": "306",
+    "src": "DRUG:MINOCYCLINE HYDROCHLORIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:13819"
+  },
+  {
+    "src_id": "2434",
+    "rel_id": "2",
+    "dst_id": "532",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB01270",
+    "rel": "INDICATION",
+    "dst": "DOID:4448"
+  },
+  {
+    "src_id": "947",
+    "rel_id": "2",
+    "dst_id": "455",
+    "src": "DRUG:CABOMETYX",
+    "rel": "INDICATION",
+    "dst": "DOID:305"
+  },
+  {
+    "src_id": "1418",
+    "rel_id": "2",
+    "dst_id": "292",
+    "src": "DRUG:HYFTOR",
+    "rel": "INDICATION",
+    "dst": "DOID:13515"
+  },
+  {
+    "src_id": "2498",
+    "rel_id": "2",
+    "dst_id": "713",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB09045",
+    "rel": "INDICATION",
+    "dst": "DOID:9352"
+  },
+  {
+    "src_id": "1286",
+    "rel_id": "2",
+    "dst_id": "652",
+    "src": "DRUG:FAMOTIDINE",
+    "rel": "INDICATION",
+    "dst": "DOID:8534"
+  },
+  {
+    "src_id": "2273",
+    "rel_id": "2",
+    "dst_id": "341",
+    "src": "DRUG:VORICONAZOLE",
+    "rel": "INDICATION",
+    "dst": "DOID:1508"
+  },
+  {
+    "src_id": "2110",
+    "rel_id": "2",
+    "dst_id": "597",
+    "src": "DRUG:SUMATRIPTAN",
+    "rel": "INDICATION",
+    "dst": "DOID:6364"
+  },
+  {
+    "src_id": "1187",
+    "rel_id": "2",
+    "dst_id": "185",
+    "src": "DRUG:DMT SUIK",
+    "rel": "INDICATION",
+    "dst": "DOID:11335"
+  },
+  {
+    "src_id": "1848",
+    "rel_id": "2",
+    "dst_id": "709",
+    "src": "DRUG:PALYNZIQ",
+    "rel": "INDICATION",
+    "dst": "DOID:9281"
+  },
+  {
+    "src_id": "1416",
+    "rel_id": "2",
+    "dst_id": "343",
+    "src": "DRUG:HYDROXYZINE HYDROCHLORIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:1555"
+  },
+  {
+    "src_id": "1664",
+    "rel_id": "2",
+    "dst_id": "515",
+    "src": "DRUG:METRONIDAZOLE",
+    "rel": "INDICATION",
+    "dst": "DOID:4"
+  },
+  {
+    "src_id": "1585",
+    "rel_id": "2",
+    "dst_id": "319",
+    "src": "DRUG:LOTEPREDNOL ETABONATE",
+    "rel": "INDICATION",
+    "dst": "DOID:1407"
+  },
+  {
+    "src_id": "1141",
+    "rel_id": "2",
+    "dst_id": "185",
+    "src": "DRUG:DEXAMETHASONE",
+    "rel": "INDICATION",
+    "dst": "DOID:11335"
+  },
+  {
+    "src_id": "1069",
+    "rel_id": "2",
+    "dst_id": "713",
+    "src": "DRUG:COLESEVELAM",
+    "rel": "INDICATION",
+    "dst": "DOID:9352"
+  },
+  {
+    "src_id": "1118",
+    "rel_id": "2",
+    "dst_id": "644",
+    "src": "DRUG:DAYPRO",
+    "rel": "INDICATION",
+    "dst": "DOID:848"
+  },
+  {
+    "src_id": "2532",
+    "rel_id": "2",
+    "dst_id": "191",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB11155",
+    "rel": "INDICATION",
+    "dst": "DOID:114"
+  },
+  {
+    "src_id": "2340",
+    "rel_id": "2",
+    "dst_id": "420",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB00012",
+    "rel": "INDICATION",
+    "dst": "DOID:2355"
+  },
+  {
+    "src_id": "1823",
+    "rel_id": "2",
+    "dst_id": "609",
+    "src": "DRUG:OXAPROZIN",
+    "rel": "INDICATION",
+    "dst": "DOID:7148"
+  },
+  {
+    "src_id": "1538",
+    "rel_id": "2",
+    "dst_id": "26",
+    "src": "DRUG:LENALIDOMIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:0050746"
+  },
+  {
+    "src_id": "889",
+    "rel_id": "2",
+    "dst_id": "450",
+    "src": "DRUG:BETAMETHASONE SODIUM PHOSPHATE AND BETAMETHASONE ACETATE",
+    "rel": "INDICATION",
+    "dst": "DOID:2965"
+  },
+  {
+    "src_id": "2109",
+    "rel_id": "2",
+    "dst_id": "609",
+    "src": "DRUG:SULINDAC",
+    "rel": "INDICATION",
+    "dst": "DOID:7148"
+  },
+  {
+    "src_id": "910",
+    "rel_id": "2",
+    "dst_id": "351",
+    "src": "DRUG:BREXPIPRAZOLE",
+    "rel": "INDICATION",
+    "dst": "DOID:1596"
+  },
+  {
+    "src_id": "1755",
+    "rel_id": "2",
+    "dst_id": "586",
+    "src": "DRUG:NITROGLYCERIN",
+    "rel": "INDICATION",
+    "dst": "DOID:6000"
+  },
+  {
+    "src_id": "835",
+    "rel_id": "2",
+    "dst_id": "609",
+    "src": "DRUG:ARAVA",
+    "rel": "INDICATION",
+    "dst": "DOID:7148"
+  },
+  {
+    "src_id": "1930",
+    "rel_id": "2",
+    "dst_id": "635",
+    "src": "DRUG:PREDNISONE",
+    "rel": "INDICATION",
+    "dst": "DOID:8398"
+  },
+  {
+    "src_id": "772",
+    "rel_id": "2",
+    "dst_id": "55",
+    "src": "DRUG:ADENOSINE",
+    "rel": "INDICATION",
+    "dst": "DOID:0060224"
+  },
+  {
+    "src_id": "1023",
+    "rel_id": "2",
+    "dst_id": "625",
+    "src": "DRUG:CINACALCET",
+    "rel": "INDICATION",
+    "dst": "DOID:784"
+  },
+  {
+    "src_id": "2205",
+    "rel_id": "2",
+    "dst_id": "339",
+    "src": "DRUG:TRIKAFTA",
+    "rel": "INDICATION",
+    "dst": "DOID:1485"
+  },
+  {
+    "src_id": "2359",
+    "rel_id": "2",
+    "dst_id": "149",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB00153",
+    "rel": "INDICATION",
+    "dst": "DOID:10609"
+  },
+  {
+    "src_id": "2372",
+    "rel_id": "2",
+    "dst_id": "21",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB00380",
+    "rel": "INDICATION",
+    "dst": "DOID:0050700"
+  },
+  {
+    "src_id": "2427",
+    "rel_id": "2",
+    "dst_id": "727",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB01225",
+    "rel": "INDICATION",
+    "dst": "DOID:9477"
+  },
+  {
+    "src_id": "1080",
+    "rel_id": "2",
+    "dst_id": "226",
+    "src": "DRUG:CORTISONE ACETATE",
+    "rel": "INDICATION",
+    "dst": "DOID:1210"
+  },
+  {
+    "src_id": "790",
+    "rel_id": "2",
+    "dst_id": "417",
+    "src": "DRUG:AMANTADINE",
+    "rel": "INDICATION",
+    "dst": "DOID:2349"
+  },
+  {
+    "src_id": "1349",
+    "rel_id": "2",
+    "dst_id": "371",
+    "src": "DRUG:GABAPENTIN",
+    "rel": "INDICATION",
+    "dst": "DOID:1826"
+  },
+  {
+    "src_id": "1855",
+    "rel_id": "2",
+    "dst_id": "326",
+    "src": "DRUG:PAROXETINE",
+    "rel": "INDICATION",
+    "dst": "DOID:14320"
+  },
+  {
+    "src_id": "1647",
+    "rel_id": "2",
+    "dst_id": "157",
+    "src": "DRUG:METHYLENE BLUE",
+    "rel": "INDICATION",
+    "dst": "DOID:10783"
+  },
+  {
+    "src_id": "2038",
+    "rel_id": "2",
+    "dst_id": "585",
+    "src": "DRUG:SERTRALINE HYDROCHLORIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:594"
+  },
+  {
+    "src_id": "2027",
+    "rel_id": "2",
+    "dst_id": "51",
+    "src": "DRUG:SCOPOLAMINE",
+    "rel": "INDICATION",
+    "dst": "DOID:0060145"
+  },
+  {
+    "src_id": "1843",
+    "rel_id": "2",
+    "dst_id": "278",
+    "src": "DRUG:PACLITAXEL PROTEIN BOUND PARTICLES ALBUMIN BOUND",
+    "rel": "INDICATION",
+    "dst": "DOID:1324"
+  },
+  {
+    "src_id": "2439",
+    "rel_id": "2",
+    "dst_id": "279",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB01390",
+    "rel": "INDICATION",
+    "dst": "DOID:13250"
+  },
+  {
+    "src_id": "1080",
+    "rel_id": "2",
+    "dst_id": "252",
+    "src": "DRUG:CORTISONE ACETATE",
+    "rel": "INDICATION",
+    "dst": "DOID:12574"
+  },
+  {
+    "src_id": "2068",
+    "rel_id": "2",
+    "dst_id": "434",
+    "src": "DRUG:SODIUM SULFACETAMIDE 8% AND SULFUR 4% CLEANSER",
+    "rel": "INDICATION",
+    "dst": "DOID:2723"
+  },
+  {
+    "src_id": "1926",
+    "rel_id": "2",
+    "dst_id": "648",
+    "src": "DRUG:PREDNISOLONE",
+    "rel": "INDICATION",
+    "dst": "DOID:8505"
+  },
+  {
+    "src_id": "2492",
+    "rel_id": "2",
+    "dst_id": "532",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB08885",
+    "rel": "INDICATION",
+    "dst": "DOID:4448"
+  },
+  {
+    "src_id": "1914",
+    "rel_id": "2",
+    "dst_id": "131",
+    "src": "DRUG:POTASSIUM CHLORIDE EXTENDED-RELEASE",
+    "rel": "INDICATION",
+    "dst": "DOID:1029"
+  },
+  {
+    "src_id": "2252",
+    "rel_id": "2",
+    "dst_id": "351",
+    "src": "DRUG:VENLAFAXINE HYDROCHLORIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:1596"
+  },
+  {
+    "src_id": "1628",
+    "rel_id": "2",
+    "dst_id": "349",
+    "src": "DRUG:MESNA",
+    "rel": "INDICATION",
+    "dst": "DOID:1588"
+  },
+  {
+    "src_id": "1024",
+    "rel_id": "2",
+    "dst_id": "356",
+    "src": "DRUG:CIPROFLOXACIN",
+    "rel": "INDICATION",
+    "dst": "DOID:1679"
+  },
+  {
+    "src_id": "1669",
+    "rel_id": "2",
+    "dst_id": "126",
+    "src": "DRUG:MICAFUNGIN",
+    "rel": "INDICATION",
+    "dst": "DOID:1019"
+  },
+  {
+    "src_id": "1401",
+    "rel_id": "2",
+    "dst_id": "515",
+    "src": "DRUG:HYDROCHLOROTHIAZIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:4"
+  },
+  {
+    "src_id": "2589",
+    "rel_id": "2",
+    "dst_id": "674",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB13699",
+    "rel": "INDICATION",
+    "dst": "DOID:8741"
+  },
+  {
+    "src_id": "1720",
+    "rel_id": "2",
+    "dst_id": "603",
+    "src": "DRUG:NAPROXEN SODIUM",
+    "rel": "INDICATION",
+    "dst": "DOID:6590"
+  },
+  {
+    "src_id": "839",
+    "rel_id": "2",
+    "dst_id": "515",
+    "src": "DRUG:ARIMIDEX",
+    "rel": "INDICATION",
+    "dst": "DOID:4"
+  },
+  {
+    "src_id": "1930",
+    "rel_id": "2",
+    "dst_id": "536",
+    "src": "DRUG:PREDNISONE",
+    "rel": "INDICATION",
+    "dst": "DOID:4481"
+  },
+  {
+    "src_id": "1264",
+    "rel_id": "2",
+    "dst_id": "455",
+    "src": "DRUG:ESTRADIOL VALERATE",
+    "rel": "INDICATION",
+    "dst": "DOID:305"
+  },
+  {
+    "src_id": "1930",
+    "rel_id": "2",
+    "dst_id": "254",
+    "src": "DRUG:PREDNISONE",
+    "rel": "INDICATION",
+    "dst": "DOID:12603"
+  },
+  {
+    "src_id": "1058",
+    "rel_id": "2",
+    "dst_id": "675",
+    "src": "DRUG:CLOPIDOGREL BISULFATE",
+    "rel": "INDICATION",
+    "dst": "DOID:8805"
+  },
+  {
+    "src_id": "1560",
+    "rel_id": "2",
+    "dst_id": "628",
+    "src": "DRUG:LIOMNY",
+    "rel": "INDICATION",
+    "dst": "DOID:7998"
+  },
+  {
+    "src_id": "1142",
+    "rel_id": "2",
+    "dst_id": "744",
+    "src": "DRUG:DEXAMETHASONE SODIUM PHOSPHATE",
+    "rel": "INDICATION",
+    "dst": "DOID:986"
+  },
+  {
+    "src_id": "1452",
+    "rel_id": "2",
+    "dst_id": "373",
+    "src": "DRUG:INSULIN ASPART PROTAMINE AND INSULIN ASPART",
+    "rel": "INDICATION",
+    "dst": "DOID:1837"
+  },
+  {
+    "src_id": "2340",
+    "rel_id": "2",
+    "dst_id": "515",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB00012",
+    "rel": "INDICATION",
+    "dst": "DOID:4"
+  },
+  {
+    "src_id": "2650",
+    "rel_id": "2",
+    "dst_id": "353",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB15690",
+    "rel": "INDICATION",
+    "dst": "DOID:1612"
+  },
+  {
+    "src_id": "2090",
+    "rel_id": "2",
+    "dst_id": "461",
+    "src": "DRUG:SPIRIVA",
+    "rel": "INDICATION",
+    "dst": "DOID:3083"
+  },
+  {
+    "src_id": "2190",
+    "rel_id": "2",
+    "dst_id": "337",
+    "src": "DRUG:TRAZODONE HYDROCHLORIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:1470"
+  },
+  {
+    "src_id": "2649",
+    "rel_id": "2",
+    "dst_id": "402",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB15664",
+    "rel": "INDICATION",
+    "dst": "DOID:2235"
+  },
+  {
+    "src_id": "2525",
+    "rel_id": "2",
+    "dst_id": "354",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB09462",
+    "rel": "INDICATION",
+    "dst": "DOID:162"
+  },
+  {
+    "src_id": "986",
+    "rel_id": "2",
+    "dst_id": "729",
+    "src": "DRUG:CARMUSTINE",
+    "rel": "INDICATION",
+    "dst": "DOID:9538"
+  },
+  {
+    "src_id": "2148",
+    "rel_id": "2",
+    "dst_id": "601",
+    "src": "DRUG:TETRACYCLINE HYDROCHLORIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:6543"
+  },
+  {
+    "src_id": "2311",
+    "rel_id": "2",
+    "dst_id": "248",
+    "src": "DRUG:ZEMPLAR",
+    "rel": "INDICATION",
+    "dst": "DOID:12466"
+  },
+  {
+    "src_id": "1929",
+    "rel_id": "2",
+    "dst_id": "421",
+    "src": "DRUG:PREDNISOLONE SODIUM PHOSPHATE ORAL SOLUTION",
+    "rel": "INDICATION",
+    "dst": "DOID:2377"
+  },
+  {
+    "src_id": "1930",
+    "rel_id": "2",
+    "dst_id": "244",
+    "src": "DRUG:PREDNISONE",
+    "rel": "INDICATION",
+    "dst": "DOID:1240"
+  },
+  {
+    "src_id": "1310",
+    "rel_id": "2",
+    "dst_id": "595",
+    "src": "DRUG:FLUCONAZOLE",
+    "rel": "INDICATION",
+    "dst": "DOID:635"
+  },
+  {
+    "src_id": "1930",
+    "rel_id": "2",
+    "dst_id": "737",
+    "src": "DRUG:PREDNISONE",
+    "rel": "INDICATION",
+    "dst": "DOID:970"
+  },
+  {
+    "src_id": "1616",
+    "rel_id": "2",
+    "dst_id": "635",
+    "src": "DRUG:MELOXICAM",
+    "rel": "INDICATION",
+    "dst": "DOID:8398"
+  },
+  {
+    "src_id": "1456",
+    "rel_id": "2",
+    "dst_id": "572",
+    "src": "DRUG:INVANZ",
+    "rel": "INDICATION",
+    "dst": "DOID:552"
+  },
+  {
+    "src_id": "2234",
+    "rel_id": "2",
+    "dst_id": "405",
+    "src": "DRUG:VALGANCICLOVIR",
+    "rel": "INDICATION",
+    "dst": "DOID:225"
+  },
+  {
+    "src_id": "1169",
+    "rel_id": "2",
+    "dst_id": "405",
+    "src": "DRUG:DICYCLOMINE HYDROCHLORIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:225"
+  },
+  {
+    "src_id": "1141",
+    "rel_id": "2",
+    "dst_id": "91",
+    "src": "DRUG:DEXAMETHASONE",
+    "rel": "INDICATION",
+    "dst": "DOID:0080745"
+  },
+  {
+    "src_id": "871",
+    "rel_id": "2",
+    "dst_id": "431",
+    "src": "DRUG:AZITHROMYCIN DIHYDRATE",
+    "rel": "INDICATION",
+    "dst": "DOID:2568"
+  },
+  {
+    "src_id": "1142",
+    "rel_id": "2",
+    "dst_id": "171",
+    "src": "DRUG:DEXAMETHASONE SODIUM PHOSPHATE",
+    "rel": "INDICATION",
+    "dst": "DOID:11126"
+  },
+  {
+    "src_id": "2312",
+    "rel_id": "2",
+    "dst_id": "405",
+    "src": "DRUG:ZENZEDI",
+    "rel": "INDICATION",
+    "dst": "DOID:225"
+  },
+  {
+    "src_id": "2408",
+    "rel_id": "2",
+    "dst_id": "320",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB00959",
+    "rel": "INDICATION",
+    "dst": "DOID:14087"
+  },
+  {
+    "src_id": "1134",
+    "rel_id": "2",
+    "dst_id": "343",
+    "src": "DRUG:DESLORATADINE ORAL SOLUTION",
+    "rel": "INDICATION",
+    "dst": "DOID:1555"
+  },
+  {
+    "src_id": "1310",
+    "rel_id": "2",
+    "dst_id": "595",
+    "src": "DRUG:FLUCONAZOLE",
+    "rel": "INDICATION",
+    "dst": "DOID:635"
+  },
+  {
+    "src_id": "961",
+    "rel_id": "2",
+    "dst_id": "704",
+    "src": "DRUG:CAPECITABINE",
+    "rel": "INDICATION",
+    "dst": "DOID:9256"
+  },
+  {
+    "src_id": "1142",
+    "rel_id": "2",
+    "dst_id": "31",
+    "src": "DRUG:DEXAMETHASONE SODIUM PHOSPHATE",
+    "rel": "INDICATION",
+    "dst": "DOID:0050811"
+  },
+  {
+    "src_id": "1256",
+    "rel_id": "2",
+    "dst_id": "159",
+    "src": "DRUG:ESOMEPRAZOLE MAGNESIUM",
+    "rel": "INDICATION",
+    "dst": "DOID:10808"
+  },
+  {
+    "src_id": "2282",
+    "rel_id": "2",
+    "dst_id": "750",
+    "src": "DRUG:WEGOVY",
+    "rel": "INDICATION",
+    "dst": "DOID:9970"
+  },
+  {
+    "src_id": "1926",
+    "rel_id": "2",
+    "dst_id": "471",
+    "src": "DRUG:PREDNISOLONE",
+    "rel": "INDICATION",
+    "dst": "DOID:3310"
+  },
+  {
+    "src_id": "1208",
+    "rel_id": "2",
+    "dst_id": "699",
+    "src": "DRUG:DOXYCYCLINE",
+    "rel": "INDICATION",
+    "dst": "DOID:9181"
+  },
+  {
+    "src_id": "2040",
+    "rel_id": "2",
+    "dst_id": "515",
+    "src": "DRUG:SEVELAMER HYDROCHLORIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:4"
+  },
+  {
+    "src_id": "1441",
+    "rel_id": "2",
+    "dst_id": "136",
+    "src": "DRUG:IMATINIB MESYLATE",
+    "rel": "INDICATION",
+    "dst": "DOID:1037"
+  },
+  {
+    "src_id": "1790",
+    "rel_id": "2",
+    "dst_id": "515",
+    "src": "DRUG:OLMESARTAN MEDOXOMIL",
+    "rel": "INDICATION",
+    "dst": "DOID:4"
+  },
+  {
+    "src_id": "1479",
+    "rel_id": "2",
+    "dst_id": "55",
+    "src": "DRUG:JANTOVEN",
+    "rel": "INDICATION",
+    "dst": "DOID:0060224"
+  },
+  {
+    "src_id": "2217",
+    "rel_id": "2",
+    "dst_id": "48",
+    "src": "DRUG:TYZAVAN",
+    "rel": "INDICATION",
+    "dst": "DOID:0060000"
+  },
+  {
+    "src_id": "918",
+    "rel_id": "2",
+    "dst_id": "633",
+    "src": "DRUG:BROMFENAC OPHTHALMIC SOLUTION",
+    "rel": "INDICATION",
+    "dst": "DOID:83"
+  },
+  {
+    "src_id": "1896",
+    "rel_id": "2",
+    "dst_id": "712",
+    "src": "DRUG:PIOGLITAZONE HYDROCHLORIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:9351"
+  },
+  {
+    "src_id": "1346",
+    "rel_id": "2",
+    "dst_id": "261",
+    "src": "DRUG:FROVATRIPTAN",
+    "rel": "INDICATION",
+    "dst": "DOID:12783"
+  },
+  {
+    "src_id": "2150",
+    "rel_id": "2",
+    "dst_id": "423",
+    "src": "DRUG:THIAMINE HYDROCHLORIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:2385"
+  },
+  {
+    "src_id": "2084",
+    "rel_id": "2",
+    "dst_id": "91",
+    "src": "DRUG:SOLU-MEDROL",
+    "rel": "INDICATION",
+    "dst": "DOID:0080745"
+  },
+  {
+    "src_id": "2143",
+    "rel_id": "2",
+    "dst_id": "405",
+    "src": "DRUG:TESTOSTERONE",
+    "rel": "INDICATION",
+    "dst": "DOID:225"
+  },
+  {
+    "src_id": "2408",
+    "rel_id": "2",
+    "dst_id": "543",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB00959",
+    "rel": "INDICATION",
+    "dst": "DOID:4677"
+  },
+  {
+    "src_id": "2375",
+    "rel_id": "2",
+    "dst_id": "366",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB00451",
+    "rel": "INDICATION",
+    "dst": "DOID:1781"
+  },
+  {
+    "src_id": "1585",
+    "rel_id": "2",
+    "dst_id": "273",
+    "src": "DRUG:LOTEPREDNOL ETABONATE",
+    "rel": "INDICATION",
+    "dst": "DOID:13141"
+  },
+  {
+    "src_id": "1976",
+    "rel_id": "2",
+    "dst_id": "45",
+    "src": "DRUG:RAMIPRIL",
+    "rel": "INDICATION",
+    "dst": "DOID:0051061"
+  },
+  {
+    "src_id": "779",
+    "rel_id": "2",
+    "dst_id": "515",
+    "src": "DRUG:ALBUTEROL SULFATE",
+    "rel": "INDICATION",
+    "dst": "DOID:4"
+  },
+  {
+    "src_id": "889",
+    "rel_id": "2",
+    "dst_id": "277",
+    "src": "DRUG:BETAMETHASONE SODIUM PHOSPHATE AND BETAMETHASONE ACETATE",
+    "rel": "INDICATION",
+    "dst": "DOID:13189"
+  },
+  {
+    "src_id": "1320",
+    "rel_id": "2",
+    "dst_id": "144",
+    "src": "DRUG:FLUPHENAZINE HYDROCHLORIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:1059"
+  },
+  {
+    "src_id": "2178",
+    "rel_id": "2",
+    "dst_id": "191",
+    "src": "DRUG:TRACLEER",
+    "rel": "INDICATION",
+    "dst": "DOID:114"
+  },
+  {
+    "src_id": "1094",
+    "rel_id": "2",
+    "dst_id": "410",
+    "src": "DRUG:CYLTEZO",
+    "rel": "INDICATION",
+    "dst": "DOID:2280"
+  },
+  {
+    "src_id": "2348",
+    "rel_id": "2",
+    "dst_id": "50",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB00073",
+    "rel": "INDICATION",
+    "dst": "DOID:0060058"
+  },
+  {
+    "src_id": "1687",
+    "rel_id": "2",
+    "dst_id": "421",
+    "src": "DRUG:MITOXANTRONE",
+    "rel": "INDICATION",
+    "dst": "DOID:2377"
+  },
+  {
+    "src_id": "1142",
+    "rel_id": "2",
+    "dst_id": "433",
+    "src": "DRUG:DEXAMETHASONE SODIUM PHOSPHATE",
+    "rel": "INDICATION",
+    "dst": "DOID:2703"
+  },
+  {
+    "src_id": "2215",
+    "rel_id": "2",
+    "dst_id": "599",
+    "src": "DRUG:TYVASO",
+    "rel": "INDICATION",
+    "dst": "DOID:6432"
+  },
+  {
+    "src_id": "1965",
+    "rel_id": "2",
+    "dst_id": "530",
+    "src": "DRUG:PYRIDOSTIGMINE BROMIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:437"
+  },
+  {
+    "src_id": "1413",
+    "rel_id": "2",
+    "dst_id": "239",
+    "src": "DRUG:HYDROXYCHLOROQUINE SULFATE",
+    "rel": "INDICATION",
+    "dst": "DOID:12365"
+  },
+  {
+    "src_id": "1615",
+    "rel_id": "2",
+    "dst_id": "405",
+    "src": "DRUG:MEGESTROL ACETATE",
+    "rel": "INDICATION",
+    "dst": "DOID:225"
+  },
+  {
+    "src_id": "2354",
+    "rel_id": "2",
+    "dst_id": "405",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB00108",
+    "rel": "INDICATION",
+    "dst": "DOID:225"
+  },
+  {
+    "src_id": "1286",
+    "rel_id": "2",
+    "dst_id": "159",
+    "src": "DRUG:FAMOTIDINE",
+    "rel": "INDICATION",
+    "dst": "DOID:10808"
+  },
+  {
+    "src_id": "1416",
+    "rel_id": "2",
+    "dst_id": "662",
+    "src": "DRUG:HYDROXYZINE HYDROCHLORIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:8639"
+  },
+  {
+    "src_id": "1533",
+    "rel_id": "2",
+    "dst_id": "354",
+    "src": "DRUG:LAPATINIB",
+    "rel": "INDICATION",
+    "dst": "DOID:162"
+  },
+  {
+    "src_id": "1930",
+    "rel_id": "2",
+    "dst_id": "91",
+    "src": "DRUG:PREDNISONE",
+    "rel": "INDICATION",
+    "dst": "DOID:0080745"
+  },
+  {
+    "src_id": "1130",
+    "rel_id": "2",
+    "dst_id": "111",
+    "src": "DRUG:DERMA-SMOOTHE/FS",
+    "rel": "INDICATION",
+    "dst": "DOID:0111084"
+  },
+  {
+    "src_id": "1142",
+    "rel_id": "2",
+    "dst_id": "420",
+    "src": "DRUG:DEXAMETHASONE SODIUM PHOSPHATE",
+    "rel": "INDICATION",
+    "dst": "DOID:2355"
+  },
+  {
+    "src_id": "2151",
+    "rel_id": "2",
+    "dst_id": "423",
+    "src": "DRUG:THIAMINE HYDROCHLORIDE INJECTION, SOLUTION",
+    "rel": "INDICATION",
+    "dst": "DOID:2385"
+  },
+  {
+    "src_id": "789",
+    "rel_id": "2",
+    "dst_id": "247",
+    "src": "DRUG:ALVAIZ",
+    "rel": "INDICATION",
+    "dst": "DOID:12449"
+  },
+  {
+    "src_id": "2356",
+    "rel_id": "2",
+    "dst_id": "515",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB00112",
+    "rel": "INDICATION",
+    "dst": "DOID:4"
+  },
+  {
+    "src_id": "1924",
+    "rel_id": "2",
+    "dst_id": "515",
+    "src": "DRUG:PRAZOSIN HYDROCHLORIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:4"
+  },
+  {
+    "src_id": "1380",
+    "rel_id": "2",
+    "dst_id": "528",
+    "src": "DRUG:GRISEOFULVIN",
+    "rel": "INDICATION",
+    "dst": "DOID:4337"
+  },
+  {
+    "src_id": "1687",
+    "rel_id": "2",
+    "dst_id": "30",
+    "src": "DRUG:MITOXANTRONE",
+    "rel": "INDICATION",
+    "dst": "DOID:0050784"
+  },
+  {
+    "src_id": "2357",
+    "rel_id": "2",
+    "dst_id": "641",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB00115",
+    "rel": "INDICATION",
+    "dst": "DOID:8453"
+  },
+  {
+    "src_id": "2008",
+    "rel_id": "2",
+    "dst_id": "589",
+    "src": "DRUG:ROFLUMILAST",
+    "rel": "INDICATION",
+    "dst": "DOID:6132"
+  },
+  {
+    "src_id": "2284",
+    "rel_id": "2",
+    "dst_id": "582",
+    "src": "DRUG:WIDAPLIK",
+    "rel": "INDICATION",
+    "dst": "DOID:5844"
+  },
+  {
+    "src_id": "1930",
+    "rel_id": "2",
+    "dst_id": "185",
+    "src": "DRUG:PREDNISONE",
+    "rel": "INDICATION",
+    "dst": "DOID:11335"
+  },
+  {
+    "src_id": "1799",
+    "rel_id": "2",
+    "dst_id": "354",
+    "src": "DRUG:ONDANSETRON",
+    "rel": "INDICATION",
+    "dst": "DOID:162"
+  },
+  {
+    "src_id": "1115",
+    "rel_id": "2",
+    "dst_id": "244",
+    "src": "DRUG:DAURISMO",
+    "rel": "INDICATION",
+    "dst": "DOID:1240"
+  },
+  {
+    "src_id": "1237",
+    "rel_id": "2",
+    "dst_id": "313",
+    "src": "DRUG:ENSKYCE",
+    "rel": "INDICATION",
+    "dst": "DOID:13938"
+  },
+  {
+    "src_id": "1538",
+    "rel_id": "2",
+    "dst_id": "729",
+    "src": "DRUG:LENALIDOMIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:9538"
+  },
+  {
+    "src_id": "1187",
+    "rel_id": "2",
+    "dst_id": "171",
+    "src": "DRUG:DMT SUIK",
+    "rel": "INDICATION",
+    "dst": "DOID:11126"
+  },
+  {
+    "src_id": "1142",
+    "rel_id": "2",
+    "dst_id": "273",
+    "src": "DRUG:DEXAMETHASONE SODIUM PHOSPHATE",
+    "rel": "INDICATION",
+    "dst": "DOID:13141"
+  },
+  {
+    "src_id": "2041",
+    "rel_id": "2",
+    "dst_id": "65",
+    "src": "DRUG:SEVENFACT",
+    "rel": "INDICATION",
+    "dst": "DOID:0061030"
+  },
+  {
+    "src_id": "797",
+    "rel_id": "2",
+    "dst_id": "560",
+    "src": "DRUG:AMINOCAPROIC ACID",
+    "rel": "INDICATION",
+    "dst": "DOID:5082"
+  },
+  {
+    "src_id": "1028",
+    "rel_id": "2",
+    "dst_id": "724",
+    "src": "DRUG:CIPROFLOXACIN OTIC SOLUTION, 0.2%",
+    "rel": "INDICATION",
+    "dst": "DOID:9463"
+  },
+  {
+    "src_id": "2090",
+    "rel_id": "2",
+    "dst_id": "589",
+    "src": "DRUG:SPIRIVA",
+    "rel": "INDICATION",
+    "dst": "DOID:6132"
+  },
+  {
+    "src_id": "1998",
+    "rel_id": "2",
+    "dst_id": "569",
+    "src": "DRUG:RISPERIDONE",
+    "rel": "INDICATION",
+    "dst": "DOID:5419"
+  },
+  {
+    "src_id": "2240",
+    "rel_id": "2",
+    "dst_id": "279",
+    "src": "DRUG:VANCOMYCIN HYDROCHLORIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:13250"
+  },
+  {
+    "src_id": "2452",
+    "rel_id": "2",
+    "dst_id": "28",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB03754",
+    "rel": "INDICATION",
+    "dst": "DOID:0050758"
+  },
+  {
+    "src_id": "2408",
+    "rel_id": "2",
+    "dst_id": "743",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB00959",
+    "rel": "INDICATION",
+    "dst": "DOID:9784"
+  },
+  {
+    "src_id": "2187",
+    "rel_id": "2",
+    "dst_id": "358",
+    "src": "DRUG:TRAVOPROST OPHTHALMIC",
+    "rel": "INDICATION",
+    "dst": "DOID:1686"
+  },
+  {
+    "src_id": "1383",
+    "rel_id": "2",
+    "dst_id": "163",
+    "src": "DRUG:GUANFACINE EXTENDED-RELEASE",
+    "rel": "INDICATION",
+    "dst": "DOID:1094"
+  },
+  {
+    "src_id": "2232",
+    "rel_id": "2",
+    "dst_id": "461",
+    "src": "DRUG:VALACYCLOVIR",
+    "rel": "INDICATION",
+    "dst": "DOID:3083"
+  },
+  {
+    "src_id": "1745",
+    "rel_id": "2",
+    "dst_id": "420",
+    "src": "DRUG:NIPENT",
+    "rel": "INDICATION",
+    "dst": "DOID:2355"
+  },
+  {
+    "src_id": "2631",
+    "rel_id": "2",
+    "dst_id": "278",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB15104",
+    "rel": "INDICATION",
+    "dst": "DOID:1324"
+  },
+  {
+    "src_id": "1225",
+    "rel_id": "2",
+    "dst_id": "629",
+    "src": "DRUG:EGRIFTA WR",
+    "rel": "INDICATION",
+    "dst": "DOID:811"
+  },
+  {
+    "src_id": "2000",
+    "rel_id": "2",
+    "dst_id": "35",
+    "src": "DRUG:RIVAROXABAN",
+    "rel": "INDICATION",
+    "dst": "DOID:0050830"
+  },
+  {
+    "src_id": "2363",
+    "rel_id": "2",
+    "dst_id": "456",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB00245",
+    "rel": "INDICATION",
+    "dst": "DOID:306"
+  },
+  {
+    "src_id": "1235",
+    "rel_id": "2",
+    "dst_id": "507",
+    "src": "DRUG:ENHERTU",
+    "rel": "INDICATION",
+    "dst": "DOID:3908"
+  },
+  {
+    "src_id": "1930",
+    "rel_id": "2",
+    "dst_id": "685",
+    "src": "DRUG:PREDNISONE",
+    "rel": "INDICATION",
+    "dst": "DOID:8924"
+  },
+  {
+    "src_id": "832",
+    "rel_id": "2",
+    "dst_id": "539",
+    "src": "DRUG:APREPITANT",
+    "rel": "INDICATION",
+    "dst": "DOID:4531"
+  },
+  {
+    "src_id": "1950",
+    "rel_id": "2",
+    "dst_id": "536",
+    "src": "DRUG:PROMETHAZINE HYDROCHLORIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:4481"
+  },
+  {
+    "src_id": "1562",
+    "rel_id": "2",
+    "dst_id": "628",
+    "src": "DRUG:LIOTHYRONINE SODIUM",
+    "rel": "INDICATION",
+    "dst": "DOID:7998"
+  },
+  {
+    "src_id": "1359",
+    "rel_id": "2",
+    "dst_id": "556",
+    "src": "DRUG:GEMFIBROZIL",
+    "rel": "INDICATION",
+    "dst": "DOID:4989"
+  },
+  {
+    "src_id": "2180",
+    "rel_id": "2",
+    "dst_id": "51",
+    "src": "DRUG:TRAMADOL HYDROCHLORIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:0060145"
+  },
+  {
+    "src_id": "1542",
+    "rel_id": "2",
+    "dst_id": "130",
+    "src": "DRUG:LEUPROLIDE ACETATE",
+    "rel": "INDICATION",
+    "dst": "DOID:10283"
+  },
+  {
+    "src_id": "1585",
+    "rel_id": "2",
+    "dst_id": "316",
+    "src": "DRUG:LOTEPREDNOL ETABONATE",
+    "rel": "INDICATION",
+    "dst": "DOID:1406"
+  },
+  {
+    "src_id": "1133",
+    "rel_id": "2",
+    "dst_id": "536",
+    "src": "DRUG:DESLORATADINE",
+    "rel": "INDICATION",
+    "dst": "DOID:4481"
+  },
+  {
+    "src_id": "1575",
+    "rel_id": "2",
+    "dst_id": "279",
+    "src": "DRUG:LOPERAMIDE HYDROCHLORIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:13250"
+  },
+  {
+    "src_id": "1187",
+    "rel_id": "2",
+    "dst_id": "177",
+    "src": "DRUG:DMT SUIK",
+    "rel": "INDICATION",
+    "dst": "DOID:11204"
+  },
+  {
+    "src_id": "1219",
+    "rel_id": "2",
+    "dst_id": "232",
+    "src": "DRUG:ECONAZOLE NITRATE",
+    "rel": "INDICATION",
+    "dst": "DOID:12179"
+  },
+  {
+    "src_id": "2442",
+    "rel_id": "2",
+    "dst_id": "163",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB01576",
+    "rel": "INDICATION",
+    "dst": "DOID:1094"
+  },
+  {
+    "src_id": "1416",
+    "rel_id": "2",
+    "dst_id": "191",
+    "src": "DRUG:HYDROXYZINE HYDROCHLORIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:114"
+  },
+  {
+    "src_id": "2519",
+    "rel_id": "2",
+    "dst_id": "480",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB09302",
+    "rel": "INDICATION",
+    "dst": "DOID:3393"
+  },
+  {
+    "src_id": "1930",
+    "rel_id": "2",
+    "dst_id": "369",
+    "src": "DRUG:PREDNISONE",
+    "rel": "INDICATION",
+    "dst": "DOID:1803"
+  },
+  {
+    "src_id": "2357",
+    "rel_id": "2",
+    "dst_id": "147",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB00115",
+    "rel": "INDICATION",
+    "dst": "DOID:10607"
+  },
+  {
+    "src_id": "2427",
+    "rel_id": "2",
+    "dst_id": "582",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB01225",
+    "rel": "INDICATION",
+    "dst": "DOID:5844"
+  },
+  {
+    "src_id": "1780",
+    "rel_id": "2",
+    "dst_id": "523",
+    "src": "DRUG:OBAGI NU-DERM SYSTEM NORMAL-DRY SKIN TRANSFORMATION KIT",
+    "rel": "INDICATION",
+    "dst": "DOID:4159"
+  },
+  {
+    "src_id": "1657",
+    "rel_id": "2",
+    "dst_id": "380",
+    "src": "DRUG:METHYLTESTOSTERONE",
+    "rel": "INDICATION",
+    "dst": "DOID:1924"
+  },
+  {
+    "src_id": "2283",
+    "rel_id": "2",
+    "dst_id": "351",
+    "src": "DRUG:WELLBUTRIN",
+    "rel": "INDICATION",
+    "dst": "DOID:1596"
+  },
+  {
+    "src_id": "1020",
+    "rel_id": "2",
+    "dst_id": "232",
+    "src": "DRUG:CICLOPIROX OLAMINE",
+    "rel": "INDICATION",
+    "dst": "DOID:12179"
+  },
+  {
+    "src_id": "1016",
+    "rel_id": "2",
+    "dst_id": "506",
+    "src": "DRUG:CHLORPROMAZINE HYDROCHLORIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:3890"
+  },
+  {
+    "src_id": "895",
+    "rel_id": "2",
+    "dst_id": "499",
+    "src": "DRUG:BISMUTH SUBCITRATE POTASSIUM, METRONIDAZOLE, AND TETRACYCLINE HYDROCHLORIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:3686"
+  },
+  {
+    "src_id": "1929",
+    "rel_id": "2",
+    "dst_id": "608",
+    "src": "DRUG:PREDNISOLONE SODIUM PHOSPHATE ORAL SOLUTION",
+    "rel": "INDICATION",
+    "dst": "DOID:7147"
+  },
+  {
+    "src_id": "2084",
+    "rel_id": "2",
+    "dst_id": "677",
+    "src": "DRUG:SOLU-MEDROL",
+    "rel": "INDICATION",
+    "dst": "DOID:8857"
+  },
+  {
+    "src_id": "995",
+    "rel_id": "2",
+    "dst_id": "253",
+    "src": "DRUG:CEFOXITIN",
+    "rel": "INDICATION",
+    "dst": "DOID:1260"
+  },
+  {
+    "src_id": "1093",
+    "rel_id": "2",
+    "dst_id": "211",
+    "src": "DRUG:CYCLOPHOSPHAMIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:1184"
+  },
+  {
+    "src_id": "1361",
+    "rel_id": "2",
+    "dst_id": "748",
+    "src": "DRUG:GENTAMICIN SULFATE",
+    "rel": "INDICATION",
+    "dst": "DOID:9938"
+  },
+  {
+    "src_id": "2494",
+    "rel_id": "2",
+    "dst_id": "50",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB08935",
+    "rel": "INDICATION",
+    "dst": "DOID:0060058"
+  },
+  {
+    "src_id": "802",
+    "rel_id": "2",
+    "dst_id": "350",
+    "src": "DRUG:AMITRIPTYLINE HYDROCHLORIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:1595"
+  },
+  {
+    "src_id": "2619",
+    "rel_id": "2",
+    "dst_id": "455",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB14922",
+    "rel": "INDICATION",
+    "dst": "DOID:305"
+  },
+  {
+    "src_id": "1380",
+    "rel_id": "2",
+    "dst_id": "643",
+    "src": "DRUG:GRISEOFULVIN",
+    "rel": "INDICATION",
+    "dst": "DOID:8478"
+  },
+  {
+    "src_id": "2470",
+    "rel_id": "2",
+    "dst_id": "576",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB06343",
+    "rel": "INDICATION",
+    "dst": "DOID:5614"
+  },
+  {
+    "src_id": "2156",
+    "rel_id": "2",
+    "dst_id": "34",
+    "src": "DRUG:TICAGRELOR",
+    "rel": "INDICATION",
+    "dst": "DOID:0050828"
+  },
+  {
+    "src_id": "1559",
+    "rel_id": "2",
+    "dst_id": "742",
+    "src": "DRUG:LINZESS",
+    "rel": "INDICATION",
+    "dst": "DOID:9778"
+  },
+  {
+    "src_id": "1870",
+    "rel_id": "2",
+    "dst_id": "635",
+    "src": "DRUG:PENNSAID",
+    "rel": "INDICATION",
+    "dst": "DOID:8398"
+  },
+  {
+    "src_id": "1187",
+    "rel_id": "2",
+    "dst_id": "244",
+    "src": "DRUG:DMT SUIK",
+    "rel": "INDICATION",
+    "dst": "DOID:1240"
+  },
+  {
+    "src_id": "2613",
+    "rel_id": "2",
+    "dst_id": "515",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB14720",
+    "rel": "INDICATION",
+    "dst": "DOID:4"
+  },
+  {
+    "src_id": "1071",
+    "rel_id": "2",
+    "dst_id": "305",
+    "src": "DRUG:COLESEVELAM HYDROCHLORIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:13810"
+  },
+  {
+    "src_id": "1930",
+    "rel_id": "2",
+    "dst_id": "693",
+    "src": "DRUG:PREDNISONE",
+    "rel": "INDICATION",
+    "dst": "DOID:9074"
+  },
+  {
+    "src_id": "2406",
+    "rel_id": "2",
+    "dst_id": "618",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB00951",
+    "rel": "INDICATION",
+    "dst": "DOID:750"
+  },
+  {
+    "src_id": "2488",
+    "rel_id": "2",
+    "dst_id": "457",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB08836",
+    "rel": "INDICATION",
+    "dst": "DOID:3068"
+  },
+  {
+    "src_id": "2672",
+    "rel_id": "2",
+    "dst_id": "309",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB16699",
+    "rel": "INDICATION",
+    "dst": "DOID:1389"
+  },
+  {
+    "src_id": "1025",
+    "rel_id": "2",
+    "dst_id": "724",
+    "src": "DRUG:CIPROFLOXACIN AND DEXAMETHASONE",
+    "rel": "INDICATION",
+    "dst": "DOID:9463"
+  },
+  {
+    "src_id": "2468",
+    "rel_id": "2",
+    "dst_id": "537",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB06282",
+    "rel": "INDICATION",
+    "dst": "DOID:4483"
+  },
+  {
+    "src_id": "1471",
+    "rel_id": "2",
+    "dst_id": "601",
+    "src": "DRUG:ISOTRETINOIN",
+    "rel": "INDICATION",
+    "dst": "DOID:6543"
+  },
+  {
+    "src_id": "889",
+    "rel_id": "2",
+    "dst_id": "433",
+    "src": "DRUG:BETAMETHASONE SODIUM PHOSPHATE AND BETAMETHASONE ACETATE",
+    "rel": "INDICATION",
+    "dst": "DOID:2703"
+  },
+  {
+    "src_id": "2419",
+    "rel_id": "2",
+    "dst_id": "132",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB01087",
+    "rel": "INDICATION",
+    "dst": "DOID:10314"
+  },
+  {
+    "src_id": "1038",
+    "rel_id": "2",
+    "dst_id": "53",
+    "src": "DRUG:CLEOCIN HYDROCHLORIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:0060180"
+  },
+  {
+    "src_id": "1032",
+    "rel_id": "2",
+    "dst_id": "351",
+    "src": "DRUG:CITALOPRAM HYDROBROMIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:1596"
+  },
+  {
+    "src_id": "1790",
+    "rel_id": "2",
+    "dst_id": "156",
+    "src": "DRUG:OLMESARTAN MEDOXOMIL",
+    "rel": "INDICATION",
+    "dst": "DOID:10763"
+  },
+  {
+    "src_id": "1440",
+    "rel_id": "2",
+    "dst_id": "85",
+    "src": "DRUG:IMATINIB",
+    "rel": "INDICATION",
+    "dst": "DOID:0080367"
+  },
+  {
+    "src_id": "2383",
+    "rel_id": "2",
+    "dst_id": "714",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB00583",
+    "rel": "INDICATION",
+    "dst": "DOID:936"
+  },
+  {
+    "src_id": "938",
+    "rel_id": "2",
+    "dst_id": "389",
+    "src": "DRUG:BUSPIRONE HCL",
+    "rel": "INDICATION",
+    "dst": "DOID:2030"
+  },
+  {
+    "src_id": "2464",
+    "rel_id": "2",
+    "dst_id": "337",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB06077",
+    "rel": "INDICATION",
+    "dst": "DOID:1470"
+  },
+  {
+    "src_id": "2073",
+    "rel_id": "2",
+    "dst_id": "434",
+    "src": "DRUG:SODIUM SULFACETAMIDE 9.8% SULFUR 4.8% CLEANSER",
+    "rel": "INDICATION",
+    "dst": "DOID:2723"
+  },
+  {
+    "src_id": "2096",
+    "rel_id": "2",
+    "dst_id": "515",
+    "src": "DRUG:STALEVO",
+    "rel": "INDICATION",
+    "dst": "DOID:4"
+  },
+  {
+    "src_id": "1142",
+    "rel_id": "2",
+    "dst_id": "503",
+    "src": "DRUG:DEXAMETHASONE SODIUM PHOSPHATE",
+    "rel": "INDICATION",
+    "dst": "DOID:3777"
+  },
+  {
+    "src_id": "2084",
+    "rel_id": "2",
+    "dst_id": "405",
+    "src": "DRUG:SOLU-MEDROL",
+    "rel": "INDICATION",
+    "dst": "DOID:225"
+  },
+  {
+    "src_id": "1953",
+    "rel_id": "2",
+    "dst_id": "55",
+    "src": "DRUG:PROPAFENONE HYDROCHLORIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:0060224"
+  },
+  {
+    "src_id": "1499",
+    "rel_id": "2",
+    "dst_id": "434",
+    "src": "DRUG:KETOCONAZOLE",
+    "rel": "INDICATION",
+    "dst": "DOID:2723"
+  },
+  {
+    "src_id": "2084",
+    "rel_id": "2",
+    "dst_id": "471",
+    "src": "DRUG:SOLU-MEDROL",
+    "rel": "INDICATION",
+    "dst": "DOID:3310"
+  },
+  {
+    "src_id": "2489",
+    "rel_id": "2",
+    "dst_id": "156",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB08867",
+    "rel": "INDICATION",
+    "dst": "DOID:10763"
+  },
+  {
+    "src_id": "1422",
+    "rel_id": "2",
+    "dst_id": "156",
+    "src": "DRUG:HYZAAR",
+    "rel": "INDICATION",
+    "dst": "DOID:10763"
+  },
+  {
+    "src_id": "1599",
+    "rel_id": "2",
+    "dst_id": "192",
+    "src": "DRUG:MACRODANTIN",
+    "rel": "INDICATION",
+    "dst": "DOID:11400"
+  },
+  {
+    "src_id": "1193",
+    "rel_id": "2",
+    "dst_id": "710",
+    "src": "DRUG:DORZOLAMIDE HYDROCHLORIDE AND TIMOLOL MALEATE",
+    "rel": "INDICATION",
+    "dst": "DOID:9282"
+  },
+  {
+    "src_id": "1929",
+    "rel_id": "2",
+    "dst_id": "211",
+    "src": "DRUG:PREDNISOLONE SODIUM PHOSPHATE ORAL SOLUTION",
+    "rel": "INDICATION",
+    "dst": "DOID:1184"
+  },
+  {
+    "src_id": "2447",
+    "rel_id": "2",
+    "dst_id": "601",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB02132",
+    "rel": "INDICATION",
+    "dst": "DOID:6543"
+  },
+  {
+    "src_id": "1142",
+    "rel_id": "2",
+    "dst_id": "256",
+    "src": "DRUG:DEXAMETHASONE SODIUM PHOSPHATE",
+    "rel": "INDICATION",
+    "dst": "DOID:12678"
+  },
+  {
+    "src_id": "1163",
+    "rel_id": "2",
+    "dst_id": "635",
+    "src": "DRUG:DICLOFENAC SODIUM",
+    "rel": "INDICATION",
+    "dst": "DOID:8398"
+  },
+  {
+    "src_id": "1913",
+    "rel_id": "2",
+    "dst_id": "538",
+    "src": "DRUG:POTASSIUM CHLORIDE EXTENDED RELEASE",
+    "rel": "INDICATION",
+    "dst": "DOID:4500"
+  },
+  {
+    "src_id": "1507",
+    "rel_id": "2",
+    "dst_id": "131",
+    "src": "DRUG:KLOR-CON/EF",
+    "rel": "INDICATION",
+    "dst": "DOID:1029"
+  },
+  {
+    "src_id": "1009",
+    "rel_id": "2",
+    "dst_id": "389",
+    "src": "DRUG:CHLORDIAZEPOXIDE AND AMITRIPTYLINE HYDROCHLORIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:2030"
+  },
+  {
+    "src_id": "1930",
+    "rel_id": "2",
+    "dst_id": "645",
+    "src": "DRUG:PREDNISONE",
+    "rel": "INDICATION",
+    "dst": "DOID:8481"
+  },
+  {
+    "src_id": "2215",
+    "rel_id": "2",
+    "dst_id": "460",
+    "src": "DRUG:TYVASO",
+    "rel": "INDICATION",
+    "dst": "DOID:3082"
+  },
+  {
+    "src_id": "1441",
+    "rel_id": "2",
+    "dst_id": "453",
+    "src": "DRUG:IMATINIB MESYLATE",
+    "rel": "INDICATION",
+    "dst": "DOID:2991"
+  },
+  {
+    "src_id": "1080",
+    "rel_id": "2",
+    "dst_id": "685",
+    "src": "DRUG:CORTISONE ACETATE",
+    "rel": "INDICATION",
+    "dst": "DOID:8924"
+  },
+  {
+    "src_id": "2439",
+    "rel_id": "2",
+    "dst_id": "279",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB01390",
+    "rel": "INDICATION",
+    "dst": "DOID:13250"
+  },
+  {
+    "src_id": "2408",
+    "rel_id": "2",
+    "dst_id": "450",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB00959",
+    "rel": "INDICATION",
+    "dst": "DOID:2965"
+  },
+  {
+    "src_id": "1474",
+    "rel_id": "2",
+    "dst_id": "296",
+    "src": "DRUG:ITRACONAZOLE",
+    "rel": "INDICATION",
+    "dst": "DOID:13564"
+  },
+  {
+    "src_id": "2415",
+    "rel_id": "2",
+    "dst_id": "545",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB01069",
+    "rel": "INDICATION",
+    "dst": "DOID:4730"
+  },
+  {
+    "src_id": "2508",
+    "rel_id": "2",
+    "dst_id": "90",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB09125",
+    "rel": "INDICATION",
+    "dst": "DOID:0080652"
+  },
+  {
+    "src_id": "1338",
+    "rel_id": "2",
+    "dst_id": "195",
+    "src": "DRUG:FOSAMAX",
+    "rel": "INDICATION",
+    "dst": "DOID:11476"
+  },
+  {
+    "src_id": "1280",
+    "rel_id": "2",
+    "dst_id": "129",
+    "src": "DRUG:EXJADE",
+    "rel": "INDICATION",
+    "dst": "DOID:10241"
+  },
+  {
+    "src_id": "1718",
+    "rel_id": "2",
+    "dst_id": "450",
+    "src": "DRUG:NAPROXEN",
+    "rel": "INDICATION",
+    "dst": "DOID:2965"
+  },
+  {
+    "src_id": "1212",
+    "rel_id": "2",
+    "dst_id": "515",
+    "src": "DRUG:DROXIDOPA",
+    "rel": "INDICATION",
+    "dst": "DOID:4"
+  },
+  {
+    "src_id": "1929",
+    "rel_id": "2",
+    "dst_id": "721",
+    "src": "DRUG:PREDNISOLONE SODIUM PHOSPHATE ORAL SOLUTION",
+    "rel": "INDICATION",
+    "dst": "DOID:9415"
+  },
+  {
+    "src_id": "2267",
+    "rel_id": "2",
+    "dst_id": "603",
+    "src": "DRUG:VIMOVO",
+    "rel": "INDICATION",
+    "dst": "DOID:6590"
+  },
+  {
+    "src_id": "1441",
+    "rel_id": "2",
+    "dst_id": "489",
+    "src": "DRUG:IMATINIB MESYLATE",
+    "rel": "INDICATION",
+    "dst": "DOID:349"
+  },
+  {
+    "src_id": "1043",
+    "rel_id": "2",
+    "dst_id": "488",
+    "src": "DRUG:CLINDAMYCIN HYDROCHLORIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:3488"
+  },
+  {
+    "src_id": "2368",
+    "rel_id": "2",
+    "dst_id": "450",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB00328",
+    "rel": "INDICATION",
+    "dst": "DOID:2965"
+  },
+  {
+    "src_id": "1491",
+    "rel_id": "2",
+    "dst_id": "313",
+    "src": "DRUG:JULEBER",
+    "rel": "INDICATION",
+    "dst": "DOID:13938"
+  },
+  {
+    "src_id": "2508",
+    "rel_id": "2",
+    "dst_id": "90",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB09125",
+    "rel": "INDICATION",
+    "dst": "DOID:0080652"
+  },
+  {
+    "src_id": "1259",
+    "rel_id": "2",
+    "dst_id": "351",
+    "src": "DRUG:ESTERIFIED ESTROGENS AND METHYLTESTOSTERONE",
+    "rel": "INDICATION",
+    "dst": "DOID:1596"
+  },
+  {
+    "src_id": "1690",
+    "rel_id": "2",
+    "dst_id": "536",
+    "src": "DRUG:MONTELUKAST SODIUM",
+    "rel": "INDICATION",
+    "dst": "DOID:4481"
+  },
+  {
+    "src_id": "915",
+    "rel_id": "2",
+    "dst_id": "710",
+    "src": "DRUG:BRINZOLAMIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:9282"
+  },
+  {
+    "src_id": "1212",
+    "rel_id": "2",
+    "dst_id": "669",
+    "src": "DRUG:DROXIDOPA",
+    "rel": "INDICATION",
+    "dst": "DOID:870"
+  },
+  {
+    "src_id": "2492",
+    "rel_id": "2",
+    "dst_id": "533",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB08885",
+    "rel": "INDICATION",
+    "dst": "DOID:4449"
+  },
+  {
+    "src_id": "1032",
+    "rel_id": "2",
+    "dst_id": "337",
+    "src": "DRUG:CITALOPRAM HYDROBROMIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:1470"
+  },
+  {
+    "src_id": "1446",
+    "rel_id": "2",
+    "dst_id": "659",
+    "src": "DRUG:IMULDOSA",
+    "rel": "INDICATION",
+    "dst": "DOID:8577"
+  },
+  {
+    "src_id": "1989",
+    "rel_id": "2",
+    "dst_id": "271",
+    "src": "DRUG:REXULTI",
+    "rel": "INDICATION",
+    "dst": "DOID:1307"
+  },
+  {
+    "src_id": "1867",
+    "rel_id": "2",
+    "dst_id": "354",
+    "src": "DRUG:PEMETREXED",
+    "rel": "INDICATION",
+    "dst": "DOID:162"
+  },
+  {
+    "src_id": "1844",
+    "rel_id": "2",
+    "dst_id": "515",
+    "src": "DRUG:PACLITAXEL PROTEIN-BOUND PARTICLES FOR INJECTABLE SUSPENSION (ALBUMIN-BOUND)",
+    "rel": "INDICATION",
+    "dst": "DOID:4"
+  },
+  {
+    "src_id": "2432",
+    "rel_id": "2",
+    "dst_id": "420",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB01262",
+    "rel": "INDICATION",
+    "dst": "DOID:2355"
+  },
+  {
+    "src_id": "1603",
+    "rel_id": "2",
+    "dst_id": "312",
+    "src": "DRUG:MAJOR ORAL RINSE",
+    "rel": "INDICATION",
+    "dst": "DOID:13924"
+  },
+  {
+    "src_id": "879",
+    "rel_id": "2",
+    "dst_id": "53",
+    "src": "DRUG:BALSALAZIDE DISODIUM",
+    "rel": "INDICATION",
+    "dst": "DOID:0060180"
+  },
+  {
+    "src_id": "1156",
+    "rel_id": "2",
+    "dst_id": "279",
+    "src": "DRUG:DEXTROSE 10%",
+    "rel": "INDICATION",
+    "dst": "DOID:13250"
+  },
+  {
+    "src_id": "1413",
+    "rel_id": "2",
+    "dst_id": "239",
+    "src": "DRUG:HYDROXYCHLOROQUINE SULFATE",
+    "rel": "INDICATION",
+    "dst": "DOID:12365"
+  },
+  {
+    "src_id": "1256",
+    "rel_id": "2",
+    "dst_id": "652",
+    "src": "DRUG:ESOMEPRAZOLE MAGNESIUM",
+    "rel": "INDICATION",
+    "dst": "DOID:8534"
+  },
+  {
+    "src_id": "1012",
+    "rel_id": "2",
+    "dst_id": "742",
+    "src": "DRUG:CHLORDIAZEPOXIDE HYDROCHLORIDE AND CLIDINIUM BROMIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:9778"
+  },
+  {
+    "src_id": "1929",
+    "rel_id": "2",
+    "dst_id": "637",
+    "src": "DRUG:PREDNISOLONE SODIUM PHOSPHATE ORAL SOLUTION",
+    "rel": "INDICATION",
+    "dst": "DOID:841"
+  },
+  {
+    "src_id": "1152",
+    "rel_id": "2",
+    "dst_id": "689",
+    "src": "DRUG:DEXTROAMPHETAMINE SACCHARATE, AMPHETAMINE ASPARTATE, DEXTROAMPHETAMINE SULFATE AND AMPHETAMINE SULFATE",
+    "rel": "INDICATION",
+    "dst": "DOID:8986"
+  },
+  {
+    "src_id": "1141",
+    "rel_id": "2",
+    "dst_id": "645",
+    "src": "DRUG:DEXAMETHASONE",
+    "rel": "INDICATION",
+    "dst": "DOID:8481"
+  },
+  {
+    "src_id": "2545",
+    "rel_id": "2",
+    "dst_id": "172",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB11595",
+    "rel": "INDICATION",
+    "dst": "DOID:1115"
+  },
+  {
+    "src_id": "1088",
+    "rel_id": "2",
+    "dst_id": "48",
+    "src": "DRUG:CUBICIN RF",
+    "rel": "INDICATION",
+    "dst": "DOID:0060000"
+  },
+  {
+    "src_id": "1869",
+    "rel_id": "2",
+    "dst_id": "347",
+    "src": "DRUG:PENICILLIN V POTASSIUM",
+    "rel": "INDICATION",
+    "dst": "DOID:1586"
+  },
+  {
+    "src_id": "2091",
+    "rel_id": "2",
+    "dst_id": "712",
+    "src": "DRUG:SPIRONOLACTONE AND HYDROCHLOROTHIAZIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:9351"
+  },
+  {
+    "src_id": "2251",
+    "rel_id": "2",
+    "dst_id": "351",
+    "src": "DRUG:VENLAFAXINE",
+    "rel": "INDICATION",
+    "dst": "DOID:1596"
+  },
+  {
+    "src_id": "1511",
+    "rel_id": "2",
+    "dst_id": "239",
+    "src": "DRUG:KRINTAFEL",
+    "rel": "INDICATION",
+    "dst": "DOID:12365"
+  },
+  {
+    "src_id": "1926",
+    "rel_id": "2",
+    "dst_id": "221",
+    "src": "DRUG:PREDNISOLONE",
+    "rel": "INDICATION",
+    "dst": "DOID:1205"
+  },
+  {
+    "src_id": "889",
+    "rel_id": "2",
+    "dst_id": "659",
+    "src": "DRUG:BETAMETHASONE SODIUM PHOSPHATE AND BETAMETHASONE ACETATE",
+    "rel": "INDICATION",
+    "dst": "DOID:8577"
+  },
+  {
+    "src_id": "2412",
+    "rel_id": "2",
+    "dst_id": "514",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB01045",
+    "rel": "INDICATION",
+    "dst": "DOID:399"
+  },
+  {
+    "src_id": "1142",
+    "rel_id": "2",
+    "dst_id": "185",
+    "src": "DRUG:DEXAMETHASONE SODIUM PHOSPHATE",
+    "rel": "INDICATION",
+    "dst": "DOID:11335"
+  },
+  {
+    "src_id": "1685",
+    "rel_id": "2",
+    "dst_id": "159",
+    "src": "DRUG:MISOPROSTOL",
+    "rel": "INDICATION",
+    "dst": "DOID:10808"
+  },
+  {
+    "src_id": "1359",
+    "rel_id": "2",
+    "dst_id": "480",
+    "src": "DRUG:GEMFIBROZIL",
+    "rel": "INDICATION",
+    "dst": "DOID:3393"
+  },
+  {
+    "src_id": "1162",
+    "rel_id": "2",
+    "dst_id": "609",
+    "src": "DRUG:DICLOFENAC POTASSIUM",
+    "rel": "INDICATION",
+    "dst": "DOID:7148"
+  },
+  {
+    "src_id": "1682",
+    "rel_id": "2",
+    "dst_id": "304",
+    "src": "DRUG:MINOCYCLINE HYDROCHLORIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:13800"
+  },
+  {
+    "src_id": "1792",
+    "rel_id": "2",
+    "dst_id": "515",
+    "src": "DRUG:OLMESARTAN MEDOXOMIL AND HYDROCHLOROTHIAZIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:4"
+  },
+  {
+    "src_id": "1890",
+    "rel_id": "2",
+    "dst_id": "179",
+    "src": "DRUG:PHYTONADIONE",
+    "rel": "INDICATION",
+    "dst": "DOID:11249"
+  },
+  {
+    "src_id": "906",
+    "rel_id": "2",
+    "dst_id": "515",
+    "src": "DRUG:BOSENTAN",
+    "rel": "INDICATION",
+    "dst": "DOID:4"
+  },
+  {
+    "src_id": "2662",
+    "rel_id": "2",
+    "dst_id": "244",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB16267",
+    "rel": "INDICATION",
+    "dst": "DOID:1240"
+  },
+  {
+    "src_id": "889",
+    "rel_id": "2",
+    "dst_id": "284",
+    "src": "DRUG:BETAMETHASONE SODIUM PHOSPHATE AND BETAMETHASONE ACETATE",
+    "rel": "INDICATION",
+    "dst": "DOID:13375"
+  },
+  {
+    "src_id": "1930",
+    "rel_id": "2",
+    "dst_id": "434",
+    "src": "DRUG:PREDNISONE",
+    "rel": "INDICATION",
+    "dst": "DOID:2723"
+  },
+  {
+    "src_id": "883",
+    "rel_id": "2",
+    "dst_id": "45",
+    "src": "DRUG:BENAZEPRIL HYDROCHLORIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:0051061"
+  },
+  {
+    "src_id": "1463",
+    "rel_id": "2",
+    "dst_id": "573",
+    "src": "DRUG:IRBESARTAN",
+    "rel": "INDICATION",
+    "dst": "DOID:557"
+  },
+  {
+    "src_id": "2698",
+    "rel_id": "2",
+    "dst_id": "644",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB19357",
+    "rel": "INDICATION",
+    "dst": "DOID:848"
+  },
+  {
+    "src_id": "1547",
+    "rel_id": "2",
+    "dst_id": "575",
+    "src": "DRUG:LEVOFLOXACIN",
+    "rel": "INDICATION",
+    "dst": "DOID:559"
+  },
+  {
+    "src_id": "2408",
+    "rel_id": "2",
+    "dst_id": "316",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB00959",
+    "rel": "INDICATION",
+    "dst": "DOID:1406"
+  },
+  {
+    "src_id": "1249",
+    "rel_id": "2",
+    "dst_id": "520",
+    "src": "DRUG:ERYTHROMYCIN",
+    "rel": "INDICATION",
+    "dst": "DOID:4131"
+  },
+  {
+    "src_id": "1696",
+    "rel_id": "2",
+    "dst_id": "486",
+    "src": "DRUG:MOXIFLOXACIN HYDROCHLORIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:3482"
+  },
+  {
+    "src_id": "957",
+    "rel_id": "2",
+    "dst_id": "464",
+    "src": "DRUG:CANASA",
+    "rel": "INDICATION",
+    "dst": "DOID:3127"
+  },
+  {
+    "src_id": "2426",
+    "rel_id": "2",
+    "dst_id": "569",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB01224",
+    "rel": "INDICATION",
+    "dst": "DOID:5419"
+  },
+  {
+    "src_id": "1133",
+    "rel_id": "2",
+    "dst_id": "536",
+    "src": "DRUG:DESLORATADINE",
+    "rel": "INDICATION",
+    "dst": "DOID:4481"
+  },
+  {
+    "src_id": "2003",
+    "rel_id": "2",
+    "dst_id": "515",
+    "src": "DRUG:RIVASTIGMINE TARTRATE",
+    "rel": "INDICATION",
+    "dst": "DOID:4"
+  },
+  {
+    "src_id": "1329",
+    "rel_id": "2",
+    "dst_id": "636",
+    "src": "DRUG:FLUVOXAMINE MALEATE",
+    "rel": "INDICATION",
+    "dst": "DOID:84"
+  },
+  {
+    "src_id": "946",
+    "rel_id": "2",
+    "dst_id": "602",
+    "src": "DRUG:CABERGOLINE",
+    "rel": "INDICATION",
+    "dst": "DOID:657"
+  },
+  {
+    "src_id": "2000",
+    "rel_id": "2",
+    "dst_id": "515",
+    "src": "DRUG:RIVAROXABAN",
+    "rel": "INDICATION",
+    "dst": "DOID:4"
+  },
+  {
+    "src_id": "2652",
+    "rel_id": "2",
+    "dst_id": "515",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB15766",
+    "rel": "INDICATION",
+    "dst": "DOID:4"
+  },
+  {
+    "src_id": "1957",
+    "rel_id": "2",
+    "dst_id": "351",
+    "src": "DRUG:PROPRANOLOL HYDROCHLORIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:1596"
+  },
+  {
+    "src_id": "2084",
+    "rel_id": "2",
+    "dst_id": "645",
+    "src": "DRUG:SOLU-MEDROL",
+    "rel": "INDICATION",
+    "dst": "DOID:8481"
+  },
+  {
+    "src_id": "1094",
+    "rel_id": "2",
+    "dst_id": "53",
+    "src": "DRUG:CYLTEZO",
+    "rel": "INDICATION",
+    "dst": "DOID:0060180"
+  },
+  {
+    "src_id": "2480",
+    "rel_id": "2",
+    "dst_id": "421",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB06650",
+    "rel": "INDICATION",
+    "dst": "DOID:2377"
+  },
+  {
+    "src_id": "2270",
+    "rel_id": "2",
+    "dst_id": "176",
+    "src": "DRUG:VITAMIN D",
+    "rel": "INDICATION",
+    "dst": "DOID:11199"
+  },
+  {
+    "src_id": "789",
+    "rel_id": "2",
+    "dst_id": "375",
+    "src": "DRUG:ALVAIZ",
+    "rel": "INDICATION",
+    "dst": "DOID:1883"
+  },
+  {
+    "src_id": "1025",
+    "rel_id": "2",
+    "dst_id": "155",
+    "src": "DRUG:CIPROFLOXACIN AND DEXAMETHASONE",
+    "rel": "INDICATION",
+    "dst": "DOID:10754"
+  },
+  {
+    "src_id": "793",
+    "rel_id": "2",
+    "dst_id": "698",
+    "src": "DRUG:AMBISOME",
+    "rel": "INDICATION",
+    "dst": "DOID:9146"
+  },
+  {
+    "src_id": "992",
+    "rel_id": "2",
+    "dst_id": "572",
+    "src": "DRUG:CEFEPIME",
+    "rel": "INDICATION",
+    "dst": "DOID:552"
+  },
+  {
+    "src_id": "1600",
+    "rel_id": "2",
+    "dst_id": "299",
+    "src": "DRUG:MAGNESIUM SULFATE",
+    "rel": "INDICATION",
+    "dst": "DOID:13593"
+  },
+  {
+    "src_id": "2277",
+    "rel_id": "2",
+    "dst_id": "434",
+    "src": "DRUG:VTAMA",
+    "rel": "INDICATION",
+    "dst": "DOID:2723"
+  },
+  {
+    "src_id": "994",
+    "rel_id": "2",
+    "dst_id": "619",
+    "src": "DRUG:CEFIXIME",
+    "rel": "INDICATION",
+    "dst": "DOID:7551"
+  },
+  {
+    "src_id": "1930",
+    "rel_id": "2",
+    "dst_id": "677",
+    "src": "DRUG:PREDNISONE",
+    "rel": "INDICATION",
+    "dst": "DOID:8857"
+  },
+  {
+    "src_id": "2396",
+    "rel_id": "2",
+    "dst_id": "230",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB00775",
+    "rel": "INDICATION",
+    "dst": "DOID:12176"
+  },
+  {
+    "src_id": "1019",
+    "rel_id": "2",
+    "dst_id": "434",
+    "src": "DRUG:CICLOPIROX",
+    "rel": "INDICATION",
+    "dst": "DOID:2723"
+  },
+  {
+    "src_id": "1930",
+    "rel_id": "2",
+    "dst_id": "682",
+    "src": "DRUG:PREDNISONE",
+    "rel": "INDICATION",
+    "dst": "DOID:8886"
+  },
+  {
+    "src_id": "962",
+    "rel_id": "2",
+    "dst_id": "515",
+    "src": "DRUG:CAPRELSA",
+    "rel": "INDICATION",
+    "dst": "DOID:4"
+  },
+  {
+    "src_id": "2420",
+    "rel_id": "2",
+    "dst_id": "582",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB01136",
+    "rel": "INDICATION",
+    "dst": "DOID:5844"
+  },
+  {
+    "src_id": "1890",
+    "rel_id": "2",
+    "dst_id": "148",
+    "src": "DRUG:PHYTONADIONE",
+    "rel": "INDICATION",
+    "dst": "DOID:10608"
+  },
+  {
+    "src_id": "1080",
+    "rel_id": "2",
+    "dst_id": "476",
+    "src": "DRUG:CORTISONE ACETATE",
+    "rel": "INDICATION",
+    "dst": "DOID:3326"
+  },
+  {
+    "src_id": "2084",
+    "rel_id": "2",
+    "dst_id": "185",
+    "src": "DRUG:SOLU-MEDROL",
+    "rel": "INDICATION",
+    "dst": "DOID:11335"
+  },
+  {
+    "src_id": "1303",
+    "rel_id": "2",
+    "dst_id": "405",
+    "src": "DRUG:FINGOLIMOD HYDROCHLORIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:225"
+  },
+  {
+    "src_id": "912",
+    "rel_id": "2",
+    "dst_id": "710",
+    "src": "DRUG:BRIMONIDINE TARTRATE",
+    "rel": "INDICATION",
+    "dst": "DOID:9282"
+  },
+  {
+    "src_id": "1896",
+    "rel_id": "2",
+    "dst_id": "518",
+    "src": "DRUG:PIOGLITAZONE HYDROCHLORIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:409"
+  },
+  {
+    "src_id": "995",
+    "rel_id": "2",
+    "dst_id": "59",
+    "src": "DRUG:CEFOXITIN",
+    "rel": "INDICATION",
+    "dst": "DOID:0060317"
+  },
+  {
+    "src_id": "1421",
+    "rel_id": "2",
+    "dst_id": "356",
+    "src": "DRUG:HYOSCYAMINE SULFATE TAB",
+    "rel": "INDICATION",
+    "dst": "DOID:1679"
+  },
+  {
+    "src_id": "1380",
+    "rel_id": "2",
+    "dst_id": "255",
+    "src": "DRUG:GRISEOFULVIN",
+    "rel": "INDICATION",
+    "dst": "DOID:12663"
+  },
+  {
+    "src_id": "1043",
+    "rel_id": "2",
+    "dst_id": "53",
+    "src": "DRUG:CLINDAMYCIN HYDROCHLORIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:0060180"
+  },
+  {
+    "src_id": "1926",
+    "rel_id": "2",
+    "dst_id": "177",
+    "src": "DRUG:PREDNISOLONE",
+    "rel": "INDICATION",
+    "dst": "DOID:11204"
+  },
+  {
+    "src_id": "2084",
+    "rel_id": "2",
+    "dst_id": "133",
+    "src": "DRUG:SOLU-MEDROL",
+    "rel": "INDICATION",
+    "dst": "DOID:10322"
+  },
+  {
+    "src_id": "1427",
+    "rel_id": "2",
+    "dst_id": "635",
+    "src": "DRUG:IBUPROFEN",
+    "rel": "INDICATION",
+    "dst": "DOID:8398"
+  },
+  {
+    "src_id": "2301",
+    "rel_id": "2",
+    "dst_id": "354",
+    "src": "DRUG:YERVOY",
+    "rel": "INDICATION",
+    "dst": "DOID:162"
+  },
+  {
+    "src_id": "2419",
+    "rel_id": "2",
+    "dst_id": "726",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB01087",
+    "rel": "INDICATION",
+    "dst": "DOID:9471"
+  },
+  {
+    "src_id": "2348",
+    "rel_id": "2",
+    "dst_id": "700",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB00073",
+    "rel": "INDICATION",
+    "dst": "DOID:9182"
+  },
+  {
+    "src_id": "1446",
+    "rel_id": "2",
+    "dst_id": "691",
+    "src": "DRUG:IMULDOSA",
+    "rel": "INDICATION",
+    "dst": "DOID:9008"
+  },
+  {
+    "src_id": "2135",
+    "rel_id": "2",
+    "dst_id": "156",
+    "src": "DRUG:TERAZOSIN",
+    "rel": "INDICATION",
+    "dst": "DOID:10763"
+  },
+  {
+    "src_id": "1483",
+    "rel_id": "2",
+    "dst_id": "45",
+    "src": "DRUG:JAVADIN",
+    "rel": "INDICATION",
+    "dst": "DOID:0051061"
+  },
+  {
+    "src_id": "2156",
+    "rel_id": "2",
+    "dst_id": "45",
+    "src": "DRUG:TICAGRELOR",
+    "rel": "INDICATION",
+    "dst": "DOID:0051061"
+  },
+  {
+    "src_id": "1249",
+    "rel_id": "2",
+    "dst_id": "619",
+    "src": "DRUG:ERYTHROMYCIN",
+    "rel": "INDICATION",
+    "dst": "DOID:7551"
+  },
+  {
+    "src_id": "2071",
+    "rel_id": "2",
+    "dst_id": "674",
+    "src": "DRUG:SODIUM SULFACETAMIDE 9% AND SULFUR 4.5% CLEANSER",
+    "rel": "INDICATION",
+    "dst": "DOID:8741"
+  },
+  {
+    "src_id": "2666",
+    "rel_id": "2",
+    "dst_id": "515",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB16388",
+    "rel": "INDICATION",
+    "dst": "DOID:4"
+  },
+  {
+    "src_id": "1283",
+    "rel_id": "2",
+    "dst_id": "106",
+    "src": "DRUG:EZETIMIBE",
+    "rel": "INDICATION",
+    "dst": "DOID:0090019"
+  },
+  {
+    "src_id": "1336",
+    "rel_id": "2",
+    "dst_id": "589",
+    "src": "DRUG:FORMOTEROL FUMARATE",
+    "rel": "INDICATION",
+    "dst": "DOID:6132"
+  },
+  {
+    "src_id": "2479",
+    "rel_id": "2",
+    "dst_id": "354",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB06643",
+    "rel": "INDICATION",
+    "dst": "DOID:162"
+  },
+  {
+    "src_id": "2112",
+    "rel_id": "2",
+    "dst_id": "597",
+    "src": "DRUG:SUMATRIPTAN SUCCINATE",
+    "rel": "INDICATION",
+    "dst": "DOID:6364"
+  },
+  {
+    "src_id": "889",
+    "rel_id": "2",
+    "dst_id": "702",
+    "src": "DRUG:BETAMETHASONE SODIUM PHOSPHATE AND BETAMETHASONE ACETATE",
+    "rel": "INDICATION",
+    "dst": "DOID:9201"
+  },
+  {
+    "src_id": "1260",
+    "rel_id": "2",
+    "dst_id": "515",
+    "src": "DRUG:ESTRADIOL",
+    "rel": "INDICATION",
+    "dst": "DOID:4"
+  },
+  {
+    "src_id": "878",
+    "rel_id": "2",
+    "dst_id": "515",
+    "src": "DRUG:BAFIERTAM",
+    "rel": "INDICATION",
+    "dst": "DOID:4"
+  },
+  {
+    "src_id": "2273",
+    "rel_id": "2",
+    "dst_id": "274",
+    "src": "DRUG:VORICONAZOLE",
+    "rel": "INDICATION",
+    "dst": "DOID:13146"
+  },
+  {
+    "src_id": "1909",
+    "rel_id": "2",
+    "dst_id": "341",
+    "src": "DRUG:POSACONAZOLE",
+    "rel": "INDICATION",
+    "dst": "DOID:1508"
+  },
+  {
+    "src_id": "2237",
+    "rel_id": "2",
+    "dst_id": "712",
+    "src": "DRUG:VALSARTAN AND HYDROCHLOROTHIAZIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:9351"
+  },
+  {
+    "src_id": "827",
+    "rel_id": "2",
+    "dst_id": "354",
+    "src": "DRUG:ANKTIVA",
+    "rel": "INDICATION",
+    "dst": "DOID:162"
+  },
+  {
+    "src_id": "2651",
+    "rel_id": "2",
+    "dst_id": "729",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB15719",
+    "rel": "INDICATION",
+    "dst": "DOID:9538"
+  },
+  {
+    "src_id": "1080",
+    "rel_id": "2",
+    "dst_id": "31",
+    "src": "DRUG:CORTISONE ACETATE",
+    "rel": "INDICATION",
+    "dst": "DOID:0050811"
+  },
+  {
+    "src_id": "1109",
+    "rel_id": "2",
+    "dst_id": "128",
+    "src": "DRUG:DAPSONE",
+    "rel": "INDICATION",
+    "dst": "DOID:1024"
+  },
+  {
+    "src_id": "2583",
+    "rel_id": "2",
+    "dst_id": "539",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB13404",
+    "rel": "INDICATION",
+    "dst": "DOID:4531"
+  },
+  {
+    "src_id": "2110",
+    "rel_id": "2",
+    "dst_id": "261",
+    "src": "DRUG:SUMATRIPTAN",
+    "rel": "INDICATION",
+    "dst": "DOID:12783"
+  },
+  {
+    "src_id": "1868",
+    "rel_id": "2",
+    "dst_id": "254",
+    "src": "DRUG:PEMGARDA",
+    "rel": "INDICATION",
+    "dst": "DOID:12603"
+  },
+  {
+    "src_id": "1141",
+    "rel_id": "2",
+    "dst_id": "171",
+    "src": "DRUG:DEXAMETHASONE",
+    "rel": "INDICATION",
+    "dst": "DOID:11126"
+  },
+  {
+    "src_id": "2130",
+    "rel_id": "2",
+    "dst_id": "156",
+    "src": "DRUG:TELMISARTAN",
+    "rel": "INDICATION",
+    "dst": "DOID:10763"
+  },
+  {
+    "src_id": "1470",
+    "rel_id": "2",
+    "dst_id": "515",
+    "src": "DRUG:ISOSORBIDE MONONITRATE",
+    "rel": "INDICATION",
+    "dst": "DOID:4"
+  },
+  {
+    "src_id": "1130",
+    "rel_id": "2",
+    "dst_id": "683",
+    "src": "DRUG:DERMA-SMOOTHE/FS",
+    "rel": "INDICATION",
+    "dst": "DOID:8893"
+  },
+  {
+    "src_id": "1350",
+    "rel_id": "2",
+    "dst_id": "103",
+    "src": "DRUG:GABLOFEN",
+    "rel": "INDICATION",
+    "dst": "DOID:0081292"
+  },
+  {
+    "src_id": "1665",
+    "rel_id": "2",
+    "dst_id": "397",
+    "src": "DRUG:METRONIDAZOLE VAGINAL",
+    "rel": "INDICATION",
+    "dst": "DOID:2170"
+  },
+  {
+    "src_id": "924",
+    "rel_id": "2",
+    "dst_id": "351",
+    "src": "DRUG:BUCAPSOL",
+    "rel": "INDICATION",
+    "dst": "DOID:1596"
+  },
+  {
+    "src_id": "2353",
+    "rel_id": "2",
+    "dst_id": "236",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB00099",
+    "rel": "INDICATION",
+    "dst": "DOID:1227"
+  },
+  {
+    "src_id": "2156",
+    "rel_id": "2",
+    "dst_id": "582",
+    "src": "DRUG:TICAGRELOR",
+    "rel": "INDICATION",
+    "dst": "DOID:5844"
+  },
+  {
+    "src_id": "2048",
+    "rel_id": "2",
+    "dst_id": "191",
+    "src": "DRUG:SIMVASTATIN",
+    "rel": "INDICATION",
+    "dst": "DOID:114"
+  },
+  {
+    "src_id": "2109",
+    "rel_id": "2",
+    "dst_id": "644",
+    "src": "DRUG:SULINDAC",
+    "rel": "INDICATION",
+    "dst": "DOID:848"
+  },
+  {
+    "src_id": "2101",
+    "rel_id": "2",
+    "dst_id": "302",
+    "src": "DRUG:STREPTOMYCIN",
+    "rel": "INDICATION",
+    "dst": "DOID:13778"
+  },
+  {
+    "src_id": "1507",
+    "rel_id": "2",
+    "dst_id": "156",
+    "src": "DRUG:KLOR-CON/EF",
+    "rel": "INDICATION",
+    "dst": "DOID:10763"
+  },
+  {
+    "src_id": "1690",
+    "rel_id": "2",
+    "dst_id": "537",
+    "src": "DRUG:MONTELUKAST SODIUM",
+    "rel": "INDICATION",
+    "dst": "DOID:4483"
+  },
+  {
+    "src_id": "1854",
+    "rel_id": "2",
+    "dst_id": "351",
+    "src": "DRUG:PARNATE",
+    "rel": "INDICATION",
+    "dst": "DOID:1596"
+  },
+  {
+    "src_id": "1187",
+    "rel_id": "2",
+    "dst_id": "605",
+    "src": "DRUG:DMT SUIK",
+    "rel": "INDICATION",
+    "dst": "DOID:676"
+  },
+  {
+    "src_id": "1599",
+    "rel_id": "2",
+    "dst_id": "321",
+    "src": "DRUG:MACRODANTIN",
+    "rel": "INDICATION",
+    "dst": "DOID:1412"
+  },
+  {
+    "src_id": "1341",
+    "rel_id": "2",
+    "dst_id": "321",
+    "src": "DRUG:FOSFOMYCIN TROMETHAMINE",
+    "rel": "INDICATION",
+    "dst": "DOID:1412"
+  },
+  {
+    "src_id": "804",
+    "rel_id": "2",
+    "dst_id": "713",
+    "src": "DRUG:AMLODIPINE AND ATORVASTATIN",
+    "rel": "INDICATION",
+    "dst": "DOID:9352"
+  },
+  {
+    "src_id": "2545",
+    "rel_id": "2",
+    "dst_id": "278",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB11595",
+    "rel": "INDICATION",
+    "dst": "DOID:1324"
+  },
+  {
+    "src_id": "889",
+    "rel_id": "2",
+    "dst_id": "645",
+    "src": "DRUG:BETAMETHASONE SODIUM PHOSPHATE AND BETAMETHASONE ACETATE",
+    "rel": "INDICATION",
+    "dst": "DOID:8481"
+  },
+  {
+    "src_id": "1187",
+    "rel_id": "2",
+    "dst_id": "603",
+    "src": "DRUG:DMT SUIK",
+    "rel": "INDICATION",
+    "dst": "DOID:6590"
+  },
+  {
+    "src_id": "865",
+    "rel_id": "2",
+    "dst_id": "368",
+    "src": "DRUG:AVGEMSI",
+    "rel": "INDICATION",
+    "dst": "DOID:1793"
+  },
+  {
+    "src_id": "1101",
+    "rel_id": "2",
+    "dst_id": "45",
+    "src": "DRUG:DABIGATRAN ETEXILATE",
+    "rel": "INDICATION",
+    "dst": "DOID:0051061"
+  },
+  {
+    "src_id": "2220",
+    "rel_id": "2",
+    "dst_id": "345",
+    "src": "DRUG:ULTRAMICROSIZE GRISEOFULVIN",
+    "rel": "INDICATION",
+    "dst": "DOID:1562"
+  },
+  {
+    "src_id": "1031",
+    "rel_id": "2",
+    "dst_id": "351",
+    "src": "DRUG:CITALOPRAM",
+    "rel": "INDICATION",
+    "dst": "DOID:1596"
+  },
+  {
+    "src_id": "2344",
+    "rel_id": "2",
+    "dst_id": "603",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB00051",
+    "rel": "INDICATION",
+    "dst": "DOID:6590"
+  },
+  {
+    "src_id": "899",
+    "rel_id": "2",
+    "dst_id": "405",
+    "src": "DRUG:BIVALIRUDIN",
+    "rel": "INDICATION",
+    "dst": "DOID:225"
+  },
+  {
+    "src_id": "2325",
+    "rel_id": "2",
+    "dst_id": "130",
+    "src": "DRUG:ZOLEDRONIC ACID",
+    "rel": "INDICATION",
+    "dst": "DOID:10283"
+  },
+  {
+    "src_id": "1060",
+    "rel_id": "2",
+    "dst_id": "232",
+    "src": "DRUG:CLOTRIMAZOLE",
+    "rel": "INDICATION",
+    "dst": "DOID:12179"
+  },
+  {
+    "src_id": "2463",
+    "rel_id": "2",
+    "dst_id": "644",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB05679",
+    "rel": "INDICATION",
+    "dst": "DOID:848"
+  },
+  {
+    "src_id": "2038",
+    "rel_id": "2",
+    "dst_id": "337",
+    "src": "DRUG:SERTRALINE HYDROCHLORIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:1470"
+  },
+  {
+    "src_id": "1930",
+    "rel_id": "2",
+    "dst_id": "133",
+    "src": "DRUG:PREDNISONE",
+    "rel": "INDICATION",
+    "dst": "DOID:10322"
+  },
+  {
+    "src_id": "1439",
+    "rel_id": "2",
+    "dst_id": "354",
+    "src": "DRUG:ILLUCCIX",
+    "rel": "INDICATION",
+    "dst": "DOID:162"
+  },
+  {
+    "src_id": "1816",
+    "rel_id": "2",
+    "dst_id": "635",
+    "src": "DRUG:ORTHAPHEN",
+    "rel": "INDICATION",
+    "dst": "DOID:8398"
+  },
+  {
+    "src_id": "1142",
+    "rel_id": "2",
+    "dst_id": "503",
+    "src": "DRUG:DEXAMETHASONE SODIUM PHOSPHATE",
+    "rel": "INDICATION",
+    "dst": "DOID:3777"
+  },
+  {
+    "src_id": "2423",
+    "rel_id": "2",
+    "dst_id": "244",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB01169",
+    "rel": "INDICATION",
+    "dst": "DOID:1240"
+  },
+  {
+    "src_id": "1043",
+    "rel_id": "2",
+    "dst_id": "488",
+    "src": "DRUG:CLINDAMYCIN HYDROCHLORIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:3488"
+  },
+  {
+    "src_id": "1415",
+    "rel_id": "2",
+    "dst_id": "440",
+    "src": "DRUG:HYDROXYZINE",
+    "rel": "INDICATION",
+    "dst": "DOID:2841"
+  },
+  {
+    "src_id": "870",
+    "rel_id": "2",
+    "dst_id": "5",
+    "src": "DRUG:AZITHROMYCIN",
+    "rel": "INDICATION",
+    "dst": "DOID:0050127"
+  },
+  {
+    "src_id": "2375",
+    "rel_id": "2",
+    "dst_id": "334",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB00451",
+    "rel": "INDICATION",
+    "dst": "DOID:1459"
+  },
+  {
+    "src_id": "1664",
+    "rel_id": "2",
+    "dst_id": "11",
+    "src": "DRUG:METRONIDAZOLE",
+    "rel": "INDICATION",
+    "dst": "DOID:0050228"
+  },
+  {
+    "src_id": "1080",
+    "rel_id": "2",
+    "dst_id": "581",
+    "src": "DRUG:CORTISONE ACETATE",
+    "rel": "INDICATION",
+    "dst": "DOID:583"
+  },
+  {
+    "src_id": "1440",
+    "rel_id": "2",
+    "dst_id": "749",
+    "src": "DRUG:IMATINIB",
+    "rel": "INDICATION",
+    "dst": "DOID:9952"
+  },
+  {
+    "src_id": "1057",
+    "rel_id": "2",
+    "dst_id": "675",
+    "src": "DRUG:CLOPIDOGREL",
+    "rel": "INDICATION",
+    "dst": "DOID:8805"
+  },
+  {
+    "src_id": "2434",
+    "rel_id": "2",
+    "dst_id": "688",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB01270",
+    "rel": "INDICATION",
+    "dst": "DOID:8947"
+  },
+  {
+    "src_id": "1428",
+    "rel_id": "2",
+    "dst_id": "609",
+    "src": "DRUG:IBUPROFEN AND FAMOTIDINE",
+    "rel": "INDICATION",
+    "dst": "DOID:7148"
+  },
+  {
+    "src_id": "1794",
+    "rel_id": "2",
+    "dst_id": "156",
+    "src": "DRUG:OLMESARTAN MEDOXOMIL-HYDROCHLOROTHIAZIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:10763"
+  },
+  {
+    "src_id": "2187",
+    "rel_id": "2",
+    "dst_id": "710",
+    "src": "DRUG:TRAVOPROST OPHTHALMIC",
+    "rel": "INDICATION",
+    "dst": "DOID:9282"
+  },
+  {
+    "src_id": "936",
+    "rel_id": "2",
+    "dst_id": "351",
+    "src": "DRUG:BUPROPION HYDROCHLORIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:1596"
+  },
+  {
+    "src_id": "1329",
+    "rel_id": "2",
+    "dst_id": "162",
+    "src": "DRUG:FLUVOXAMINE MALEATE",
+    "rel": "INDICATION",
+    "dst": "DOID:10933"
+  },
+  {
+    "src_id": "1923",
+    "rel_id": "2",
+    "dst_id": "480",
+    "src": "DRUG:PRAVASTATIN SODIUM",
+    "rel": "INDICATION",
+    "dst": "DOID:3393"
+  },
+  {
+    "src_id": "1094",
+    "rel_id": "2",
+    "dst_id": "515",
+    "src": "DRUG:CYLTEZO",
+    "rel": "INDICATION",
+    "dst": "DOID:4"
+  },
+  {
+    "src_id": "2408",
+    "rel_id": "2",
+    "dst_id": "581",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB00959",
+    "rel": "INDICATION",
+    "dst": "DOID:583"
+  },
+  {
+    "src_id": "1205",
+    "rel_id": "2",
+    "dst_id": "354",
+    "src": "DRUG:DOXORUBICIN HYDROCHLORIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:162"
+  },
+  {
+    "src_id": "1187",
+    "rel_id": "2",
+    "dst_id": "476",
+    "src": "DRUG:DMT SUIK",
+    "rel": "INDICATION",
+    "dst": "DOID:3326"
+  },
+  {
+    "src_id": "1645",
+    "rel_id": "2",
+    "dst_id": "136",
+    "src": "DRUG:METHOTREXATE",
+    "rel": "INDICATION",
+    "dst": "DOID:1037"
+  },
+  {
+    "src_id": "760",
+    "rel_id": "2",
+    "dst_id": "358",
+    "src": "DRUG:ACETAZOLAMIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:1686"
+  },
+  {
+    "src_id": "2148",
+    "rel_id": "2",
+    "dst_id": "183",
+    "src": "DRUG:TETRACYCLINE HYDROCHLORIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:11265"
+  },
+  {
+    "src_id": "1291",
+    "rel_id": "2",
+    "dst_id": "556",
+    "src": "DRUG:FENOFIBRATE",
+    "rel": "INDICATION",
+    "dst": "DOID:4989"
+  },
+  {
+    "src_id": "2070",
+    "rel_id": "2",
+    "dst_id": "434",
+    "src": "DRUG:SODIUM SULFACETAMIDE 9% AND SULFUR 4% CLEANSER",
+    "rel": "INDICATION",
+    "dst": "DOID:2723"
+  },
+  {
+    "src_id": "837",
+    "rel_id": "2",
+    "dst_id": "461",
+    "src": "DRUG:ARFORMOTEROL TARTRATE",
+    "rel": "INDICATION",
+    "dst": "DOID:3083"
+  },
+  {
+    "src_id": "1142",
+    "rel_id": "2",
+    "dst_id": "645",
+    "src": "DRUG:DEXAMETHASONE SODIUM PHOSPHATE",
+    "rel": "INDICATION",
+    "dst": "DOID:8481"
+  },
+  {
+    "src_id": "2468",
+    "rel_id": "2",
+    "dst_id": "343",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB06282",
+    "rel": "INDICATION",
+    "dst": "DOID:1555"
+  },
+  {
+    "src_id": "1868",
+    "rel_id": "2",
+    "dst_id": "110",
+    "src": "DRUG:PEMGARDA",
+    "rel": "INDICATION",
+    "dst": "DOID:0110698"
+  },
+  {
+    "src_id": "2301",
+    "rel_id": "2",
+    "dst_id": "615",
+    "src": "DRUG:YERVOY",
+    "rel": "INDICATION",
+    "dst": "DOID:7474"
+  },
+  {
+    "src_id": "2458",
+    "rel_id": "2",
+    "dst_id": "515",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB04932",
+    "rel": "INDICATION",
+    "dst": "DOID:4"
+  },
+  {
+    "src_id": "2408",
+    "rel_id": "2",
+    "dst_id": "437",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB00959",
+    "rel": "INDICATION",
+    "dst": "DOID:2773"
+  },
+  {
+    "src_id": "1336",
+    "rel_id": "2",
+    "dst_id": "589",
+    "src": "DRUG:FORMOTEROL FUMARATE",
+    "rel": "INDICATION",
+    "dst": "DOID:6132"
+  },
+  {
+    "src_id": "1160",
+    "rel_id": "2",
+    "dst_id": "386",
+    "src": "DRUG:DIAZEPAM",
+    "rel": "INDICATION",
+    "dst": "DOID:1969"
+  },
+  {
+    "src_id": "2336",
+    "rel_id": "2",
+    "dst_id": "351",
+    "src": "DRUG:ZURZUVAE",
+    "rel": "INDICATION",
+    "dst": "DOID:1596"
+  },
+  {
+    "src_id": "2122",
+    "rel_id": "2",
+    "dst_id": "374",
+    "src": "DRUG:TADALAFIL",
+    "rel": "INDICATION",
+    "dst": "DOID:1875"
+  },
+  {
+    "src_id": "2274",
+    "rel_id": "2",
+    "dst_id": "560",
+    "src": "DRUG:VOSEVI",
+    "rel": "INDICATION",
+    "dst": "DOID:5082"
+  },
+  {
+    "src_id": "858",
+    "rel_id": "2",
+    "dst_id": "609",
+    "src": "DRUG:AUBRA EQ",
+    "rel": "INDICATION",
+    "dst": "DOID:7148"
+  },
+  {
+    "src_id": "1600",
+    "rel_id": "2",
+    "dst_id": "297",
+    "src": "DRUG:MAGNESIUM SULFATE",
+    "rel": "INDICATION",
+    "dst": "DOID:13581"
+  },
+  {
+    "src_id": "1641",
+    "rel_id": "2",
+    "dst_id": "628",
+    "src": "DRUG:METHIMAZOLE",
+    "rel": "INDICATION",
+    "dst": "DOID:7998"
+  },
+  {
+    "src_id": "1950",
+    "rel_id": "2",
+    "dst_id": "537",
+    "src": "DRUG:PROMETHAZINE HYDROCHLORIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:4483"
+  },
+  {
+    "src_id": "1547",
+    "rel_id": "2",
+    "dst_id": "572",
+    "src": "DRUG:LEVOFLOXACIN",
+    "rel": "INDICATION",
+    "dst": "DOID:552"
+  },
+  {
+    "src_id": "1930",
+    "rel_id": "2",
+    "dst_id": "717",
+    "src": "DRUG:PREDNISONE",
+    "rel": "INDICATION",
+    "dst": "DOID:9383"
+  },
+  {
+    "src_id": "1349",
+    "rel_id": "2",
+    "dst_id": "371",
+    "src": "DRUG:GABAPENTIN",
+    "rel": "INDICATION",
+    "dst": "DOID:1826"
+  },
+  {
+    "src_id": "1052",
+    "rel_id": "2",
+    "dst_id": "258",
+    "src": "DRUG:CLOMIPHENE CITRATE",
+    "rel": "INDICATION",
+    "dst": "DOID:12700"
+  },
+  {
+    "src_id": "2304",
+    "rel_id": "2",
+    "dst_id": "605",
+    "src": "DRUG:YUFLYMA",
+    "rel": "INDICATION",
+    "dst": "DOID:676"
+  },
+  {
+    "src_id": "2191",
+    "rel_id": "2",
+    "dst_id": "514",
+    "src": "DRUG:TRECATOR",
+    "rel": "INDICATION",
+    "dst": "DOID:399"
+  },
+  {
+    "src_id": "1202",
+    "rel_id": "2",
+    "dst_id": "389",
+    "src": "DRUG:DOXEPIN HYDROCHLORIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:2030"
+  },
+  {
+    "src_id": "1210",
+    "rel_id": "2",
+    "dst_id": "302",
+    "src": "DRUG:DOXYCYCLINE MONOHYDRATE",
+    "rel": "INDICATION",
+    "dst": "DOID:13778"
+  },
+  {
+    "src_id": "2316",
+    "rel_id": "2",
+    "dst_id": "45",
+    "src": "DRUG:ZESTORETIC",
+    "rel": "INDICATION",
+    "dst": "DOID:0051061"
+  },
+  {
+    "src_id": "2002",
+    "rel_id": "2",
+    "dst_id": "271",
+    "src": "DRUG:RIVASTIGMINE",
+    "rel": "INDICATION",
+    "dst": "DOID:1307"
+  },
+  {
+    "src_id": "1716",
+    "rel_id": "2",
+    "dst_id": "351",
+    "src": "DRUG:NALOXONE HYDROCHLORIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:1596"
+  },
+  {
+    "src_id": "2664",
+    "rel_id": "2",
+    "dst_id": "41",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB16371",
+    "rel": "INDICATION",
+    "dst": "DOID:0050873"
+  },
+  {
+    "src_id": "1189",
+    "rel_id": "2",
+    "dst_id": "271",
+    "src": "DRUG:DONEPEZIL",
+    "rel": "INDICATION",
+    "dst": "DOID:1307"
+  },
+  {
+    "src_id": "1470",
+    "rel_id": "2",
+    "dst_id": "480",
+    "src": "DRUG:ISOSORBIDE MONONITRATE",
+    "rel": "INDICATION",
+    "dst": "DOID:3393"
+  },
+  {
+    "src_id": "2670",
+    "rel_id": "2",
+    "dst_id": "580",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB16694",
+    "rel": "INDICATION",
+    "dst": "DOID:582"
+  },
+  {
+    "src_id": "1930",
+    "rel_id": "2",
+    "dst_id": "53",
+    "src": "DRUG:PREDNISONE",
+    "rel": "INDICATION",
+    "dst": "DOID:0060180"
+  },
+  {
+    "src_id": "1929",
+    "rel_id": "2",
+    "dst_id": "605",
+    "src": "DRUG:PREDNISOLONE SODIUM PHOSPHATE ORAL SOLUTION",
+    "rel": "INDICATION",
+    "dst": "DOID:676"
+  },
+  {
+    "src_id": "1944",
+    "rel_id": "2",
+    "dst_id": "269",
+    "src": "DRUG:PROCAINAMIDE HYDROCHLORIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:12987"
+  },
+  {
+    "src_id": "1682",
+    "rel_id": "2",
+    "dst_id": "524",
+    "src": "DRUG:MINOCYCLINE HYDROCHLORIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:4166"
+  },
+  {
+    "src_id": "1208",
+    "rel_id": "2",
+    "dst_id": "302",
+    "src": "DRUG:DOXYCYCLINE",
+    "rel": "INDICATION",
+    "dst": "DOID:13778"
+  },
+  {
+    "src_id": "899",
+    "rel_id": "2",
+    "dst_id": "64",
+    "src": "DRUG:BIVALIRUDIN",
+    "rel": "INDICATION",
+    "dst": "DOID:0060903"
+  },
+  {
+    "src_id": "2480",
+    "rel_id": "2",
+    "dst_id": "135",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB06650",
+    "rel": "INDICATION",
+    "dst": "DOID:1036"
+  },
+  {
+    "src_id": "2667",
+    "rel_id": "2",
+    "dst_id": "507",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB16410",
+    "rel": "INDICATION",
+    "dst": "DOID:3908"
+  },
+  {
+    "src_id": "1786",
+    "rel_id": "2",
+    "dst_id": "155",
+    "src": "DRUG:OFLOXACIN OTIC",
+    "rel": "INDICATION",
+    "dst": "DOID:10754"
+  },
+  {
+    "src_id": "2404",
+    "rel_id": "2",
+    "dst_id": "244",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB00928",
+    "rel": "INDICATION",
+    "dst": "DOID:1240"
+  },
+  {
+    "src_id": "2250",
+    "rel_id": "2",
+    "dst_id": "390",
+    "src": "DRUG:VEMLIDY",
+    "rel": "INDICATION",
+    "dst": "DOID:2043"
+  },
+  {
+    "src_id": "1947",
+    "rel_id": "2",
+    "dst_id": "84",
+    "src": "DRUG:PROGESTERONE",
+    "rel": "INDICATION",
+    "dst": "DOID:0080365"
+  },
+  {
+    "src_id": "1364",
+    "rel_id": "2",
+    "dst_id": "453",
+    "src": "DRUG:GLEEVEC",
+    "rel": "INDICATION",
+    "dst": "DOID:2991"
+  },
+  {
+    "src_id": "1253",
+    "rel_id": "2",
+    "dst_id": "326",
+    "src": "DRUG:ESCITALOPRAM OXALATE",
+    "rel": "INDICATION",
+    "dst": "DOID:14320"
+  },
+  {
+    "src_id": "1080",
+    "rel_id": "2",
+    "dst_id": "743",
+    "src": "DRUG:CORTISONE ACETATE",
+    "rel": "INDICATION",
+    "dst": "DOID:9784"
+  },
+  {
+    "src_id": "2408",
+    "rel_id": "2",
+    "dst_id": "405",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB00959",
+    "rel": "INDICATION",
+    "dst": "DOID:225"
+  },
+  {
+    "src_id": "1877",
+    "rel_id": "2",
+    "dst_id": "389",
+    "src": "DRUG:PHENELZINE SULFATE",
+    "rel": "INDICATION",
+    "dst": "DOID:2030"
+  },
+  {
+    "src_id": "776",
+    "rel_id": "2",
+    "dst_id": "515",
+    "src": "DRUG:ADVAIR",
+    "rel": "INDICATION",
+    "dst": "DOID:4"
+  },
+  {
+    "src_id": "2342",
+    "rel_id": "2",
+    "dst_id": "432",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB00028",
+    "rel": "INDICATION",
+    "dst": "DOID:2583"
+  },
+  {
+    "src_id": "2344",
+    "rel_id": "2",
+    "dst_id": "603",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB00051",
+    "rel": "INDICATION",
+    "dst": "DOID:6590"
+  },
+  {
+    "src_id": "1216",
+    "rel_id": "2",
+    "dst_id": "337",
+    "src": "DRUG:DULOXETINE HYDROCHLORIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:1470"
+  },
+  {
+    "src_id": "1396",
+    "rel_id": "2",
+    "dst_id": "178",
+    "src": "DRUG:HEPARIN SODIUM",
+    "rel": "INDICATION",
+    "dst": "DOID:11247"
+  },
+  {
+    "src_id": "2292",
+    "rel_id": "2",
+    "dst_id": "516",
+    "src": "DRUG:XELODA",
+    "rel": "INDICATION",
+    "dst": "DOID:4074"
+  },
+  {
+    "src_id": "1080",
+    "rel_id": "2",
+    "dst_id": "194",
+    "src": "DRUG:CORTISONE ACETATE",
+    "rel": "INDICATION",
+    "dst": "DOID:11406"
+  },
+  {
+    "src_id": "2386",
+    "rel_id": "2",
+    "dst_id": "477",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB00650",
+    "rel": "INDICATION",
+    "dst": "DOID:3347"
+  },
+  {
+    "src_id": "1277",
+    "rel_id": "2",
+    "dst_id": "18",
+    "src": "DRUG:EVEXITHROID",
+    "rel": "INDICATION",
+    "dst": "DOID:0050489"
+  },
+  {
+    "src_id": "859",
+    "rel_id": "2",
+    "dst_id": "644",
+    "src": "DRUG:AURANOFIN",
+    "rel": "INDICATION",
+    "dst": "DOID:848"
+  },
+  {
+    "src_id": "1541",
+    "rel_id": "2",
+    "dst_id": "353",
+    "src": "DRUG:LETROZOLE",
+    "rel": "INDICATION",
+    "dst": "DOID:1612"
+  },
+  {
+    "src_id": "1695",
+    "rel_id": "2",
+    "dst_id": "592",
+    "src": "DRUG:MOXIFLOXACIN",
+    "rel": "INDICATION",
+    "dst": "DOID:6195"
+  },
+  {
+    "src_id": "2612",
+    "rel_id": "2",
+    "dst_id": "428",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB14707",
+    "rel": "INDICATION",
+    "dst": "DOID:2513"
+  },
+  {
+    "src_id": "2083",
+    "rel_id": "2",
+    "dst_id": "677",
+    "src": "DRUG:SOLU-CORTEF",
+    "rel": "INDICATION",
+    "dst": "DOID:8857"
+  },
+  {
+    "src_id": "1740",
+    "rel_id": "2",
+    "dst_id": "156",
+    "src": "DRUG:NICARDIPINE HYDROCHLORIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:10763"
+  },
+  {
+    "src_id": "2448",
+    "rel_id": "2",
+    "dst_id": "683",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB02300",
+    "rel": "INDICATION",
+    "dst": "DOID:8893"
+  },
+  {
+    "src_id": "2559",
+    "rel_id": "2",
+    "dst_id": "397",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB12290",
+    "rel": "INDICATION",
+    "dst": "DOID:2170"
+  },
+  {
+    "src_id": "1547",
+    "rel_id": "2",
+    "dst_id": "589",
+    "src": "DRUG:LEVOFLOXACIN",
+    "rel": "INDICATION",
+    "dst": "DOID:6132"
+  },
+  {
+    "src_id": "2210",
+    "rel_id": "2",
+    "dst_id": "354",
+    "src": "DRUG:TRUQAP",
+    "rel": "INDICATION",
+    "dst": "DOID:162"
+  },
+  {
+    "src_id": "2481",
+    "rel_id": "2",
+    "dst_id": "53",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB06674",
+    "rel": "INDICATION",
+    "dst": "DOID:0060180"
+  },
+  {
+    "src_id": "1431",
+    "rel_id": "2",
+    "dst_id": "344",
+    "src": "DRUG:ICATIBANT",
+    "rel": "INDICATION",
+    "dst": "DOID:1558"
+  },
+  {
+    "src_id": "2064",
+    "rel_id": "2",
+    "dst_id": "687",
+    "src": "DRUG:SODIUM SULFACETAMIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:8941"
+  },
+  {
+    "src_id": "2156",
+    "rel_id": "2",
+    "dst_id": "515",
+    "src": "DRUG:TICAGRELOR",
+    "rel": "INDICATION",
+    "dst": "DOID:4"
+  },
+  {
+    "src_id": "1626",
+    "rel_id": "2",
+    "dst_id": "726",
+    "src": "DRUG:MEROPENEM",
+    "rel": "INDICATION",
+    "dst": "DOID:9471"
+  },
+  {
+    "src_id": "1174",
+    "rel_id": "2",
+    "dst_id": "597",
+    "src": "DRUG:DIHYDROERGOTAMINE MESYLATE",
+    "rel": "INDICATION",
+    "dst": "DOID:6364"
+  },
+  {
+    "src_id": "2626",
+    "rel_id": "2",
+    "dst_id": "50",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB15044",
+    "rel": "INDICATION",
+    "dst": "DOID:0060058"
+  },
+  {
+    "src_id": "1133",
+    "rel_id": "2",
+    "dst_id": "537",
+    "src": "DRUG:DESLORATADINE",
+    "rel": "INDICATION",
+    "dst": "DOID:4483"
+  },
+  {
+    "src_id": "1260",
+    "rel_id": "2",
+    "dst_id": "195",
+    "src": "DRUG:ESTRADIOL",
+    "rel": "INDICATION",
+    "dst": "DOID:11476"
+  },
+  {
+    "src_id": "1277",
+    "rel_id": "2",
+    "dst_id": "334",
+    "src": "DRUG:EVEXITHROID",
+    "rel": "INDICATION",
+    "dst": "DOID:1459"
+  },
+  {
+    "src_id": "1929",
+    "rel_id": "2",
+    "dst_id": "440",
+    "src": "DRUG:PREDNISOLONE SODIUM PHOSPHATE ORAL SOLUTION",
+    "rel": "INDICATION",
+    "dst": "DOID:2841"
+  },
+  {
+    "src_id": "1141",
+    "rel_id": "2",
+    "dst_id": "437",
+    "src": "DRUG:DEXAMETHASONE",
+    "rel": "INDICATION",
+    "dst": "DOID:2773"
+  },
+  {
+    "src_id": "1358",
+    "rel_id": "2",
+    "dst_id": "425",
+    "src": "DRUG:GEMCITABINE",
+    "rel": "INDICATION",
+    "dst": "DOID:2394"
+  },
+  {
+    "src_id": "1203",
+    "rel_id": "2",
+    "dst_id": "515",
+    "src": "DRUG:DOXERCALCIFEROL",
+    "rel": "INDICATION",
+    "dst": "DOID:4"
+  },
+  {
+    "src_id": "1002",
+    "rel_id": "2",
+    "dst_id": "93",
+    "src": "DRUG:CETIRIZINE HYDROCHLORIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:0080749"
+  },
+  {
+    "src_id": "1751",
+    "rel_id": "2",
+    "dst_id": "192",
+    "src": "DRUG:NITROFURANTOIN MACROCRYSTALS",
+    "rel": "INDICATION",
+    "dst": "DOID:11400"
+  },
+  {
+    "src_id": "889",
+    "rel_id": "2",
+    "dst_id": "440",
+    "src": "DRUG:BETAMETHASONE SODIUM PHOSPHATE AND BETAMETHASONE ACETATE",
+    "rel": "INDICATION",
+    "dst": "DOID:2841"
+  },
+  {
+    "src_id": "809",
+    "rel_id": "2",
+    "dst_id": "156",
+    "src": "DRUG:AMLODIPINE BESYLATE AND BENAZEPRIL HYDROCHLORIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:10763"
+  },
+  {
+    "src_id": "1187",
+    "rel_id": "2",
+    "dst_id": "448",
+    "src": "DRUG:DMT SUIK",
+    "rel": "INDICATION",
+    "dst": "DOID:2957"
+  },
+  {
+    "src_id": "1006",
+    "rel_id": "2",
+    "dst_id": "405",
+    "src": "DRUG:CEVIMELINE HYDROCHLORIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:225"
+  },
+  {
+    "src_id": "1142",
+    "rel_id": "2",
+    "dst_id": "316",
+    "src": "DRUG:DEXAMETHASONE SODIUM PHOSPHATE",
+    "rel": "INDICATION",
+    "dst": "DOID:1406"
+  },
+  {
+    "src_id": "1141",
+    "rel_id": "2",
+    "dst_id": "448",
+    "src": "DRUG:DEXAMETHASONE",
+    "rel": "INDICATION",
+    "dst": "DOID:2957"
+  },
+  {
+    "src_id": "1907",
+    "rel_id": "2",
+    "dst_id": "592",
+    "src": "DRUG:POLYMYXIN B SULFATE AND TRIMETHOPRIM SULFATE",
+    "rel": "INDICATION",
+    "dst": "DOID:6195"
+  },
+  {
+    "src_id": "2584",
+    "rel_id": "2",
+    "dst_id": "130",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB13438",
+    "rel": "INDICATION",
+    "dst": "DOID:10283"
+  },
+  {
+    "src_id": "2544",
+    "rel_id": "2",
+    "dst_id": "250",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB11580",
+    "rel": "INDICATION",
+    "dst": "DOID:12554"
+  },
+  {
+    "src_id": "1869",
+    "rel_id": "2",
+    "dst_id": "726",
+    "src": "DRUG:PENICILLIN V POTASSIUM",
+    "rel": "INDICATION",
+    "dst": "DOID:9471"
+  },
+  {
+    "src_id": "2601",
+    "rel_id": "2",
+    "dst_id": "609",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB14158",
+    "rel": "INDICATION",
+    "dst": "DOID:7148"
+  },
+  {
+    "src_id": "2332",
+    "rel_id": "2",
+    "dst_id": "371",
+    "src": "DRUG:ZONISAMIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:1826"
+  },
+  {
+    "src_id": "2254",
+    "rel_id": "2",
+    "dst_id": "582",
+    "src": "DRUG:VERAPAMIL HYDROCHLORIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:5844"
+  },
+  {
+    "src_id": "1791",
+    "rel_id": "2",
+    "dst_id": "45",
+    "src": "DRUG:OLMESARTAN MEDOXOMIL AND AMLODIPINE BESYLATE AND HYDROCHLOROTHIAZIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:0051061"
+  },
+  {
+    "src_id": "2372",
+    "rel_id": "2",
+    "dst_id": "354",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB00380",
+    "rel": "INDICATION",
+    "dst": "DOID:162"
+  },
+  {
+    "src_id": "1441",
+    "rel_id": "2",
+    "dst_id": "453",
+    "src": "DRUG:IMATINIB MESYLATE",
+    "rel": "INDICATION",
+    "dst": "DOID:2991"
+  },
+  {
+    "src_id": "2326",
+    "rel_id": "2",
+    "dst_id": "50",
+    "src": "DRUG:ZOLINZA",
+    "rel": "INDICATION",
+    "dst": "DOID:0060058"
+  },
+  {
+    "src_id": "2353",
+    "rel_id": "2",
+    "dst_id": "696",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB00099",
+    "rel": "INDICATION",
+    "dst": "DOID:9119"
+  },
+  {
+    "src_id": "2661",
+    "rel_id": "2",
+    "dst_id": "9",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB16258",
+    "rel": "INDICATION",
+    "dst": "DOID:0050161"
+  },
+  {
+    "src_id": "1341",
+    "rel_id": "2",
+    "dst_id": "275",
+    "src": "DRUG:FOSFOMYCIN TROMETHAMINE",
+    "rel": "INDICATION",
+    "dst": "DOID:13148"
+  },
+  {
+    "src_id": "1727",
+    "rel_id": "2",
+    "dst_id": "749",
+    "src": "DRUG:NELARABINE",
+    "rel": "INDICATION",
+    "dst": "DOID:9952"
+  },
+  {
+    "src_id": "1093",
+    "rel_id": "2",
+    "dst_id": "655",
+    "src": "DRUG:CYCLOPHOSPHAMIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:8538"
+  },
+  {
+    "src_id": "2545",
+    "rel_id": "2",
+    "dst_id": "606",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB11595",
+    "rel": "INDICATION",
+    "dst": "DOID:684"
+  },
+  {
+    "src_id": "2003",
+    "rel_id": "2",
+    "dst_id": "271",
+    "src": "DRUG:RIVASTIGMINE TARTRATE",
+    "rel": "INDICATION",
+    "dst": "DOID:1307"
+  },
+  {
+    "src_id": "2592",
+    "rel_id": "2",
+    "dst_id": "228",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB13923",
+    "rel": "INDICATION",
+    "dst": "DOID:12134"
+  },
+  {
+    "src_id": "928",
+    "rel_id": "2",
+    "dst_id": "586",
+    "src": "DRUG:BUMETANIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:6000"
+  },
+  {
+    "src_id": "1210",
+    "rel_id": "2",
+    "dst_id": "643",
+    "src": "DRUG:DOXYCYCLINE MONOHYDRATE",
+    "rel": "INDICATION",
+    "dst": "DOID:8478"
+  },
+  {
+    "src_id": "2084",
+    "rel_id": "2",
+    "dst_id": "603",
+    "src": "DRUG:SOLU-MEDROL",
+    "rel": "INDICATION",
+    "dst": "DOID:6590"
+  },
+  {
+    "src_id": "1924",
+    "rel_id": "2",
+    "dst_id": "582",
+    "src": "DRUG:PRAZOSIN HYDROCHLORIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:5844"
+  },
+  {
+    "src_id": "900",
+    "rel_id": "2",
+    "dst_id": "136",
+    "src": "DRUG:BLINCYTO",
+    "rel": "INDICATION",
+    "dst": "DOID:1037"
+  },
+  {
+    "src_id": "1718",
+    "rel_id": "2",
+    "dst_id": "609",
+    "src": "DRUG:NAPROXEN",
+    "rel": "INDICATION",
+    "dst": "DOID:7148"
+  },
+  {
+    "src_id": "1142",
+    "rel_id": "2",
+    "dst_id": "316",
+    "src": "DRUG:DEXAMETHASONE SODIUM PHOSPHATE",
+    "rel": "INDICATION",
+    "dst": "DOID:1406"
+  },
+  {
+    "src_id": "1155",
+    "rel_id": "2",
+    "dst_id": "689",
+    "src": "DRUG:DEXTROAMPHETAMINE SULFATE",
+    "rel": "INDICATION",
+    "dst": "DOID:8986"
+  },
+  {
+    "src_id": "2300",
+    "rel_id": "2",
+    "dst_id": "380",
+    "src": "DRUG:XYOSTED",
+    "rel": "INDICATION",
+    "dst": "DOID:1924"
+  },
+  {
+    "src_id": "2490",
+    "rel_id": "2",
+    "dst_id": "658",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB08870",
+    "rel": "INDICATION",
+    "dst": "DOID:8567"
+  },
+  {
+    "src_id": "1208",
+    "rel_id": "2",
+    "dst_id": "340",
+    "src": "DRUG:DOXYCYCLINE",
+    "rel": "INDICATION",
+    "dst": "DOID:1498"
+  },
+  {
+    "src_id": "1578",
+    "rel_id": "2",
+    "dst_id": "354",
+    "src": "DRUG:LORBRENA",
+    "rel": "INDICATION",
+    "dst": "DOID:162"
+  },
+  {
+    "src_id": "1950",
+    "rel_id": "2",
+    "dst_id": "447",
+    "src": "DRUG:PROMETHAZINE HYDROCHLORIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:2951"
+  },
+  {
+    "src_id": "2260",
+    "rel_id": "2",
+    "dst_id": "515",
+    "src": "DRUG:VICTOZA",
+    "rel": "INDICATION",
+    "dst": "DOID:4"
+  },
+  {
+    "src_id": "965",
+    "rel_id": "2",
+    "dst_id": "294",
+    "src": "DRUG:CARBIDOPA AND LEVODOPA",
+    "rel": "INDICATION",
+    "dst": "DOID:13548"
+  },
+  {
+    "src_id": "852",
+    "rel_id": "2",
+    "dst_id": "480",
+    "src": "DRUG:ATORVASTATIN CALCIUM",
+    "rel": "INDICATION",
+    "dst": "DOID:3393"
+  },
+  {
+    "src_id": "1067",
+    "rel_id": "2",
+    "dst_id": "277",
+    "src": "DRUG:COLCHICINE",
+    "rel": "INDICATION",
+    "dst": "DOID:13189"
+  },
+  {
+    "src_id": "2379",
+    "rel_id": "2",
+    "dst_id": "452",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB00544",
+    "rel": "INDICATION",
+    "dst": "DOID:299"
+  },
+  {
+    "src_id": "2321",
+    "rel_id": "2",
+    "dst_id": "569",
+    "src": "DRUG:ZIPRASIDONE",
+    "rel": "INDICATION",
+    "dst": "DOID:5419"
+  },
+  {
+    "src_id": "1286",
+    "rel_id": "2",
+    "dst_id": "515",
+    "src": "DRUG:FAMOTIDINE",
+    "rel": "INDICATION",
+    "dst": "DOID:4"
+  },
+  {
+    "src_id": "1069",
+    "rel_id": "2",
+    "dst_id": "373",
+    "src": "DRUG:COLESEVELAM",
+    "rel": "INDICATION",
+    "dst": "DOID:1837"
+  },
+  {
+    "src_id": "1002",
+    "rel_id": "2",
+    "dst_id": "537",
+    "src": "DRUG:CETIRIZINE HYDROCHLORIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:4483"
+  },
+  {
+    "src_id": "1506",
+    "rel_id": "2",
+    "dst_id": "160",
+    "src": "DRUG:KLOR-CON M",
+    "rel": "INDICATION",
+    "dst": "DOID:10825"
+  },
+  {
+    "src_id": "2344",
+    "rel_id": "2",
+    "dst_id": "691",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB00051",
+    "rel": "INDICATION",
+    "dst": "DOID:9008"
+  },
+  {
+    "src_id": "2474",
+    "rel_id": "2",
+    "dst_id": "515",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB06458",
+    "rel": "INDICATION",
+    "dst": "DOID:4"
+  },
+  {
+    "src_id": "1849",
+    "rel_id": "2",
+    "dst_id": "293",
+    "src": "DRUG:PAMIDRONATE DISODIUM",
+    "rel": "INDICATION",
+    "dst": "DOID:13543"
+  },
+  {
+    "src_id": "1930",
+    "rel_id": "2",
+    "dst_id": "471",
+    "src": "DRUG:PREDNISONE",
+    "rel": "INDICATION",
+    "dst": "DOID:3310"
+  },
+  {
+    "src_id": "2483",
+    "rel_id": "2",
+    "dst_id": "705",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB06756",
+    "rel": "INDICATION",
+    "dst": "DOID:9263"
+  },
+  {
+    "src_id": "1340",
+    "rel_id": "2",
+    "dst_id": "354",
+    "src": "DRUG:FOSAPREPITANT",
+    "rel": "INDICATION",
+    "dst": "DOID:162"
+  },
+  {
+    "src_id": "1413",
+    "rel_id": "2",
+    "dst_id": "644",
+    "src": "DRUG:HYDROXYCHLOROQUINE SULFATE",
+    "rel": "INDICATION",
+    "dst": "DOID:848"
+  },
+  {
+    "src_id": "1152",
+    "rel_id": "2",
+    "dst_id": "163",
+    "src": "DRUG:DEXTROAMPHETAMINE SACCHARATE, AMPHETAMINE ASPARTATE, DEXTROAMPHETAMINE SULFATE AND AMPHETAMINE SULFATE",
+    "rel": "INDICATION",
+    "dst": "DOID:1094"
+  },
+  {
+    "src_id": "2375",
+    "rel_id": "2",
+    "dst_id": "610",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB00451",
+    "rel": "INDICATION",
+    "dst": "DOID:7165"
+  },
+  {
+    "src_id": "1080",
+    "rel_id": "2",
+    "dst_id": "273",
+    "src": "DRUG:CORTISONE ACETATE",
+    "rel": "INDICATION",
+    "dst": "DOID:13141"
+  },
+  {
+    "src_id": "2494",
+    "rel_id": "2",
+    "dst_id": "164",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB08935",
+    "rel": "INDICATION",
+    "dst": "DOID:10952"
+  },
+  {
+    "src_id": "2408",
+    "rel_id": "2",
+    "dst_id": "537",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB00959",
+    "rel": "INDICATION",
+    "dst": "DOID:4483"
+  },
+  {
+    "src_id": "1417",
+    "rel_id": "2",
+    "dst_id": "515",
+    "src": "DRUG:HYDROXYZINE PAMOATE",
+    "rel": "INDICATION",
+    "dst": "DOID:4"
+  },
+  {
+    "src_id": "997",
+    "rel_id": "2",
+    "dst_id": "347",
+    "src": "DRUG:CEFPROZIL",
+    "rel": "INDICATION",
+    "dst": "DOID:1586"
+  },
+  {
+    "src_id": "990",
+    "rel_id": "2",
+    "dst_id": "384",
+    "src": "DRUG:CEFAZOLIN",
+    "rel": "INDICATION",
+    "dst": "DOID:1949"
+  },
+  {
+    "src_id": "792",
+    "rel_id": "2",
+    "dst_id": "515",
+    "src": "DRUG:AMANTADINE HYDROCHLORIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:4"
+  },
+  {
+    "src_id": "852",
+    "rel_id": "2",
+    "dst_id": "45",
+    "src": "DRUG:ATORVASTATIN CALCIUM",
+    "rel": "INDICATION",
+    "dst": "DOID:0051061"
+  },
+  {
+    "src_id": "1306",
+    "rel_id": "2",
+    "dst_id": "132",
+    "src": "DRUG:FLAGYL",
+    "rel": "INDICATION",
+    "dst": "DOID:10314"
+  },
+  {
+    "src_id": "2408",
+    "rel_id": "2",
+    "dst_id": "579",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB00959",
+    "rel": "INDICATION",
+    "dst": "DOID:576"
+  },
+  {
+    "src_id": "1210",
+    "rel_id": "2",
+    "dst_id": "290",
+    "src": "DRUG:DOXYCYCLINE MONOHYDRATE",
+    "rel": "INDICATION",
+    "dst": "DOID:1343"
+  },
+  {
+    "src_id": "1003",
+    "rel_id": "2",
+    "dst_id": "92",
+    "src": "DRUG:CETIRIZINE HYDROCHLORIDE ORAL SOLUTION",
+    "rel": "INDICATION",
+    "dst": "DOID:0080747"
+  },
+  {
+    "src_id": "1190",
+    "rel_id": "2",
+    "dst_id": "515",
+    "src": "DRUG:DONEPEZIL HYDROCHLORIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:4"
+  },
+  {
+    "src_id": "1682",
+    "rel_id": "2",
+    "dst_id": "181",
+    "src": "DRUG:MINOCYCLINE HYDROCHLORIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:11262"
+  },
+  {
+    "src_id": "1180",
+    "rel_id": "2",
+    "dst_id": "405",
+    "src": "DRUG:DIMETHYL FUMARATE",
+    "rel": "INDICATION",
+    "dst": "DOID:225"
+  },
+  {
+    "src_id": "1414",
+    "rel_id": "2",
+    "dst_id": "668",
+    "src": "DRUG:HYDROXYUREA",
+    "rel": "INDICATION",
+    "dst": "DOID:8692"
+  },
+  {
+    "src_id": "864",
+    "rel_id": "2",
+    "dst_id": "108",
+    "src": "DRUG:AVEED",
+    "rel": "INDICATION",
+    "dst": "DOID:0090070"
+  },
+  {
+    "src_id": "1695",
+    "rel_id": "2",
+    "dst_id": "182",
+    "src": "DRUG:MOXIFLOXACIN",
+    "rel": "INDICATION",
+    "dst": "DOID:11263"
+  },
+  {
+    "src_id": "1859",
+    "rel_id": "2",
+    "dst_id": "72",
+    "src": "DRUG:PAZOPANIB",
+    "rel": "INDICATION",
+    "dst": "DOID:0070663"
+  },
+  {
+    "src_id": "1353",
+    "rel_id": "2",
+    "dst_id": "644",
+    "src": "DRUG:GAMIFANT",
+    "rel": "INDICATION",
+    "dst": "DOID:848"
+  },
+  {
+    "src_id": "1043",
+    "rel_id": "2",
+    "dst_id": "122",
+    "src": "DRUG:CLINDAMYCIN HYDROCHLORIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:1002"
+  },
+  {
+    "src_id": "1380",
+    "rel_id": "2",
+    "dst_id": "214",
+    "src": "DRUG:GRISEOFULVIN",
+    "rel": "INDICATION",
+    "dst": "DOID:11917"
+  },
+  {
+    "src_id": "1183",
+    "rel_id": "2",
+    "dst_id": "34",
+    "src": "DRUG:DIPYRIDAMOLE",
+    "rel": "INDICATION",
+    "dst": "DOID:0050828"
+  },
+  {
+    "src_id": "925",
+    "rel_id": "2",
+    "dst_id": "659",
+    "src": "DRUG:BUDESONIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:8577"
+  },
+  {
+    "src_id": "2298",
+    "rel_id": "2",
+    "dst_id": "25",
+    "src": "DRUG:XPOVIO",
+    "rel": "INDICATION",
+    "dst": "DOID:0050745"
+  },
+  {
+    "src_id": "2344",
+    "rel_id": "2",
+    "dst_id": "220",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB00051",
+    "rel": "INDICATION",
+    "dst": "DOID:12030"
+  },
+  {
+    "src_id": "1068",
+    "rel_id": "2",
+    "dst_id": "451",
+    "src": "DRUG:COLCRYS",
+    "rel": "INDICATION",
+    "dst": "DOID:2987"
+  },
+  {
+    "src_id": "1318",
+    "rel_id": "2",
+    "dst_id": "584",
+    "src": "DRUG:FLUOXETINE",
+    "rel": "INDICATION",
+    "dst": "DOID:593"
+  },
+  {
+    "src_id": "2015",
+    "rel_id": "2",
+    "dst_id": "489",
+    "src": "DRUG:RYDAPT",
+    "rel": "INDICATION",
+    "dst": "DOID:349"
+  },
+  {
+    "src_id": "1142",
+    "rel_id": "2",
+    "dst_id": "437",
+    "src": "DRUG:DEXAMETHASONE SODIUM PHOSPHATE",
+    "rel": "INDICATION",
+    "dst": "DOID:2773"
+  },
+  {
+    "src_id": "1690",
+    "rel_id": "2",
+    "dst_id": "96",
+    "src": "DRUG:MONTELUKAST SODIUM",
+    "rel": "INDICATION",
+    "dst": "DOID:0080810"
+  },
+  {
+    "src_id": "2465",
+    "rel_id": "2",
+    "dst_id": "39",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB06168",
+    "rel": "INDICATION",
+    "dst": "DOID:0050854"
+  },
+  {
+    "src_id": "2218",
+    "rel_id": "2",
+    "dst_id": "261",
+    "src": "DRUG:UBRELVY",
+    "rel": "INDICATION",
+    "dst": "DOID:12783"
+  },
+  {
+    "src_id": "2185",
+    "rel_id": "2",
+    "dst_id": "337",
+    "src": "DRUG:TRANYLCYPROMINE SULFATE",
+    "rel": "INDICATION",
+    "dst": "DOID:1470"
+  },
+  {
+    "src_id": "2375",
+    "rel_id": "2",
+    "dst_id": "612",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB00451",
+    "rel": "INDICATION",
+    "dst": "DOID:7188"
+  },
+  {
+    "src_id": "863",
+    "rel_id": "2",
+    "dst_id": "712",
+    "src": "DRUG:AVAPRO",
+    "rel": "INDICATION",
+    "dst": "DOID:9351"
+  },
+  {
+    "src_id": "1263",
+    "rel_id": "2",
+    "dst_id": "397",
+    "src": "DRUG:ESTRADIOL VAGINAL INSERTS",
+    "rel": "INDICATION",
+    "dst": "DOID:2170"
+  },
+  {
+    "src_id": "1089",
+    "rel_id": "2",
+    "dst_id": "644",
+    "src": "DRUG:CUPRIMINE",
+    "rel": "INDICATION",
+    "dst": "DOID:848"
+  },
+  {
+    "src_id": "1463",
+    "rel_id": "2",
+    "dst_id": "713",
+    "src": "DRUG:IRBESARTAN",
+    "rel": "INDICATION",
+    "dst": "DOID:9352"
+  },
+  {
+    "src_id": "1180",
+    "rel_id": "2",
+    "dst_id": "515",
+    "src": "DRUG:DIMETHYL FUMARATE",
+    "rel": "INDICATION",
+    "dst": "DOID:4"
+  },
+  {
+    "src_id": "1212",
+    "rel_id": "2",
+    "dst_id": "196",
+    "src": "DRUG:DROXIDOPA",
+    "rel": "INDICATION",
+    "dst": "DOID:11503"
+  },
+  {
+    "src_id": "1926",
+    "rel_id": "2",
+    "dst_id": "369",
+    "src": "DRUG:PREDNISOLONE",
+    "rel": "INDICATION",
+    "dst": "DOID:1803"
+  },
+  {
+    "src_id": "2637",
+    "rel_id": "2",
+    "dst_id": "309",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB15270",
+    "rel": "INDICATION",
+    "dst": "DOID:1389"
+  },
+  {
+    "src_id": "2430",
+    "rel_id": "2",
+    "dst_id": "749",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB01254",
+    "rel": "INDICATION",
+    "dst": "DOID:9952"
+  },
+  {
+    "src_id": "905",
+    "rel_id": "2",
+    "dst_id": "729",
+    "src": "DRUG:BORTEZOMIB",
+    "rel": "INDICATION",
+    "dst": "DOID:9538"
+  },
+  {
+    "src_id": "1890",
+    "rel_id": "2",
+    "dst_id": "339",
+    "src": "DRUG:PHYTONADIONE",
+    "rel": "INDICATION",
+    "dst": "DOID:1485"
+  },
+  {
+    "src_id": "1698",
+    "rel_id": "2",
+    "dst_id": "515",
+    "src": "DRUG:MULPLETA",
+    "rel": "INDICATION",
+    "dst": "DOID:4"
+  },
+  {
+    "src_id": "1044",
+    "rel_id": "2",
+    "dst_id": "601",
+    "src": "DRUG:CLINDAMYCIN PHOSPHATE",
+    "rel": "INDICATION",
+    "dst": "DOID:6543"
+  },
+  {
+    "src_id": "2355",
+    "rel_id": "2",
+    "dst_id": "9",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB00110",
+    "rel": "INDICATION",
+    "dst": "DOID:0050161"
+  },
+  {
+    "src_id": "1016",
+    "rel_id": "2",
+    "dst_id": "506",
+    "src": "DRUG:CHLORPROMAZINE HYDROCHLORIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:3890"
+  },
+  {
+    "src_id": "1851",
+    "rel_id": "2",
+    "dst_id": "405",
+    "src": "DRUG:PANTOPRAZOLE SODIUM",
+    "rel": "INDICATION",
+    "dst": "DOID:225"
+  },
+  {
+    "src_id": "2083",
+    "rel_id": "2",
+    "dst_id": "219",
+    "src": "DRUG:SOLU-CORTEF",
+    "rel": "INDICATION",
+    "dst": "DOID:12029"
+  },
+  {
+    "src_id": "1166",
+    "rel_id": "2",
+    "dst_id": "609",
+    "src": "DRUG:DICLOFENAC SODIUM MISOPROSTOL",
+    "rel": "INDICATION",
+    "dst": "DOID:7148"
+  },
+  {
+    "src_id": "2146",
+    "rel_id": "2",
+    "dst_id": "380",
+    "src": "DRUG:TESTOSTERONE GEL, 1%",
+    "rel": "INDICATION",
+    "dst": "DOID:1924"
+  },
+  {
+    "src_id": "2161",
+    "rel_id": "2",
+    "dst_id": "706",
+    "src": "DRUG:TIOPRONIN",
+    "rel": "INDICATION",
+    "dst": "DOID:9266"
+  },
+  {
+    "src_id": "1165",
+    "rel_id": "2",
+    "dst_id": "609",
+    "src": "DRUG:DICLOFENAC SODIUM AND MISOPROSTOL",
+    "rel": "INDICATION",
+    "dst": "DOID:7148"
+  },
+  {
+    "src_id": "1491",
+    "rel_id": "2",
+    "dst_id": "644",
+    "src": "DRUG:JULEBER",
+    "rel": "INDICATION",
+    "dst": "DOID:848"
+  },
+  {
+    "src_id": "1438",
+    "rel_id": "2",
+    "dst_id": "633",
+    "src": "DRUG:ILEVRO",
+    "rel": "INDICATION",
+    "dst": "DOID:83"
+  },
+  {
+    "src_id": "1231",
+    "rel_id": "2",
+    "dst_id": "515",
+    "src": "DRUG:ENALAPRIL MALEATE",
+    "rel": "INDICATION",
+    "dst": "DOID:4"
+  },
+  {
+    "src_id": "1336",
+    "rel_id": "2",
+    "dst_id": "515",
+    "src": "DRUG:FORMOTEROL FUMARATE",
+    "rel": "INDICATION",
+    "dst": "DOID:4"
+  },
+  {
+    "src_id": "803",
+    "rel_id": "2",
+    "dst_id": "515",
+    "src": "DRUG:AMJEVITA",
+    "rel": "INDICATION",
+    "dst": "DOID:4"
+  },
+  {
+    "src_id": "1926",
+    "rel_id": "2",
+    "dst_id": "211",
+    "src": "DRUG:PREDNISOLONE",
+    "rel": "INDICATION",
+    "dst": "DOID:1184"
+  },
+  {
+    "src_id": "1463",
+    "rel_id": "2",
+    "dst_id": "156",
+    "src": "DRUG:IRBESARTAN",
+    "rel": "INDICATION",
+    "dst": "DOID:10763"
+  },
+  {
+    "src_id": "2264",
+    "rel_id": "2",
+    "dst_id": "738",
+    "src": "DRUG:VIGAMOX",
+    "rel": "INDICATION",
+    "dst": "DOID:9700"
+  },
+  {
+    "src_id": "2001",
+    "rel_id": "2",
+    "dst_id": "515",
+    "src": "DRUG:RIVAROXABAN GRANULE",
+    "rel": "INDICATION",
+    "dst": "DOID:4"
+  },
+  {
+    "src_id": "2548",
+    "rel_id": "2",
+    "dst_id": "354",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB11691",
+    "rel": "INDICATION",
+    "dst": "DOID:162"
+  },
+  {
+    "src_id": "1655",
+    "rel_id": "2",
+    "dst_id": "609",
+    "src": "DRUG:METHYLPREDNISOLONE ACETATE",
+    "rel": "INDICATION",
+    "dst": "DOID:7148"
+  },
+  {
+    "src_id": "853",
+    "rel_id": "2",
+    "dst_id": "187",
+    "src": "DRUG:ATOVAQUONE",
+    "rel": "INDICATION",
+    "dst": "DOID:11339"
+  },
+  {
+    "src_id": "784",
+    "rel_id": "2",
+    "dst_id": "354",
+    "src": "DRUG:ALLOPURINOL",
+    "rel": "INDICATION",
+    "dst": "DOID:162"
+  },
+  {
+    "src_id": "914",
+    "rel_id": "2",
+    "dst_id": "358",
+    "src": "DRUG:BRIMONIDINE TARTRATE/TIMOLOL MALEATE OPHTHALMIC SOLUTION",
+    "rel": "INDICATION",
+    "dst": "DOID:1686"
+  },
+  {
+    "src_id": "1083",
+    "rel_id": "2",
+    "dst_id": "573",
+    "src": "DRUG:COZAAR",
+    "rel": "INDICATION",
+    "dst": "DOID:557"
+  },
+  {
+    "src_id": "1236",
+    "rel_id": "2",
+    "dst_id": "609",
+    "src": "DRUG:ENPRESSE",
+    "rel": "INDICATION",
+    "dst": "DOID:7148"
+  },
+  {
+    "src_id": "2217",
+    "rel_id": "2",
+    "dst_id": "132",
+    "src": "DRUG:TYZAVAN",
+    "rel": "INDICATION",
+    "dst": "DOID:10314"
+  },
+  {
+    "src_id": "2408",
+    "rel_id": "2",
+    "dst_id": "476",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB00959",
+    "rel": "INDICATION",
+    "dst": "DOID:3326"
+  },
+  {
+    "src_id": "2084",
+    "rel_id": "2",
+    "dst_id": "434",
+    "src": "DRUG:SOLU-MEDROL",
+    "rel": "INDICATION",
+    "dst": "DOID:2723"
+  },
+  {
+    "src_id": "2000",
+    "rel_id": "2",
+    "dst_id": "480",
+    "src": "DRUG:RIVAROXABAN",
+    "rel": "INDICATION",
+    "dst": "DOID:3393"
+  },
+  {
+    "src_id": "1093",
+    "rel_id": "2",
+    "dst_id": "50",
+    "src": "DRUG:CYCLOPHOSPHAMIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:0060058"
+  },
+  {
+    "src_id": "1985",
+    "rel_id": "2",
+    "dst_id": "352",
+    "src": "DRUG:RENOVA",
+    "rel": "INDICATION",
+    "dst": "DOID:161"
+  },
+  {
+    "src_id": "2481",
+    "rel_id": "2",
+    "dst_id": "603",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB06674",
+    "rel": "INDICATION",
+    "dst": "DOID:6590"
+  },
+  {
+    "src_id": "1655",
+    "rel_id": "2",
+    "dst_id": "440",
+    "src": "DRUG:METHYLPREDNISOLONE ACETATE",
+    "rel": "INDICATION",
+    "dst": "DOID:2841"
+  },
+  {
+    "src_id": "1559",
+    "rel_id": "2",
+    "dst_id": "405",
+    "src": "DRUG:LINZESS",
+    "rel": "INDICATION",
+    "dst": "DOID:225"
+  },
+  {
+    "src_id": "2301",
+    "rel_id": "2",
+    "dst_id": "455",
+    "src": "DRUG:YERVOY",
+    "rel": "INDICATION",
+    "dst": "DOID:305"
+  },
+  {
+    "src_id": "889",
+    "rel_id": "2",
+    "dst_id": "434",
+    "src": "DRUG:BETAMETHASONE SODIUM PHOSPHATE AND BETAMETHASONE ACETATE",
+    "rel": "INDICATION",
+    "dst": "DOID:2723"
+  },
+  {
+    "src_id": "1359",
+    "rel_id": "2",
+    "dst_id": "334",
+    "src": "DRUG:GEMFIBROZIL",
+    "rel": "INDICATION",
+    "dst": "DOID:1459"
+  },
+  {
+    "src_id": "1399",
+    "rel_id": "2",
+    "dst_id": "411",
+    "src": "DRUG:HULIO",
+    "rel": "INDICATION",
+    "dst": "DOID:2282"
+  },
+  {
+    "src_id": "1387",
+    "rel_id": "2",
+    "dst_id": "569",
+    "src": "DRUG:HALDOL DECANOATE",
+    "rel": "INDICATION",
+    "dst": "DOID:5419"
+  },
+  {
+    "src_id": "854",
+    "rel_id": "2",
+    "dst_id": "317",
+    "src": "DRUG:ATOVAQUONE AND PROGUANIL HCL",
+    "rel": "INDICATION",
+    "dst": "DOID:14067"
+  },
+  {
+    "src_id": "919",
+    "rel_id": "2",
+    "dst_id": "258",
+    "src": "DRUG:BROMOCRIPTINE MESYLATE",
+    "rel": "INDICATION",
+    "dst": "DOID:12700"
+  },
+  {
+    "src_id": "1080",
+    "rel_id": "2",
+    "dst_id": "211",
+    "src": "DRUG:CORTISONE ACETATE",
+    "rel": "INDICATION",
+    "dst": "DOID:1184"
+  },
+  {
+    "src_id": "1077",
+    "rel_id": "2",
+    "dst_id": "192",
+    "src": "DRUG:CONTEPO",
+    "rel": "INDICATION",
+    "dst": "DOID:11400"
+  },
+  {
+    "src_id": "1869",
+    "rel_id": "2",
+    "dst_id": "264",
+    "src": "DRUG:PENICILLIN V POTASSIUM",
+    "rel": "INDICATION",
+    "dst": "DOID:12859"
+  },
+  {
+    "src_id": "1930",
+    "rel_id": "2",
+    "dst_id": "726",
+    "src": "DRUG:PREDNISONE",
+    "rel": "INDICATION",
+    "dst": "DOID:9471"
+  },
+  {
+    "src_id": "1142",
+    "rel_id": "2",
+    "dst_id": "717",
+    "src": "DRUG:DEXAMETHASONE SODIUM PHOSPHATE",
+    "rel": "INDICATION",
+    "dst": "DOID:9383"
+  },
+  {
+    "src_id": "2344",
+    "rel_id": "2",
+    "dst_id": "683",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB00051",
+    "rel": "INDICATION",
+    "dst": "DOID:8893"
+  },
+  {
+    "src_id": "1655",
+    "rel_id": "2",
+    "dst_id": "10",
+    "src": "DRUG:METHYLPREDNISOLONE ACETATE",
+    "rel": "INDICATION",
+    "dst": "DOID:0050185"
+  },
+  {
+    "src_id": "1206",
+    "rel_id": "2",
+    "dst_id": "172",
+    "src": "DRUG:DOXORUBICIN HYDROCHLORIDE LIPOSOME",
+    "rel": "INDICATION",
+    "dst": "DOID:1115"
+  },
+  {
+    "src_id": "2452",
+    "rel_id": "2",
+    "dst_id": "515",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB03754",
+    "rel": "INDICATION",
+    "dst": "DOID:4"
+  },
+  {
+    "src_id": "1641",
+    "rel_id": "2",
+    "dst_id": "515",
+    "src": "DRUG:METHIMAZOLE",
+    "rel": "INDICATION",
+    "dst": "DOID:4"
+  },
+  {
+    "src_id": "1613",
+    "rel_id": "2",
+    "dst_id": "354",
+    "src": "DRUG:MEDROXYPROGESTERONE ACETATE",
+    "rel": "INDICATION",
+    "dst": "DOID:162"
+  },
+  {
+    "src_id": "1187",
+    "rel_id": "2",
+    "dst_id": "256",
+    "src": "DRUG:DMT SUIK",
+    "rel": "INDICATION",
+    "dst": "DOID:12678"
+  },
+  {
+    "src_id": "1442",
+    "rel_id": "2",
+    "dst_id": "694",
+    "src": "DRUG:IMBRUVICA",
+    "rel": "INDICATION",
+    "dst": "DOID:9080"
+  },
+  {
+    "src_id": "1413",
+    "rel_id": "2",
+    "dst_id": "677",
+    "src": "DRUG:HYDROXYCHLOROQUINE SULFATE",
+    "rel": "INDICATION",
+    "dst": "DOID:8857"
+  },
+  {
+    "src_id": "2463",
+    "rel_id": "2",
+    "dst_id": "691",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB05679",
+    "rel": "INDICATION",
+    "dst": "DOID:9008"
+  },
+  {
+    "src_id": "1480",
+    "rel_id": "2",
+    "dst_id": "712",
+    "src": "DRUG:JANUVIA",
+    "rel": "INDICATION",
+    "dst": "DOID:9351"
+  },
+  {
+    "src_id": "2216",
+    "rel_id": "2",
+    "dst_id": "600",
+    "src": "DRUG:TYVASO DPI",
+    "rel": "INDICATION",
+    "dst": "DOID:65"
+  },
+  {
+    "src_id": "2200",
+    "rel_id": "2",
+    "dst_id": "515",
+    "src": "DRUG:TRIENTINE HYDROCHLORIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:4"
+  },
+  {
+    "src_id": "1938",
+    "rel_id": "2",
+    "dst_id": "23",
+    "src": "DRUG:PREVALITE",
+    "rel": "INDICATION",
+    "dst": "DOID:0050741"
+  },
+  {
+    "src_id": "1655",
+    "rel_id": "2",
+    "dst_id": "648",
+    "src": "DRUG:METHYLPREDNISOLONE ACETATE",
+    "rel": "INDICATION",
+    "dst": "DOID:8505"
+  },
+  {
+    "src_id": "825",
+    "rel_id": "2",
+    "dst_id": "405",
+    "src": "DRUG:ANDROGEL",
+    "rel": "INDICATION",
+    "dst": "DOID:225"
+  },
+  {
+    "src_id": "2143",
+    "rel_id": "2",
+    "dst_id": "108",
+    "src": "DRUG:TESTOSTERONE",
+    "rel": "INDICATION",
+    "dst": "DOID:0090070"
+  },
+  {
+    "src_id": "2463",
+    "rel_id": "2",
+    "dst_id": "683",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB05679",
+    "rel": "INDICATION",
+    "dst": "DOID:8893"
+  },
+  {
+    "src_id": "1320",
+    "rel_id": "2",
+    "dst_id": "144",
+    "src": "DRUG:FLUPHENAZINE HYDROCHLORIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:1059"
+  },
+  {
+    "src_id": "1785",
+    "rel_id": "2",
+    "dst_id": "592",
+    "src": "DRUG:OFLOXACIN",
+    "rel": "INDICATION",
+    "dst": "DOID:6195"
+  },
+  {
+    "src_id": "1142",
+    "rel_id": "2",
+    "dst_id": "470",
+    "src": "DRUG:DEXAMETHASONE SODIUM PHOSPHATE",
+    "rel": "INDICATION",
+    "dst": "DOID:3309"
+  },
+  {
+    "src_id": "1950",
+    "rel_id": "2",
+    "dst_id": "545",
+    "src": "DRUG:PROMETHAZINE HYDROCHLORIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:4730"
+  },
+  {
+    "src_id": "2084",
+    "rel_id": "2",
+    "dst_id": "273",
+    "src": "DRUG:SOLU-MEDROL",
+    "rel": "INDICATION",
+    "dst": "DOID:13141"
+  },
+  {
+    "src_id": "2351",
+    "rel_id": "2",
+    "dst_id": "262",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB00090",
+    "rel": "INDICATION",
+    "dst": "DOID:12798"
+  },
+  {
+    "src_id": "1039",
+    "rel_id": "2",
+    "dst_id": "53",
+    "src": "DRUG:CLEOCIN PEDIATRIC",
+    "rel": "INDICATION",
+    "dst": "DOID:0060180"
+  },
+  {
+    "src_id": "2083",
+    "rel_id": "2",
+    "dst_id": "284",
+    "src": "DRUG:SOLU-CORTEF",
+    "rel": "INDICATION",
+    "dst": "DOID:13375"
+  },
+  {
+    "src_id": "1221",
+    "rel_id": "2",
+    "dst_id": "515",
+    "src": "DRUG:EDARBYCLOR",
+    "rel": "INDICATION",
+    "dst": "DOID:4"
+  },
+  {
+    "src_id": "2254",
+    "rel_id": "2",
+    "dst_id": "712",
+    "src": "DRUG:VERAPAMIL HYDROCHLORIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:9351"
+  },
+  {
+    "src_id": "1042",
+    "rel_id": "2",
+    "dst_id": "601",
+    "src": "DRUG:CLINDAMYCIN AND BENZOYL PEROXIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:6543"
+  },
+  {
+    "src_id": "2348",
+    "rel_id": "2",
+    "dst_id": "135",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB00073",
+    "rel": "INDICATION",
+    "dst": "DOID:1036"
+  },
+  {
+    "src_id": "2396",
+    "rel_id": "2",
+    "dst_id": "366",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB00775",
+    "rel": "INDICATION",
+    "dst": "DOID:1781"
+  },
+  {
+    "src_id": "1923",
+    "rel_id": "2",
+    "dst_id": "45",
+    "src": "DRUG:PRAVASTATIN SODIUM",
+    "rel": "INDICATION",
+    "dst": "DOID:0051061"
+  },
+  {
+    "src_id": "787",
+    "rel_id": "2",
+    "dst_id": "389",
+    "src": "DRUG:ALPRAZOLAM C-IV",
+    "rel": "INDICATION",
+    "dst": "DOID:2030"
+  },
+  {
+    "src_id": "1926",
+    "rel_id": "2",
+    "dst_id": "653",
+    "src": "DRUG:PREDNISOLONE",
+    "rel": "INDICATION",
+    "dst": "DOID:8535"
+  },
+  {
+    "src_id": "1142",
+    "rel_id": "2",
+    "dst_id": "133",
+    "src": "DRUG:DEXAMETHASONE SODIUM PHOSPHATE",
+    "rel": "INDICATION",
+    "dst": "DOID:10322"
+  },
+  {
+    "src_id": "1909",
+    "rel_id": "2",
+    "dst_id": "236",
+    "src": "DRUG:POSACONAZOLE",
+    "rel": "INDICATION",
+    "dst": "DOID:1227"
+  },
+  {
+    "src_id": "2481",
+    "rel_id": "2",
+    "dst_id": "691",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB06674",
+    "rel": "INDICATION",
+    "dst": "DOID:9008"
+  },
+  {
+    "src_id": "2279",
+    "rel_id": "2",
+    "dst_id": "244",
+    "src": "DRUG:VYXEOS",
+    "rel": "INDICATION",
+    "dst": "DOID:1240"
+  },
+  {
+    "src_id": "2234",
+    "rel_id": "2",
+    "dst_id": "495",
+    "src": "DRUG:VALGANCICLOVIR",
+    "rel": "INDICATION",
+    "dst": "DOID:3612"
+  },
+  {
+    "src_id": "1642",
+    "rel_id": "2",
+    "dst_id": "354",
+    "src": "DRUG:METHITEST",
+    "rel": "INDICATION",
+    "dst": "DOID:162"
+  },
+  {
+    "src_id": "2642",
+    "rel_id": "2",
+    "dst_id": "621",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB15528",
+    "rel": "INDICATION",
+    "dst": "DOID:767"
+  },
+  {
+    "src_id": "1926",
+    "rel_id": "2",
+    "dst_id": "450",
+    "src": "DRUG:PREDNISOLONE",
+    "rel": "INDICATION",
+    "dst": "DOID:2965"
+  },
+  {
+    "src_id": "889",
+    "rel_id": "2",
+    "dst_id": "448",
+    "src": "DRUG:BETAMETHASONE SODIUM PHOSPHATE AND BETAMETHASONE ACETATE",
+    "rel": "INDICATION",
+    "dst": "DOID:2957"
+  },
+  {
+    "src_id": "2583",
+    "rel_id": "2",
+    "dst_id": "691",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB13404",
+    "rel": "INDICATION",
+    "dst": "DOID:9008"
+  },
+  {
+    "src_id": "1380",
+    "rel_id": "2",
+    "dst_id": "363",
+    "src": "DRUG:GRISEOFULVIN",
+    "rel": "INDICATION",
+    "dst": "DOID:1731"
+  },
+  {
+    "src_id": "1246",
+    "rel_id": "2",
+    "dst_id": "245",
+    "src": "DRUG:ERTACZO",
+    "rel": "INDICATION",
+    "dst": "DOID:12403"
+  },
+  {
+    "src_id": "1187",
+    "rel_id": "2",
+    "dst_id": "254",
+    "src": "DRUG:DMT SUIK",
+    "rel": "INDICATION",
+    "dst": "DOID:12603"
+  },
+  {
+    "src_id": "788",
+    "rel_id": "2",
+    "dst_id": "45",
+    "src": "DRUG:ALTACE",
+    "rel": "INDICATION",
+    "dst": "DOID:0051061"
+  },
+  {
+    "src_id": "1417",
+    "rel_id": "2",
+    "dst_id": "553",
+    "src": "DRUG:HYDROXYZINE PAMOATE",
+    "rel": "INDICATION",
+    "dst": "DOID:4964"
+  },
+  {
+    "src_id": "2112",
+    "rel_id": "2",
+    "dst_id": "261",
+    "src": "DRUG:SUMATRIPTAN SUCCINATE",
+    "rel": "INDICATION",
+    "dst": "DOID:12783"
+  },
+  {
+    "src_id": "1890",
+    "rel_id": "2",
+    "dst_id": "298",
+    "src": "DRUG:PHYTONADIONE",
+    "rel": "INDICATION",
+    "dst": "DOID:13582"
+  },
+  {
+    "src_id": "1060",
+    "rel_id": "2",
+    "dst_id": "245",
+    "src": "DRUG:CLOTRIMAZOLE",
+    "rel": "INDICATION",
+    "dst": "DOID:12403"
+  },
+  {
+    "src_id": "1141",
+    "rel_id": "2",
+    "dst_id": "515",
+    "src": "DRUG:DEXAMETHASONE",
+    "rel": "INDICATION",
+    "dst": "DOID:4"
+  },
+  {
+    "src_id": "1107",
+    "rel_id": "2",
+    "dst_id": "741",
+    "src": "DRUG:DAPAGLIFLOZIN",
+    "rel": "INDICATION",
+    "dst": "DOID:9744"
+  },
+  {
+    "src_id": "1691",
+    "rel_id": "2",
+    "dst_id": "51",
+    "src": "DRUG:MORPHINE SULFATE",
+    "rel": "INDICATION",
+    "dst": "DOID:0060145"
+  },
+  {
+    "src_id": "812",
+    "rel_id": "2",
+    "dst_id": "515",
+    "src": "DRUG:AMMONIA N 13",
+    "rel": "INDICATION",
+    "dst": "DOID:4"
+  },
+  {
+    "src_id": "1318",
+    "rel_id": "2",
+    "dst_id": "584",
+    "src": "DRUG:FLUOXETINE",
+    "rel": "INDICATION",
+    "dst": "DOID:593"
+  },
+  {
+    "src_id": "1292",
+    "rel_id": "2",
+    "dst_id": "515",
+    "src": "DRUG:FENOFIBRIC ACID",
+    "rel": "INDICATION",
+    "dst": "DOID:4"
+  },
+  {
+    "src_id": "2412",
+    "rel_id": "2",
+    "dst_id": "514",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB01045",
+    "rel": "INDICATION",
+    "dst": "DOID:399"
+  },
+  {
+    "src_id": "1416",
+    "rel_id": "2",
+    "dst_id": "343",
+    "src": "DRUG:HYDROXYZINE HYDROCHLORIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:1555"
+  },
+  {
+    "src_id": "2601",
+    "rel_id": "2",
+    "dst_id": "644",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB14158",
+    "rel": "INDICATION",
+    "dst": "DOID:848"
+  },
+  {
+    "src_id": "2659",
+    "rel_id": "2",
+    "dst_id": "625",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB16165",
+    "rel": "INDICATION",
+    "dst": "DOID:784"
+  },
+  {
+    "src_id": "2429",
+    "rel_id": "2",
+    "dst_id": "507",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB01248",
+    "rel": "INDICATION",
+    "dst": "DOID:3908"
+  },
+  {
+    "src_id": "2408",
+    "rel_id": "2",
+    "dst_id": "91",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB00959",
+    "rel": "INDICATION",
+    "dst": "DOID:0080745"
+  },
+  {
+    "src_id": "2184",
+    "rel_id": "2",
+    "dst_id": "447",
+    "src": "DRUG:TRANSDERM SCOP",
+    "rel": "INDICATION",
+    "dst": "DOID:2951"
+  },
+  {
+    "src_id": "1141",
+    "rel_id": "2",
+    "dst_id": "10",
+    "src": "DRUG:DEXAMETHASONE",
+    "rel": "INDICATION",
+    "dst": "DOID:0050185"
+  },
+  {
+    "src_id": "889",
+    "rel_id": "2",
+    "dst_id": "503",
+    "src": "DRUG:BETAMETHASONE SODIUM PHOSPHATE AND BETAMETHASONE ACETATE",
+    "rel": "INDICATION",
+    "dst": "DOID:3777"
+  },
+  {
+    "src_id": "1420",
+    "rel_id": "2",
+    "dst_id": "537",
+    "src": "DRUG:HYOSCYAMINE SULFATE ODT",
+    "rel": "INDICATION",
+    "dst": "DOID:4483"
+  },
+  {
+    "src_id": "866",
+    "rel_id": "2",
+    "dst_id": "615",
+    "src": "DRUG:AXTLE",
+    "rel": "INDICATION",
+    "dst": "DOID:7474"
+  },
+  {
+    "src_id": "1819",
+    "rel_id": "2",
+    "dst_id": "515",
+    "src": "DRUG:OSELTAMIVIR PHOSPHATE",
+    "rel": "INDICATION",
+    "dst": "DOID:4"
+  },
+  {
+    "src_id": "1416",
+    "rel_id": "2",
+    "dst_id": "515",
+    "src": "DRUG:HYDROXYZINE HYDROCHLORIDE",
+    "rel": "INDICATION",
+    "dst": "DOID:4"
+  },
+  {
+    "src_id": "2304",
+    "rel_id": "2",
+    "dst_id": "603",
+    "src": "DRUG:YUFLYMA",
+    "rel": "INDICATION",
+    "dst": "DOID:6590"
+  },
+  {
+    "src_id": "2373",
+    "rel_id": "2",
+    "dst_id": "515",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB00421",
+    "rel": "INDICATION",
+    "dst": "DOID:4"
+  },
+  {
+    "src_id": "2328",
+    "rel_id": "2",
+    "dst_id": "597",
+    "src": "DRUG:ZOLMITRIPTAN OD",
+    "rel": "INDICATION",
+    "dst": "DOID:6364"
+  },
+  {
+    "src_id": "2479",
+    "rel_id": "2",
+    "dst_id": "130",
+    "src": "DRUGBANK:https://go.drugbank.com/drugs/DB06643",
+    "rel": "INDICATION",
+    "dst": "DOID:10283"
+  },
+  {
+    "src_id": "1949",
+    "rel_id": "2",
+    "dst_id": "141",
+    "src": "DRUG:PROMETHAZINE DM",
+    "rel": "INDICATION",
+    "dst": "DOID:10459"
+  },
+  {
+    "src_id": "1585",
+    "rel_id": "2",
+    "dst_id": "654",
+    "src": "DRUG:LOTEPREDNOL ETABONATE",
+    "rel": "INDICATION",
+    "dst": "DOID:8536"
+  },
+  {
+    "src_id": "906",
+    "rel_id": "2",
+    "dst_id": "357",
+    "src": "DRUG:BOSENTAN",
+    "rel": "INDICATION",
+    "dst": "DOID:1682"
+  },
+  {
+    "src_id": "1141",
+    "rel_id": "2",
+    "dst_id": "273",
+    "src": "DRUG:DEXAMETHASONE",
+    "rel": "INDICATION",
+    "dst": "DOID:13141"
+  },
+  {
+    "src_id": "1666",
+    "rel_id": "2",
+    "dst_id": "501",
+    "src": "DRUG:METRONIDAZOLE VAGINAL GEL, 0.75%",
+    "rel": "INDICATION",
+    "dst": "DOID:3767"
+  }
+]

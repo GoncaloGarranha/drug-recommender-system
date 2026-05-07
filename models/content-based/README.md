@@ -1,69 +1,143 @@
-# Content-Based Baseline
+# Content-Based Baseline (TF-IDF)
 
-This module provides a simple **content-based baseline** for drug recommendation.
-It is designed to complement the graph-based R-GCN pipeline by using only the
-ingredient information available in the knowledge graph artifacts.
+A lightweight content-based baseline for the biomedical `disease_to_drug` recommendation task.
 
-The baseline builds a text profile for each drug from its ingredient identifiers,
-represents those profiles with **TF-IDF**, and ranks candidates with **cosine similarity**.
+The baseline ranks candidate drugs for a given disease using TF-IDF representations of drug profiles built from selected Knowledge Graph relations, such as `HAS_INGREDIENT` and `CONTRAINDICATION`.
 
-It currently evaluates the same drug-disease prediction setting used across the project:
+This baseline is intentionally aligned with the R-GCN evaluation protocol for the biomedical dataset, so results can be compared under the same splits, candidate pool and filtered ranking setting.
 
-- **Disease -> Drug recommendation**
-- **Drug -> Disease analysis through ranking of known training drugs**
+---
+
+## Supported Task
+
+This baseline currently supports only:
+
+```text
+disease_to_drug
+Disease → Drug recommendation
+```
+
+It is not intended for:
+
+- `drug_to_disease`;
+- `tail_prediction`;
+- WN18RR;
+- FB15k-237.
+
+For generic benchmark datasets such as WN18RR and FB15k-237, use Knowledge Graph Embedding baselines such as DistMult, ComplEx or TransE.
 
 ---
 
 ## Overview
 
-The implementation lives in [src/baseline.py](src/baseline.py).
+The implementation lives in:
 
-At a high level, the pipeline does the following:
+```text
+models/content-based/src/baseline.py
+```
 
-1. Load the full triple set from `kg_constructor/data/output/triples/triples.csv`.
-2. Extract all `HAS_INGREDIENT` relations.
-3. Load R-GCN prepared artifacts from `models/rgcn/data/processed/`.
-4. Build one ingredient-based text profile per drug candidate from the same DRUG pool used by R-GCN.
-5. Vectorize the profiles with TF-IDF.
-6. Recreate the target split using the same seed and split ratios from the R-GCN config.
-7. Evaluate with filtered ranking metrics on the selected split (`valid` or `test`).
+The baseline follows these steps:
 
-This makes the baseline fast, interpretable, and useful as a reference point for the learned model.
+1. Load canonical triples from the path defined in the R-GCN config (`data.triples_path`).
+2. Load processed graph artifacts from `data.processed_dir`.
+3. Select candidate entities of type `DRUG`.
+4. Build one textual profile per candidate drug using the configured feature relations.
+5. Vectorize drug profiles with TF-IDF.
+6. Compute cosine similarity between candidate drugs.
+7. Load or create the same train/valid/test splits used by R-GCN.
+8. Compute filtered ranking metrics on the selected split (`valid` or `test`).
+9. Log results to `benchmarks.csv`.
 
 ---
 
 ## How It Works
 
-The model does not learn embeddings.
-Instead, it treats each drug as a bag of ingredient tokens.
+Each candidate drug is represented as a bag of relation-level tokens.
 
-For every disease in the test set, the baseline looks at the drugs associated with that disease in the training set and scores each candidate drug by its best similarity to any of those known drugs.
+For the main biomedical full-graph setting, the profile is built from:
 
-In practice, this means:
+```text
+CONTRAINDICATION
+HAS_INGREDIENT
+```
 
-- drugs with similar ingredient composition receive higher scores
-- diseases with no training drugs fall back to a large default rank
-- the final output is a ranking, not a binary prediction
+The target relation is:
 
-This is intentionally simpler than R-GCN and is meant to provide a transparent comparison point.
+```text
+INDICATION
+```
+
+For each disease in the evaluation split, the baseline:
+
+1. identifies drugs associated with that disease in the training set;
+2. scores all candidate drugs by maximum cosine similarity to the training drugs;
+3. removes other known positives from the ranking using the filtered protocol;
+4. computes tie-aware ranks;
+5. aggregates metrics: `MRR`, `Hits@1`, `Hits@3`, `Hits@10`.
+
+This provides an interpretable reference point for assessing how much predictive signal is captured by immediate drug-profile similarity compared with learned relational embeddings.
 
 ---
 
-## Dependencies
+## Configuration
 
-The script relies on the project-wide Python environment plus:
+The baseline uses the same YAML config as the R-GCN model.
 
-- `pandas`
-- `numpy`
-- `scikit-learn`
-- `tqdm`
+Example:
 
-The required data artifacts are:
+```text
+models/rgcn/configs/disease_to_drug.yaml
+```
 
-- `kg_constructor/data/output/triples/triples.csv`
-- `models/rgcn/data/processed/triples_indexed.csv`
-- `models/rgcn/data/processed/entity2id.json`
-- `models/rgcn/data/processed/entity_types.json`
+Important fields:
+
+```yaml
+data:
+  triples_path: "kg_constructor/data/output/triples/triples.csv"
+  processed_dir: "models/rgcn/data/processed/disease_to_drug_full"
+
+task:
+  name: "disease_to_drug"
+  target_relation: "INDICATION"
+  query_entity_type: "DISEASE"
+  candidate_entity_type: "DRUG"
+
+baseline:
+  use_ingredients: true
+  feature_relations:
+    - "CONTRAINDICATION"
+    - "HAS_INGREDIENT"
+```
+
+### Notes
+
+- `baseline.use_ingredients: true` ensures that `HAS_INGREDIENT` is used.
+- `baseline.feature_relations` defines the additional relations used to build drug profiles.
+- The target relation (`INDICATION`) is removed from the feature set to avoid direct leakage.
+- If `baseline.use_ingredients: false`, then `baseline.feature_relations` must still define the relations used as features.
+
+---
+
+## Required Preparation
+
+Before running the baseline, prepare and validate the graph artifacts using the same config:
+
+```bash
+python -m models.rgcn.src.00_prepare_graph --config models/rgcn/configs/disease_to_drug.yaml --force
+```
+
+```bash
+python -m models.rgcn.src.01_load_data --processed_dir models/rgcn/data/processed/disease_to_drug_full
+```
+
+The baseline expects the processed directory to contain:
+
+```text
+triples_indexed.csv
+entity2id.json
+entity_types.json
+splits/
+```
 
 ---
 
@@ -72,53 +146,113 @@ The required data artifacts are:
 From the repository root:
 
 ```bash
-python models/content-based/src/baseline.py --config models/rgcn/configs/disease_to_drug.yaml --split test
+python -m models.content-based.src.baseline --config models/rgcn/configs/disease_to_drug.yaml --split test
 ```
 
-The script will:
+Evaluate on validation split:
 
-- load ingredient triples and R-GCN processed artifacts
-- use the same split policy from the provided R-GCN config
-- build the TF-IDF similarity matrix over the same DRUG candidate pool
-- compute filtered ranking metrics on `valid` or `test`
+```bash
+python -m models.content-based.src.baseline --config models/rgcn/configs/disease_to_drug.yaml --split valid
+```
+
+Force split regeneration if metadata mismatches or if you intentionally want to recreate splits:
+
+```bash
+python -m models.content-based.src.baseline --config models/rgcn/configs/disease_to_drug.yaml --split test --force
+```
 
 ---
 
 ## Output
 
-The script prints the following metrics:
+The script prints:
 
-- `Hits@1`
-- `Hits@3`
-- `Hits@10`
-- `MRR`
+```text
+Hits@1
+Hits@3
+Hits@10
+MRR
+```
 
-These values are calculated over the generated rankings for the test split.
+The results are appended to:
+
+```text
+benchmarks.csv
+```
+
+at the repository root.
 
 ---
 
-## Design Notes
+## Fair Comparison with R-GCN
 
-This baseline follows the same project philosophy used in the other pipelines:
+For a valid comparison with R-GCN, both models must use:
 
-- keep the data source explicit
-- make the ranking logic easy to inspect
-- prefer reproducible preprocessing over hidden state
-- keep the baseline lightweight so it can be compared directly with R-GCN
+- the same `data.triples_path`;
+- the same `data.processed_dir`;
+- the same train/valid/test splits;
+- the same target relation;
+- the same candidate entity type (`DRUG`);
+- the same filtered ranking protocol;
+- the same evaluation metrics.
 
-The implementation is intentionally minimal. It is not a production recommender,
-but a clean reference system for testing whether ingredient-based similarity alone can recover useful drug-disease patterns under the same evaluation protocol used by R-GCN.
+### Full biomedical graph setting
 
-Each run also logs its metrics to `models/performance_leaderboard.csv`, so the
-content-based baseline stays comparable with the R-GCN experiments.
+```text
+R-GCN context:
+INDICATION + CONTRAINDICATION + HAS_INGREDIENT
+
+Content-Based features:
+CONTRAINDICATION + HAS_INGREDIENT
+```
+
+The baseline does not use `INDICATION` as a feature because it is the target relation.
+
+### Filtered biomedical graph setting
+
+```text
+R-GCN context:
+INDICATION + CONTRAINDICATION
+
+Content-Based features:
+CONTRAINDICATION
+```
+
+The full graph and filtered graph should be reported as separate experimental settings.
+
+---
+
+## Dependencies
+
+Project environment plus:
+
+- `pandas`
+- `numpy`
+- `scikit-learn`
+- `tqdm`
 
 ---
 
 ## Limitations
 
-- It only uses ingredient-level information.
-- It depends on the availability of `HAS_INGREDIENT` relations in the full triples file.
-- It depends on ingredient coverage for the candidate DRUG pool.
-- It does not model graph structure, relation semantics, or learned latent features.
+- Only supports the biomedical `disease_to_drug` task.
+- Does not support WN18RR or FB15k-237.
+- Does not support `drug_to_disease` or generic `tail_prediction`.
+- Does not learn graph embeddings.
+- Relies on the quality and coverage of the selected feature relations.
+- It is intended as a reproducible baseline, not as a production recommender.
 
-If you want, this README can be extended with a comparison section against R-GCN, or with a small example of the ranking output.
+---
+
+## Example Output
+
+Example output format:
+
+```text
+--- [3/3] Final metrics (aligned with R-GCN protocol) ---
+Hits@1:  0.4620
+Hits@3:  0.5258
+Hits@10: 0.5805
+MRR:     0.5066
+Logged benchmark to benchmarks.csv
+```

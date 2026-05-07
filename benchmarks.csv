@@ -1,0 +1,15 @@
+timestamp,model_name,hits@1,hits@3,hits@10,mrr,notes
+2026-04-29T12:14:36.534300,R-GCN (disease_to_drug),0.556231,0.648936,0.750760,0.620111,Run: 2026-04-08_14-14-33_disease_to_drug | Split: test
+2026-04-29T13:02:53.225495,R-GCN (disease_to_drug),0.551672,0.645897,0.732523,0.614280,Run: 2026-04-29_13-30-45_disease_to_drug | Split: test
+2026-04-29T16:52:53.834270,R-GCN (disease_to_drug),0.544073,0.632219,0.729483,0.602649,Run: 2026-04-29_17-20-17_disease_to_drug | Split: test
+2026-04-29T18:53:57.082373,Content-Based (TF-IDF baseline),0.481763,0.556231,0.626140,0.533520,Aligned with R-GCN protocol | Config: disease_to_drug.yaml | Split: test
+2026-04-29T18:55:05.742197,Content-Based (TF-IDF baseline),0.481763,0.556231,0.626140,0.533520,Aligned with R-GCN protocol | Config: disease_to_drug.yaml | Split: test
+2026-04-29T19:30:07.652897,Content-Based (TF-IDF baseline),0.129179,0.273556,0.405775,0.234067,Aligned with R-GCN protocol | Config: disease_to_drug.yaml | Split: test
+2026-05-05T15:07:00.983037,R-GCN (disease_to_drug),0.524316,0.635258,0.732523,0.594201,Run: 2026-05-05_14-58-53_disease_to_drug | Split: test
+2026-05-05T15:13:27.949221,Content-Based (TF-IDF baseline),0.159574,0.256839,0.303951,0.229957,Aligned with R-GCN protocol | Config: disease_to_drug.yaml | Split: test
+2026-05-05T17:37:51.154280,Content-Based (TF-IDF baseline),0.462006,0.525836,0.580547,0.506621,Aligned with R-GCN protocol | Config: disease_to_drug.yaml | Split: test
+2026-05-06T14:11:21.237275,R-GCN (tail_prediction),0.017549,0.031589,0.053606,0.031340,Run: 2026-05-06_15-01-49_tail_prediction | Split: test
+2026-05-06T17:57:56.070487,Content-Based (TF-IDF baseline),0.447090,0.515873,0.591270,0.497618,Aligned with R-GCN protocol | Config: disease_to_drug.yaml | Split: test
+2026-05-06T18:52:16.952604,Content-Based (TF-IDF baseline),0.447090,0.515873,0.591270,0.497618,Aligned with R-GCN protocol | Config: disease_to_drug.yaml | Split: test
+2026-05-06T19:00:10.185738,Content-Based (TF-IDF baseline),0.468254,0.555556,0.633598,0.530744,Aligned with R-GCN protocol | Config: disease_to_drug.yaml | Split: test
+2026-05-06T19:03:49.454990,Content-Based (TF-IDF baseline),0.468254,0.555556,0.633598,0.530744,Aligned with R-GCN protocol | Config: disease_to_drug.yaml | Split: test

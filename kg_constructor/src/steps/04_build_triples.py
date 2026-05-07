@@ -13,6 +13,11 @@ from pathlib import Path
 from typing import Any, Dict, List
 
 from kg_constructor.src.utils.log import get_logger
+from kg_constructor.src.utils.validate import (
+    validate_no_empty_values,
+    validate_relation_counts,
+    validate_triples_columns,
+)
 
 logger = get_logger(__name__)
 
@@ -113,6 +118,14 @@ def build_triples(cfg: Dict[str, Any], paths, force: bool = False) -> None:
 
         triple_rows.append([src_entity, relation, dst_entity])
 
+    triple_dict_rows = [
+        {"src": src, "rel": rel, "dst": dst}
+        for src, rel, dst in triple_rows
+    ]
+    validate_triples_columns(triple_dict_rows, ["src", "rel", "dst"])
+    validate_no_empty_values(triple_dict_rows, ["src", "rel", "dst"])
+    relation_counts = validate_relation_counts(triple_dict_rows)
+
     write_csv(triples_csv, ["src", "rel", "dst"], triple_rows)
 
     logger.info("Saved: %s", triples_csv)
@@ -122,6 +135,7 @@ def build_triples(cfg: Dict[str, Any], paths, force: bool = False) -> None:
         skipped_missing_mapping,
         skipped_invalid_rows,
     )
+    logger.info("Relation distribution: %s", dict(relation_counts))
 
 
 # Alias used by the pipeline runner

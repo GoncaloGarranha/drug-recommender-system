@@ -1,0 +1,21 @@
+{
+  "num_entities": 40943,
+  "num_relations": 11,
+  "num_triples": 93003,
+  "relation_distribution": {
+    "_hypernym": 37221,
+    "_derivationally_related_form": 31867,
+    "_instance_hypernym": 3150,
+    "_also_see": 1396,
+    "_member_meronym": 7928,
+    "_synset_domain_topic_of": 3335,
+    "_has_part": 5142,
+    "_member_of_domain_usage": 675,
+    "_member_of_domain_region": 983,
+    "_verb_group": 1220,
+    "_similar_to": 86
+  },
+  "entity_type_distribution": {
+    "UNKNOWN": 40943
+  }
+}

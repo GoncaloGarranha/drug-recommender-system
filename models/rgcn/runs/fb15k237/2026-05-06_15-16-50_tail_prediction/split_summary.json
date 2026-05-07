@@ -1,0 +1,11 @@
+{
+  "task_name": "tail_prediction",
+  "target_relation": null,
+  "train_size": 272115,
+  "valid_size": 17535,
+  "test_size": 20466,
+  "num_nodes": 14541,
+  "num_relations": 237,
+  "candidate_pool_size": 14541,
+  "context_relations": "ALL"
+}

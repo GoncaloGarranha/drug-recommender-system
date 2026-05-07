@@ -18,20 +18,11 @@ Output:
 from __future__ import annotations
 
 import argparse
-import csv
 import json
 from collections import Counter
 from pathlib import Path
 
-
-def read_json(path: Path):
-    with path.open("r", encoding="utf-8") as file_obj:
-        return json.load(file_obj)
-
-
-def read_csv(path: Path):
-    with path.open("r", encoding="utf-8") as file_obj:
-        return list(csv.DictReader(file_obj))
+from models.shared.io import read_csv, read_json
 
 
 def main() -> None:

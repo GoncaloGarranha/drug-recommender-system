@@ -1,8 +1,10 @@
 seed: 42
 
 data:
-  triples_path: "kg_constructor/data/output/triples/triples.filtered.csv"
-  processed_dir: "rgcn/data/processed"
+  # Point to an explicit triples file for the controlled baseline experiment.
+  # Use the full triples file for a quick test run.
+  triples_path: "kg_constructor/data/output/triples/triples.csv"
+  processed_dir: "models/rgcn/data/processed/disease_to_drug_full"
 
 task:
   name: "disease_to_drug"
@@ -12,14 +14,26 @@ task:
   context_relations:
     - "INDICATION"
     - "CONTRAINDICATION"
+    - "HAS_INGREDIENT"
 
 split:
   train_ratio: 0.8
   val_ratio: 0.1
   test_ratio: 0.1
 
+baseline:
+  use_ingredients: true
+  feature_relations:
+    - "CONTRAINDICATION"
+    - "HAS_INGREDIENT"
+
 training:
   epochs: 4000
+  max_epochs: 4000
+  early_stopping:
+    monitor: "valid_mrr"
+    patience: 20
+    mode: "max"
   lr: 0.001
   weight_decay: 0.0001
   dropout: 0.2
@@ -32,4 +46,4 @@ training:
   device: "cpu"
 
 runs:
-  out_dir: "rgcn/runs"
+  out_dir: "models/rgcn/runs"

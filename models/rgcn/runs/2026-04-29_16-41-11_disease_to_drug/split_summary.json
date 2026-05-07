@@ -1,0 +1,14 @@
+{
+  "task_name": "disease_to_drug",
+  "target_relation": "INDICATION",
+  "train_size": 5254,
+  "valid_size": 656,
+  "test_size": 658,
+  "num_nodes": 4721,
+  "num_relations": 3,
+  "candidate_pool_size": 1947,
+  "context_relations": [
+    "INDICATION",
+    "CONTRAINDICATION"
+  ]
+}

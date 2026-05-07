@@ -1,8 +1,8 @@
 seed: 42
 
 data:
-  triples_path: "kg_constructor/data/output/triples/triples.filtered.csv"
-  processed_dir: "rgcn/data/processed"
+  triples_path: "kg_constructor/data/output/triples/triples.csv"
+  processed_dir: "models/rgcn/data/processed/drug_to_disease"
 
 task:
   name: "drug_to_disease"
@@ -20,6 +20,11 @@ split:
 
 training:
   epochs: 4000
+  max_epochs: 4000
+  early_stopping:
+    monitor: "valid_mrr"
+    patience: 20
+    mode: "max"
   lr: 0.001
   weight_decay: 0.0001
   dropout: 0.2
@@ -32,4 +37,4 @@ training:
   device: "cpu"
 
 runs:
-  out_dir: "rgcn/runs"
+  out_dir: "models/rgcn/runs"

@@ -1,13 +1,11 @@
 import argparse
-import json
 import random
 import sys
 from pathlib import Path
-from typing import Dict, List, Tuple
+from typing import Dict, List
 
 import numpy as np
 import pandas as pd
-import yaml
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from tqdm import tqdm
@@ -19,7 +17,11 @@ REPO_ROOT = SCRIPT_DIR.parents[2]
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
-from tools.benchmark_tracker import log_experiment
+from models.shared.benchmark_tracker import log_experiment
+from models.shared.config import load_config
+from models.shared.io import read_json
+from models.shared.metrics import compute_ranking_metrics
+from models.shared.splits import build_known_positives, get_split_ratios, get_or_create_splits
 
 
 def resolve_existing_path(*relative_candidates):
@@ -32,82 +34,69 @@ def resolve_existing_path(*relative_candidates):
     raise FileNotFoundError(f"Files not found:\n{searched}")
 
 
-def read_json(path: Path):
-    with path.open("r", encoding="utf-8") as file_obj:
-        return json.load(file_obj)
-
-
-def get_split_ratios(split_cfg: Dict) -> Tuple[float, float, float]:
-    if "train_ratio" in split_cfg:
-        train_ratio = float(split_cfg["train_ratio"])
-        valid_ratio = float(split_cfg.get("val_ratio", split_cfg.get("valid_ratio", 0.1)))
-        test_ratio = float(split_cfg["test_ratio"])
-    else:
-        train_ratio = float(split_cfg["train"])
-        valid_ratio = float(split_cfg["valid"])
-        test_ratio = float(split_cfg["test"])
-    return train_ratio, valid_ratio, test_ratio
-
-
-def split_target_triples(
-    triples_df: pd.DataFrame,
-    target_relation: str,
-    seed: int,
-    train_ratio: float,
-    valid_ratio: float,
-    test_ratio: float,
-) -> Tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
-    if not np.isclose(train_ratio + valid_ratio + test_ratio, 1.0):
-        raise ValueError("Split ratios must sum to 1.0.")
-
-    target_df = triples_df[triples_df["rel"] == target_relation].copy()
-    if target_df.empty:
-        raise ValueError(f"No triples found for target relation: {target_relation}")
-
-    indices = target_df.index.tolist()
-    rng = random.Random(seed)
-    rng.shuffle(indices)
-
-    n_total = len(indices)
-    n_train = int(n_total * train_ratio)
-    n_valid = int(n_total * valid_ratio)
-
-    train_idx = indices[:n_train]
-    valid_idx = indices[n_train:n_train + n_valid]
-    test_idx = indices[n_train + n_valid:]
-
-    return target_df.loc[train_idx], target_df.loc[valid_idx], target_df.loc[test_idx]
-
-
-def build_known_positives(target_df: pd.DataFrame) -> Dict[str, set]:
-    known = {}
-    grouped = target_df.groupby("dst")["src"]
-    for disease_id, drug_series in grouped:
-        known[disease_id] = set(drug_series.tolist())
-    return known
-
 class ContentBasedBaseline:
-    def __init__(self, triples_full_path: Path, candidate_drugs: List[str]):
+    def __init__(self, triples_full_path: Path, candidate_entities: List[str], use_ingredients: bool = True, feature_relations: list | None = None, target_relation: str | None = None, task_name: str | None = None):
         print("--- [1/3] Initializing aligned content-based baseline (TF-IDF + cosine) ---")
+        self.task_name = task_name or "disease_to_drug"
+        
+        # Validate that the task is supported
+        if self.task_name != "disease_to_drug":
+            raise ValueError(
+                f"Content-Based baseline is currently supported only for disease_to_drug. "
+                f"Received: {self.task_name}. The ingredient-based representation is defined over drug candidates."
+            )
+        
+        df_all = pd.read_csv(triples_full_path, dtype=str)
 
-        df_all = pd.read_csv(triples_full_path)
-        ingredients_df = df_all[df_all["rel"] == "HAS_INGREDIENT"].copy()
+        if not candidate_entities:
+            raise ValueError("No candidate entities found in processed graph artifacts.")
 
-        ingredient_map = (
-            ingredients_df.groupby("src")["dst"]
+        self.entity_list = list(candidate_entities)
+        self.entity_to_idx = {entity: index for index, entity in enumerate(self.entity_list)}
+        self.use_ingredients = use_ingredients
+        self.feature_relations = feature_relations or []
+        self.target_relation = target_relation
+
+        # Build document representation from configured feature relations
+        allowed_rels = set(self.feature_relations)
+        
+        if self.use_ingredients:
+            allowed_rels.add("HAS_INGREDIENT")
+        
+        # Remove target relation to avoid data leakage
+        if self.target_relation is not None and self.target_relation in allowed_rels:
+            allowed_rels.discard(self.target_relation)
+        
+        if not allowed_rels:
+            raise ValueError(
+                "No feature relations available for Content-Based baseline. "
+                "Set config.baseline.feature_relations and/or config.baseline.use_ingredients=true."
+            )
+        
+        docs_df = df_all[
+            (df_all["src"].isin(self.entity_list)) &
+            (df_all["rel"].isin(allowed_rels))
+        ].copy()
+        
+        if docs_df.empty:
+            raise ValueError(
+                f"No feature triples found for candidate entities using relations: {sorted(allowed_rels)}. "
+                f"Available entities: {self.entity_list[:5]}..."
+            )
+        
+        # Create token map: src → [rel:dst, rel:dst, ...]
+        doc_map = (
+            docs_df.assign(token=docs_df["rel"].astype(str) + ":" + docs_df["dst"].astype(str))
+            .groupby("src")["token"]
             .apply(list)
             .to_dict()
         )
-
-        if not candidate_drugs:
-            raise ValueError("No DRUG candidates found in processed graph artifacts.")
-
-        self.drug_list = list(candidate_drugs)
-        self.drug_to_idx = {drug: index for index, drug in enumerate(self.drug_list)}
-        self.documents = [" ".join(ingredient_map.get(drug, [])) for drug in self.drug_list]
+        
+        self.documents = [" ".join(doc_map.get(entity, [])) for entity in self.entity_list]
 
         if not any(doc.strip() for doc in self.documents):
-            raise ValueError("No ingredient text was found for candidate drugs.")
+            # Fallback: if no textual features are available, use the entity id as a token
+            self.documents = [str(e) for e in self.entity_list]
 
         self.vectorizer = TfidfVectorizer(
             max_df=0.9,
@@ -123,7 +112,7 @@ class ContentBasedBaseline:
             sys.exit(1)
 
         self.similarity_matrix = cosine_similarity(self.tfidf_matrix)
-        print(f"-> TF-IDF matrix: {self.tfidf_matrix.shape} (drugs x features)")
+        print(f"-> TF-IDF matrix: {self.tfidf_matrix.shape} (entities x features)")
 
     def predict_ranks(
         self,
@@ -133,33 +122,36 @@ class ContentBasedBaseline:
     ) -> List[float]:
         print("--- [2/3] Generating filtered rankings with cosine similarity ---")
 
-        disease_to_train_indices = (
-            train_triples.groupby("dst")["src"]
-            .apply(lambda x: [self.drug_to_idx[d] for d in x if d in self.drug_to_idx])
+        # For disease_to_drug: query=disease(dst), candidate=drug(src)
+        query_col, candidate_col = "dst", "src"
+
+        query_to_train_indices = (
+            train_triples.groupby(query_col)[candidate_col]
+            .apply(lambda x: [self.entity_to_idx[e] for e in x if e in self.entity_to_idx])
             .to_dict()
         )
 
         ranks = []
 
         for _, row in tqdm(eval_triples.iterrows(), total=len(eval_triples)):
-            true_drug = row["src"]
-            disease = row["dst"]
+            true_candidate = row[candidate_col]
+            query = row[query_col]
 
-            if true_drug not in self.drug_to_idx:
+            if true_candidate not in self.entity_to_idx:
                 continue
 
-            true_idx = self.drug_to_idx[true_drug]
-            known_train_indices = disease_to_train_indices.get(disease, [])
+            true_idx = self.entity_to_idx[true_candidate]
+            known_train_indices = query_to_train_indices.get(query, [])
 
             if known_train_indices:
                 scores = np.max(self.similarity_matrix[:, known_train_indices], axis=1).astype(np.float64)
             else:
-                scores = np.zeros(len(self.drug_list), dtype=np.float64)
+                scores = np.zeros(len(self.entity_list), dtype=np.float64)
 
-            for known_drug in known_positives.get(disease, set()):
-                if known_drug == true_drug:
+            for known_candidate in known_positives.get(query, set()):
+                if known_candidate == true_candidate:
                     continue
-                known_idx = self.drug_to_idx.get(known_drug)
+                known_idx = self.entity_to_idx.get(known_candidate)
                 if known_idx is not None:
                     scores[known_idx] = -1e9
 
@@ -175,14 +167,17 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--config", default="models/rgcn/configs/disease_to_drug.yaml")
     parser.add_argument("--split", default="test", choices=["valid", "test"])
+    parser.add_argument("--force", action="store_true", help="Recreate splits even if existing metadata mismatches.")
     args = parser.parse_args()
 
     try:
         config_path = resolve_existing_path(args.config)
-        with open(config_path, "r", encoding="utf-8") as file_obj:
-            cfg = yaml.safe_load(file_obj)
+        cfg = load_config(config_path)
 
-        triples_full_path = resolve_existing_path("kg_constructor/data/output/triples/triples.csv")
+        # Use triples path from config to allow filtered / alternate triple files
+        triples_cfg = cfg["data"].get("triples_path", "kg_constructor/data/output/triples/triples.csv")
+        triples_full_path = resolve_existing_path(triples_cfg)
+
         processed_dir_cfg = cfg["data"]["processed_dir"]
         processed_dir = resolve_existing_path(
             processed_dir_cfg,
@@ -201,43 +196,82 @@ if __name__ == "__main__":
 
     seed = int(cfg.get("seed", 42))
     target_relation = cfg["task"]["target_relation"]
+    task_name = cfg["task"].get("name", "disease_to_drug")
+
     train_ratio, valid_ratio, test_ratio = get_split_ratios(cfg["split"])
 
-    triples_df = pd.read_csv(triples_indexed_path)
-    train_df, valid_df, test_df = split_target_triples(
-        triples_df=triples_df,
+    triples_df = pd.read_csv(triples_indexed_path, dtype=str)
+    splits_dir = processed_dir / "splits"
+    train_rows, valid_rows, test_rows, _ = get_or_create_splits(
+        output_dir=splits_dir,
+        triples=triples_df.to_dict(orient="records"),
         target_relation=target_relation,
         seed=seed,
         train_ratio=train_ratio,
-        valid_ratio=valid_ratio,
+        val_ratio=valid_ratio,
         test_ratio=test_ratio,
+        split_mode=cfg["split"].get("mode") if isinstance(cfg.get("split"), dict) else None,
+        force=args.force,
     )
+
+    train_df = pd.DataFrame(train_rows)
+    valid_df = pd.DataFrame(valid_rows)
+    test_df = pd.DataFrame(test_rows)
 
     eval_df = valid_df if args.split == "valid" else test_df
     all_target_df = pd.concat([train_df, valid_df, test_df], ignore_index=True)
-    known_positives = build_known_positives(all_target_df)
 
-    entity2id = read_json(entity2id_path)
-    entity_types = read_json(entity_types_path)
-    candidate_drugs = sorted(
-        [entity for entity, entity_type in entity_types.items() if entity_type == "DRUG"],
-        key=lambda entity: int(entity2id[entity]),
+    # Build known_positives for disease_to_drug
+    known_positives = build_known_positives(
+        all_target_df.to_dict(orient="records"),
+        query_key="dst",
+        candidate_key="src",
     )
 
-    model = ContentBasedBaseline(triples_full_path=triples_full_path, candidate_drugs=candidate_drugs)
+    entity2id = read_json(entity2id_path)
+    try:
+        entity_types = read_json(entity_types_path)
+    except Exception:
+        entity_types = {}
+
+    candidate_type_cfg = cfg["task"].get("candidate_entity_type", None)
+    if candidate_type_cfg is None or candidate_type_cfg == "ALL":
+        candidate_entities = sorted(list(entity2id.keys()), key=lambda entity: int(entity2id[entity]))
+    else:
+        candidate_entities = sorted(
+            [entity for entity, entity_type in entity_types.items() if entity_type == candidate_type_cfg],
+            key=lambda entity: int(entity2id[entity]),
+        )
+
+    baseline_cfg = cfg.get("baseline", {})
+    use_ingredients = bool(baseline_cfg.get("use_ingredients", True))
+    feature_relations = baseline_cfg.get("feature_relations", None)
+
+    if (not use_ingredients) and (not feature_relations):
+        print("Error: baseline.use_ingredients is false but baseline.feature_relations is not set in the config.")
+        sys.exit(1)
+
+    model = ContentBasedBaseline(
+        triples_full_path=triples_full_path,
+        candidate_entities=candidate_entities,
+        use_ingredients=use_ingredients,
+        feature_relations=feature_relations,
+        target_relation=target_relation,
+        task_name=task_name,
+    )
     ranks = model.predict_ranks(eval_df, train_df, known_positives)
 
     if not ranks:
         print("No evaluation ranks computed.")
         sys.exit(1)
 
-    ranks_array = np.array(ranks, dtype=np.float64)
+    metrics = compute_ranking_metrics(ranks)
 
     print("\n--- [3/3] Final metrics (aligned with R-GCN protocol) ---")
-    hits_at_1 = float(np.mean(ranks_array <= 1))
-    hits_at_3 = float(np.mean(ranks_array <= 3))
-    hits_at_10 = float(np.mean(ranks_array <= 10))
-    mrr = float(np.mean(1.0 / ranks_array))
+    hits_at_1 = metrics["hits@1"]
+    hits_at_3 = metrics["hits@3"]
+    hits_at_10 = metrics["hits@10"]
+    mrr = metrics["mrr"]
 
     print(f"Hits@1:  {hits_at_1:.4f}")
     print(f"Hits@3:  {hits_at_3:.4f}")

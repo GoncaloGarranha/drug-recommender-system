@@ -1,0 +1,10 @@
+{
+  "target_relation": "INDICATION",
+  "seed": 42,
+  "train_ratio": 0.8,
+  "val_ratio": 0.1,
+  "test_ratio": 0.1,
+  "num_train": 5254,
+  "num_valid": 656,
+  "num_test": 658
+}

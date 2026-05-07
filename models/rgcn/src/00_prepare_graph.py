@@ -1,78 +1,33 @@
 from __future__ import annotations
 
-import csv
-import json
 from collections import Counter
 from pathlib import Path
 from typing import Any, Dict, List, Tuple
+
+from models.shared.config import load_config
+from models.shared.data_validation import (
+	infer_entity_type,
+	validate_no_empty_values,
+	validate_required_relation,
+	validate_triples_schema,
+)
+from models.shared.io import ensure_dir, read_csv, save_json, write_csv
 
 from .utils.log import get_logger
 
 logger = get_logger(__name__)
 
 
-def read_csv(path: Path) -> List[Dict[str, str]]:
-    """
-    Read a CSV file into a list of dictionaries.
-    """
-    with path.open("r", encoding="utf-8") as file_obj:
-        return list(csv.DictReader(file_obj))
-
-
-def write_csv(path: Path, header: List[str], rows: List[List[Any]]) -> None:
-    """
-    Write rows to a CSV file.
-    """
-    path.parent.mkdir(parents=True, exist_ok=True)
-
-    with path.open("w", newline="", encoding="utf-8") as file_obj:
-        writer = csv.writer(file_obj)
-        writer.writerow(header)
-        writer.writerows(rows)
-
-
-def infer_entity_type(entity_id: str) -> str:
-    """
-    Infer the entity type from its canonical prefix.
-    """
-    if entity_id.startswith("DRUGBANK:") or entity_id.startswith("DRUG:"):
-        return "DRUG"
-    if entity_id.startswith("DOID:"):
-        return "DISEASE"
-    if entity_id.startswith("UNII:") or entity_id.startswith("ING:"):
-        return "INGREDIENT"
-    return "UNKNOWN"
-
-
-def validate_triples(rows: List[Dict[str, str]]) -> None:
+def validate_triples(rows: List[Dict[str, str]], target_relation: str | None = None) -> None:
     """
     Validate the input triples before graph preparation.
+    Ensures the required target relation is present when configured.
     """
-    if not rows:
-        raise ValueError("Input triple file is empty.")
+    validate_triples_schema(rows)
+    validate_no_empty_values(rows)
 
-    required_columns = {"src", "rel", "dst"}
-    first_row_keys = set(rows[0].keys())
-
-    missing_columns = required_columns - first_row_keys
-    if missing_columns:
-        raise ValueError(f"Missing required columns: {sorted(missing_columns)}")
-
-    indication_count = 0
-
-    for row in rows:
-        src = (row.get("src") or "").strip()
-        rel = (row.get("rel") or "").strip()
-        dst = (row.get("dst") or "").strip()
-
-        if not src or not rel or not dst:
-            raise ValueError("Found triple row with empty src, rel, or dst.")
-
-        if rel == "INDICATION":
-            indication_count += 1
-
-    if indication_count == 0:
-        raise ValueError("No INDICATION triples found. At least one is required.")
+    if target_relation:
+        validate_required_relation(rows, target_relation)
 
 
 def build_vocabularies(
@@ -118,14 +73,19 @@ def index_triples(
         rel = (row.get("rel") or "").strip()
         dst = (row.get("dst") or "").strip()
 
-        indexed_rows.append([
+        row_out: List[Any] = [
             entity2id[src],
             rel2id[rel],
             entity2id[dst],
             src,
             rel,
             dst,
-        ])
+        ]
+
+        if "split" in row:
+            row_out.append((row.get("split") or "").strip())
+
+        indexed_rows.append(row_out)
 
     return indexed_rows
 
@@ -162,8 +122,7 @@ def prepare_graph(cfg: Dict[str, Any], paths, force: bool = False) -> None:
     required artifacts for downstream training and inference.
     """
     triples_path = Path(cfg["data"]["triples_path"])
-    processed_dir = Path(cfg["data"]["processed_dir"])
-    processed_dir.mkdir(parents=True, exist_ok=True)
+    processed_dir = ensure_dir(cfg["data"]["processed_dir"])
 
     entity2id_path = processed_dir / "entity2id.json"
     id2entity_path = processed_dir / "id2entity.json"
@@ -191,22 +150,27 @@ def prepare_graph(cfg: Dict[str, Any], paths, force: bool = False) -> None:
         raise FileNotFoundError(f"Triples file not found: {triples_path}")
 
     triple_rows = read_csv(triples_path)
-    validate_triples(triple_rows)
+    target_relation = cfg.get("task", {}).get("target_relation")
+    validate_triples(triple_rows, target_relation=target_relation)
 
     entity2id, id2entity, rel2id, id2rel, entity_types = build_vocabularies(triple_rows)
     indexed_rows = index_triples(triple_rows, entity2id, rel2id)
     metadata = build_metadata(triple_rows, entity_types)
+    header = ["src_id", "rel_id", "dst_id", "src", "rel", "dst"]
 
-    entity2id_path.write_text(json.dumps(entity2id, indent=2, ensure_ascii=False), encoding="utf-8")
-    id2entity_path.write_text(json.dumps(id2entity, indent=2, ensure_ascii=False), encoding="utf-8")
-    rel2id_path.write_text(json.dumps(rel2id, indent=2, ensure_ascii=False), encoding="utf-8")
-    id2rel_path.write_text(json.dumps(id2rel, indent=2, ensure_ascii=False), encoding="utf-8")
-    entity_types_path.write_text(json.dumps(entity_types, indent=2, ensure_ascii=False), encoding="utf-8")
-    metadata_path.write_text(json.dumps(metadata, indent=2, ensure_ascii=False), encoding="utf-8")
+    if any("split" in row for row in triple_rows):
+        header.append("split")
+
+    save_json(entity2id_path, entity2id)
+    save_json(id2entity_path, id2entity)
+    save_json(rel2id_path, rel2id)
+    save_json(id2rel_path, id2rel)
+    save_json(entity_types_path, entity_types)
+    save_json(metadata_path, metadata)
 
     write_csv(
         triples_indexed_path,
-        ["src_id", "rel_id", "dst_id", "src", "rel", "dst"],
+        header,
         indexed_rows,
     )
 
@@ -223,15 +187,13 @@ run = prepare_graph
 
 if __name__ == "__main__":
     import argparse
-    import yaml
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("--config", default="rgcn/configs/baseline.yaml")
+    parser.add_argument("--config", default="rgcn/configs/disease_to_drug.yaml")
     parser.add_argument("--force", action="store_true")
     args = parser.parse_args()
 
-    with open(args.config, "r", encoding="utf-8") as file_obj:
-        cfg = yaml.safe_load(file_obj)
+    cfg = load_config(args.config)
 
     class Paths:
         def __init__(self):

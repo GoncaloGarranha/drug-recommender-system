@@ -7,6 +7,11 @@ from pathlib import Path
 from typing import Any, Dict, List, Set
 
 from kg_constructor.src.utils.log import get_logger
+from kg_constructor.src.utils.validate import (
+    validate_no_empty_values,
+    validate_relation_counts,
+    validate_triples_columns,
+)
 
 logger = get_logger(__name__)
 
@@ -112,6 +117,9 @@ def filter_graph(cfg: Dict[str, Any], paths, force: bool = False) -> None:
         raise FileNotFoundError("Missing triples.csv. Run step 04_build_triples first.")
 
     triple_rows = read_csv(triples_csv_in)
+    validate_triples_columns(triple_rows, ["src", "rel", "dst"])
+    validate_no_empty_values(triple_rows, ["src", "rel", "dst"])
+    input_relation_counts = validate_relation_counts(triple_rows)
 
     config_dir = Path(__file__).parent.parent.parent / "configs"
     blacklist_path = config_dir / "blacklist.txt"
@@ -155,12 +163,21 @@ def filter_graph(cfg: Dict[str, Any], paths, force: bool = False) -> None:
         filtered_rows.append([src, rel, dst])
 
     write_csv(triples_csv_out, ["src", "rel", "dst"], filtered_rows)
+    filtered_dict_rows = [
+        {"src": src, "rel": rel, "dst": dst}
+        for src, rel, dst in filtered_rows
+    ]
+    validate_triples_columns(filtered_dict_rows, ["src", "rel", "dst"])
+    validate_no_empty_values(filtered_dict_rows, ["src", "rel", "dst"])
+    filtered_relation_counts = validate_relation_counts(filtered_dict_rows)
     logger.info("Saved: %s", triples_csv_out)
     logger.info(
         "Kept triples: %d | Removed triples: %d",
         len(filtered_rows),
         sum(skip_reasons.values()),
     )
+    logger.info("Input relation distribution: %s", dict(input_relation_counts))
+    logger.info("Filtered relation distribution: %s", dict(filtered_relation_counts))
 
     report = {
         "input_triples": len(triple_rows),

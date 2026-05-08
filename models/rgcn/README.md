@@ -12,7 +12,15 @@ The R-GCN learns vector representations of entities by propagating information t
 
 The module currently supports three tasks:
 
-### 1. `disease_to_drug`
+### 1. `disease_to_drug_full`
+
+Biomedical disease-to-drug recommendation over the full graph.
+
+Task name:
+
+```text
+disease_to_drug
+```
 
 Given a disease, rank candidate drugs.
 
@@ -30,7 +38,33 @@ This is the main task for the biomedical recommender system.
 
 ---
 
-### 2. `drug_to_disease`
+### 2. `disease_to_drug_filtered`
+
+Biomedical disease-to-drug recommendation over the filtered graph.
+
+Task name:
+
+```text
+disease_to_drug
+```
+
+Given a disease, rank candidate drugs.
+
+```text
+Disease → Drug
+```
+
+Target relation:
+
+```text
+INDICATION
+```
+
+This variant excludes `HAS_INGREDIENT` and is useful for ablation studies.
+
+---
+
+### 3. `drug_to_disease`
 
 Given a drug, rank candidate diseases.
 
@@ -44,11 +78,11 @@ Target relation:
 INDICATION
 ```
 
-This task uses the same triple structure as `disease_to_drug`, but reverses the ranking direction.
+This task uses the same biomedical triple schema as the `disease_to_drug_full` / `disease_to_drug_filtered` variants, but reverses the ranking direction.
 
 ---
 
-### 3. `tail_prediction`
+### 4. `tail_prediction`
 
 Generic Knowledge Graph link prediction task.
 
@@ -79,6 +113,7 @@ models/rgcn/
 ├── data/
 │   └── processed/
 │       ├── disease_to_drug_full/
+│       ├── disease_to_drug_filtered/
 │       ├── wn18rr/
 │       └── fb15k237/
 │
@@ -243,7 +278,7 @@ Higher scores indicate more likely relationships.
 
 During training, artificial negative examples are created by corrupting triples.
 
-Example for biomedical `disease_to_drug`:
+Example for the biomedical full-graph variant `disease_to_drug_full`:
 
 ```text
 Positive:
@@ -271,7 +306,7 @@ Known positives are excluded from negative sampling where applicable.
 
 During evaluation, known true triples are removed from candidate rankings so the model is not penalized for ranking another valid triple highly.
 
-For biomedical `disease_to_drug`, filtered ranking is applied per disease.
+For the biomedical `disease_to_drug_full` and `disease_to_drug_filtered` variants, filtered ranking is applied per disease.
 
 For benchmark `tail_prediction`, filtered ranking is applied per `(head, relation)` pair.
 
@@ -281,7 +316,7 @@ For benchmark `tail_prediction`, filtered ranking is applied per `(head, relatio
 
 The biomedical Knowledge Graph has two main triple files.
 
-### Full Graph
+### `disease_to_drug_full`
 
 ```text
 kg_constructor/data/output/triples/triples.csv
@@ -295,7 +330,7 @@ Contains:
 
 This is the main setting when ingredient information is used.
 
-### Filtered Graph
+### `disease_to_drug_filtered`
 
 ```text
 kg_constructor/data/output/triples/triples.filtered.csv
@@ -350,7 +385,7 @@ models/rgcn/configs/
 
 ---
 
-## Example Configuration — Biomedical Full Graph
+## Example Configuration — Biomedical Full Graph (`disease_to_drug_full`)
 
 ```yaml
 seed: 42
@@ -461,7 +496,7 @@ All commands should be executed from the repository root.
 
 ---
 
-## Biomedical Full Graph
+## Biomedical Full Graph (`disease_to_drug_full`)
 
 ### 1. Prepare graph artefacts
 
@@ -498,6 +533,13 @@ or:
 ```bash
 python -m models.rgcn.src.04_infer --entity_id "DRUG:ALBUTEROL SULFATE" --topk 10
 ```
+
+---
+
+## Biomedical Filtered Graph (`disease_to_drug_filtered`)
+
+The command sequence is the same as the full graph, but the config should
+point `data.processed_dir` to `models/rgcn/data/processed/disease_to_drug_filtered`.
 
 ---
 

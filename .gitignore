@@ -21,3 +21,7 @@ kg_constructor/data/input/
 /kg_constructor/src/steps/__pycache__
 /kg_constructor/src/steps/__pycache__
 /kg_constructor/src/steps/__pycache__
+/models/rgcn/src/__pycache__
+/models/rgcn/src/models/__pycache__
+/models/shared/__pycache__
+/models/rgcn/src/utils/__pycache__

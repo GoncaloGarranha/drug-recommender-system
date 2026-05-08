@@ -192,7 +192,15 @@ src,rel,dst,split
 
 ## Tasks Supported
 
-### `disease_to_drug`
+### `disease_to_drug_full`
+
+Biomedical disease-to-drug recommendation over the full graph.
+
+Task name:
+
+```text
+disease_to_drug
+```
 
 Given a disease, recommend candidate drugs.
 
@@ -294,7 +302,7 @@ kg_constructor/data/output/triples/triples.filtered.csv
 
 ### 2. Prepare graph artefacts for R-GCN
 
-Example using the full biomedical graph:
+Example using the full biomedical graph (`disease_to_drug_full`):
 
 ```bash
 python -m models.rgcn.src.00_prepare_graph --config models/rgcn/configs/disease_to_drug.yaml --force
@@ -303,7 +311,7 @@ python -m models.rgcn.src.00_prepare_graph --config models/rgcn/configs/disease_
 This creates indexed artefacts in the configured `processed_dir`, for example:
 
 ```text
-models/rgcn/data/processed/disease_to_drug/
+models/rgcn/data/processed/disease_to_drug_full/
 ```
 
 ---
@@ -311,7 +319,7 @@ models/rgcn/data/processed/disease_to_drug/
 ### 3. Validate processed artefacts
 
 ```bash
-python -m models.rgcn.src.01_load_data --processed_dir models/rgcn/data/processed/disease_to_drug
+python -m models.rgcn.src.01_load_data --processed_dir models/rgcn/data/processed/disease_to_drug_full
 ```
 
 ---
@@ -345,6 +353,25 @@ python -m models.content-based.src.baseline --config models/rgcn/configs/disease
 ```
 
 The baseline uses the same config, splits and evaluation protocol as the R-GCN.
+
+---
+
+### Biomedical filtered graph (`disease_to_drug_filtered`)
+
+For the filtered biomedical setting, use the same task name (`disease_to_drug`)
+but point the processed artefacts to:
+
+```text
+models/rgcn/data/processed/disease_to_drug_filtered/
+```
+
+The corresponding triple file is:
+
+```text
+kg_constructor/data/output/triples/triples.filtered.csv
+```
+
+This setting excludes `HAS_INGREDIENT` and is mainly used for ablation studies.
 
 ---
 
@@ -590,7 +617,7 @@ python -m kg_constructor.src.run_kg_pipeline --config kg_constructor/configs/con
 
 python -m models.rgcn.src.00_prepare_graph --config models/rgcn/configs/disease_to_drug.yaml --force
 
-python -m models.rgcn.src.01_load_data --processed_dir models/rgcn/data/processed/disease_to_drug
+python -m models.rgcn.src.01_load_data --processed_dir models/rgcn/data/processed/disease_to_drug_full
 
 python -m models.rgcn.src.02_train --config models/rgcn/configs/disease_to_drug.yaml
 
@@ -718,4 +745,3 @@ If you use the R-GCN implementation, please cite:
   pages={593--607},
   year={2018}
 }
-```

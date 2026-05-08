@@ -1,6 +1,6 @@
 # Content-Based Baseline (TF-IDF)
 
-A lightweight content-based baseline for the biomedical `disease_to_drug` recommendation task.
+A lightweight content-based baseline for the biomedical `disease_to_drug_full` recommendation task.
 
 The baseline ranks candidate drugs for a given disease using TF-IDF representations of drug profiles built from selected Knowledge Graph relations, such as `HAS_INGREDIENT` and `CONTRAINDICATION`.
 
@@ -10,7 +10,7 @@ This baseline is intentionally aligned with the R-GCN evaluation protocol for th
 
 ## Supported Task
 
-This baseline currently supports only:
+This baseline currently supports only the biomedical `disease_to_drug` task, used here in the `disease_to_drug_full` graph setting:
 
 ```text
 disease_to_drug
@@ -196,7 +196,7 @@ For a valid comparison with R-GCN, both models must use:
 - the same filtered ranking protocol;
 - the same evaluation metrics.
 
-### Full biomedical graph setting
+### `disease_to_drug_full`
 
 ```text
 R-GCN context:
@@ -208,7 +208,7 @@ CONTRAINDICATION + HAS_INGREDIENT
 
 The baseline does not use `INDICATION` as a feature because it is the target relation.
 
-### Filtered biomedical graph setting
+### `disease_to_drug_filtered`
 
 ```text
 R-GCN context:
@@ -235,7 +235,7 @@ Project environment plus:
 
 ## Limitations
 
-- Only supports the biomedical `disease_to_drug` task.
+- Only supports the biomedical `disease_to_drug_full` setting.
 - Does not support WN18RR or FB15k-237.
 - Does not support `drug_to_disease` or generic `tail_prediction`.
 - Does not learn graph embeddings.

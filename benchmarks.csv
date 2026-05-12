@@ -13,3 +13,5 @@ timestamp,model_name,hits@1,hits@3,hits@10,mrr,notes
 2026-05-06T18:52:16.952604,Content-Based (TF-IDF baseline),0.447090,0.515873,0.591270,0.497618,Aligned with R-GCN protocol | Config: disease_to_drug.yaml | Split: test
 2026-05-06T19:00:10.185738,Content-Based (TF-IDF baseline),0.468254,0.555556,0.633598,0.530744,Aligned with R-GCN protocol | Config: disease_to_drug.yaml | Split: test
 2026-05-06T19:03:49.454990,Content-Based (TF-IDF baseline),0.468254,0.555556,0.633598,0.530744,Aligned with R-GCN protocol | Config: disease_to_drug.yaml | Split: test
+2026-05-11T17:11:50.644814,R-GCN (tail_prediction),0.050734,0.099553,0.189215,0.095995,Run: 2026-05-11_16-01-05_tail_prediction | Split: test
+2026-05-12T10:14:37.487843,R-GCN (tail_prediction),0.112235,0.208150,0.314131,0.178778,Run: 2026-05-06_15-16-50_tail_prediction | Split: test

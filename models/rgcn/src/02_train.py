@@ -205,6 +205,9 @@ def main() -> None:
 
     num_nodes = len(entity2id)
     num_relations = len(rel2id)
+    model_cfg = cfg.get("model", {})
+    add_inverse_edges = bool(model_cfg.get("add_inverse_edges", False))
+    encoder_num_relations = num_relations * 2 if add_inverse_edges else num_relations
 
     task_cfg = cfg["task"]
     split_cfg = cfg["split"]
@@ -239,6 +242,8 @@ def main() -> None:
         context_relations=context_relations,
         num_nodes=num_nodes,
         device=device,
+        num_relations=num_relations,
+        add_inverse_edges=add_inverse_edges,
     )
 
     required_candidate_ids = {
@@ -271,7 +276,7 @@ def main() -> None:
     encoder = RGCNEncoder(
         num_nodes,
         cfg["training"]["emb_dim"],
-        num_relations,
+        encoder_num_relations,
         cfg["training"]["num_bases"],
         cfg["training"]["num_layers"],
         cfg["training"]["dropout"],
@@ -302,13 +307,23 @@ def main() -> None:
         "valid_size": len(valid_target),
         "test_size": len(test_target),
         "num_nodes": num_nodes,
-        "num_relations": num_relations,
+        "num_relations_decoder": num_relations,
+        "num_relations_encoder": encoder_num_relations,
+        "add_inverse_edges": add_inverse_edges,
+        "num_graph_edges": int(graph.num_edges()),
         "candidate_pool_size": int(len(candidate_pool)),
         "context_relations": context_relations,
     }
     save_json(os.path.join(run_dir, "split_summary.json"), split_summary)
 
-    print(f"Task: {task_name} | Target relation: {target_relation} | Device: {device}")
+    print(
+        f"Task: {task_name} | Target relation: {target_relation} | Device: {device} | "
+        f"Inverse edges: {add_inverse_edges}"
+    )
+    print(
+        f"Relations | decoder={num_relations} | encoder={encoder_num_relations} | "
+        f"graph_edges={graph.num_edges()}"
+    )
     print(
         f"Split sizes | train={len(train_target)} | valid={len(valid_target)} | test={len(test_target)}"
     )

@@ -1,5 +1,8 @@
 seed: 42
 
+model:
+  add_inverse_edges: true
+
 data:
   triples_path: "kg_constructor/data/output/benchmarks/fb15k237/triples.csv"
   processed_dir: "models/rgcn/data/processed/fb15k237"

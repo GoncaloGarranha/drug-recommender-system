@@ -85,6 +85,9 @@ def main() -> None:
 
     num_nodes = len(entity2id)
     num_relations = len(rel2id)
+    model_cfg = cfg.get("model", {})
+    add_inverse_edges = bool(model_cfg.get("add_inverse_edges", False))
+    encoder_num_relations = num_relations * 2 if add_inverse_edges else num_relations
 
     split_cfg = cfg["split"]
 
@@ -117,6 +120,8 @@ def main() -> None:
         context_relations=context_relations,
         num_nodes=num_nodes,
         device=device,
+        num_relations=num_relations,
+        add_inverse_edges=add_inverse_edges,
     )
 
     required_candidate_ids = {
@@ -145,7 +150,7 @@ def main() -> None:
     encoder = RGCNEncoder(
         num_nodes,
         cfg["training"]["emb_dim"],
-        num_relations,
+        encoder_num_relations,
         cfg["training"]["num_bases"],
         cfg["training"]["num_layers"],
         0.0,

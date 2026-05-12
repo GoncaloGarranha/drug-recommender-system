@@ -12,9 +12,11 @@ from .metrics import compute_ranking_metrics
 def build_training_graph(
     train_target: List[Dict[str, str]],
     non_target_triples: List[Dict[str, str]],
-    context_relations: List[str],
+	context_relations: List[str] | str,
     num_nodes: int,
     device: torch.device,
+	num_relations: int,
+	add_inverse_edges: bool = False,
 ) -> Tuple[dgl.DGLGraph, torch.Tensor]:
 	"""Build the DGL graph used by encoder-based models."""
 	if context_relations == "ALL":
@@ -27,9 +29,25 @@ def build_training_graph(
 			if relation in allowed_context_relations:
 				graph_rows.append(row)
 
-	src_ids = [int(row["src_id"]) for row in graph_rows]
-	dst_ids = [int(row["dst_id"]) for row in graph_rows]
-	rel_ids = [int(row["rel_id"]) for row in graph_rows]
+	src_ids: List[int] = []
+	dst_ids: List[int] = []
+	rel_ids: List[int] = []
+
+	for row in graph_rows:
+		src_id = int(row["src_id"])
+		dst_id = int(row["dst_id"])
+		rel_id = int(row["rel_id"])
+
+		# Original edge: src --rel--> dst
+		src_ids.append(src_id)
+		dst_ids.append(dst_id)
+		rel_ids.append(rel_id)
+
+		# Inverse edge: dst --rel_inverse--> src
+		if add_inverse_edges:
+			src_ids.append(dst_id)
+			dst_ids.append(src_id)
+			rel_ids.append(rel_id + num_relations)
 
 	graph = dgl.graph((src_ids, dst_ids), num_nodes=num_nodes)
 	edge_types = torch.tensor(rel_ids, dtype=torch.long, device=device)

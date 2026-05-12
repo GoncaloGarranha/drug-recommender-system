@@ -1,0 +1,28 @@
+{
+  "num_entities": 40943,
+  "num_relations": 18,
+  "num_triples": 151442,
+  "relation_distribution": {
+    "_hyponym": 37221,
+    "_hypernym": 37221,
+    "_member_holonym": 7928,
+    "_derivationally_related_form": 31867,
+    "_instance_hypernym": 3150,
+    "_also_see": 1396,
+    "_member_meronym": 7928,
+    "_member_of_domain_topic": 3341,
+    "_part_of": 5148,
+    "_instance_hyponym": 3150,
+    "_synset_domain_topic_of": 3335,
+    "_has_part": 5142,
+    "_member_of_domain_usage": 675,
+    "_member_of_domain_region": 983,
+    "_synset_domain_usage_of": 669,
+    "_synset_domain_region_of": 982,
+    "_verb_group": 1220,
+    "_similar_to": 86
+  },
+  "entity_type_distribution": {
+    "UNKNOWN": 40943
+  }
+}

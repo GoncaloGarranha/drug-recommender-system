@@ -30,8 +30,19 @@ import torch
 from models.shared.graph_artifacts import load_prepared_graph, resolve_processed_dir
 from models.shared.io import read_csv, read_json
 from models.shared.runs import find_latest_run
-from models.shared.ranking import build_candidate_pool, build_training_graph, evaluate_ranking
-from models.shared.splits import build_known_positives, get_or_create_splits
+from models.shared.ranking import (
+    HEAD_DIRECTION,
+    LINK_PREDICTION_TASKS,
+    build_candidate_pool,
+    build_training_graph,
+    evaluate_ranking,
+    normalize_prediction_directions,
+)
+from models.shared.splits import (
+    build_known_positives,
+    build_link_prediction_known_positives,
+    get_or_create_splits,
+)
 
 from .models.decoders import DistMultDecoder
 from .models.rgcn_encoder import RGCNEncoder
@@ -94,9 +105,13 @@ def main() -> None:
     target_relation = task_cfg["target_relation"]
     candidate_entity_type = task_cfg["candidate_entity_type"]
     context_relations = task_cfg.get("context_relations", [target_relation])
+    evaluation_cfg = cfg.get("evaluation", {})
+    prediction_directions = normalize_prediction_directions(
+        evaluation_cfg.get("prediction_directions", evaluation_cfg.get("prediction_direction")),
+    )
 
-    if task_name == "tail_prediction":
-        relation_id = 0
+    if task_name in LINK_PREDICTION_TASKS:
+        relation_id = None
     else:
         relation_id = rel2id.get(target_relation)
         if relation_id is None:
@@ -124,10 +139,17 @@ def main() -> None:
         add_inverse_edges=add_inverse_edges,
     )
 
-    required_candidate_ids = {
-        int(row["src_id"]) if task_name == "disease_to_drug" else int(row["dst_id"])
-        for row in train_target + valid_target + test_target
-    }
+    if task_name in LINK_PREDICTION_TASKS and HEAD_DIRECTION in prediction_directions:
+        required_candidate_ids = {
+            entity_id
+            for row in train_target + valid_target + test_target
+            for entity_id in (int(row["src_id"]), int(row["dst_id"]))
+        }
+    else:
+        required_candidate_ids = {
+            int(row["src_id"]) if task_name == "disease_to_drug" else int(row["dst_id"])
+            for row in train_target + valid_target + test_target
+        }
 
     candidate_pool = build_candidate_pool(
         entity_types=entity_types,
@@ -137,13 +159,13 @@ def main() -> None:
         required_entity_ids=required_candidate_ids,
     )
 
-    known_positives = build_known_positives(
-        triples=train_target + valid_target + test_target,
-        task_name=task_name if task_name != "tail_prediction" else None,
-        query_key="src_id" if task_name == "tail_prediction" else None,
-        relation_key="rel_id" if task_name == "tail_prediction" else None,
-        candidate_key="dst_id" if task_name == "tail_prediction" else None,
-    )
+    if task_name in LINK_PREDICTION_TASKS:
+        known_positives = build_link_prediction_known_positives(train_target + valid_target + test_target)
+    else:
+        known_positives = build_known_positives(
+            triples=train_target + valid_target + test_target,
+            task_name=task_name,
+        )
 
     eval_triples = valid_target if args.split == "valid" else test_target
 
@@ -176,12 +198,15 @@ def main() -> None:
         candidate_ids=candidate_pool,
         device=device,
         hits_k=tuple(cfg["training"]["hits_k"]),
+        prediction_directions=prediction_directions,
     )
 
     print("-" * 60)
     print(f"RUN: {run_dir}")
     print(f"TASK: {task_name}")
     print(f"SPLIT: {args.split}")
+    if task_name in LINK_PREDICTION_TASKS:
+        print(f"DIRECTIONS: {list(prediction_directions)}")
     print("-" * 60)
     print(f"MRR: {results['mrr']:.4f}")
     for k in cfg["training"]["hits_k"]:

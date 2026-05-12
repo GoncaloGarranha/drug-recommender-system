@@ -1,0 +1,17 @@
+dataset:
+  name: "fb15k"
+  type: "benchmark"
+
+input:
+  raw_dir: "kg_constructor/data/input/benchmarks/fb15k/raw"
+
+output:
+  triples_path: "kg_constructor/data/output/benchmarks/fb15k/triples.csv"
+
+format:
+  delimiter: "\t"
+  has_header: false
+  columns:
+    - src
+    - rel
+    - dst

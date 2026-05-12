@@ -92,10 +92,12 @@ Generic Knowledge Graph link prediction task.
 
 This is used for external benchmark datasets such as:
 
+- WN18;
 - WN18RR;
+- FB15k;
 - FB15k-237.
 
-Note: the current benchmark implementation evaluates **tail prediction only**. For direct comparison with most published WN18RR/FB15k-237 results, head prediction should also be implemented and combined with tail prediction.
+Note: the legacy benchmark configs evaluate **tail prediction only**. The paper-style configs in `configs/paper_style/` evaluate filtered head + tail prediction for WN18/WN18RR/FB15k/FB15k-237.
 
 ---
 
@@ -107,8 +109,11 @@ models/rgcn/
 ├── configs/
 │   ├── disease_to_drug.yaml
 │   ├── drug_to_disease.yaml
+│   ├── wn18.yaml
 │   ├── wn18rr.yaml
-│   └── fb15k237.yaml
+│   ├── fb15k.yaml
+│   ├── fb15k237.yaml
+│   └── paper_style/
 │
 ├── data/
 │   └── processed/
@@ -349,7 +354,38 @@ This setting excludes `HAS_INGREDIENT` and is useful for ablation studies.
 
 The module supports benchmark datasets converted by the `kg_constructor`.
 
-### WN18RR
+#
+## Paper-style R-GCN benchmark mode
+
+The `configs/paper_style/` directory contains benchmark configs for a Schlichtkrull-style R-GCN + DistMult setup. This mode is intended for comparison against the R-GCN article setting while staying inside the project pipeline.
+
+It differs from the legacy `tail_prediction` configs by enabling:
+
+- `model.add_inverse_edges: true` so the R-GCN encoder can propagate messages in both graph directions;
+- `task.name: link_prediction` for generic Knowledge Graph Completion;
+- `training.train_directions: ["head", "tail"]` for bidirectional positive/negative training examples;
+- `evaluation.prediction_directions: ["head", "tail"]` for filtered head+tail ranking metrics.
+
+Available configs:
+
+| Dataset | Config | Runs directory |
+|---|---|---|
+| WN18 | `models/rgcn/configs/paper_style/wn18.yaml` | `models/rgcn/runs/benchmarks/wn18_head_tail` |
+| WN18RR | `models/rgcn/configs/paper_style/wn18rr.yaml` | `models/rgcn/runs/benchmarks/wn18rr_head_tail` |
+| FB15k | `models/rgcn/configs/paper_style/fb15k.yaml` | `models/rgcn/runs/benchmarks/fb15k_head_tail` |
+| FB15k-237 | `models/rgcn/configs/paper_style/fb15k237.yaml` | `models/rgcn/runs/benchmarks/fb15k237_head_tail` |
+
+Example:
+
+```bash
+python -m models.rgcn.src.00_prepare_graph --config models/rgcn/configs/paper_style/wn18rr.yaml --force
+python -m models.rgcn.src.02_train --config models/rgcn/configs/paper_style/wn18rr.yaml
+python -m models.rgcn.src.03_evaluate --runs_dir models/rgcn/runs/benchmarks/wn18rr_head_tail --split test
+```
+
+The implementation is a project-native PyTorch/DGL reimplementation of the article-style protocol, not a direct copy of the original TensorFlow/Keras code.
+
+## WN18RR
 
 Input to R-GCN:
 
@@ -543,6 +579,37 @@ point `data.processed_dir` to `models/rgcn/data/processed/disease_to_drug_filter
 
 ---
 
+
+## Paper-style R-GCN benchmark mode
+
+The `configs/paper_style/` directory contains benchmark configs for a Schlichtkrull-style R-GCN + DistMult setup. This mode is intended for comparison against the R-GCN article setting while staying inside the project pipeline.
+
+It differs from the legacy `tail_prediction` configs by enabling:
+
+- `model.add_inverse_edges: true` so the R-GCN encoder can propagate messages in both graph directions;
+- `task.name: link_prediction` for generic Knowledge Graph Completion;
+- `training.train_directions: ["head", "tail"]` for bidirectional positive/negative training examples;
+- `evaluation.prediction_directions: ["head", "tail"]` for filtered head+tail ranking metrics.
+
+Available configs:
+
+| Dataset | Config | Runs directory |
+|---|---|---|
+| WN18 | `models/rgcn/configs/paper_style/wn18.yaml` | `models/rgcn/runs/benchmarks/wn18_head_tail` |
+| WN18RR | `models/rgcn/configs/paper_style/wn18rr.yaml` | `models/rgcn/runs/benchmarks/wn18rr_head_tail` |
+| FB15k | `models/rgcn/configs/paper_style/fb15k.yaml` | `models/rgcn/runs/benchmarks/fb15k_head_tail` |
+| FB15k-237 | `models/rgcn/configs/paper_style/fb15k237.yaml` | `models/rgcn/runs/benchmarks/fb15k237_head_tail` |
+
+Example:
+
+```bash
+python -m models.rgcn.src.00_prepare_graph --config models/rgcn/configs/paper_style/wn18rr.yaml --force
+python -m models.rgcn.src.02_train --config models/rgcn/configs/paper_style/wn18rr.yaml
+python -m models.rgcn.src.03_evaluate --runs_dir models/rgcn/runs/benchmarks/wn18rr_head_tail --split test
+```
+
+The implementation is a project-native PyTorch/DGL reimplementation of the article-style protocol, not a direct copy of the original TensorFlow/Keras code.
+
 ## WN18RR
 
 Before running these commands, the benchmark must be converted by `kg_constructor`.
@@ -598,7 +665,7 @@ python -m models.rgcn.src.02_train --config models/rgcn/configs/fb15k237.yaml
 ### 4. Evaluate
 
 ```bash
-python -m models.rgcn.src.03_evaluate --runs_dir models/rgcn/runs/fb15k237 --split test
+python -m models.rgcn.src.03_evaluate --runs_dir models/rgcn/runs/benchmarks/fb15k237_tail --split test
 ```
 
 ---
@@ -707,8 +774,8 @@ Where datasets differ significantly in size and structure, prefer a common proto
 
 ## Limitations
 
-- Benchmark evaluation currently supports tail prediction only.
-- Direct comparison with published WN18RR/FB15k-237 results requires head + tail prediction.
+- Legacy benchmark configs support tail prediction only.
+- Paper-style configs evaluate filtered head + tail prediction for WN18/WN18RR/FB15k/FB15k-237.
 - Training with `candidate_entity_type: ALL` can be slow on CPU.
 - Hyperparameters may need dataset-specific tuning based on validation performance.
 

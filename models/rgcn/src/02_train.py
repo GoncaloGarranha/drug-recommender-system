@@ -18,7 +18,7 @@ from __future__ import annotations
 import argparse
 import os
 from pathlib import Path
-from typing import Any, Dict, List, Tuple
+from typing import Any, Dict, List, Sequence, Tuple
 
 import dgl
 import numpy as np
@@ -28,9 +28,21 @@ import torch.nn.functional as F
 from models.shared.config import load_config, save_config
 from models.shared.graph_artifacts import load_prepared_graph
 from models.shared.io import ensure_dir, read_csv, read_json, save_json
-from models.shared.ranking import build_candidate_pool, build_training_graph, evaluate_ranking
+from models.shared.ranking import (
+    HEAD_DIRECTION,
+    LINK_PREDICTION_TASKS,
+    TAIL_DIRECTION,
+    build_candidate_pool,
+    build_training_graph,
+    evaluate_ranking,
+    normalize_prediction_directions,
+)
 from models.shared.runs import timestamp
-from models.shared.splits import build_known_positives, get_or_create_splits
+from models.shared.splits import (
+    build_known_positives,
+    build_link_prediction_known_positives,
+    get_or_create_splits,
+)
 
 from .models.decoders import DistMultDecoder
 from .models.rgcn_encoder import RGCNEncoder
@@ -41,16 +53,18 @@ def build_training_pairs(
     train_triples: List[Dict[str, str]],
     task_name: str,
     device: torch.device,
-) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
-    """
-    Build training query/candidate pairs for the configured task.
+    train_directions: Sequence[str] = (TAIL_DIRECTION,),
+) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
+    """Build training query/candidate pairs for the configured task.
 
-    Returns:
-        positives_query, positives_relation, positives_candidate
+    For paper-style link prediction, this can include both tail corruption
+    examples (h, r, ?) and head corruption examples (?, r, t). Direction ids
+    are 0 for tail prediction and 1 for head prediction.
     """
-    queries = []
-    relations = []
-    candidates = []
+    queries: List[int] = []
+    relations: List[int] = []
+    candidates: List[int] = []
+    directions: List[int] = []
 
     for row in train_triples:
         src_id = int(row["src_id"])
@@ -61,14 +75,26 @@ def build_training_pairs(
             queries.append(dst_id)
             relations.append(rel_id)
             candidates.append(src_id)
+            directions.append(0)
         elif task_name == "drug_to_disease":
             queries.append(src_id)
             relations.append(rel_id)
             candidates.append(dst_id)
-        elif task_name == "tail_prediction":
-            queries.append(src_id)
-            relations.append(rel_id)
-            candidates.append(dst_id)
+            directions.append(0)
+        elif task_name in LINK_PREDICTION_TASKS:
+            for direction in train_directions:
+                if direction == TAIL_DIRECTION:
+                    queries.append(src_id)
+                    relations.append(rel_id)
+                    candidates.append(dst_id)
+                    directions.append(0)
+                elif direction == HEAD_DIRECTION:
+                    queries.append(dst_id)
+                    relations.append(rel_id)
+                    candidates.append(src_id)
+                    directions.append(1)
+                else:
+                    raise ValueError(f"Unsupported training direction: {direction}")
         else:
             raise ValueError(f"Unsupported task name: {task_name}")
 
@@ -76,6 +102,7 @@ def build_training_pairs(
         torch.tensor(queries, dtype=torch.long, device=device),
         torch.tensor(relations, dtype=torch.long, device=device),
         torch.tensor(candidates, dtype=torch.long, device=device),
+        torch.tensor(directions, dtype=torch.long, device=device),
     )
 
 
@@ -83,26 +110,21 @@ def negative_sampling(
     positive_queries: torch.Tensor,
     positive_relations: torch.Tensor,
     positive_candidates: torch.Tensor,
+    positive_directions: torch.Tensor,
     known_positives: dict,
     task_name: str,
     k: int,
     candidate_pool: torch.Tensor,
     device: torch.device,
-) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
-    """
-    Generate negative samples by corrupting the candidate entity while
-    excluding known positives for the same query (or (query, relation) for
-    tail_prediction).
-    """
-    # More efficient negative sampling to avoid rebuilding allowed list per example.
+) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
+    """Generate negative samples by corrupting the candidate entity."""
     batch_size = positive_queries.shape[0]
-
-    # Work with numpy for faster sampling
     candidate_array = candidate_pool.detach().cpu().numpy()
 
     neg_queries: List[int] = []
     neg_relations: List[int] = []
     neg_candidates: List[int] = []
+    neg_directions: List[int] = []
 
     rng = np.random.default_rng()
 
@@ -110,20 +132,24 @@ def negative_sampling(
         q = int(positive_queries[i].item())
         rel = int(positive_relations[i].item())
         true_cand = int(positive_candidates[i].item())
+        direction_id = int(positive_directions[i].item())
 
-        if task_name == "tail_prediction":
-            key = (q, rel)
+        if task_name in LINK_PREDICTION_TASKS:
+            if direction_id == 0:
+                key = (TAIL_DIRECTION, q, rel)
+            elif direction_id == 1:
+                key = (HEAD_DIRECTION, rel, q)
+            else:
+                raise ValueError(f"Unsupported direction id: {direction_id}")
         else:
             key = q
 
         forbidden = set(known_positives.get(key, set()))
         forbidden.add(true_cand)
 
-        # Rejection sampling: sample in small batches until we collect k valid negatives
         collected = 0
         attempts = 0
         while collected < k:
-            # sample a small oversubscribed batch to reduce Python-loop overhead
             pick_count = max(8, (k - collected) * 4)
             picks = rng.choice(candidate_array, size=pick_count, replace=True)
             for p in picks:
@@ -133,6 +159,7 @@ def negative_sampling(
                 neg_queries.append(q)
                 neg_relations.append(rel)
                 neg_candidates.append(p_int)
+                neg_directions.append(direction_id)
                 collected += 1
                 if collected >= k:
                     break
@@ -143,11 +170,12 @@ def negative_sampling(
                     f"Unable to sample negatives for query {key}: candidate pool may be exhausted or too small."
                 )
 
-    negative_queries = torch.tensor(neg_queries, dtype=torch.long, device=device)
-    negative_relations = torch.tensor(neg_relations, dtype=torch.long, device=device)
-    negative_candidates = torch.tensor(neg_candidates, dtype=torch.long, device=device)
-
-    return negative_queries, negative_relations, negative_candidates
+    return (
+        torch.tensor(neg_queries, dtype=torch.long, device=device),
+        torch.tensor(neg_relations, dtype=torch.long, device=device),
+        torch.tensor(neg_candidates, dtype=torch.long, device=device),
+        torch.tensor(neg_directions, dtype=torch.long, device=device),
+    )
 
 
 def score_training_batch(
@@ -157,10 +185,9 @@ def score_training_batch(
     queries: torch.Tensor,
     relations: torch.Tensor,
     candidates: torch.Tensor,
+    directions: torch.Tensor | None = None,
 ) -> torch.Tensor:
-    """
-    Score training triples according to the configured task direction.
-    """
+    """Score training triples according to the configured task direction."""
     rel_emb = decoder.rel_emb(relations)
 
     if task_name == "disease_to_drug":
@@ -173,10 +200,24 @@ def score_training_batch(
         disease_emb = node_embeddings[candidates]
         return torch.sum(drug_emb * rel_emb * disease_emb, dim=1)
 
-    if task_name == "tail_prediction":
-        src_emb = node_embeddings[queries]
-        dst_emb = node_embeddings[candidates]
-        return torch.sum(src_emb * rel_emb * dst_emb, dim=1)
+    if task_name in LINK_PREDICTION_TASKS:
+        if directions is None:
+            directions = torch.zeros_like(queries)
+        scores = torch.empty_like(queries, dtype=node_embeddings.dtype)
+
+        tail_mask = directions == 0
+        if torch.any(tail_mask):
+            src_emb = node_embeddings[queries[tail_mask]]
+            dst_emb = node_embeddings[candidates[tail_mask]]
+            scores[tail_mask] = torch.sum(src_emb * rel_emb[tail_mask] * dst_emb, dim=1)
+
+        head_mask = directions == 1
+        if torch.any(head_mask):
+            src_emb = node_embeddings[candidates[head_mask]]
+            dst_emb = node_embeddings[queries[head_mask]]
+            scores[head_mask] = torch.sum(src_emb * rel_emb[head_mask] * dst_emb, dim=1)
+
+        return scores
 
     raise ValueError(f"Unsupported task name: {task_name}")
 
@@ -216,8 +257,17 @@ def main() -> None:
     target_relation = task_cfg["target_relation"]
     candidate_entity_type = task_cfg["candidate_entity_type"]
     context_relations = task_cfg.get("context_relations", [target_relation])
+    evaluation_cfg = cfg.get("evaluation", {})
+    prediction_directions = normalize_prediction_directions(
+        evaluation_cfg.get("prediction_directions", evaluation_cfg.get("prediction_direction")),
+        default=(TAIL_DIRECTION,),
+    )
+    train_directions = normalize_prediction_directions(
+        cfg["training"].get("train_directions", prediction_directions if task_name == "link_prediction" else (TAIL_DIRECTION,)),
+        default=(TAIL_DIRECTION,),
+    )
 
-    if task_name != "tail_prediction":
+    if task_name not in LINK_PREDICTION_TASKS:
         relation_id = rel2id.get(target_relation)
         if relation_id is None:
             raise ValueError(f"Target relation not found: {target_relation}")
@@ -246,10 +296,17 @@ def main() -> None:
         add_inverse_edges=add_inverse_edges,
     )
 
-    required_candidate_ids = {
-        int(row["src_id"]) if task_name == "disease_to_drug" else int(row["dst_id"])
-        for row in train_target + valid_target + test_target
-    }
+    if task_name in LINK_PREDICTION_TASKS and HEAD_DIRECTION in prediction_directions:
+        required_candidate_ids = {
+            entity_id
+            for row in train_target + valid_target + test_target
+            for entity_id in (int(row["src_id"]), int(row["dst_id"]))
+        }
+    else:
+        required_candidate_ids = {
+            int(row["src_id"]) if task_name == "disease_to_drug" else int(row["dst_id"])
+            for row in train_target + valid_target + test_target
+        }
 
     candidate_pool = build_candidate_pool(
         entity_types=entity_types,
@@ -259,18 +316,19 @@ def main() -> None:
         required_entity_ids=required_candidate_ids,
     )
 
-    known_positives = build_known_positives(
-        triples=train_target + valid_target + test_target,
-        task_name=task_name if task_name != "tail_prediction" else None,
-        query_key="src_id" if task_name == "tail_prediction" else None,
-        relation_key="rel_id" if task_name == "tail_prediction" else None,
-        candidate_key="dst_id" if task_name == "tail_prediction" else None,
-    )
+    if task_name in LINK_PREDICTION_TASKS:
+        known_positives = build_link_prediction_known_positives(train_target + valid_target + test_target)
+    else:
+        known_positives = build_known_positives(
+            triples=train_target + valid_target + test_target,
+            task_name=task_name,
+        )
 
-    train_queries, train_relations, train_candidates = build_training_pairs(
+    train_queries, train_relations, train_candidates, train_directions_tensor = build_training_pairs(
         train_triples=train_target,
         task_name=task_name,
         device=device,
+        train_directions=train_directions,
     )
 
     encoder = RGCNEncoder(
@@ -313,6 +371,8 @@ def main() -> None:
         "num_graph_edges": int(graph.num_edges()),
         "candidate_pool_size": int(len(candidate_pool)),
         "context_relations": context_relations,
+        "prediction_directions": list(prediction_directions),
+        "train_directions": list(train_directions),
     }
     save_json(os.path.join(run_dir, "split_summary.json"), split_summary)
 
@@ -363,12 +423,14 @@ def main() -> None:
             queries=train_queries,
             relations=train_relations,
             candidates=train_candidates,
+            directions=train_directions_tensor,
         )
 
-        negative_queries, negative_relations, negative_candidates = negative_sampling(
+        negative_queries, negative_relations, negative_candidates, negative_directions = negative_sampling(
             positive_queries=train_queries,
             positive_relations=train_relations,
             positive_candidates=train_candidates,
+            positive_directions=train_directions_tensor,
             known_positives=known_positives,
             task_name=task_name,
             k=cfg["training"]["neg_k"],
@@ -383,6 +445,7 @@ def main() -> None:
             queries=negative_queries,
             relations=negative_relations,
             candidates=negative_candidates,
+            directions=negative_directions,
         )
 
         loss = (
@@ -419,6 +482,7 @@ def main() -> None:
                 candidate_ids=candidate_pool,
                 device=device,
                 hits_k=tuple(cfg["training"]["hits_k"]),
+                prediction_directions=prediction_directions,
             )
 
             log_entry["valid_mrr"] = float(metrics["mrr"])

@@ -107,6 +107,27 @@ def build_known_positives(
     return known
 
 
+def build_link_prediction_known_positives(
+    triples: List[Dict[str, str]],
+) -> Dict[Any, set]:
+    """Build filtered-ranking positives for head and tail KG completion.
+
+    Returns two key families:
+    - ("tail", head_id, relation_id) -> known tail ids
+    - ("head", relation_id, tail_id) -> known head ids
+    """
+    known = defaultdict(set)
+
+    for row in triples:
+        src_id = int(row["src_id"])
+        rel_id = int(row["rel_id"])
+        dst_id = int(row["dst_id"])
+        known[("tail", src_id, rel_id)].add(dst_id)
+        known[("head", rel_id, dst_id)].add(src_id)
+
+    return known
+
+
 def save_splits(
     output_dir: str | Path,
     train_triples: List[Dict[str, str]],

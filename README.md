@@ -190,6 +190,28 @@ src,rel,dst,split
 
 ---
 
+
+### WN18 and FB15k
+
+WN18 and FB15k are also supported as historical external benchmark datasets. They use the same raw split structure as WN18RR and FB15k-237:
+
+```text
+kg_constructor/data/input/benchmarks/<dataset>/raw/
+├── train.txt
+├── valid.txt
+└── test.txt
+```
+
+where `<dataset>` is either `wn18` or `fb15k`. After conversion, the canonical triples are written to:
+
+```text
+kg_constructor/data/output/benchmarks/<dataset>/triples.csv
+```
+
+These datasets are retained mainly for historical comparison with early Knowledge Graph Completion work. For more robust external benchmark reporting, prefer WN18RR and FB15k-237.
+
+---
+
 ## Tasks Supported
 
 ### `disease_to_drug_full`
@@ -242,9 +264,9 @@ Generic benchmark link prediction task.
 (head, relation, ?) → tail
 ```
 
-Used for WN18RR and FB15k-237.
+Used for WN18, WN18RR, FB15k, and FB15k-237.
 
-Note: this currently evaluates tail prediction only. For direct comparison with most published benchmark results, head prediction should also be implemented and combined with tail prediction.
+Note: legacy benchmark configs evaluate tail prediction only. For article-style benchmark comparison, use the `models/rgcn/configs/paper_style/` configs, which evaluate filtered head + tail prediction.
 
 ---
 
@@ -452,8 +474,30 @@ python -m models.rgcn.src.02_train --config models/rgcn/configs/fb15k237.yaml
 #### 5. Evaluate
 
 ```bash
-python -m models.rgcn.src.03_evaluate --runs_dir models/rgcn/runs/fb15k237 --split test
+python -m models.rgcn.src.03_evaluate --runs_dir models/rgcn/runs/benchmarks/fb15k237_tail --split test
 ```
+
+
+### Paper-style R-GCN benchmark workflow
+
+The `models/rgcn/configs/paper_style/` configs provide a Schlichtkrull-style R-GCN + DistMult benchmark protocol with:
+
+- inverse edges in the encoder graph;
+- official benchmark splits;
+- bidirectional training examples for head and tail corruption;
+- filtered ranking over both head and tail prediction.
+
+Example for WN18RR:
+
+```bash
+python -m kg_constructor.src.benchmarks.convert_benchmark --config kg_constructor/configs/wn18rr.yaml --force
+python -m models.rgcn.src.00_prepare_graph --config models/rgcn/configs/paper_style/wn18rr.yaml --force
+python -m models.rgcn.src.01_load_data --processed_dir models/rgcn/data/processed/wn18rr
+python -m models.rgcn.src.02_train --config models/rgcn/configs/paper_style/wn18rr.yaml
+python -m models.rgcn.src.03_evaluate --runs_dir models/rgcn/runs/benchmarks/wn18rr_head_tail --split test
+```
+
+Equivalent configs are provided for `wn18`, `fb15k`, `wn18rr`, and `fb15k237`.
 
 ---
 
@@ -651,7 +695,7 @@ python -m models.rgcn.src.01_load_data --processed_dir models/rgcn/data/processe
 
 python -m models.rgcn.src.02_train --config models/rgcn/configs/fb15k237.yaml
 
-python -m models.rgcn.src.03_evaluate --runs_dir models/rgcn/runs/fb15k237 --split test
+python -m models.rgcn.src.03_evaluate --runs_dir models/rgcn/runs/benchmarks/fb15k237_tail --split test
 ```
 
 ---

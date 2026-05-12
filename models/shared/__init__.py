@@ -17,6 +17,7 @@ from .ranking import build_candidate_pool, build_training_graph, evaluate_rankin
 from .runs import find_latest_run, timestamp
 from .splits import (
 	build_known_positives,
+	build_link_prediction_known_positives,
 	get_or_create_splits,
 	get_split_ratios,
 	load_splits,

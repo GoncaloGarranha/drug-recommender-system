@@ -40,7 +40,7 @@ class SchlichtkrullRGCN(nn.Module):
         self.reset_parameters()
 
     def reset_parameters(self) -> None:
-        nn.init.xavier_uniform_(self.emb.weight)
+        nn.init.uniform_(self.emb.weight, -1.0, 1.0)
 
     def forward(self, graph, edge_types: torch.Tensor) -> torch.Tensor:
         h = self.emb.weight
@@ -61,7 +61,7 @@ class DistMult(nn.Module):
         self.reset_parameters()
 
     def reset_parameters(self) -> None:
-        nn.init.xavier_uniform_(self.rel_emb.weight)
+        nn.init.uniform_(self.rel_emb.weight, -1.0, 1.0)
 
     def score(self, head: torch.Tensor, rel: torch.Tensor, tail: torch.Tensor) -> torch.Tensor:
         return torch.sum(head * rel * tail, dim=-1)

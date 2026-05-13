@@ -28,50 +28,213 @@ def sample_negatives(
     device: torch.device,
 ) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
     rng = np.random.default_rng()
-    neg_tail_heads = []
-    neg_tail_rels = []
-    neg_tail_tails = []
-    neg_head_heads = []
-    neg_head_rels = []
-    neg_head_tails = []
+    # We'll return a single negative per positive: either corrupt head or corrupt tail.
+    neg_heads = []
+    neg_rels = []
+    neg_tails = []
 
-    for h_raw, r_raw, t_raw in zip(heads.detach().cpu().tolist(), rels.detach().cpu().tolist(), tails.detach().cpu().tolist()):
+    for h_raw, r_raw, t_raw in zip(
+        heads.detach().cpu().tolist(), rels.detach().cpu().tolist(), tails.detach().cpu().tolist()
+    ):
         h = int(h_raw)
         r = int(r_raw)
         t = int(t_raw)
 
-        forbidden_tails = set(known.get((TAIL, h, r), set()))
-        forbidden_tails.add(t)
-        collected = 0
-        while collected < neg_k:
+        corrupt_head = bool(rng.integers(0, 2))
+        if corrupt_head:
+            # corrupt head, keep (r, t)
+            forbidden_heads = set(known.get((HEAD, r, t), set()))
+            forbidden_heads.add(h)
             candidate = int(rng.choice(candidate_ids))
-            if candidate in forbidden_tails:
-                continue
-            neg_tail_heads.append(h)
-            neg_tail_rels.append(r)
-            neg_tail_tails.append(candidate)
-            collected += 1
-
-        forbidden_heads = set(known.get((HEAD, r, t), set()))
-        forbidden_heads.add(h)
-        collected = 0
-        while collected < neg_k:
+            while candidate in forbidden_heads:
+                candidate = int(rng.choice(candidate_ids))
+            neg_heads.append(candidate)
+            neg_rels.append(r)
+            neg_tails.append(t)
+        else:
+            # corrupt tail, keep (h, r)
+            forbidden_tails = set(known.get((TAIL, h, r), set()))
+            forbidden_tails.add(t)
             candidate = int(rng.choice(candidate_ids))
-            if candidate in forbidden_heads:
-                continue
-            neg_head_heads.append(candidate)
-            neg_head_rels.append(r)
-            neg_head_tails.append(t)
-            collected += 1
+            while candidate in forbidden_tails:
+                candidate = int(rng.choice(candidate_ids))
+            neg_heads.append(h)
+            neg_rels.append(r)
+            neg_tails.append(candidate)
 
+    # Return in legacy 6-tensor shape: (neg_tail... , neg_head...) where second half is empty
     return (
-        torch.tensor(neg_tail_heads, dtype=torch.long, device=device),
-        torch.tensor(neg_tail_rels, dtype=torch.long, device=device),
-        torch.tensor(neg_tail_tails, dtype=torch.long, device=device),
-        torch.tensor(neg_head_heads, dtype=torch.long, device=device),
-        torch.tensor(neg_head_rels, dtype=torch.long, device=device),
-        torch.tensor(neg_head_tails, dtype=torch.long, device=device),
+        torch.tensor([], dtype=torch.long, device=device),
+        torch.tensor([], dtype=torch.long, device=device),
+        torch.tensor([], dtype=torch.long, device=device),
+        torch.tensor(neg_heads, dtype=torch.long, device=device),
+        torch.tensor(neg_rels, dtype=torch.long, device=device),
+        torch.tensor(neg_tails, dtype=torch.long, device=device),
     )
+
+
+def tensor_stats(name: str, tensor: torch.Tensor) -> None:
+    """Print basic statistics for a tensor."""
+    if tensor is None:
+        print(f"[DEBUG] {name}: None")
+        return
+
+    detached = tensor.detach()
+    if detached.numel() == 0:
+        print(f"[DEBUG] {name}: empty tensor")
+        return
+
+    print(
+        f"[DEBUG] {name}: "
+        f"shape={tuple(detached.shape)} | "
+        f"mean={detached.float().mean().item():.6f} | "
+        f"std={detached.float().std().item():.6f} | "
+        f"min={detached.min().item():.6f} | "
+        f"max={detached.max().item():.6f}"
+    )
+
+
+def debug_static_data(
+    train_heads: torch.Tensor,
+    train_rels: torch.Tensor,
+    train_tails: torch.Tensor,
+    edge_types: torch.Tensor,
+    graph,
+    num_nodes: int,
+    num_relations: int,
+    encoder_relations: int,
+) -> None:
+    """Print static checks before training starts."""
+    print("\n================ DEBUG STATIC DATA ================")
+    print(f"[DEBUG] num_nodes: {num_nodes}")
+    print(f"[DEBUG] decoder relations: {num_relations}")
+    print(f"[DEBUG] encoder relations: {encoder_relations}")
+    print(f"[DEBUG] graph nodes: {graph.num_nodes()}")
+    print(f"[DEBUG] graph edges: {graph.num_edges()}")
+
+    print(
+        f"[DEBUG] train rel min/max: "
+        f"{train_rels.min().item()} / {train_rels.max().item()}"
+    )
+    print(
+        f"[DEBUG] train head min/max: "
+        f"{train_heads.min().item()} / {train_heads.max().item()}"
+    )
+    print(
+        f"[DEBUG] train tail min/max: "
+        f"{train_tails.min().item()} / {train_tails.max().item()}"
+    )
+    print(
+        f"[DEBUG] encoder edge_types min/max: "
+        f"{edge_types.min().item()} / {edge_types.max().item()}"
+    )
+
+    if train_rels.max().item() >= num_relations:
+        print("[DEBUG][ERROR] Train relation id exceeds decoder relation count.")
+
+    if edge_types.max().item() >= encoder_relations:
+        print("[DEBUG][ERROR] Edge type id exceeds encoder relation count.")
+
+    if train_heads.max().item() >= num_nodes or train_tails.max().item() >= num_nodes:
+        print("[DEBUG][ERROR] Entity id exceeds number of nodes.")
+
+    unique_train_rels = torch.unique(train_rels).numel()
+    unique_edge_types = torch.unique(edge_types).numel()
+
+    print(f"[DEBUG] unique train relations: {unique_train_rels}")
+    print(f"[DEBUG] unique encoder edge types: {unique_edge_types}")
+    print("===================================================\n")
+
+
+def debug_scores_and_gradients(
+    epoch: int,
+    encoder: torch.nn.Module,
+    decoder: torch.nn.Module,
+    node_emb: torch.Tensor,
+    positive_scores: torch.Tensor,
+    negative_scores: torch.Tensor,
+) -> None:
+    """Print score and gradient diagnostics during training."""
+    print(f"\n================ DEBUG EPOCH {epoch} ================")
+
+    tensor_stats("node_emb", node_emb)
+    tensor_stats("positive_scores", positive_scores)
+    tensor_stats("negative_scores", negative_scores)
+
+    with torch.no_grad():
+        pos_mean = positive_scores.mean().item()
+        neg_mean = negative_scores.mean().item()
+        margin = pos_mean - neg_mean
+
+        print(f"[DEBUG] pos_mean - neg_mean: {margin:.6f}")
+
+        if positive_scores.numel() > 0 and negative_scores.numel() > 0:
+            sample_size = min(positive_scores.numel(), negative_scores.numel(), 10000)
+            pos_sample = positive_scores[:sample_size]
+            neg_sample = negative_scores[:sample_size]
+            frac_pos_higher = (pos_sample > neg_sample).float().mean().item()
+            print(f"[DEBUG] fraction(pos_score > neg_score) sample: {frac_pos_higher:.6f}")
+
+    print("[DEBUG] gradient norms:")
+
+    total_grad = 0.0
+    has_grad = False
+
+    for name, param in list(encoder.named_parameters()) + list(decoder.named_parameters()):
+        if param.grad is None:
+            print(f"[DEBUG] {name}: grad=None")
+            continue
+
+        grad_norm = param.grad.norm().item()
+        total_grad += grad_norm
+        has_grad = True
+        print(f"[DEBUG] {name}: grad_norm={grad_norm:.6f}")
+
+    if not has_grad:
+        print("[DEBUG][ERROR] No gradients found.")
+
+    print(f"[DEBUG] total_grad_norm_sum: {total_grad:.6f}")
+    print("====================================================\n")
+
+
+def debug_negative_samples(
+    epoch: int,
+    neg_th: torch.Tensor,
+    neg_tr: torch.Tensor,
+    neg_tt: torch.Tensor,
+    neg_hh: torch.Tensor,
+    neg_hr: torch.Tensor,
+    neg_ht: torch.Tensor,
+    num_relations: int,
+    num_nodes: int,
+) -> None:
+    """Validate negative samples."""
+    print(f"\n============= DEBUG NEGATIVE SAMPLES EPOCH {epoch} =============")
+
+    print(f"[DEBUG] neg_tail triples: {len(neg_th)}")
+    print(f"[DEBUG] neg_head triples: {len(neg_hh)}")
+
+    if len(neg_tr) > 0:
+        print(f"[DEBUG] neg_tail rel min/max: {neg_tr.min().item()} / {neg_tr.max().item()}")
+    if len(neg_hr) > 0:
+        print(f"[DEBUG] neg_head rel min/max: {neg_hr.min().item()} / {neg_hr.max().item()}")
+
+    if len(neg_tt) > 0:
+        print(f"[DEBUG] neg_tail entity min/max: {neg_tt.min().item()} / {neg_tt.max().item()}")
+    if len(neg_hh) > 0:
+        print(f"[DEBUG] neg_head entity min/max: {neg_hh.min().item()} / {neg_hh.max().item()}")
+
+    if len(neg_tr) > 0 and neg_tr.max().item() >= num_relations:
+        print("[DEBUG][ERROR] Negative tail relation id exceeds decoder relation count.")
+    if len(neg_hr) > 0 and neg_hr.max().item() >= num_relations:
+        print("[DEBUG][ERROR] Negative head relation id exceeds decoder relation count.")
+
+    if len(neg_tt) > 0 and neg_tt.max().item() >= num_nodes:
+        print("[DEBUG][ERROR] Negative tail entity id exceeds number of nodes.")
+    if len(neg_hh) > 0 and neg_hh.max().item() >= num_nodes:
+        print("[DEBUG][ERROR] Negative head entity id exceeds number of nodes.")
+
+    print("===============================================================\n")
 
 
 @torch.no_grad()
@@ -161,6 +324,8 @@ def main() -> None:
     candidate_array = candidate_ids.detach().cpu().numpy()
 
     training_cfg = cfg["training"]
+    debug = bool(training_cfg.get("debug", False))
+    debug_epochs = set(int(e) for e in training_cfg.get("debug_epochs", [1, 2, 5, 10, 20]))
     encoder = SchlichtkrullRGCN(
         num_nodes=num_nodes,
         h_dim=int(training_cfg["emb_dim"]),
@@ -211,6 +376,18 @@ def main() -> None:
         f"encoder_relations={encoder_relations} train={len(train)} valid={len(valid)}"
     )
 
+    if debug:
+        debug_static_data(
+            train_heads=train_heads,
+            train_rels=train_rels,
+            train_tails=train_tails,
+            edge_types=edge_types,
+            graph=graph,
+            num_nodes=num_nodes,
+            num_relations=num_relations,
+            encoder_relations=encoder_relations,
+        )
+
     for epoch in range(1, max_epochs + 1):
         encoder.train()
         decoder.train()
@@ -221,19 +398,61 @@ def main() -> None:
         )
         negative_tail = decoder(node_emb, neg_th, neg_tr, neg_tt)
         negative_head = decoder(node_emb, neg_hh, neg_hr, neg_ht)
-        negative_scores = torch.cat([negative_tail, negative_head])
-        loss = F.binary_cross_entropy_with_logits(positive_scores, torch.ones_like(positive_scores)) + F.binary_cross_entropy_with_logits(
-            negative_scores, torch.zeros_like(negative_scores)
-        )
+        # Concatenate available negatives (we expect only one side populated)
+        if negative_tail.numel() > 0 and negative_head.numel() > 0:
+            negative_scores = torch.cat([negative_tail, negative_head])
+        elif negative_tail.numel() > 0:
+            negative_scores = negative_tail
+        else:
+            negative_scores = negative_head
+
+        # Unified BCE: concatenate positives and negatives and compute single BCE for stability.
+        if negative_scores.numel() > 0:
+            scores = torch.cat([positive_scores, negative_scores])
+            labels = torch.cat([torch.ones_like(positive_scores), torch.zeros_like(negative_scores)])
+            loss = F.binary_cross_entropy_with_logits(scores, labels)
+        else:
+            loss = F.binary_cross_entropy_with_logits(positive_scores, torch.ones_like(positive_scores))
+
         optimizer.zero_grad()
         loss.backward()
+
+        if debug and epoch in debug_epochs:
+            debug_negative_samples(
+                epoch=epoch,
+                neg_th=neg_th,
+                neg_tr=neg_tr,
+                neg_tt=neg_tt,
+                neg_hh=neg_hh,
+                neg_hr=neg_hr,
+                neg_ht=neg_ht,
+                num_relations=num_relations,
+                num_nodes=num_nodes,
+            )
+
+            debug_scores_and_gradients(
+                epoch=epoch,
+                encoder=encoder,
+                decoder=decoder,
+                node_emb=node_emb,
+                positive_scores=positive_scores,
+                negative_scores=negative_scores,
+            )
+
         optimizer.step()
 
         log_entry: dict[str, float | int | None] = {"epoch": epoch, "loss": float(loss.item()), "valid_mrr": None}
         if epoch % eval_every == 0 or epoch == max_epochs:
             metrics = filtered_eval(encoder, decoder, graph, edge_types, valid, known, candidate_ids, hits_k, device, max_eval_triples)
             log_entry["valid_mrr"] = float(metrics["mrr"])
-            print(f"Epoch {epoch:04d} | Loss: {loss.item():.4f} | Valid MRR: {metrics['mrr']:.4f}")
+            print(
+                f"Epoch {epoch:04d} | "
+                f"Loss: {loss.item():.4f} | "
+                f"Valid MRR: {metrics['mrr']:.4f} | "
+                f"Head MRR: {metrics.get('head_mrr', 0.0):.4f} | "
+                f"Tail MRR: {metrics.get('tail_mrr', 0.0):.4f} | "
+                f"Hits@10: {metrics.get('hits@10', 0.0):.4f}"
+            )
             if metrics["mrr"] > best_mrr:
                 best_mrr = float(metrics["mrr"])
                 best_epoch = epoch

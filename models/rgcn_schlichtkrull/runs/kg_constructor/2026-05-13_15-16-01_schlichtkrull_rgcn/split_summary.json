@@ -1,0 +1,10 @@
+{
+  "train_size": 25731,
+  "valid_size": 3216,
+  "test_size": 3217,
+  "num_nodes": 4721,
+  "num_relations_decoder": 3,
+  "num_relations_encoder": 6,
+  "add_inverse_edges": true,
+  "graph_edges": 51462
+}

@@ -25,11 +25,18 @@ import numpy as np
 import torch
 import torch.nn.functional as F
 
-from models.shared.config import load_config, save_config
+from models.shared.config import load_config
 from models.shared.graph_artifacts import load_prepared_graph
+from models.shared.experiment_integrity import validate_experiment_integrity
 from models.shared.io import ensure_dir, read_csv, read_json, save_json
 from models.shared.ranking import build_candidate_pool, build_training_graph, evaluate_ranking
-from models.shared.runs import timestamp
+from models.shared.runs import (
+    capture_environment,
+    capture_git_commit,
+    resolve_run_dir,
+    save_metrics,
+    write_run_artifacts,
+)
 from models.shared.splits import build_known_positives, get_or_create_splits
 
 from .models.decoders import DistMultDecoder
@@ -236,6 +243,12 @@ def main() -> None:
         split_mode=split_cfg.get("mode") if isinstance(split_cfg, dict) else None,
     )
 
+    split_integrity_report = validate_experiment_integrity(
+        cfg,
+        config_path=args.config,
+        output_path=Path(splits_dir) / "split_integrity_report.json",
+    )
+
     graph, edge_types = build_training_graph(
         train_target=train_target,
         non_target_triples=non_target_triples,
@@ -293,28 +306,56 @@ def main() -> None:
         weight_decay=cfg["training"]["weight_decay"],
     )
 
-    run_dir = os.path.join(cfg["runs"]["out_dir"], f"{timestamp()}_{task_name}")
-    checkpoints_dir = os.path.join(run_dir, "checkpoints")
+    run_dir = resolve_run_dir(cfg["runs"]["out_dir"], cfg, model_name="rgcn", seed=seed)
+    checkpoints_dir = run_dir / "checkpoints"
     ensure_dir(run_dir)
     ensure_dir(checkpoints_dir)
 
-    save_config(os.path.join(run_dir, "config.yaml"), cfg)
-
-    split_summary = {
+    model_summary = {
+        "model_name": "rgcn",
         "task_name": task_name,
-        "target_relation": target_relation,
-        "train_size": len(train_target),
-        "valid_size": len(valid_target),
-        "test_size": len(test_target),
-        "num_nodes": num_nodes,
-        "num_relations_decoder": num_relations,
-        "num_relations_encoder": encoder_num_relations,
-        "add_inverse_edges": add_inverse_edges,
-        "num_graph_edges": int(graph.num_edges()),
-        "candidate_pool_size": int(len(candidate_pool)),
-        "context_relations": context_relations,
+        "seed": seed,
+        "architecture": {
+            "embedding_dim": int(cfg["training"]["emb_dim"]),
+            "num_layers": int(cfg["training"]["num_layers"]),
+            "num_bases": int(cfg["training"]["num_bases"]),
+            "dropout": float(cfg["training"]["dropout"]),
+            "decoder": "DistMult",
+            "add_inverse_edges": add_inverse_edges,
+        },
+        "relation_counts": {
+            "decoder": num_relations,
+            "encoder": encoder_num_relations,
+        },
+        "parameter_counts": {
+            "encoder": sum(parameter.numel() for parameter in encoder.parameters()),
+            "decoder": sum(parameter.numel() for parameter in decoder.parameters()),
+        },
     }
-    save_json(os.path.join(run_dir, "split_summary.json"), split_summary)
+
+    write_run_artifacts(
+        run_dir=run_dir,
+        cfg=cfg,
+        split_summary={
+            "task_name": task_name,
+            "target_relation": target_relation,
+            "train_size": len(train_target),
+            "valid_size": len(valid_target),
+            "test_size": len(test_target),
+            "num_nodes": num_nodes,
+            "num_relations_decoder": num_relations,
+            "num_relations_encoder": encoder_num_relations,
+            "add_inverse_edges": add_inverse_edges,
+            "num_graph_edges": int(graph.num_edges()),
+            "candidate_pool_size": int(len(candidate_pool)),
+            "context_relations": context_relations,
+            "split_integrity_report": split_integrity_report["report_path"],
+        },
+        model_summary=model_summary,
+        environment=capture_environment(),
+        git_commit=capture_git_commit(),
+    )
+
 
     print(
         f"Task: {task_name} | Target relation: {target_relation} | Device: {device} | "
@@ -406,7 +447,7 @@ def main() -> None:
             "valid_mrr": None,
         }
 
-        if epoch % cfg["training"]["eval_every"] == 0 or epoch == cfg["training"]["epochs"]:
+        if epoch % cfg["training"]["eval_every"] == 0 or epoch == max_epochs:
             metrics = evaluate_ranking(
                 encoder=encoder,
                 decoder=decoder,
@@ -453,7 +494,8 @@ def main() -> None:
                     "best_valid_mrr": best_mrr,
                     **{f"best_valid_hits@{k}": float(metrics[f"hits@{k}"]) for k in cfg["training"]["hits_k"]},
                 }
-                save_json(os.path.join(run_dir, "best_metrics.json"), best_metrics)
+                save_json(run_dir / "best_metrics.json", best_metrics)
+                save_metrics(run_dir, "valid", best_metrics)
 
             # Early stopping check (based on configured monitor)
             if monitor is not None:
@@ -493,10 +535,10 @@ def main() -> None:
             "best_epoch": best_epoch,
             "best_valid_mrr": best_mrr,
         },
-        os.path.join(checkpoints_dir, "last.pt"),
+        checkpoints_dir / "last.pt",
     )
 
-    save_json(os.path.join(run_dir, "train_log.json"), train_log)
+    write_run_artifacts(run_dir=run_dir, train_log=train_log)
 
     print(f"Training complete. Best validation MRR: {best_mrr:.4f} (epoch {best_epoch})")
 

@@ -242,6 +242,7 @@ def parse_sources(cfg: Dict[str, Any], paths, force: bool = False) -> None:
     seen_drugs = set()
     seen_ingredients = set()
     seen_diseases = set()
+    seen_edges = set()  # Avoid duplicate edges across files
 
     for folder_name in SOURCE_FOLDERS:
         folder_path = input_dir / folder_name
@@ -349,6 +350,10 @@ def parse_sources(cfg: Dict[str, Any], paths, force: bool = False) -> None:
                         seen_diseases.add(doid_id)
                         disease_rows.append([doid_id])
 
+                    edge_key = (primary_drug_name_norm, relation_type, doid_id)
+                    if edge_key in seen_edges:
+                        continue
+                    seen_edges.add(edge_key)
                     edge_rows.append([
                         primary_drug_name_norm,
                         relation_type,
@@ -381,6 +386,10 @@ def parse_sources(cfg: Dict[str, Any], paths, force: bool = False) -> None:
                 else:
                     continue
 
+                edge_key = (primary_drug_name_norm, "HAS_INGREDIENT", ingredient_id)
+                if edge_key in seen_edges:
+                    continue
+                seen_edges.add(edge_key)
                 edge_rows.append([
                     primary_drug_name_norm,
                     "HAS_INGREDIENT",

@@ -12,7 +12,7 @@ The project currently supports:
 - R-GCN model;
 - Content-Based baseline;
 - Shared evaluation utilities;
-- Centralized experiment logging in `benchmarks.csv`.
+- Centralized summary logging in `benchmarks.csv`, with full per-run artifacts stored under `runs/`.
 
 ---
 
@@ -47,7 +47,8 @@ The project currently supports:
 │   ├── wn18rr/
 │   └── fb15k237/
 │
-├── benchmarks.csv               # Central results table
+├── benchmarks.csv               # Summary table for consolidated results
+├── runs/                        # Structured per-run artifacts
 ├── requirements.txt
 └── README.md
 ```

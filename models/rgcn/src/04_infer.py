@@ -11,7 +11,7 @@ Supported task modes:
 Usage examples:
     python -m rgcn.src.04_infer --query "diabetes" --topk 10
     python -m rgcn.src.04_infer --entity_id "DOID:9352" --topk 10
-    python -m rgcn.src.04_infer --run_dir rgcn/runs/<run_name> --query "asthma"
+    python -m rgcn.src.04_infer --run_dir models/rgcn/runs/<run_name> --query "asthma"
 """
 
 from __future__ import annotations
@@ -139,7 +139,7 @@ def main() -> None:
     configured task.
     """
     parser = argparse.ArgumentParser()
-    parser.add_argument("--runs_dir", default="rgcn/runs")
+    parser.add_argument("--runs_dir", default="models/rgcn/runs")
     parser.add_argument("--run_dir", default=None)
     parser.add_argument("--query", default=None, help="Entity name or fuzzy query string.")
     parser.add_argument("--entity_id", default=None, help="Exact canonical entity ID.")

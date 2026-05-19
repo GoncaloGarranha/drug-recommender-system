@@ -125,12 +125,27 @@ def filter_graph(cfg: Dict[str, Any], paths, force: bool = False) -> None:
     blacklist_path = config_dir / "blacklist.txt"
     blacklist = load_blacklist(blacklist_path)
 
-    remove_obsolete_doid = bool(
-        cfg.get("filters", {}).get("remove_obsolete_doid_labels", True)
-    )
-    remove_has_ingredient = bool(
-        cfg.get("filters", {}).get("remove_has_ingredient", True)
-    )
+    filters_cfg = cfg.get("filters", {})
+
+    remove_obsolete_doid_raw = filters_cfg.get("remove_obsolete_doid_labels")
+    if remove_obsolete_doid_raw is None:
+        remove_obsolete_doid = True
+        logger.warning(
+            "Filter 'remove_obsolete_doid_labels' not found in config — using default: True"
+        )
+    else:
+        remove_obsolete_doid = bool(remove_obsolete_doid_raw)
+        logger.info("Filter 'remove_obsolete_doid_labels' set from config: %s", remove_obsolete_doid)
+
+    remove_has_ingredient_raw = filters_cfg.get("remove_has_ingredient")
+    if remove_has_ingredient_raw is None:
+        remove_has_ingredient = True
+        logger.warning(
+            "Filter 'remove_has_ingredient' not found in config — using default: True"
+        )
+    else:
+        remove_has_ingredient = bool(remove_has_ingredient_raw)
+        logger.info("Filter 'remove_has_ingredient' set from config: %s", remove_has_ingredient)
 
     skip_reasons = Counter()
     filtered_rows: List[List[str]] = []
@@ -162,7 +177,6 @@ def filter_graph(cfg: Dict[str, Any], paths, force: bool = False) -> None:
 
         filtered_rows.append([src, rel, dst])
 
-    write_csv(triples_csv_out, ["src", "rel", "dst"], filtered_rows)
     filtered_dict_rows = [
         {"src": src, "rel": rel, "dst": dst}
         for src, rel, dst in filtered_rows
@@ -170,6 +184,8 @@ def filter_graph(cfg: Dict[str, Any], paths, force: bool = False) -> None:
     validate_triples_columns(filtered_dict_rows, ["src", "rel", "dst"])
     validate_no_empty_values(filtered_dict_rows, ["src", "rel", "dst"])
     filtered_relation_counts = validate_relation_counts(filtered_dict_rows)
+
+    write_csv(triples_csv_out, ["src", "rel", "dst"], filtered_rows)
     logger.info("Saved: %s", triples_csv_out)
     logger.info(
         "Kept triples: %d | Removed triples: %d",

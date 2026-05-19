@@ -1,6 +1,6 @@
 {
   "inputs": {
-    "input_dir": "/Users/garranha/workspace/ISEL/Mestrado/Tese/tese/kg_constructor/data/input",
+    "input_dir": "D:\\FacudadeGoncalo\\Mestrado\\Tese\\drug-recommender-system\\kg_constructor\\data\\input",
     "file_counts": {
       "xml_files": 2650,
       "txt_files": 114,
@@ -82,11 +82,11 @@
       80
     ],
     [
-      "http://purl.obolibrary.org/obo/DOID_2030",
+      "http://purl.obolibrary.org/obo/DOID_552",
       78
     ],
     [
-      "http://purl.obolibrary.org/obo/DOID_552",
+      "http://purl.obolibrary.org/obo/DOID_2030",
       78
     ],
     [

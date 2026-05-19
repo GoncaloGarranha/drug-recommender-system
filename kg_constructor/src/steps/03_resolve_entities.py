@@ -114,8 +114,9 @@ def resolve_entities(cfg: Dict[str, Any], paths, force: bool = False) -> None:
             normalized_name_to_drugbank_ids[name_norm][drugbank_id] += 1
 
     # Build the final mapping from normalized drug name to canonical entity ID.
+    # Stats are counted after the dict is fully built to reflect unique entities,
+    # not raw CSV rows (which may contain the same drug from multiple files).
     drug_name_to_entity: Dict[str, str] = {}
-    drug_resolution_stats = Counter()
 
     for row in drug_rows:
         name_norm = (row.get("name_norm") or "").strip()
@@ -125,12 +126,15 @@ def resolve_entities(cfg: Dict[str, Any], paths, force: bool = False) -> None:
         if normalized_name_to_drugbank_ids.get(name_norm):
             best_drugbank_id, _ = normalized_name_to_drugbank_ids[name_norm].most_common(1)[0]
             entity_id = f"DRUGBANK:{best_drugbank_id}"
-            drug_resolution_stats["resolved_by_drugbank"] += 1
         else:
             entity_id = f"DRUG:{name_norm}"
-            drug_resolution_stats["resolved_by_name"] += 1
 
         drug_name_to_entity[name_norm] = entity_id
+
+    drug_resolution_stats = Counter(
+        "resolved_by_drugbank" if entity_id.startswith("DRUGBANK:") else "resolved_by_name"
+        for entity_id in drug_name_to_entity.values()
+    )
 
     # -------------------------------------------------------------------------
     # Ingredient entity resolution

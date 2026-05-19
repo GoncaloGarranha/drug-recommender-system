@@ -66,9 +66,9 @@ Resolução de Entidades (Entity Resolution): A presença de múltiplos nós par
 
 Mitigação de Ruído Estrutural: Identificou-se que nós de topo da Disease Ontology (como DOID:4 - Disease) funcionavam como "hubs" artificiais, enviesando as predições. Criou-se uma blacklist de exclusão para estes termos genéricos.
 
-Adoção de Padrões de Estado-da-Arte (DGL): Para garantir a defesa académica da tese, optou-se por migrar a implementação para a biblioteca DGL (Deep Graph Library). Esta mudança permite:
+Adoção de Padrões de Estado-da-Arte (DGL): Para garantir a defesa académica da tese, optou-se por migrar a reimplementação para a biblioteca DGL (Deep Graph Library). Esta mudança permite:
 
-Seguir rigorosamente a arquitetura do paper original (Schlichtkrull et al.).
+Adotar uma reimplementação benchmark de R-GCN + DistMult inspirada no paper original (Schlichtkrull et al.).
 
 Utilizar um descodificador DistMult para Link Prediction.
 

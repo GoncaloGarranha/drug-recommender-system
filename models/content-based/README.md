@@ -46,7 +46,7 @@ The baseline follows these steps:
 6. Compute cosine similarity between candidate drugs.
 7. Load or create the same train/valid/test splits used by R-GCN.
 8. Compute filtered ranking metrics on the selected split (`valid` or `test`).
-9. Log results to `benchmarks.csv`.
+9. Log results to `benchmarks.csv` and save a full structured run under `runs/`.
 
 ---
 
@@ -181,6 +181,18 @@ benchmarks.csv
 ```
 
 at the repository root.
+
+The structured run directory contains:
+
+```text
+config.yaml
+metrics_valid.json or metrics_test.json
+train_log.json
+split_summary.json
+model_summary.json
+environment.json
+git_commit.txt
+```
 
 ---
 

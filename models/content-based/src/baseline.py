@@ -19,8 +19,10 @@ if str(REPO_ROOT) not in sys.path:
 
 from models.shared.benchmark_tracker import log_experiment
 from models.shared.config import load_config
+from models.shared.experiment_integrity import validate_experiment_integrity
 from models.shared.io import read_json
 from models.shared.metrics import compute_ranking_metrics
+from models.shared.runs import capture_environment, capture_git_commit, resolve_run_dir, save_metrics, write_run_artifacts
 from models.shared.splits import build_known_positives, get_split_ratios, get_or_create_splits
 
 
@@ -197,6 +199,7 @@ if __name__ == "__main__":
     seed = int(cfg.get("seed", 42))
     target_relation = cfg["task"]["target_relation"]
     task_name = cfg["task"].get("name", "disease_to_drug")
+    run_dir = resolve_run_dir(cfg["runs"]["out_dir"], cfg, model_name="content_based", seed=seed)
 
     train_ratio, valid_ratio, test_ratio = get_split_ratios(cfg["split"])
 
@@ -211,6 +214,13 @@ if __name__ == "__main__":
         val_ratio=valid_ratio,
         test_ratio=test_ratio,
         split_mode=cfg["split"].get("mode") if isinstance(cfg.get("split"), dict) else None,
+        force=args.force,
+    )
+
+    split_integrity_report = validate_experiment_integrity(
+        cfg,
+        config_path=config_path,
+        output_path=Path(splits_dir) / "split_integrity_report.json",
         force=args.force,
     )
 
@@ -251,6 +261,40 @@ if __name__ == "__main__":
         print("Error: baseline.use_ingredients is false but baseline.feature_relations is not set in the config.")
         sys.exit(1)
 
+    split_summary = {
+        "task_name": task_name,
+        "target_relation": target_relation,
+        "train_size": len(train_df),
+        "valid_size": len(valid_df),
+        "test_size": len(test_df),
+        "candidate_pool_size": len(candidate_entities),
+        "candidate_entity_type": candidate_type_cfg or "ALL",
+        "split_mode": cfg["split"].get("mode") if isinstance(cfg.get("split"), dict) else None,
+        "split_integrity_report": split_integrity_report["report_path"],
+    }
+
+    model_summary = {
+        "model_name": "content_based",
+        "task_name": task_name,
+        "seed": seed,
+        "baseline": {
+            "use_ingredients": use_ingredients,
+            "feature_relations": feature_relations,
+            "target_relation": target_relation,
+        },
+        "candidate_count": len(candidate_entities),
+    }
+
+    write_run_artifacts(
+        run_dir=run_dir,
+        cfg=cfg,
+        split_summary=split_summary,
+        model_summary=model_summary,
+        train_log=[],
+        environment=capture_environment(),
+        git_commit=capture_git_commit(),
+    )
+
     model = ContentBasedBaseline(
         triples_full_path=triples_full_path,
         candidate_entities=candidate_entities,
@@ -279,6 +323,7 @@ if __name__ == "__main__":
     print(f"MRR:     {mrr:.4f}")
 
     log_experiment(
+        dataset=Path(config_path).stem,
         model_name="Content-Based (TF-IDF baseline)",
         hits1=hits_at_1,
         hits3=hits_at_3,
@@ -289,3 +334,5 @@ if __name__ == "__main__":
             f"| Split: {args.split}"
         ),
     )
+
+    save_metrics(run_dir, args.split, metrics)

@@ -1,8 +1,8 @@
 # R-GCN for Knowledge Graph Link Prediction
 
-This module trains a **Relational Graph Convolutional Network (R-GCN)** for link prediction over multi-relational knowledge graphs.
+This module provides an **R-GCN + DistMult benchmark reimplementation** for link prediction over multi-relational knowledge graphs.
 
-The main use case is biomedical drug recommendation, where the model predicts drug–disease relationships from a biomedical Knowledge Graph. The same implementation also supports external benchmark datasets such as **WN18RR** and **FB15k-237** through a generic `tail_prediction` task.
+The main use case is biomedical drug recommendation, where the model predicts drug–disease relationships from a biomedical Knowledge Graph. The same benchmark reimplementation also supports external datasets such as **WN18RR** and **FB15k-237** through a generic `tail_prediction` task.
 
 The R-GCN learns vector representations of entities by propagating information through typed relations in the graph and uses a DistMult decoder to score candidate triples.
 
@@ -757,13 +757,24 @@ export PYTHONPATH=/path/to/drug-recommender-system
 
 ## Output Files
 
-Each training run creates a directory under `runs.out_dir`, containing for example:
+Each training run creates a structured directory under `runs.out_dir`, for example:
+
+```text
+runs/biomedical/rgcn/disease_to_drug/seed_42/
+```
+
+The standard run files are:
 
 ```text
 checkpoints/best.pt
-train_log.json
 config.yaml
-final_metrics_<task>_<split>.json
+metrics_valid.json
+metrics_test.json
+train_log.json
+split_summary.json
+model_summary.json
+environment.json
+git_commit.txt
 ```
 
 The best checkpoint is selected according to validation MRR.

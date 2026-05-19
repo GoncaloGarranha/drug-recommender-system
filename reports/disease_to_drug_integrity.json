@@ -1,0 +1,789 @@
+{
+  "config_path": "models/rgcn/configs/disease_to_drug.yaml",
+  "processed_dir": "models\\rgcn\\data\\processed\\disease_to_drug_full",
+  "splits_dir": "models\\rgcn\\data\\processed\\disease_to_drug_full\\splits",
+  "task_name": "disease_to_drug",
+  "target_relation": "INDICATION",
+  "split_mode": null,
+  "seed": 42,
+  "status": "failed",
+  "split_stats": {
+    "train": {
+      "rows": 6040,
+      "unique_rows": 4820,
+      "duplicate_rows": 1220,
+      "duplicate_examples": [
+        {
+          "src": "DRUG:IMATINIB MESYLATE",
+          "rel": "INDICATION",
+          "dst": "DOID:8692",
+          "count": 2
+        },
+        {
+          "src": "DRUG:PREDNISONE",
+          "rel": "INDICATION",
+          "dst": "DOID:11126",
+          "count": 2
+        },
+        {
+          "src": "DRUGBANK:https://go.drugbank.com/drugs/DB00421",
+          "rel": "INDICATION",
+          "dst": "DOID:4",
+          "count": 2
+        },
+        {
+          "src": "DRUG:OXYBUTYNIN CHLORIDE",
+          "rel": "INDICATION",
+          "dst": "DOID:12143",
+          "count": 2
+        },
+        {
+          "src": "DRUG:POSACONAZOLE",
+          "rel": "INDICATION",
+          "dst": "DOID:0081267",
+          "count": 3
+        },
+        {
+          "src": "DRUG:PACLITAXEL",
+          "rel": "INDICATION",
+          "dst": "DOID:4",
+          "count": 2
+        },
+        {
+          "src": "DRUG:LEUPROLIDE ACETATE",
+          "rel": "INDICATION",
+          "dst": "DOID:10283",
+          "count": 2
+        },
+        {
+          "src": "DRUG:FAMOTIDINE",
+          "rel": "INDICATION",
+          "dst": "DOID:8534",
+          "count": 2
+        },
+        {
+          "src": "DRUG:LISINOPRIL",
+          "rel": "INDICATION",
+          "dst": "DOID:5844",
+          "count": 3
+        },
+        {
+          "src": "DRUGBANK:https://go.drugbank.com/drugs/DB00051",
+          "rel": "INDICATION",
+          "dst": "DOID:13141",
+          "count": 2
+        }
+      ]
+    },
+    "valid": {
+      "rows": 755,
+      "unique_rows": 738,
+      "duplicate_rows": 17,
+      "duplicate_examples": [
+        {
+          "src": "DRUG:HYDROXYZINE HYDROCHLORIDE",
+          "rel": "INDICATION",
+          "dst": "DOID:1555",
+          "count": 2
+        },
+        {
+          "src": "DRUG:GABAPENTIN",
+          "rel": "INDICATION",
+          "dst": "DOID:1826",
+          "count": 2
+        },
+        {
+          "src": "DRUGBANK:https://go.drugbank.com/drugs/DB01390",
+          "rel": "INDICATION",
+          "dst": "DOID:13250",
+          "count": 2
+        },
+        {
+          "src": "DRUG:FLUCONAZOLE",
+          "rel": "INDICATION",
+          "dst": "DOID:635",
+          "count": 2
+        },
+        {
+          "src": "DRUG:FLUPHENAZINE HYDROCHLORIDE",
+          "rel": "INDICATION",
+          "dst": "DOID:1059",
+          "count": 2
+        },
+        {
+          "src": "DRUG:HYDROXYCHLOROQUINE SULFATE",
+          "rel": "INDICATION",
+          "dst": "DOID:12365",
+          "count": 2
+        },
+        {
+          "src": "DRUG:DESLORATADINE",
+          "rel": "INDICATION",
+          "dst": "DOID:4481",
+          "count": 2
+        },
+        {
+          "src": "DRUG:CHLORPROMAZINE HYDROCHLORIDE",
+          "rel": "INDICATION",
+          "dst": "DOID:3890",
+          "count": 2
+        },
+        {
+          "src": "DRUG:DEXAMETHASONE SODIUM PHOSPHATE",
+          "rel": "INDICATION",
+          "dst": "DOID:3777",
+          "count": 2
+        },
+        {
+          "src": "DRUG:IMATINIB MESYLATE",
+          "rel": "INDICATION",
+          "dst": "DOID:2991",
+          "count": 2
+        }
+      ]
+    },
+    "test": {
+      "rows": 756,
+      "unique_rows": 733,
+      "duplicate_rows": 23,
+      "duplicate_examples": [
+        {
+          "src": "DRUG:RISPERIDONE",
+          "rel": "INDICATION",
+          "dst": "DOID:3312",
+          "count": 2
+        },
+        {
+          "src": "DRUG:CEFUROXIME AXETIL",
+          "rel": "INDICATION",
+          "dst": "DOID:6132",
+          "count": 2
+        },
+        {
+          "src": "DRUG:IBUPROFEN AND FAMOTIDINE",
+          "rel": "INDICATION",
+          "dst": "DOID:8398",
+          "count": 2
+        },
+        {
+          "src": "DRUGBANK:https://go.drugbank.com/drugs/DB00755",
+          "rel": "INDICATION",
+          "dst": "DOID:6543",
+          "count": 2
+        },
+        {
+          "src": "DRUGBANK:https://go.drugbank.com/drugs/DB00959",
+          "rel": "INDICATION",
+          "dst": "DOID:8505",
+          "count": 2
+        },
+        {
+          "src": "DRUG:BUPROPION HYDROCHLORIDE",
+          "rel": "INDICATION",
+          "dst": "DOID:1470",
+          "count": 2
+        },
+        {
+          "src": "DRUGBANK:https://go.drugbank.com/drugs/DB00051",
+          "rel": "INDICATION",
+          "dst": "DOID:8577",
+          "count": 2
+        },
+        {
+          "src": "DRUG:DEXAMETHASONE SODIUM PHOSPHATE",
+          "rel": "INDICATION",
+          "dst": "DOID:1564",
+          "count": 2
+        },
+        {
+          "src": "DRUGBANK:https://go.drugbank.com/drugs/DB00051",
+          "rel": "INDICATION",
+          "dst": "DOID:8893",
+          "count": 2
+        },
+        {
+          "src": "DRUG:SEVELAMER CARBONATE",
+          "rel": "INDICATION",
+          "dst": "DOID:4",
+          "count": 2
+        }
+      ]
+    },
+    "train_graph": {
+      "rows": 30653,
+      "unique_rows": 25389,
+      "duplicate_rows": 5264,
+      "duplicate_examples": [
+        {
+          "src": "DRUG:IMATINIB MESYLATE",
+          "rel": "INDICATION",
+          "dst": "DOID:8692",
+          "count": 2
+        },
+        {
+          "src": "DRUG:PREDNISONE",
+          "rel": "INDICATION",
+          "dst": "DOID:11126",
+          "count": 2
+        },
+        {
+          "src": "DRUGBANK:https://go.drugbank.com/drugs/DB00421",
+          "rel": "INDICATION",
+          "dst": "DOID:4",
+          "count": 2
+        },
+        {
+          "src": "DRUG:OXYBUTYNIN CHLORIDE",
+          "rel": "INDICATION",
+          "dst": "DOID:12143",
+          "count": 2
+        },
+        {
+          "src": "DRUG:POSACONAZOLE",
+          "rel": "INDICATION",
+          "dst": "DOID:0081267",
+          "count": 3
+        },
+        {
+          "src": "DRUG:PACLITAXEL",
+          "rel": "INDICATION",
+          "dst": "DOID:4",
+          "count": 2
+        },
+        {
+          "src": "DRUG:LEUPROLIDE ACETATE",
+          "rel": "INDICATION",
+          "dst": "DOID:10283",
+          "count": 2
+        },
+        {
+          "src": "DRUG:FAMOTIDINE",
+          "rel": "INDICATION",
+          "dst": "DOID:8534",
+          "count": 2
+        },
+        {
+          "src": "DRUG:LISINOPRIL",
+          "rel": "INDICATION",
+          "dst": "DOID:5844",
+          "count": 3
+        },
+        {
+          "src": "DRUGBANK:https://go.drugbank.com/drugs/DB00051",
+          "rel": "INDICATION",
+          "dst": "DOID:13141",
+          "count": 2
+        }
+      ]
+    },
+    "all_target": {
+      "rows": 7551,
+      "unique_rows": 5739,
+      "duplicate_rows": 1812,
+      "duplicate_examples": [
+        {
+          "src": "DRUG:IMATINIB MESYLATE",
+          "rel": "INDICATION",
+          "dst": "DOID:8692",
+          "count": 2
+        },
+        {
+          "src": "DRUG:PREDNISONE",
+          "rel": "INDICATION",
+          "dst": "DOID:11126",
+          "count": 2
+        },
+        {
+          "src": "DRUGBANK:https://go.drugbank.com/drugs/DB00421",
+          "rel": "INDICATION",
+          "dst": "DOID:4",
+          "count": 3
+        },
+        {
+          "src": "DRUG:OXYBUTYNIN CHLORIDE",
+          "rel": "INDICATION",
+          "dst": "DOID:12143",
+          "count": 2
+        },
+        {
+          "src": "DRUG:POSACONAZOLE",
+          "rel": "INDICATION",
+          "dst": "DOID:0081267",
+          "count": 3
+        },
+        {
+          "src": "DRUG:PACLITAXEL",
+          "rel": "INDICATION",
+          "dst": "DOID:4",
+          "count": 2
+        },
+        {
+          "src": "DRUG:LEUPROLIDE ACETATE",
+          "rel": "INDICATION",
+          "dst": "DOID:10283",
+          "count": 3
+        },
+        {
+          "src": "DRUG:FAMOTIDINE",
+          "rel": "INDICATION",
+          "dst": "DOID:8534",
+          "count": 3
+        },
+        {
+          "src": "DRUG:LISINOPRIL",
+          "rel": "INDICATION",
+          "dst": "DOID:5844",
+          "count": 3
+        },
+        {
+          "src": "DRUGBANK:https://go.drugbank.com/drugs/DB00051",
+          "rel": "INDICATION",
+          "dst": "DOID:13141",
+          "count": 2
+        }
+      ]
+    }
+  },
+  "checks": [
+    {
+      "name": "no_duplicates_within_train",
+      "passed": false,
+      "details": {
+        "split": "train",
+        "rows": 30653,
+        "unique_rows": 25389,
+        "duplicate_rows": 5264,
+        "duplicate_examples": [
+          {
+            "src": "DRUG:IMATINIB MESYLATE",
+            "rel": "INDICATION",
+            "dst": "DOID:8692",
+            "count": 2
+          },
+          {
+            "src": "DRUG:PREDNISONE",
+            "rel": "INDICATION",
+            "dst": "DOID:11126",
+            "count": 2
+          },
+          {
+            "src": "DRUGBANK:https://go.drugbank.com/drugs/DB00421",
+            "rel": "INDICATION",
+            "dst": "DOID:4",
+            "count": 2
+          },
+          {
+            "src": "DRUG:OXYBUTYNIN CHLORIDE",
+            "rel": "INDICATION",
+            "dst": "DOID:12143",
+            "count": 2
+          },
+          {
+            "src": "DRUG:POSACONAZOLE",
+            "rel": "INDICATION",
+            "dst": "DOID:0081267",
+            "count": 3
+          },
+          {
+            "src": "DRUG:PACLITAXEL",
+            "rel": "INDICATION",
+            "dst": "DOID:4",
+            "count": 2
+          },
+          {
+            "src": "DRUG:LEUPROLIDE ACETATE",
+            "rel": "INDICATION",
+            "dst": "DOID:10283",
+            "count": 2
+          },
+          {
+            "src": "DRUG:FAMOTIDINE",
+            "rel": "INDICATION",
+            "dst": "DOID:8534",
+            "count": 2
+          },
+          {
+            "src": "DRUG:LISINOPRIL",
+            "rel": "INDICATION",
+            "dst": "DOID:5844",
+            "count": 3
+          },
+          {
+            "src": "DRUGBANK:https://go.drugbank.com/drugs/DB00051",
+            "rel": "INDICATION",
+            "dst": "DOID:13141",
+            "count": 2
+          }
+        ]
+      }
+    },
+    {
+      "name": "no_duplicates_within_valid",
+      "passed": false,
+      "details": {
+        "split": "valid",
+        "rows": 755,
+        "unique_rows": 738,
+        "duplicate_rows": 17,
+        "duplicate_examples": [
+          {
+            "src": "DRUG:HYDROXYZINE HYDROCHLORIDE",
+            "rel": "INDICATION",
+            "dst": "DOID:1555",
+            "count": 2
+          },
+          {
+            "src": "DRUG:GABAPENTIN",
+            "rel": "INDICATION",
+            "dst": "DOID:1826",
+            "count": 2
+          },
+          {
+            "src": "DRUGBANK:https://go.drugbank.com/drugs/DB01390",
+            "rel": "INDICATION",
+            "dst": "DOID:13250",
+            "count": 2
+          },
+          {
+            "src": "DRUG:FLUCONAZOLE",
+            "rel": "INDICATION",
+            "dst": "DOID:635",
+            "count": 2
+          },
+          {
+            "src": "DRUG:FLUPHENAZINE HYDROCHLORIDE",
+            "rel": "INDICATION",
+            "dst": "DOID:1059",
+            "count": 2
+          },
+          {
+            "src": "DRUG:HYDROXYCHLOROQUINE SULFATE",
+            "rel": "INDICATION",
+            "dst": "DOID:12365",
+            "count": 2
+          },
+          {
+            "src": "DRUG:DESLORATADINE",
+            "rel": "INDICATION",
+            "dst": "DOID:4481",
+            "count": 2
+          },
+          {
+            "src": "DRUG:CHLORPROMAZINE HYDROCHLORIDE",
+            "rel": "INDICATION",
+            "dst": "DOID:3890",
+            "count": 2
+          },
+          {
+            "src": "DRUG:DEXAMETHASONE SODIUM PHOSPHATE",
+            "rel": "INDICATION",
+            "dst": "DOID:3777",
+            "count": 2
+          },
+          {
+            "src": "DRUG:IMATINIB MESYLATE",
+            "rel": "INDICATION",
+            "dst": "DOID:2991",
+            "count": 2
+          }
+        ]
+      }
+    },
+    {
+      "name": "no_duplicates_within_test",
+      "passed": false,
+      "details": {
+        "split": "test",
+        "rows": 756,
+        "unique_rows": 733,
+        "duplicate_rows": 23,
+        "duplicate_examples": [
+          {
+            "src": "DRUG:RISPERIDONE",
+            "rel": "INDICATION",
+            "dst": "DOID:3312",
+            "count": 2
+          },
+          {
+            "src": "DRUG:CEFUROXIME AXETIL",
+            "rel": "INDICATION",
+            "dst": "DOID:6132",
+            "count": 2
+          },
+          {
+            "src": "DRUG:IBUPROFEN AND FAMOTIDINE",
+            "rel": "INDICATION",
+            "dst": "DOID:8398",
+            "count": 2
+          },
+          {
+            "src": "DRUGBANK:https://go.drugbank.com/drugs/DB00755",
+            "rel": "INDICATION",
+            "dst": "DOID:6543",
+            "count": 2
+          },
+          {
+            "src": "DRUGBANK:https://go.drugbank.com/drugs/DB00959",
+            "rel": "INDICATION",
+            "dst": "DOID:8505",
+            "count": 2
+          },
+          {
+            "src": "DRUG:BUPROPION HYDROCHLORIDE",
+            "rel": "INDICATION",
+            "dst": "DOID:1470",
+            "count": 2
+          },
+          {
+            "src": "DRUGBANK:https://go.drugbank.com/drugs/DB00051",
+            "rel": "INDICATION",
+            "dst": "DOID:8577",
+            "count": 2
+          },
+          {
+            "src": "DRUG:DEXAMETHASONE SODIUM PHOSPHATE",
+            "rel": "INDICATION",
+            "dst": "DOID:1564",
+            "count": 2
+          },
+          {
+            "src": "DRUGBANK:https://go.drugbank.com/drugs/DB00051",
+            "rel": "INDICATION",
+            "dst": "DOID:8893",
+            "count": 2
+          },
+          {
+            "src": "DRUG:SEVELAMER CARBONATE",
+            "rel": "INDICATION",
+            "dst": "DOID:4",
+            "count": 2
+          }
+        ]
+      }
+    },
+    {
+      "name": "train_graph_vs_valid_disjoint",
+      "passed": false,
+      "details": {
+        "overlap_count": 272,
+        "examples": [
+          [
+            "DRUG:ACETAZOLAMIDE",
+            "INDICATION",
+            "DOID:1686"
+          ],
+          [
+            "DRUG:ADENOSINE",
+            "INDICATION",
+            "DOID:0060224"
+          ],
+          [
+            "DRUG:ALBUTEROL SULFATE",
+            "INDICATION",
+            "DOID:4"
+          ],
+          [
+            "DRUG:AMINOCAPROIC ACID",
+            "INDICATION",
+            "DOID:5082"
+          ],
+          [
+            "DRUG:ATORVASTATIN CALCIUM",
+            "INDICATION",
+            "DOID:0051061"
+          ],
+          [
+            "DRUG:ATORVASTATIN CALCIUM",
+            "INDICATION",
+            "DOID:3393"
+          ],
+          [
+            "DRUG:ATORVASTATIN CALCIUM",
+            "INDICATION",
+            "DOID:5844"
+          ],
+          [
+            "DRUG:AUBRA EQ",
+            "INDICATION",
+            "DOID:7148"
+          ],
+          [
+            "DRUG:BALSALAZIDE DISODIUM",
+            "INDICATION",
+            "DOID:0060180"
+          ],
+          [
+            "DRUG:BIVALIRUDIN",
+            "INDICATION",
+            "DOID:0060903"
+          ]
+        ]
+      }
+    },
+    {
+      "name": "train_graph_vs_test_disjoint",
+      "passed": false,
+      "details": {
+        "overlap_count": 260,
+        "examples": [
+          [
+            "DRUG:ACETAZOLAMIDE",
+            "INDICATION",
+            "DOID:6000"
+          ],
+          [
+            "DRUG:ACYCLOVIR",
+            "INDICATION",
+            "DOID:8536"
+          ],
+          [
+            "DRUG:ALENDRONATE SODIUM",
+            "INDICATION",
+            "DOID:11476"
+          ],
+          [
+            "DRUG:ALLOPURINOL",
+            "INDICATION",
+            "DOID:0060058"
+          ],
+          [
+            "DRUG:ALLOPURINOL",
+            "INDICATION",
+            "DOID:1240"
+          ],
+          [
+            "DRUG:AMBRISENTAN",
+            "INDICATION",
+            "DOID:10763"
+          ],
+          [
+            "DRUG:AMINOCAPROIC ACID",
+            "INDICATION",
+            "DOID:4"
+          ],
+          [
+            "DRUG:AMLODIPINE BESYLATE",
+            "INDICATION",
+            "DOID:10763"
+          ],
+          [
+            "DRUG:AMPICILLIN",
+            "INDICATION",
+            "DOID:10314"
+          ],
+          [
+            "DRUG:AMPICILLIN",
+            "INDICATION",
+            "DOID:12017"
+          ]
+        ]
+      }
+    },
+    {
+      "name": "valid_vs_test_disjoint",
+      "passed": false,
+      "details": {
+        "overlap_count": 42,
+        "examples": [
+          [
+            "DRUG:ALLOPURINOL",
+            "INDICATION",
+            "DOID:162"
+          ],
+          [
+            "DRUG:ATORVASTATIN CALCIUM",
+            "INDICATION",
+            "DOID:5844"
+          ],
+          [
+            "DRUG:ATOVAQUONE",
+            "INDICATION",
+            "DOID:11339"
+          ],
+          [
+            "DRUG:CITALOPRAM HYDROBROMIDE",
+            "INDICATION",
+            "DOID:1470"
+          ],
+          [
+            "DRUG:CLINDAMYCIN HYDROCHLORIDE",
+            "INDICATION",
+            "DOID:0060180"
+          ],
+          [
+            "DRUG:CLINDAMYCIN HYDROCHLORIDE",
+            "INDICATION",
+            "DOID:3488"
+          ],
+          [
+            "DRUG:CLINDAMYCIN PHOSPHATE",
+            "INDICATION",
+            "DOID:6543"
+          ],
+          [
+            "DRUG:COLESEVELAM HYDROCHLORIDE",
+            "INDICATION",
+            "DOID:13810"
+          ],
+          [
+            "DRUG:DESLORATADINE",
+            "INDICATION",
+            "DOID:4483"
+          ],
+          [
+            "DRUG:DEXAMETHASONE",
+            "INDICATION",
+            "DOID:0080745"
+          ]
+        ]
+      }
+    },
+    {
+      "name": "known_positives_complete",
+      "passed": true,
+      "details": {
+        "missing_examples": [],
+        "missing_count": 0
+      }
+    },
+    {
+      "name": "candidate_pool_complete",
+      "passed": true,
+      "details": {
+        "missing_candidate_ids": [],
+        "missing_count": 0,
+        "candidate_pool_size": 1947
+      }
+    },
+    {
+      "name": "official_benchmark_splits_preserved",
+      "passed": true,
+      "details": {
+        "applies": false
+      }
+    },
+    {
+      "name": "split_statistics_saved",
+      "passed": true,
+      "details": {
+        "saved_sections": [
+          "train",
+          "valid",
+          "test",
+          "train_graph",
+          "all_target"
+        ]
+      }
+    }
+  ],
+  "failures": [
+    "duplicate triples inside train",
+    "duplicate triples inside valid",
+    "duplicate triples inside test",
+    "validation target triples leaked into training graph",
+    "test target triples leaked into training graph",
+    "validation and test splits overlap"
+  ],
+  "candidate_pool_size": 1947,
+  "known_positives_size": 5739
+}

@@ -124,6 +124,24 @@ def prepare_graph(cfg: Dict[str, Any], paths, force: bool = False) -> None:
     triples_path = Path(cfg["data"]["triples_path"])
     processed_dir = ensure_dir(cfg["data"]["processed_dir"])
 
+    # If the configured triples file is the generic 'triples.csv' and a
+    # 'triples.filtered.csv' exists next to it, prefer the filtered file by
+    # default to avoid accidentally training on relations intended to be
+    # excluded (e.g., HAS_INGREDIENT). Users can still point explicitly to
+    # the full file in the config if desired.
+    try:
+        filtered_candidate = triples_path.parent / f"{triples_path.stem}.filtered{triples_path.suffix}"
+        if triples_path.name == "triples.csv" and filtered_candidate.exists():
+            logger.info(
+                "Found %s alongside %s — switching to filtered triples for preparation.",
+                filtered_candidate.name,
+                triples_path.name,
+            )
+            triples_path = filtered_candidate
+    except Exception:
+        # Defensive: if any Path operations fail, fall back to the configured path.
+        pass
+
     entity2id_path = processed_dir / "entity2id.json"
     id2entity_path = processed_dir / "id2entity.json"
     rel2id_path = processed_dir / "rel2id.json"

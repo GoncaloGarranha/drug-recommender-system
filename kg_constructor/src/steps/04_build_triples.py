@@ -118,6 +118,19 @@ def build_triples(cfg: Dict[str, Any], paths, force: bool = False) -> None:
 
         triple_rows.append([src_entity, relation, dst_entity])
 
+    # Deduplicate canonical triples: different drug name variants may resolve
+    # to the same canonical entity_id, producing duplicate (src, rel, dst) rows.
+    seen_triples: set = set()
+    unique_triple_rows: List[List[str]] = []
+    for row in triple_rows:
+        key = tuple(row)
+        if key not in seen_triples:
+            seen_triples.add(key)
+            unique_triple_rows.append(row)
+
+    skipped_canonical_duplicates = len(triple_rows) - len(unique_triple_rows)
+    triple_rows = unique_triple_rows
+
     triple_dict_rows = [
         {"src": src, "rel": rel, "dst": dst}
         for src, rel, dst in triple_rows
@@ -130,10 +143,11 @@ def build_triples(cfg: Dict[str, Any], paths, force: bool = False) -> None:
 
     logger.info("Saved: %s", triples_csv)
     logger.info(
-        "Triples: %d | Skipped (missing drug mapping): %d | Skipped (invalid row): %d",
+        "Triples: %d | Skipped (missing drug mapping): %d | Skipped (invalid row): %d | Skipped (canonical duplicates): %d",
         len(triple_rows),
         skipped_missing_mapping,
         skipped_invalid_rows,
+        skipped_canonical_duplicates,
     )
     logger.info("Relation distribution: %s", dict(relation_counts))
 

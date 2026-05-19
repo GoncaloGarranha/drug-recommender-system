@@ -10,8 +10,8 @@ Supported task modes:
     - tail_prediction
 
 Usage:
-    python -m rgcn.src.03_evaluate --runs_dir rgcn/runs
-    python -m rgcn.src.03_evaluate --run_dir rgcn/runs/<run_name> --split test
+    python -m rgcn.src.03_evaluate --runs_dir models/rgcn/runs
+    python -m rgcn.src.03_evaluate --run_dir models/rgcn/runs/<run_name> --split test
 """
 
 from __future__ import annotations
@@ -29,7 +29,7 @@ import torch
 
 from models.shared.graph_artifacts import load_prepared_graph, resolve_processed_dir
 from models.shared.io import read_csv, read_json
-from models.shared.runs import find_latest_run
+from models.shared.runs import find_latest_run, save_metrics
 from models.shared.ranking import build_candidate_pool, build_training_graph, evaluate_ranking
 from models.shared.splits import build_known_positives, get_or_create_splits
 
@@ -54,7 +54,7 @@ def main() -> None:
     Load a trained checkpoint and evaluate it on the validation or test split.
     """
     parser = argparse.ArgumentParser()
-    parser.add_argument("--runs_dir", default="rgcn/runs")
+    parser.add_argument("--runs_dir", default="models/rgcn/runs")
     parser.add_argument("--run_dir", default=None)
     parser.add_argument("--split", default="test", choices=["valid", "test"])
     args = parser.parse_args()
@@ -96,7 +96,7 @@ def main() -> None:
     context_relations = task_cfg.get("context_relations", [target_relation])
 
     if task_name == "tail_prediction":
-        relation_id = 0
+        relation_id = None
     else:
         relation_id = rel2id.get(target_relation)
         if relation_id is None:
@@ -189,6 +189,7 @@ def main() -> None:
     print("-" * 60)
 
     log_experiment(
+        dataset=Path(cfg["data"]["processed_dir"]).name,
         model_name=f"R-GCN ({task_name})",
         hits1=results["hits@1"],
         hits3=results["hits@3"],
@@ -196,6 +197,8 @@ def main() -> None:
         mrr=results["mrr"],
         notes=f"Run: {Path(run_dir).name} | Split: {args.split}",
     )
+
+    save_metrics(run_dir, args.split, results)
 
     output_path = os.path.join(run_dir, f"final_metrics_{task_name}_{args.split}.json")
     with open(output_path, "w", encoding="utf-8") as file_obj:

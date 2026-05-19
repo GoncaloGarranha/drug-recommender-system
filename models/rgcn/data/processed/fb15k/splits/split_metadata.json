@@ -1,0 +1,11 @@
+{
+  "target_relation": null,
+  "seed": 42,
+  "train_ratio": 0.8,
+  "val_ratio": 0.1,
+  "test_ratio": 0.1,
+  "num_train": 483142,
+  "num_valid": 50000,
+  "num_test": 59071,
+  "mode": "official"
+}

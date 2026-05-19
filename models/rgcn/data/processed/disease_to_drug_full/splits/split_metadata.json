@@ -4,8 +4,8 @@
   "train_ratio": 0.8,
   "val_ratio": 0.1,
   "test_ratio": 0.1,
-  "num_train": 6040,
-  "num_valid": 755,
-  "num_test": 756,
+  "num_train": 4591,
+  "num_valid": 573,
+  "num_test": 575,
   "mode": "random"
 }

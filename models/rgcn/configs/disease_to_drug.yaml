@@ -32,7 +32,7 @@ training:
   max_epochs: 4000
   early_stopping:
     monitor: "valid_mrr"
-    patience: 20
+    patience: 200
     mode: "max"
   lr: 0.001
   weight_decay: 0.0001

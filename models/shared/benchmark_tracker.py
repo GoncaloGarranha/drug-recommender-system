@@ -1,12 +1,19 @@
 from __future__ import annotations
 
-from pathlib import Path
 import csv
 from datetime import datetime
-from typing import Any
+from pathlib import Path
 
 
-def log_experiment(model_name: str, hits1: float, hits3: float, hits10: float, mrr: float, notes: str = "") -> None:
+def log_experiment(
+    model_name: str,
+    hits1: float,
+    hits3: float,
+    hits10: float,
+    mrr: float,
+    notes: str = "",
+    dataset: str = "",
+) -> None:
     """Append a benchmark row to `benchmarks.csv` at the repository root.
 
     This is intentionally lightweight: it creates the CSV if missing and appends
@@ -17,6 +24,7 @@ def log_experiment(model_name: str, hits1: float, hits3: float, hits10: float, m
 
     row = {
         "timestamp": datetime.utcnow().isoformat(),
+        "dataset": dataset,
         "model_name": model_name,
         "hits@1": f"{hits1:.6f}",
         "hits@3": f"{hits3:.6f}",

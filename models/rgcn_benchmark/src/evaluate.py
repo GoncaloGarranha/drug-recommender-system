@@ -17,7 +17,7 @@ from .train import filtered_eval
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Evaluate Schlichtkrull-style R-GCN link prediction model")
-    parser.add_argument("--runs_dir", default="models/rgcn_schlichtkrull/runs")
+    parser.add_argument("--runs_dir", default="models/rgcn_benchmark/runs")
     parser.add_argument("--run_dir", default=None)
     parser.add_argument("--split", choices=["valid", "test"], default="test")
     args = parser.parse_args()

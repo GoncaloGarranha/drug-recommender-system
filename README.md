@@ -462,10 +462,10 @@ python -m models.rgcn.src.03_evaluate --runs_dir models/rgcn/runs/fb15k237 --spl
 A standalone article-style R-GCN + DistMult implementation lives in:
 
 ```text
-models/rgcn_schlichtkrull/
+models/rgcn_benchmark/
 ```
 
-This module is intentionally **link prediction only** and is separate from the biomedical `models/rgcn` pipeline. It supports WN18, WN18RR, FB15k and FB15k-237 with filtered head + tail evaluation. See `models/rgcn_schlichtkrull/README.md` for commands and configuration details.
+This module is intentionally **link prediction only** and is separate from the biomedical `models/rgcn` pipeline. It supports WN18, WN18RR, FB15k and FB15k-237 with filtered head + tail evaluation. See `models/rgcn_benchmark/README.md` for commands and configuration details.
 
 ---
 

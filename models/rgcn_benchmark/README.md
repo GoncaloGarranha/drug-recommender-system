@@ -28,8 +28,8 @@ This is a PyTorch/DGL reimplementation inside the project pipeline, not a direct
 
 | Dataset | Config | Expected processed dir | Runs dir |
 |---|---|---|---|
-| WN18 | `models/rgcn_schlichtkrull/configs/wn18.yaml` | `models/rgcn/data/processed/wn18` | `models/rgcn_schlichtkrull/runs/wn18` |
-| WN18RR | `models/rgcn_schlichtkrull/configs/wn18rr.yaml` | `models/rgcn/data/processed/wn18rr` | `models/rgcn_schlichtkrull/runs/wn18rr` |
+| WN18 | `models/rgcn_benchmark/configs/wn18.yaml` | `models/rgcn/data/processed/wn18` | `models/rgcn_benchmark/runs/wn18` |
+| WN18RR | `models/rgcn_benchmark/configs/wn18rr.yaml` | `models/rgcn/data/processed/wn18rr` | `models/rgcn_benchmark/runs/wn18rr` |
 | FB15k | `models/rgcn_schlichtkrull/configs/fb15k.yaml` | `models/rgcn/data/processed/fb15k` | `models/rgcn_schlichtkrull/runs/fb15k` |
 | FB15k-237 | `models/rgcn_schlichtkrull/configs/fb15k237.yaml` | `models/rgcn/data/processed/fb15k237` | `models/rgcn_schlichtkrull/runs/fb15k237` |
 

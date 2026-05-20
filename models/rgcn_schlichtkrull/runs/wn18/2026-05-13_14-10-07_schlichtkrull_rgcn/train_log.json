@@ -1,0 +1,252 @@
+[
+  {
+    "epoch": 1,
+    "loss": 3.39290714263916,
+    "valid_mrr": null
+  },
+  {
+    "epoch": 2,
+    "loss": 2.161987543106079,
+    "valid_mrr": null
+  },
+  {
+    "epoch": 3,
+    "loss": 1.6229274272918701,
+    "valid_mrr": null
+  },
+  {
+    "epoch": 4,
+    "loss": 1.2924084663391113,
+    "valid_mrr": null
+  },
+  {
+    "epoch": 5,
+    "loss": 1.0812181234359741,
+    "valid_mrr": 0.010537954478958913
+  },
+  {
+    "epoch": 6,
+    "loss": 0.9305166006088257,
+    "valid_mrr": null
+  },
+  {
+    "epoch": 7,
+    "loss": 0.812962532043457,
+    "valid_mrr": null
+  },
+  {
+    "epoch": 8,
+    "loss": 0.7305744290351868,
+    "valid_mrr": null
+  },
+  {
+    "epoch": 9,
+    "loss": 0.6646988391876221,
+    "valid_mrr": null
+  },
+  {
+    "epoch": 10,
+    "loss": 0.6054583191871643,
+    "valid_mrr": 0.009918076937002586
+  },
+  {
+    "epoch": 11,
+    "loss": 0.5616106986999512,
+    "valid_mrr": null
+  },
+  {
+    "epoch": 12,
+    "loss": 0.5256762504577637,
+    "valid_mrr": null
+  },
+  {
+    "epoch": 13,
+    "loss": 0.4952903687953949,
+    "valid_mrr": null
+  },
+  {
+    "epoch": 14,
+    "loss": 0.47238627076148987,
+    "valid_mrr": null
+  },
+  {
+    "epoch": 15,
+    "loss": 0.4539856016635895,
+    "valid_mrr": 0.011910646955141253
+  },
+  {
+    "epoch": 16,
+    "loss": 0.4351089894771576,
+    "valid_mrr": null
+  },
+  {
+    "epoch": 17,
+    "loss": 0.41986605525016785,
+    "valid_mrr": null
+  },
+  {
+    "epoch": 18,
+    "loss": 0.4038645625114441,
+    "valid_mrr": null
+  },
+  {
+    "epoch": 19,
+    "loss": 0.3862459361553192,
+    "valid_mrr": null
+  },
+  {
+    "epoch": 20,
+    "loss": 0.3676883578300476,
+    "valid_mrr": 0.020129538043998006
+  },
+  {
+    "epoch": 21,
+    "loss": 0.3470803499221802,
+    "valid_mrr": null
+  },
+  {
+    "epoch": 22,
+    "loss": 0.3266684114933014,
+    "valid_mrr": null
+  },
+  {
+    "epoch": 23,
+    "loss": 0.3059963285923004,
+    "valid_mrr": null
+  },
+  {
+    "epoch": 24,
+    "loss": 0.28781798481941223,
+    "valid_mrr": null
+  },
+  {
+    "epoch": 25,
+    "loss": 0.2667248249053955,
+    "valid_mrr": 0.030592994181515298
+  },
+  {
+    "epoch": 26,
+    "loss": 0.2493673413991928,
+    "valid_mrr": null
+  },
+  {
+    "epoch": 27,
+    "loss": 0.2341812402009964,
+    "valid_mrr": null
+  },
+  {
+    "epoch": 28,
+    "loss": 0.21549645066261292,
+    "valid_mrr": null
+  },
+  {
+    "epoch": 29,
+    "loss": 0.20027807354927063,
+    "valid_mrr": null
+  },
+  {
+    "epoch": 30,
+    "loss": 0.18447354435920715,
+    "valid_mrr": 0.04974874263357083
+  },
+  {
+    "epoch": 31,
+    "loss": 0.17016397416591644,
+    "valid_mrr": null
+  },
+  {
+    "epoch": 32,
+    "loss": 0.1553426831960678,
+    "valid_mrr": null
+  },
+  {
+    "epoch": 33,
+    "loss": 0.1416199952363968,
+    "valid_mrr": null
+  },
+  {
+    "epoch": 34,
+    "loss": 0.13065943121910095,
+    "valid_mrr": null
+  },
+  {
+    "epoch": 35,
+    "loss": 0.11878418177366257,
+    "valid_mrr": 0.0730628249584097
+  },
+  {
+    "epoch": 36,
+    "loss": 0.10789058357477188,
+    "valid_mrr": null
+  },
+  {
+    "epoch": 37,
+    "loss": 0.09770365804433823,
+    "valid_mrr": null
+  },
+  {
+    "epoch": 38,
+    "loss": 0.08900136500597,
+    "valid_mrr": null
+  },
+  {
+    "epoch": 39,
+    "loss": 0.0810711458325386,
+    "valid_mrr": null
+  },
+  {
+    "epoch": 40,
+    "loss": 0.07377678900957108,
+    "valid_mrr": 0.09056711609586166
+  },
+  {
+    "epoch": 41,
+    "loss": 0.06723913550376892,
+    "valid_mrr": null
+  },
+  {
+    "epoch": 42,
+    "loss": 0.06054561957716942,
+    "valid_mrr": null
+  },
+  {
+    "epoch": 43,
+    "loss": 0.055024970322847366,
+    "valid_mrr": null
+  },
+  {
+    "epoch": 44,
+    "loss": 0.050047941505908966,
+    "valid_mrr": null
+  },
+  {
+    "epoch": 45,
+    "loss": 0.046061597764492035,
+    "valid_mrr": 0.10750465524742123
+  },
+  {
+    "epoch": 46,
+    "loss": 0.0413452684879303,
+    "valid_mrr": null
+  },
+  {
+    "epoch": 47,
+    "loss": 0.037176359444856644,
+    "valid_mrr": null
+  },
+  {
+    "epoch": 48,
+    "loss": 0.03413543105125427,
+    "valid_mrr": null
+  },
+  {
+    "epoch": 49,
+    "loss": 0.0314638689160347,
+    "valid_mrr": null
+  },
+  {
+    "epoch": 50,
+    "loss": 0.028764378279447556,
+    "valid_mrr": 0.13124445953573952
+  }
+]

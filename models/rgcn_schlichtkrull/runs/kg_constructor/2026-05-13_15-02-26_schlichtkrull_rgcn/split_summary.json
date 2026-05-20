@@ -1,0 +1,10 @@
+{
+  "train_size": 0,
+  "valid_size": 0,
+  "test_size": 0,
+  "num_nodes": 4721,
+  "num_relations_decoder": 3,
+  "num_relations_encoder": 6,
+  "add_inverse_edges": true,
+  "graph_edges": 0
+}

@@ -1,0 +1,13 @@
+{
+  "num_entities": 4721,
+  "num_relations": 3,
+  "num_triples": 32164,
+  "relation_distribution": {
+    "INDICATION": 7551,
+    "CONTRAINDICATION": 2905,
+    "HAS_INGREDIENT": 21708
+  },
+  "entity_type_distribution": {
+    "UNKNOWN": 4721
+  }
+}

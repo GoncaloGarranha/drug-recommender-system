@@ -1,7 +1,7 @@
 seed: 42
 
 experiment:
-  name: "schlichtkrull_rgcn_fb15k"
+  name: "rgcn_benchmark_fb15k"
   model_family: "R-GCN + DistMult"
   task: "generic_link_prediction"
   reference: "Schlichtkrull et al. 2018"
@@ -34,4 +34,4 @@ training:
   device: "cpu"
 
 runs:
-  out_dir: "models/rgcn_schlichtkrull/runs/fb15k"
+  out_dir: "models/rgcn_benchmark/runs/fb15k"

@@ -1,15 +1,13 @@
 {
-  "num_entities": 4721,
-  "num_relations": 3,
-  "num_triples": 26308,
+  "num_entities": 2273,
+  "num_relations": 2,
+  "num_triples": 6805,
   "relation_distribution": {
-    "INDICATION": 5739,
-    "CONTRAINDICATION": 2220,
-    "HAS_INGREDIENT": 18349
+    "INDICATION": 4983,
+    "CONTRAINDICATION": 1822
   },
   "entity_type_distribution": {
-    "DISEASE": 753,
-    "DRUG": 1947,
-    "INGREDIENT": 2021
+    "DISEASE": 749,
+    "DRUG": 1524
   }
 }

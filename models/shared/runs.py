@@ -5,10 +5,11 @@ import platform
 import subprocess
 import sys
 import time
+import shutil
 from pathlib import Path
 from typing import Any, Dict
 
-from .config import save_config
+from .config import load_config, save_config
 from .io import ensure_dir, save_json
 
 
@@ -49,6 +50,46 @@ def resolve_run_dir(
 	base_path = Path(base_out_dir)
 
 	return base_path / domain / slugify(model_name) / slugify(task_name) / f"seed_{seed_value}"
+
+
+def organize_legacy_runs(
+	base_out_dir: str | Path,
+	default_model_name: str,
+	seed: int | None = None,
+) -> list[tuple[Path, Path]]:
+	"""Move flat legacy run folders into the canonical nested layout.
+
+	This is intentionally conservative: it only moves direct children of the
+	base runs directory that contain a `config.yaml` and are not already in a
+	canonical domain folder.
+	"""
+	base_path = Path(base_out_dir)
+	if not base_path.exists():
+		return []
+
+	moves: list[tuple[Path, Path]] = []
+	for run_dir in base_path.iterdir():
+		if not run_dir.is_dir():
+			continue
+		if run_dir.name in {"biomedical", "benchmarks"}:
+			continue
+		config_path = run_dir / "config.yaml"
+		if not config_path.exists():
+			continue
+
+		run_cfg = load_config(config_path)
+		model_name = str(run_cfg.get("model", {}).get("name") or default_model_name)
+		target_root = resolve_run_dir(base_path, run_cfg, model_name=model_name, seed=seed)
+		target_dir = target_root.parent / "legacy" / run_dir.name
+
+		if target_dir.exists():
+			continue
+
+		target_dir.parent.mkdir(parents=True, exist_ok=True)
+		shutil.move(str(run_dir), str(target_dir))
+		moves.append((run_dir, target_dir))
+
+	return moves
 
 
 def capture_environment() -> Dict[str, Any]:

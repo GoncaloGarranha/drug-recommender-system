@@ -33,6 +33,7 @@ from models.shared.ranking import build_candidate_pool, build_training_graph, ev
 from models.shared.runs import (
     capture_environment,
     capture_git_commit,
+    organize_legacy_runs,
     resolve_run_dir,
     save_metrics,
     write_run_artifacts,
@@ -50,39 +51,24 @@ def build_training_pairs(
     device: torch.device,
 ) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
     """
-    Build training query/candidate pairs for the configured task.
+    Build raw indexed triples for training.
 
     Returns:
-        positives_query, positives_relation, positives_candidate
+        src_ids, rel_ids, dst_ids (as torch tensors on `device`).
     """
-    queries = []
-    relations = []
-    candidates = []
+    srcs: List[int] = []
+    rels: List[int] = []
+    dsts: List[int] = []
 
     for row in train_triples:
-        src_id = int(row["src_id"])
-        rel_id = int(row["rel_id"])
-        dst_id = int(row["dst_id"])
-
-        if task_name == "disease_to_drug":
-            queries.append(dst_id)
-            relations.append(rel_id)
-            candidates.append(src_id)
-        elif task_name == "drug_to_disease":
-            queries.append(src_id)
-            relations.append(rel_id)
-            candidates.append(dst_id)
-        elif task_name == "tail_prediction":
-            queries.append(src_id)
-            relations.append(rel_id)
-            candidates.append(dst_id)
-        else:
-            raise ValueError(f"Unsupported task name: {task_name}")
+        srcs.append(int(row["src_id"]))
+        rels.append(int(row["rel_id"]))
+        dsts.append(int(row["dst_id"]))
 
     return (
-        torch.tensor(queries, dtype=torch.long, device=device),
-        torch.tensor(relations, dtype=torch.long, device=device),
-        torch.tensor(candidates, dtype=torch.long, device=device),
+        torch.tensor(srcs, dtype=torch.long, device=device),
+        torch.tensor(rels, dtype=torch.long, device=device),
+        torch.tensor(dsts, dtype=torch.long, device=device),
     )
 
 
@@ -224,6 +210,8 @@ def main() -> None:
     candidate_entity_type = task_cfg["candidate_entity_type"]
     context_relations = task_cfg.get("context_relations", [target_relation])
 
+    organize_legacy_runs(cfg["runs"]["out_dir"], default_model_name="rgcn", seed=seed)
+
     if task_name != "tail_prediction":
         relation_id = rel2id.get(target_relation)
         if relation_id is None:
@@ -264,6 +252,7 @@ def main() -> None:
         for row in train_target + valid_target + test_target
     }
 
+    # Default candidate pool (for typical tail corruption)
     candidate_pool = build_candidate_pool(
         entity_types=entity_types,
         entity2id=entity2id,
@@ -272,15 +261,44 @@ def main() -> None:
         required_entity_ids=required_candidate_ids,
     )
 
-    known_positives = build_known_positives(
-        triples=train_target + valid_target + test_target,
-        task_name=task_name if task_name != "tail_prediction" else None,
-        query_key="src_id" if task_name == "tail_prediction" else None,
-        relation_key="rel_id" if task_name == "tail_prediction" else None,
-        candidate_key="dst_id" if task_name == "tail_prediction" else None,
-    )
+    # corrupt_mode controls negative-sampling direction for tail_prediction
+    corrupt_mode = str(cfg["training"].get("corrupt_mode", "tail"))
 
-    train_queries, train_relations, train_candidates = build_training_pairs(
+    # If the user requests both-direction corruption, we will sample the
+    # corruption side per example during training. For safety, build a
+    # merged known_positives map that contains both (query,rel)->set(cands)
+    # keys for head and tail directions.
+    if task_name == "tail_prediction" and corrupt_mode == "both":
+        known_positives_tail = build_known_positives(
+            triples=train_target + valid_target + test_target,
+            task_name=None,
+            query_key="src_id",
+            relation_key="rel_id",
+            candidate_key="dst_id",
+        )
+        known_positives_head = build_known_positives(
+            triples=train_target + valid_target + test_target,
+            task_name=None,
+            query_key="dst_id",
+            relation_key="rel_id",
+            candidate_key="src_id",
+        )
+        # merge the two mappings: keys are (query, rel)
+        known_positives = {**known_positives_tail, **known_positives_head}
+        for key in set(known_positives_tail) & set(known_positives_head):
+            known_positives[key] = known_positives_tail[key] | known_positives_head[key]
+        # When corrupting both sides, use the full entity set as candidate pool
+        candidate_pool = torch.arange(num_nodes, device=device)
+    else:
+        known_positives = build_known_positives(
+            triples=train_target + valid_target + test_target,
+            task_name=task_name if task_name != "tail_prediction" else None,
+            query_key="src_id" if task_name == "tail_prediction" else None,
+            relation_key="rel_id" if task_name == "tail_prediction" else None,
+            candidate_key="dst_id" if task_name == "tail_prediction" else None,
+        )
+
+    train_src, train_relations, train_dst = build_training_pairs(
         train_triples=train_target,
         task_name=task_name,
         device=device,
@@ -397,19 +415,47 @@ def main() -> None:
 
         node_embeddings = encoder(graph, edge_types)
 
+        # Determine per-sample corruption direction and construct queries/candidates
+        if task_name == "tail_prediction":
+            if corrupt_mode == "tail":
+                queries = train_src
+                relations = train_relations
+                candidates = train_dst
+            elif corrupt_mode == "head":
+                queries = train_dst
+                relations = train_relations
+                candidates = train_src
+            else:  # both: choose per-sample randomly (avoids duplicating dataset)
+                mask = torch.rand(train_src.size(0), device=device) < 0.5
+                queries = torch.where(mask, train_src, train_dst)
+                relations = train_relations
+                candidates = torch.where(mask, train_dst, train_src)
+        else:
+            # disease_to_drug / drug_to_disease retain original directional mapping
+            if task_name == "disease_to_drug":
+                queries = train_dst
+                relations = train_relations
+                candidates = train_src
+            elif task_name == "drug_to_disease":
+                queries = train_src
+                relations = train_relations
+                candidates = train_dst
+            else:
+                raise ValueError(f"Unsupported task name: {task_name}")
+
         positive_scores = score_training_batch(
             task_name=task_name,
             decoder=decoder,
             node_embeddings=node_embeddings,
-            queries=train_queries,
-            relations=train_relations,
-            candidates=train_candidates,
+            queries=queries,
+            relations=relations,
+            candidates=candidates,
         )
 
         negative_queries, negative_relations, negative_candidates = negative_sampling(
-            positive_queries=train_queries,
-            positive_relations=train_relations,
-            positive_candidates=train_candidates,
+            positive_queries=queries,
+            positive_relations=relations,
+            positive_candidates=candidates,
             known_positives=known_positives,
             task_name=task_name,
             k=cfg["training"]["neg_k"],
@@ -531,7 +577,7 @@ def main() -> None:
             "config": cfg,
             "task_name": task_name,
             "target_relation": target_relation,
-            "final_epoch": cfg["training"]["epochs"],
+            "final_epoch": max_epochs,
             "best_epoch": best_epoch,
             "best_valid_mrr": best_mrr,
         },

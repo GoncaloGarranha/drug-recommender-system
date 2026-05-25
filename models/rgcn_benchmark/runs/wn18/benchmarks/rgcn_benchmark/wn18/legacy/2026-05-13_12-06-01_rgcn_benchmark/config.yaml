@@ -1,0 +1,44 @@
+seed: 42
+experiment:
+  name: rgcn_benchmark_wn18
+  model_family: R-GCN + DistMult
+  task: generic_link_prediction
+  reference: Schlichtkrull et al. 2018
+model:
+  add_inverse_edges: true
+  regularizer: basis
+data:
+  triples_path: kg_constructor/data/output/benchmarks/wn18/triples.csv
+  processed_dir: models/rgcn/data/processed/wn18
+split:
+  mode: official
+  train_ratio: 0.8
+  val_ratio: 0.1
+  test_ratio: 0.1
+training:
+  epochs: 50
+  max_epochs: 50
+  lr: 0.01
+  weight_decay: 0.01
+  dropout: 0.0
+  emb_dim: 200
+  num_bases: 2
+  num_layers: 1
+  neg_k: 1
+  eval_every: 10
+  hits_k:
+  - 1
+  - 3
+  - 10
+  device: cpu
+  debug: true
+  debug_epochs:
+  - 1
+  - 2
+  - 5
+  - 10
+  - 20
+  max_eval_triples: 500
+runs:
+  out_dir: models/rgcn_schlichtkrull/runs/wn18
+

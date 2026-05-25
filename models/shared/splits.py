@@ -269,14 +269,32 @@ def get_or_create_splits(
         if not (train_triples or valid_triples or test_triples):
             raise ValueError("No official split triples found for target relation: %s" % target_relation)
     else:
-        train_triples, valid_triples, test_triples, non_target_triples = split_target_triples(
-            triples=triples,
-            target_relation=target_relation,
-            seed=seed,
-            train_ratio=train_ratio,
-            val_ratio=val_ratio,
-            test_ratio=test_ratio,
-        )
+        if target_relation is None:
+            # Generic link prediction mode: random split over all triples.
+            if not np.isclose(train_ratio + val_ratio + test_ratio, 1.0):
+                raise ValueError("Split ratios must sum to 1.0.")
+
+            all_triples = list(triples)
+            rng = random.Random(seed)
+            rng.shuffle(all_triples)
+
+            n_total = len(all_triples)
+            n_train = int(n_total * train_ratio)
+            n_val = int(n_total * val_ratio)
+
+            train_triples = all_triples[:n_train]
+            valid_triples = all_triples[n_train:n_train + n_val]
+            test_triples = all_triples[n_train + n_val:]
+            non_target_triples = []
+        else:
+            train_triples, valid_triples, test_triples, non_target_triples = split_target_triples(
+                triples=triples,
+                target_relation=target_relation,
+                seed=seed,
+                train_ratio=train_ratio,
+                val_ratio=val_ratio,
+                test_ratio=test_ratio,
+            )
 
     # Save for future use
     metadata = {

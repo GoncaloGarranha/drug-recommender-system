@@ -176,6 +176,7 @@ def main() -> None:
         candidate_ids=candidate_pool,
         device=device,
         hits_k=tuple(cfg["training"]["hits_k"]),
+        direction="both" if task_name == "tail_prediction" else "tail",
     )
 
     print("-" * 60)

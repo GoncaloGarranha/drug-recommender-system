@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import argparse
 from pathlib import Path
-from typing import Any, Dict, Tuple
+from typing import Any, Dict, List, Tuple
 
 import numpy as np
 import torch
@@ -11,10 +11,10 @@ import torch.nn.functional as F
 from models.shared.config import load_config, save_config
 from models.shared.io import ensure_dir, save_json
 from models.shared.metrics import compute_ranking_metrics
-from models.shared.runs import timestamp
+from models.shared.runs import organize_legacy_runs, resolve_run_dir
 from models.rgcn.src.utils.seed import set_seed
 
-from .data import HEAD, TAIL, build_encoder_graph, known_positives, load_link_prediction_data, triples_to_tensors
+from .data import HEAD, TAIL, build_encoder_graph, graph_num_edges, graph_num_nodes, known_positives, load_link_prediction_data, triples_to_tensors
 from .model import DistMult, SchlichtkrullRGCN
 
 
@@ -26,49 +26,51 @@ def sample_negatives(
     candidate_ids: np.ndarray,
     neg_k: int,
     device: torch.device,
-) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
+) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
+    """Sample negatives following Schlichtkrull et al. (2018).
+
+    For each positive triple, randomly decide whether to corrupt the head
+    or the tail (50/50). Generates neg_k negatives per positive.
+    Known positives are excluded from negative samples (filtered negatives).
+    """
     rng = np.random.default_rng()
-    # We'll return a single negative per positive: either corrupt head or corrupt tail.
-    neg_heads = []
-    neg_rels = []
-    neg_tails = []
+    neg_heads: List[int] = []
+    neg_rels: List[int] = []
+    neg_tails: List[int] = []
 
     for h_raw, r_raw, t_raw in zip(
-        heads.detach().cpu().tolist(), rels.detach().cpu().tolist(), tails.detach().cpu().tolist()
+        heads.detach().cpu().tolist(),
+        rels.detach().cpu().tolist(),
+        tails.detach().cpu().tolist(),
     ):
         h = int(h_raw)
         r = int(r_raw)
         t = int(t_raw)
 
-        corrupt_head = bool(rng.integers(0, 2))
-        if corrupt_head:
-            # corrupt head, keep (r, t)
-            forbidden_heads = set(known.get((HEAD, r, t), set()))
-            forbidden_heads.add(h)
-            candidate = int(rng.choice(candidate_ids))
-            while candidate in forbidden_heads:
+        for _ in range(neg_k):
+            corrupt_head = bool(rng.integers(0, 2))
+            if corrupt_head:
+                forbidden = set(known.get((HEAD, r, t), set()))
+                forbidden.add(h)
                 candidate = int(rng.choice(candidate_ids))
-            neg_heads.append(candidate)
-            neg_rels.append(r)
-            neg_tails.append(t)
-        else:
-            # corrupt tail, keep (h, r)
-            forbidden_tails = set(known.get((TAIL, h, r), set()))
-            forbidden_tails.add(t)
-            candidate = int(rng.choice(candidate_ids))
-            while candidate in forbidden_tails:
+                while candidate in forbidden:
+                    candidate = int(rng.choice(candidate_ids))
+                neg_heads.append(candidate)
+                neg_rels.append(r)
+                neg_tails.append(t)
+            else:
+                forbidden = set(known.get((TAIL, h, r), set()))
+                forbidden.add(t)
                 candidate = int(rng.choice(candidate_ids))
-            neg_heads.append(h)
-            neg_rels.append(r)
-            neg_tails.append(candidate)
+                while candidate in forbidden:
+                    candidate = int(rng.choice(candidate_ids))
+                neg_heads.append(h)
+                neg_rels.append(r)
+                neg_tails.append(candidate)
 
-    # Return in legacy 6-tensor shape: (neg_tail... , neg_head...) where second half is empty
     return (
-        torch.tensor([], dtype=torch.long, device=device),
-        torch.tensor([], dtype=torch.long, device=device),
-        torch.tensor([], dtype=torch.long, device=device),
         torch.tensor(neg_heads, dtype=torch.long, device=device),
-        torch.tensor(neg_rels, dtype=torch.long, device=device),
+        torch.tensor(neg_rels,  dtype=torch.long, device=device),
         torch.tensor(neg_tails, dtype=torch.long, device=device),
     )
 
@@ -109,8 +111,8 @@ def debug_static_data(
     print(f"[DEBUG] num_nodes: {num_nodes}")
     print(f"[DEBUG] decoder relations: {num_relations}")
     print(f"[DEBUG] encoder relations: {encoder_relations}")
-    print(f"[DEBUG] graph nodes: {graph.num_nodes()}")
-    print(f"[DEBUG] graph edges: {graph.num_edges()}")
+    print(f"[DEBUG] graph nodes: {graph_num_nodes(graph)}")
+    print(f"[DEBUG] graph edges: {graph_num_edges(graph)}")
 
     print(
         f"[DEBUG] train rel min/max: "
@@ -199,9 +201,6 @@ def debug_scores_and_gradients(
 
 def debug_negative_samples(
     epoch: int,
-    neg_th: torch.Tensor,
-    neg_tr: torch.Tensor,
-    neg_tt: torch.Tensor,
     neg_hh: torch.Tensor,
     neg_hr: torch.Tensor,
     neg_ht: torch.Tensor,
@@ -210,29 +209,21 @@ def debug_negative_samples(
 ) -> None:
     """Validate negative samples."""
     print(f"\n============= DEBUG NEGATIVE SAMPLES EPOCH {epoch} =============")
+    print(f"[DEBUG] neg triples: {len(neg_hh)}")
 
-    print(f"[DEBUG] neg_tail triples: {len(neg_th)}")
-    print(f"[DEBUG] neg_head triples: {len(neg_hh)}")
-
-    if len(neg_tr) > 0:
-        print(f"[DEBUG] neg_tail rel min/max: {neg_tr.min().item()} / {neg_tr.max().item()}")
     if len(neg_hr) > 0:
-        print(f"[DEBUG] neg_head rel min/max: {neg_hr.min().item()} / {neg_hr.max().item()}")
-
-    if len(neg_tt) > 0:
-        print(f"[DEBUG] neg_tail entity min/max: {neg_tt.min().item()} / {neg_tt.max().item()}")
+        print(f"[DEBUG] neg rel min/max: {neg_hr.min().item()} / {neg_hr.max().item()}")
     if len(neg_hh) > 0:
-        print(f"[DEBUG] neg_head entity min/max: {neg_hh.min().item()} / {neg_hh.max().item()}")
+        print(f"[DEBUG] neg head entity min/max: {neg_hh.min().item()} / {neg_hh.max().item()}")
+    if len(neg_ht) > 0:
+        print(f"[DEBUG] neg tail entity min/max: {neg_ht.min().item()} / {neg_ht.max().item()}")
 
-    if len(neg_tr) > 0 and neg_tr.max().item() >= num_relations:
-        print("[DEBUG][ERROR] Negative tail relation id exceeds decoder relation count.")
     if len(neg_hr) > 0 and neg_hr.max().item() >= num_relations:
-        print("[DEBUG][ERROR] Negative head relation id exceeds decoder relation count.")
-
-    if len(neg_tt) > 0 and neg_tt.max().item() >= num_nodes:
-        print("[DEBUG][ERROR] Negative tail entity id exceeds number of nodes.")
+        print("[DEBUG][ERROR] Negative relation id exceeds decoder relation count.")
     if len(neg_hh) > 0 and neg_hh.max().item() >= num_nodes:
         print("[DEBUG][ERROR] Negative head entity id exceeds number of nodes.")
+    if len(neg_ht) > 0 and neg_ht.max().item() >= num_nodes:
+        print("[DEBUG][ERROR] Negative tail entity id exceeds number of nodes.")
 
     print("===============================================================\n")
 
@@ -342,7 +333,8 @@ def main() -> None:
         weight_decay=float(training_cfg["weight_decay"]),
     )
 
-    run_dir = Path(cfg["runs"]["out_dir"]) / f"{timestamp()}_schlichtkrull_rgcn"
+    organize_legacy_runs(cfg["runs"]["out_dir"], default_model_name="rgcn_benchmark", seed=seed)
+    run_dir = resolve_run_dir(cfg["runs"]["out_dir"], cfg, model_name="rgcn_benchmark", seed=seed)
     checkpoints_dir = run_dir / "checkpoints"
     ensure_dir(run_dir)
     ensure_dir(checkpoints_dir)
@@ -357,7 +349,7 @@ def main() -> None:
             "num_relations_decoder": num_relations,
             "num_relations_encoder": encoder_relations,
             "add_inverse_edges": add_inverse,
-            "graph_edges": int(graph.num_edges()),
+            "graph_edges": graph_num_edges(graph),
         },
     )
 
@@ -393,26 +385,17 @@ def main() -> None:
         decoder.train()
         node_emb = encoder(graph, edge_types)
         positive_scores = decoder(node_emb, train_heads, train_rels, train_tails)
-        neg_th, neg_tr, neg_tt, neg_hh, neg_hr, neg_ht = sample_negatives(
+        neg_hh, neg_hr, neg_ht = sample_negatives(
             train_heads, train_rels, train_tails, known, candidate_array, neg_k, device
         )
-        negative_tail = decoder(node_emb, neg_th, neg_tr, neg_tt)
-        negative_head = decoder(node_emb, neg_hh, neg_hr, neg_ht)
-        # Concatenate available negatives (we expect only one side populated)
-        if negative_tail.numel() > 0 and negative_head.numel() > 0:
-            negative_scores = torch.cat([negative_tail, negative_head])
-        elif negative_tail.numel() > 0:
-            negative_scores = negative_tail
-        else:
-            negative_scores = negative_head
+        negative_scores = decoder(node_emb, neg_hh, neg_hr, neg_ht)
 
-        # Unified BCE: concatenate positives and negatives and compute single BCE for stability.
-        if negative_scores.numel() > 0:
-            scores = torch.cat([positive_scores, negative_scores])
-            labels = torch.cat([torch.ones_like(positive_scores), torch.zeros_like(negative_scores)])
-            loss = F.binary_cross_entropy_with_logits(scores, labels)
-        else:
-            loss = F.binary_cross_entropy_with_logits(positive_scores, torch.ones_like(positive_scores))
+        scores = torch.cat([positive_scores, negative_scores])
+        labels = torch.cat([
+            torch.ones_like(positive_scores),
+            torch.zeros_like(negative_scores),
+        ])
+        loss = F.binary_cross_entropy_with_logits(scores, labels)
 
         optimizer.zero_grad()
         loss.backward()
@@ -420,9 +403,6 @@ def main() -> None:
         if debug and epoch in debug_epochs:
             debug_negative_samples(
                 epoch=epoch,
-                neg_th=neg_th,
-                neg_tr=neg_tr,
-                neg_tt=neg_tt,
                 neg_hh=neg_hh,
                 neg_hr=neg_hr,
                 neg_ht=neg_ht,

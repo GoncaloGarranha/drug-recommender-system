@@ -21,7 +21,7 @@ import torch.nn.functional as F
 from models.shared.config import load_config, save_config
 from models.shared.io import ensure_dir, save_json
 from models.shared.metrics import compute_ranking_metrics
-from models.shared.runs import timestamp
+from models.shared.runs import organize_legacy_runs, resolve_run_dir
 from models.rgcn.src.utils.seed import set_seed
 
 from .data import HEAD, TAIL, known_positives, load_link_prediction_data, triples_to_tensors
@@ -211,7 +211,8 @@ def main() -> None:
         weight_decay=float(training_cfg.get("weight_decay", 0.0)),
     )
 
-    run_dir = Path(cfg["runs"]["out_dir"]) / f"{timestamp()}_distmult"
+    organize_legacy_runs(cfg["runs"]["out_dir"], default_model_name="distmult", seed=seed)
+    run_dir = resolve_run_dir(cfg["runs"]["out_dir"], cfg, model_name="distmult", seed=seed)
     checkpoints_dir = run_dir / "checkpoints"
     ensure_dir(run_dir)
     ensure_dir(checkpoints_dir)

@@ -1,0 +1,36 @@
+seed: 42
+experiment:
+  name: rgcn_benchmark_kg_constructor
+  model_family: R-GCN + DistMult
+  task: generic_link_prediction
+model:
+  add_inverse_edges: true
+  regularizer: basis
+data:
+  processed_dir: models/rgcn/data/processed/kg_constructor
+split:
+  mode: official
+  train_ratio: 0.8
+  val_ratio: 0.1
+  test_ratio: 0.1
+training:
+  epochs: 10
+  max_epochs: 10
+  lr: 0.01
+  weight_decay: 0.0
+  dropout: 0.0
+  emb_dim: 200
+  num_bases: 2
+  num_layers: 1
+  neg_k: 1
+  eval_every: 2
+  hits_k:
+  - 1
+  - 3
+  - 10
+  device: cpu
+  debug: false
+  max_eval_triples: 500
+runs:
+  out_dir: models/rgcn_schlichtkrull/runs/kg_constructor
+

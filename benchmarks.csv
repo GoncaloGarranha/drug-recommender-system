@@ -15,3 +15,4 @@ timestamp,dataset,model_name,hits@1,hits@3,hits@10,mrr,notes
 2026-05-11T17:11:50.644814,wn18rr,R-GCN (tail_prediction),0.050734,0.099553,0.189215,0.095995,Run: 2026-05-11_16-01-05_tail_prediction | Split: test
 2026-05-12T10:14:37.487843,fb15k237,R-GCN (tail_prediction),0.112235,0.208150,0.314131,0.178778,Run: 2026-05-06_15-16-50_tail_prediction | Split: test
 2026-05-17T13:17:07.009458,fb15k,R-GCN (tail_prediction),0.198270,0.289533,0.403971,0.269111,Run: 2026-05-15_18-31-30_tail_prediction | Split: test
+2026-05-20T12:20:04.689327,disease_to_drug_full,R-GCN (disease_to_drug),0.547094,0.635271,0.717435,0.605942,Run: seed_42 | Split: test

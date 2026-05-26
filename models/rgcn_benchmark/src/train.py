@@ -22,57 +22,141 @@ def sample_negatives(
     heads: torch.Tensor,
     rels: torch.Tensor,
     tails: torch.Tensor,
-    known: Dict[Tuple[Any, ...], set[int]],
-    candidate_ids: np.ndarray,
     neg_k: int,
     device: torch.device,
+    num_nodes: int,
 ) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
-    """Sample negatives following Schlichtkrull et al. (2018).
+    """Sample negatives without filtering (matching Schlichtkrull et al.).
 
     For each positive triple, randomly decide whether to corrupt the head
-    or the tail (50/50). Generates neg_k negatives per positive.
-    Known positives are excluded from negative samples (filtered negatives).
+    or the tail (50/50). Generates `neg_k` negatives per positive.
+    This implementation intentionally does NOT filter known positives.
     """
-    rng = np.random.default_rng()
-    neg_heads: List[int] = []
-    neg_rels: List[int] = []
-    neg_tails: List[int] = []
+    batch_size = heads.numel()
+    # repeat positives neg_k times
+    pos_heads = heads.repeat(neg_k)
+    pos_rels = rels.repeat(neg_k)
+    pos_tails = tails.repeat(neg_k)
 
-    for h_raw, r_raw, t_raw in zip(
-        heads.detach().cpu().tolist(),
-        rels.detach().cpu().tolist(),
-        tails.detach().cpu().tolist(),
-    ):
-        h = int(h_raw)
-        r = int(r_raw)
-        t = int(t_raw)
+    corrupt_head = torch.randint(0, 2, (batch_size * neg_k,), device=device).bool()
+    # Use a reasonable upper bound for entity ids; prefer global node count if available
+    # Fall back to max id from provided tensors
+    upper = max(1, int(num_nodes))
+    random_entities = torch.randint(0, upper, (batch_size * neg_k,), device=device)
 
-        for _ in range(neg_k):
-            corrupt_head = bool(rng.integers(0, 2))
-            if corrupt_head:
-                forbidden = set(known.get((HEAD, r, t), set()))
-                forbidden.add(h)
-                candidate = int(rng.choice(candidate_ids))
-                while candidate in forbidden:
-                    candidate = int(rng.choice(candidate_ids))
-                neg_heads.append(candidate)
-                neg_rels.append(r)
-                neg_tails.append(t)
-            else:
-                forbidden = set(known.get((TAIL, h, r), set()))
-                forbidden.add(t)
-                candidate = int(rng.choice(candidate_ids))
-                while candidate in forbidden:
-                    candidate = int(rng.choice(candidate_ids))
-                neg_heads.append(h)
-                neg_rels.append(r)
-                neg_tails.append(candidate)
+    neg_heads = pos_heads.clone()
+    neg_tails = pos_tails.clone()
 
-    return (
-        torch.tensor(neg_heads, dtype=torch.long, device=device),
-        torch.tensor(neg_rels,  dtype=torch.long, device=device),
-        torch.tensor(neg_tails, dtype=torch.long, device=device),
-    )
+    neg_heads[~corrupt_head] = random_entities[~corrupt_head]
+    neg_tails[corrupt_head] = random_entities[corrupt_head]
+
+    return neg_heads, pos_rels, neg_tails
+
+
+def build_edge_neighborhood_index(
+    triples: list[dict[str, str]],
+    num_nodes: int,
+) -> tuple[list[np.ndarray], np.ndarray]:
+    """Build adjacency index used by sample_edge_neighborhood."""
+    adjacency: list[list[tuple[int, int]]] = [[] for _ in range(num_nodes)]
+    for edge_id, row in enumerate(triples):
+        src = int(row["src_id"])
+        dst = int(row["dst_id"])
+        adjacency[src].append((edge_id, dst))
+        adjacency[dst].append((edge_id, src))
+
+    adj_list = [
+        np.asarray(entries, dtype=np.int64) if entries else np.empty((0, 2), dtype=np.int64)
+        for entries in adjacency
+    ]
+    degrees = np.asarray([arr.shape[0] for arr in adj_list], dtype=np.int64)
+    return adj_list, degrees
+
+
+def sample_edge_neighborhood(
+    adj_list: list[np.ndarray],
+    degrees: np.ndarray,
+    sample_size: int,
+    num_edges: int,
+    rng: np.random.Generator,
+) -> np.ndarray:
+    """Sample edge ids with neighborhood bias, following Schlichtkrull et al."""
+    sample_size = min(sample_size, num_edges)
+    if sample_size <= 0:
+        return np.empty((0,), dtype=np.int64)
+
+    edges = np.zeros((sample_size,), dtype=np.int64)
+    sample_counts = degrees.astype(np.int64).copy()
+    picked = np.zeros((num_edges,), dtype=bool)
+    seen = np.zeros((len(adj_list),), dtype=bool)
+
+    for i in range(sample_size):
+        weights = sample_counts * seen.astype(np.int64)
+        if np.sum(weights) == 0:
+            weights = np.where(sample_counts > 0, 1, 0)
+
+        if np.sum(weights) == 0:
+            remaining = np.where(~picked)[0]
+            if remaining.size == 0:
+                return edges[:i]
+            edge_number = int(rng.choice(remaining))
+            edges[i] = edge_number
+            picked[edge_number] = True
+            continue
+
+        probabilities = weights / np.sum(weights)
+        chosen_vertex = int(rng.choice(np.arange(degrees.shape[0]), p=probabilities))
+        chosen_adj_list = adj_list[chosen_vertex]
+        seen[chosen_vertex] = True
+
+        if chosen_adj_list.shape[0] == 0:
+            remaining = np.where(~picked)[0]
+            if remaining.size == 0:
+                return edges[:i]
+            edge_number = int(rng.choice(remaining))
+            edges[i] = edge_number
+            picked[edge_number] = True
+            continue
+
+        candidate_mask = ~picked[chosen_adj_list[:, 0]]
+        available = chosen_adj_list[candidate_mask]
+        if available.shape[0] == 0:
+            remaining = np.where(~picked)[0]
+            if remaining.size == 0:
+                return edges[:i]
+            edge_number = int(rng.choice(remaining))
+            edges[i] = edge_number
+            picked[edge_number] = True
+            continue
+
+        chosen_edge = available[int(rng.integers(0, available.shape[0]))]
+        edge_number = int(chosen_edge[0])
+        other_vertex = int(chosen_edge[1])
+
+        edges[i] = edge_number
+        picked[edge_number] = True
+        sample_counts[chosen_vertex] = max(0, sample_counts[chosen_vertex] - 1)
+        sample_counts[other_vertex] = max(0, sample_counts[other_vertex] - 1)
+        seen[other_vertex] = True
+
+    return edges
+
+
+def sample_batch_indices(
+    total_train: int,
+    batch_size: int,
+    device: torch.device,
+    sampler_mode: str,
+    rng: np.random.Generator,
+    adj_list: list[np.ndarray] | None,
+    degrees: np.ndarray | None,
+) -> torch.Tensor:
+    """Sample training edge ids using neighborhood or uniform strategy."""
+    bsize = min(batch_size, total_train)
+    if sampler_mode == "neighborhood" and adj_list is not None and degrees is not None:
+        ids = sample_edge_neighborhood(adj_list, degrees, bsize, total_train, rng)
+        return torch.tensor(ids, dtype=torch.long, device=device)
+    return torch.randperm(total_train, device=device)[:bsize]
 
 
 def tensor_stats(name: str, tensor: torch.Tensor) -> None:
@@ -105,6 +189,7 @@ def debug_static_data(
     num_nodes: int,
     num_relations: int,
     encoder_relations: int,
+    edge_norm: torch.Tensor | None = None,
 ) -> None:
     """Print static checks before training starts."""
     print("\n================ DEBUG STATIC DATA ================")
@@ -234,6 +319,7 @@ def filtered_eval(
     decoder: DistMult,
     graph,
     edge_types: torch.Tensor,
+    edge_norm: torch.Tensor | None,
     triples: list[dict[str, str]],
     known: Dict[Tuple[Any, ...], set[int]],
     candidate_ids: torch.Tensor,
@@ -243,7 +329,7 @@ def filtered_eval(
 ) -> Dict[str, float]:
     encoder.eval()
     decoder.eval()
-    node_emb = encoder(graph, edge_types)
+    node_emb = encoder(graph, edge_types, edge_norm)
     candidate_list = candidate_ids.detach().cpu().tolist()
     all_ranks: list[float] = []
     head_ranks: list[float] = []
@@ -308,7 +394,13 @@ def main() -> None:
     add_inverse = bool(cfg.get("model", {}).get("add_inverse_edges", True))
     encoder_relations = num_relations * 2 if add_inverse else num_relations
 
-    graph, edge_types = build_encoder_graph(train, num_nodes, num_relations, device, add_inverse_edges=add_inverse)
+    eval_graph, eval_edge_types, eval_edge_norm = build_encoder_graph(
+        train,
+        num_nodes,
+        num_relations,
+        device,
+        add_inverse_edges=add_inverse,
+    )
     train_heads, train_rels, train_tails = triples_to_tensors(train, device)
     known = known_positives(train + valid + test)
     candidate_ids = torch.tensor(sorted(entity2id.values()), dtype=torch.long, device=device)
@@ -330,8 +422,11 @@ def main() -> None:
     optimizer = torch.optim.Adam(
         list(encoder.parameters()) + list(decoder.parameters()),
         lr=float(training_cfg["lr"]),
-        weight_decay=float(training_cfg["weight_decay"]),
+        weight_decay=0.0,
     )
+
+    # decoder L2 regularization applied manually to embeddings (matches paper)
+    decoder_l2 = float(training_cfg.get("decoder_l2", 0.01))
 
     organize_legacy_runs(cfg["runs"]["out_dir"], default_model_name="rgcn_benchmark", seed=seed)
     run_dir = resolve_run_dir(cfg["runs"]["out_dir"], cfg, model_name="rgcn_benchmark", seed=seed)
@@ -349,13 +444,21 @@ def main() -> None:
             "num_relations_decoder": num_relations,
             "num_relations_encoder": encoder_relations,
             "add_inverse_edges": add_inverse,
-            "graph_edges": graph_num_edges(graph),
+            "graph_edges": graph_num_edges(eval_graph),
         },
     )
 
     max_epochs = int(training_cfg.get("max_epochs", training_cfg.get("epochs", 100)))
+    max_iterations = int(training_cfg.get("max_iterations", 0))
+    burnin_iterations = int(training_cfg.get("burnin_iterations", 0))
     eval_every = int(training_cfg.get("eval_every", 10))
     neg_k = int(training_cfg.get("neg_k", 1))
+    graph_batch_size = int(training_cfg.get("graph_batch_size", 30000))
+    graph_split_size = float(training_cfg.get("graph_split_size", 0.5))
+    grad_clip_norm = float(training_cfg.get("grad_clip_norm", 0.0))
+    graph_sampler = str(training_cfg.get("graph_sampler", "neighborhood")).strip().lower()
+    sampler_rng = np.random.default_rng(seed)
+    neighborhood_adj_list, neighborhood_degrees = build_edge_neighborhood_index(train, num_nodes)
     hits_k = tuple(int(k) for k in training_cfg.get("hits_k", [1, 3, 10]))
     max_eval_triples = training_cfg.get("max_eval_triples")
     max_eval_triples = int(max_eval_triples) if max_eval_triples else None
@@ -373,81 +476,275 @@ def main() -> None:
             train_heads=train_heads,
             train_rels=train_rels,
             train_tails=train_tails,
-            edge_types=edge_types,
-            graph=graph,
+            edge_types=eval_edge_types,
+            graph=eval_graph,
             num_nodes=num_nodes,
             num_relations=num_relations,
             encoder_relations=encoder_relations,
+            edge_norm=eval_edge_norm,
         )
 
-    for epoch in range(1, max_epochs + 1):
-        encoder.train()
-        decoder.train()
-        node_emb = encoder(graph, edge_types)
-        positive_scores = decoder(node_emb, train_heads, train_rels, train_tails)
-        neg_hh, neg_hr, neg_ht = sample_negatives(
-            train_heads, train_rels, train_tails, known, candidate_array, neg_k, device
-        )
-        negative_scores = decoder(node_emb, neg_hh, neg_hr, neg_ht)
+    # Support iterations-based training (preferred to mirror the article).
+    if max_iterations > 0:
+        best_step = -1
+        bad_checks = 0
+        for step in range(1, max_iterations + 1):
+            encoder.train()
+            decoder.train()
 
-        scores = torch.cat([positive_scores, negative_scores])
-        labels = torch.cat([
-            torch.ones_like(positive_scores),
-            torch.zeros_like(negative_scores),
-        ])
-        loss = F.binary_cross_entropy_with_logits(scores, labels)
+            # Sample minibatch
+            total_train = train_heads.numel()
+            perm = sample_batch_indices(
+                total_train=total_train,
+                batch_size=graph_batch_size,
+                device=device,
+                sampler_mode=graph_sampler,
+                rng=sampler_rng,
+                adj_list=neighborhood_adj_list,
+                degrees=neighborhood_degrees,
+            )
+            bsize = int(perm.numel())
 
-        optimizer.zero_grad()
-        loss.backward()
+            batch_heads = train_heads[perm]
+            batch_rels = train_rels[perm]
+            batch_tails = train_tails[perm]
 
-        if debug and epoch in debug_epochs:
-            debug_negative_samples(
-                epoch=epoch,
-                neg_hh=neg_hh,
-                neg_hr=neg_hr,
-                neg_ht=neg_ht,
-                num_relations=num_relations,
-                num_nodes=num_nodes,
+            split_n = max(1, int(graph_split_size * bsize))
+            graph_perm = perm[torch.randperm(bsize, device=device)[:split_n]]
+            graph_rows = [train[i] for i in graph_perm.detach().cpu().tolist()]
+
+            batch_graph, batch_edge_types, batch_edge_norm = build_encoder_graph(
+                graph_rows,
+                num_nodes,
+                num_relations,
+                device,
+                add_inverse_edges=add_inverse,
             )
 
-            debug_scores_and_gradients(
-                epoch=epoch,
-                encoder=encoder,
-                decoder=decoder,
-                node_emb=node_emb,
-                positive_scores=positive_scores,
-                negative_scores=negative_scores,
-            )
+            node_emb = encoder(batch_graph, batch_edge_types, batch_edge_norm)
+            positive_scores = decoder(node_emb, batch_heads, batch_rels, batch_tails)
 
-        optimizer.step()
+            neg_hh, neg_hr, neg_ht = sample_negatives(batch_heads, batch_rels, batch_tails, neg_k, device, num_nodes)
+            negative_scores = decoder(node_emb, neg_hh, neg_hr, neg_ht)
 
-        log_entry: dict[str, float | int | None] = {"epoch": epoch, "loss": float(loss.item()), "valid_mrr": None}
-        if epoch % eval_every == 0 or epoch == max_epochs:
-            metrics = filtered_eval(encoder, decoder, graph, edge_types, valid, known, candidate_ids, hits_k, device, max_eval_triples)
-            log_entry["valid_mrr"] = float(metrics["mrr"])
-            print(
-                f"Epoch {epoch:04d} | "
-                f"Loss: {loss.item():.4f} | "
-                f"Valid MRR: {metrics['mrr']:.4f} | "
-                f"Head MRR: {metrics.get('head_mrr', 0.0):.4f} | "
-                f"Tail MRR: {metrics.get('tail_mrr', 0.0):.4f} | "
-                f"Hits@10: {metrics.get('hits@10', 0.0):.4f}"
+            scores = torch.cat([positive_scores, negative_scores])
+            labels = torch.cat([
+                torch.ones_like(positive_scores),
+                torch.zeros_like(negative_scores),
+            ])
+            loss = F.binary_cross_entropy_with_logits(scores, labels)
+
+            reg = (
+                node_emb[batch_heads].pow(2).mean()
+                + decoder.rel_emb(batch_rels).pow(2).mean()
+                + node_emb[batch_tails].pow(2).mean()
             )
-            if metrics["mrr"] > best_mrr:
-                best_mrr = float(metrics["mrr"])
-                best_epoch = epoch
-                torch.save(
-                    {
-                        "encoder": encoder.state_dict(),
-                        "decoder": decoder.state_dict(),
-                        "config": cfg,
-                        "best_epoch": best_epoch,
-                        "best_valid_mrr": best_mrr,
-                    },
-                    checkpoints_dir / "best.pt",
+            loss = loss + decoder_l2 * reg
+
+            optimizer.zero_grad()
+            loss.backward()
+
+            if grad_clip_norm and grad_clip_norm > 0.0:
+                torch.nn.utils.clip_grad_norm_(list(encoder.parameters()) + list(decoder.parameters()), grad_clip_norm)
+
+            if debug and step in debug_epochs:
+                debug_negative_samples(
+                    epoch=step,
+                    neg_hh=neg_hh,
+                    neg_hr=neg_hr,
+                    neg_ht=neg_ht,
+                    num_relations=num_relations,
+                    num_nodes=num_nodes,
                 )
-                save_json(run_dir / "best_metrics.json", {"best_epoch": best_epoch, "best_valid_mrr": best_mrr, **metrics})
-        train_log.append(log_entry)
+
+                debug_scores_and_gradients(
+                    epoch=step,
+                    encoder=encoder,
+                    decoder=decoder,
+                    node_emb=node_emb,
+                    positive_scores=positive_scores,
+                    negative_scores=negative_scores,
+                )
+
+            optimizer.step()
+
+            log_entry: dict[str, float | int | None] = {"step": step, "loss": float(loss.item()), "valid_mrr": None}
+            if (step % eval_every == 0 and step >= burnin_iterations) or step == max_iterations:
+                metrics = filtered_eval(
+                    encoder,
+                    decoder,
+                    eval_graph,
+                    eval_edge_types,
+                    eval_edge_norm,
+                    valid,
+                    known,
+                    candidate_ids,
+                    hits_k,
+                    device,
+                    max_eval_triples,
+                )
+                log_entry["valid_mrr"] = float(metrics["mrr"])
+                print(
+                    f"Step {step:06d} | "
+                    f"Loss: {loss.item():.4f} | "
+                    f"Valid MRR: {metrics['mrr']:.4f} | "
+                    f"Head MRR: {metrics.get('head_mrr', 0.0):.4f} | "
+                    f"Tail MRR: {metrics.get('tail_mrr', 0.0):.4f} | "
+                    f"Hits@10: {metrics.get('hits@10', 0.0):.4f}"
+                )
+                if metrics["mrr"] > best_mrr:
+                    best_mrr = float(metrics["mrr"])
+                    best_step = step
+                    bad_checks = 0
+                    torch.save(
+                        {
+                            "encoder": encoder.state_dict(),
+                            "decoder": decoder.state_dict(),
+                            "config": cfg,
+                            "best_step": best_step,
+                            "best_valid_mrr": best_mrr,
+                        },
+                        checkpoints_dir / "best.pt",
+                    )
+                    save_json(run_dir / "best_metrics.json", {"best_step": best_step, "best_valid_mrr": best_mrr, **metrics})
+                elif step >= burnin_iterations:
+                    bad_checks += 1
+                    if bad_checks >= 1:
+                        print(f"Early stopping at step {step:06d} after burn-in without validation improvement.")
+                        train_log.append(log_entry)
+                        break
+            train_log.append(log_entry)
+        best_epoch = best_step
+    else:
+        bad_checks = 0
+        for epoch in range(1, max_epochs + 1):
+            encoder.train()
+            decoder.train()
+
+            # Sample a minibatch of training triples (graph_batch_size) and a
+            # smaller subset of those triples to build the encoder graph
+            total_train = train_heads.numel()
+            perm = sample_batch_indices(
+                total_train=total_train,
+                batch_size=graph_batch_size,
+                device=device,
+                sampler_mode=graph_sampler,
+                rng=sampler_rng,
+                adj_list=neighborhood_adj_list,
+                degrees=neighborhood_degrees,
+            )
+            bsize = int(perm.numel())
+
+            batch_heads = train_heads[perm]
+            batch_rels = train_rels[perm]
+            batch_tails = train_tails[perm]
+
+            split_n = max(1, int(graph_split_size * bsize))
+            graph_perm = perm[torch.randperm(bsize, device=device)[:split_n]]
+            graph_rows = [train[i] for i in graph_perm.detach().cpu().tolist()]
+
+            batch_graph, batch_edge_types, batch_edge_norm = build_encoder_graph(
+                graph_rows,
+                num_nodes,
+                num_relations,
+                device,
+                add_inverse_edges=add_inverse,
+            )
+
+            node_emb = encoder(batch_graph, batch_edge_types, batch_edge_norm)
+            positive_scores = decoder(node_emb, batch_heads, batch_rels, batch_tails)
+
+            neg_hh, neg_hr, neg_ht = sample_negatives(batch_heads, batch_rels, batch_tails, neg_k, device, num_nodes)
+            negative_scores = decoder(node_emb, neg_hh, neg_hr, neg_ht)
+
+            scores = torch.cat([positive_scores, negative_scores])
+            labels = torch.cat([
+                torch.ones_like(positive_scores),
+                torch.zeros_like(negative_scores),
+            ])
+            loss = F.binary_cross_entropy_with_logits(scores, labels)
+
+            # manual decoder L2 regularization over embeddings used in the batch
+            reg = (
+                node_emb[batch_heads].pow(2).mean()
+                + decoder.rel_emb(batch_rels).pow(2).mean()
+                + node_emb[batch_tails].pow(2).mean()
+            )
+            loss = loss + decoder_l2 * reg
+
+            optimizer.zero_grad()
+            loss.backward()
+
+            if grad_clip_norm and grad_clip_norm > 0.0:
+                torch.nn.utils.clip_grad_norm_(list(encoder.parameters()) + list(decoder.parameters()), grad_clip_norm)
+
+            if debug and epoch in debug_epochs:
+                debug_negative_samples(
+                    epoch=epoch,
+                    neg_hh=neg_hh,
+                    neg_hr=neg_hr,
+                    neg_ht=neg_ht,
+                    num_relations=num_relations,
+                    num_nodes=num_nodes,
+                )
+
+                debug_scores_and_gradients(
+                    epoch=epoch,
+                    encoder=encoder,
+                    decoder=decoder,
+                    node_emb=node_emb,
+                    positive_scores=positive_scores,
+                    negative_scores=negative_scores,
+                )
+
+            optimizer.step()
+
+            log_entry: dict[str, float | int | None] = {"epoch": epoch, "loss": float(loss.item()), "valid_mrr": None}
+            if epoch % eval_every == 0 or epoch == max_epochs:
+                metrics = filtered_eval(
+                    encoder,
+                    decoder,
+                    eval_graph,
+                    eval_edge_types,
+                    eval_edge_norm,
+                    valid,
+                    known,
+                    candidate_ids,
+                    hits_k,
+                    device,
+                    max_eval_triples,
+                )
+                log_entry["valid_mrr"] = float(metrics["mrr"])
+                print(
+                    f"Epoch {epoch:04d} | "
+                    f"Loss: {loss.item():.4f} | "
+                    f"Valid MRR: {metrics['mrr']:.4f} | "
+                    f"Head MRR: {metrics.get('head_mrr', 0.0):.4f} | "
+                    f"Tail MRR: {metrics.get('tail_mrr', 0.0):.4f} | "
+                    f"Hits@10: {metrics.get('hits@10', 0.0):.4f}"
+                )
+                if metrics["mrr"] > best_mrr:
+                    best_mrr = float(metrics["mrr"])
+                    best_epoch = epoch
+                    bad_checks = 0
+                    torch.save(
+                        {
+                            "encoder": encoder.state_dict(),
+                            "decoder": decoder.state_dict(),
+                            "config": cfg,
+                            "best_epoch": best_epoch,
+                            "best_valid_mrr": best_mrr,
+                        },
+                        checkpoints_dir / "best.pt",
+                    )
+                    save_json(run_dir / "best_metrics.json", {"best_epoch": best_epoch, "best_valid_mrr": best_mrr, **metrics})
+                elif epoch >= burnin_iterations:
+                    bad_checks += 1
+                    if bad_checks >= 1:
+                        print(f"Early stopping at epoch {epoch:04d} after burn-in without validation improvement.")
+                        train_log.append(log_entry)
+                        break
+            train_log.append(log_entry)
 
     torch.save(
         {"encoder": encoder.state_dict(), "decoder": decoder.state_dict(), "config": cfg, "best_epoch": best_epoch},

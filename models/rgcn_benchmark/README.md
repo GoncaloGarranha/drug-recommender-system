@@ -30,8 +30,8 @@ This is a PyTorch/DGL reimplementation inside the project pipeline, not a direct
 |---|---|---|---|
 | WN18 | `models/rgcn_benchmark/configs/wn18.yaml` | `models/rgcn/data/processed/wn18` | `models/rgcn_benchmark/runs/wn18` |
 | WN18RR | `models/rgcn_benchmark/configs/wn18rr.yaml` | `models/rgcn/data/processed/wn18rr` | `models/rgcn_benchmark/runs/wn18rr` |
-| FB15k | `models/rgcn_schlichtkrull/configs/fb15k.yaml` | `models/rgcn/data/processed/fb15k` | `models/rgcn_schlichtkrull/runs/fb15k` |
-| FB15k-237 | `models/rgcn_schlichtkrull/configs/fb15k237.yaml` | `models/rgcn/data/processed/fb15k237` | `models/rgcn_schlichtkrull/runs/fb15k237` |
+| FB15k | `models/rgcn_benchmark/configs/fb15k.yaml` | `models/rgcn/data/processed/fb15k` | `models/rgcn_benchmark/runs/fb15k` |
+| FB15k-237 | `models/rgcn_benchmark/configs/fb15k237.yaml` | `models/rgcn/data/processed/fb15k237` | `models/rgcn_benchmark/runs/fb15k237` |
 
 ## Workflow
 
@@ -50,14 +50,18 @@ python -m models.rgcn.src.00_prepare_graph --config models/rgcn_schlichtkrull/co
 Train the standalone Schlichtkrull-style model:
 
 ```bash
-python -m models.rgcn_schlichtkrull.src.train --config models/rgcn_schlichtkrull/configs/wn18rr.yaml
+python -m models.rgcn_benchmark.src.train --config models/rgcn_benchmark/configs/wn18rr.yaml
 ```
 
 Evaluate the best checkpoint:
 
 ```bash
-python -m models.rgcn_schlichtkrull.src.evaluate --runs_dir models/rgcn_schlichtkrull/runs/wn18rr --split test
+python -m models.rgcn_benchmark.src.evaluate --runs_dir models/rgcn_benchmark/runs/wn18rr --split test
 ```
+
+## Colab notebook
+
+If you want a GPU-friendly walkthrough, open [notebooks/rgcn_benchmark_colab.ipynb](../../notebooks/rgcn_benchmark_colab.ipynb). It includes Colab setup, Drive mount, dependency installation, train/evaluate commands, and quick smoke-test cells.
 
 ## Notes
 

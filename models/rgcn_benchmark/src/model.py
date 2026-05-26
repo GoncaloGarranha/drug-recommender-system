@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import math
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -20,35 +22,53 @@ class SchlichtkrullRGCN(nn.Module):
         regularizer: str = "basis",
     ) -> None:
         super().__init__()
+        self.num_nodes = num_nodes
+        self.h_dim = h_dim
+        self.dropout_p = dropout
         self.emb = nn.Embedding(num_nodes, h_dim)
         self.layers = nn.ModuleList()
-        bases = min(num_bases, num_rels) if num_bases > 0 else None
+        self.self_loop_layers = nn.ModuleList()
+        # For basis decomposition, capping by num_rels is common.
+        if num_bases > 0:
+            bases = min(num_bases, num_rels)
+        else:
+            bases = None
 
         for _ in range(num_layers):
-            self.layers.append(
-                RelGraphConv(
-                    in_feat=h_dim,
-                    out_feat=h_dim,
-                    num_rels=num_rels,
-                    regularizer=regularizer,
-                    num_bases=bases,
-                    self_loop=True,
-                    dropout=dropout,
-                )
+            layer = RelGraphConv(
+                in_feat=h_dim,
+                out_feat=h_dim,
+                num_rels=num_rels,
+                regularizer=regularizer,
+                num_bases=bases,
+                self_loop=True,
+                dropout=0.0,
             )
-        self.dropout = nn.Dropout(dropout)
+            self.layers.append(layer)
+            self.self_loop_layers.append(nn.Linear(h_dim, h_dim, bias=False))
         self.reset_parameters()
 
     def reset_parameters(self) -> None:
-        nn.init.uniform_(self.emb.weight, -1.0, 1.0)
+        std = 3.0 / math.sqrt(self.num_nodes + self.h_dim)
+        nn.init.normal_(self.emb.weight, mean=0.0, std=std)
+        for layer in self.self_loop_layers:
+            nn.init.xavier_uniform_(layer.weight)
 
-    def forward(self, graph, edge_types: torch.Tensor) -> torch.Tensor:
-        h = self.emb.weight
+    def forward(self, graph, edge_types: torch.Tensor, edge_norm: torch.Tensor | None = None) -> torch.Tensor:
+        h = F.relu(self.emb.weight)
         for layer_idx, layer in enumerate(self.layers):
-            h = layer(graph, h, edge_types)
+            if edge_norm is not None:
+                if edge_norm.dim() == 1:
+                    edge_norm = edge_norm.unsqueeze(1)
+                message_h = layer(graph, h, edge_types, edge_norm)
+            else:
+                message_h = layer(graph, h, edge_types)
+
+            self_loop_h = self.self_loop_layers[layer_idx](h)
+            self_loop_h = F.dropout(self_loop_h, p=self.dropout_p, training=self.training)
+            h = message_h + self_loop_h
             if layer_idx < len(self.layers) - 1:
                 h = F.relu(h)
-                h = self.dropout(h)
         return h
 
 
@@ -61,7 +81,7 @@ class DistMult(nn.Module):
         self.reset_parameters()
 
     def reset_parameters(self) -> None:
-        nn.init.uniform_(self.rel_emb.weight, -1.0, 1.0)
+        nn.init.normal_(self.rel_emb.weight, mean=0.0, std=1.0)
 
     def score(self, head: torch.Tensor, rel: torch.Tensor, tail: torch.Tensor) -> torch.Tensor:
         return torch.sum(head * rel * tail, dim=-1)

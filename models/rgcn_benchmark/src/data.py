@@ -71,11 +71,26 @@ def build_encoder_graph(
     edge_types = torch.tensor(rel_ids, dtype=torch.long, device=device)
 
     if _BACKEND == "dgl":
-        graph = dgl.graph((src_ids, dst_ids), num_nodes=num_nodes)
-        return graph.to(device), edge_types
+        graph = dgl.graph((src_ids, dst_ids), num_nodes=num_nodes).to(device)
+
+        # Compute edge normalization by destination node degree to mimic
+        # tf.sparse_softmax-style normalization used in the reference.
+        dst = torch.tensor(dst_ids, dtype=torch.long, device=device)
+        deg = graph.in_degrees().float().clamp(min=1).to(device)
+        edge_norm = (1.0 / deg[dst]).unsqueeze(1)
+
+        return graph, edge_types, edge_norm
     else:  # pyg
         edge_index = torch.tensor([src_ids, dst_ids], dtype=torch.long, device=device)
-        return edge_index, edge_types
+        # For PyG, we can approximate edge_norm similarly using dst indices
+        dst = torch.tensor(dst_ids, dtype=torch.long, device=device)
+        # compute degree per node
+        deg = torch.zeros(num_nodes, dtype=torch.float, device=device)
+        for d in dst:
+            deg[d] += 1.0
+        deg = deg.clamp(min=1.0)
+        edge_norm = (1.0 / deg[dst]).unsqueeze(1)
+        return edge_index, edge_types, edge_norm
 
 def graph_num_edges(graph) -> int:
     """Return number of edges regardless of backend."""

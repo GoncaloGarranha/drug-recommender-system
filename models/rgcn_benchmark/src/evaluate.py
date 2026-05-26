@@ -43,7 +43,7 @@ def main() -> None:
     num_relations = len(rel2id)
     add_inverse = bool(cfg.get("model", {}).get("add_inverse_edges", True))
     encoder_relations = num_relations * 2 if add_inverse else num_relations
-    graph, edge_types = build_encoder_graph(train, num_nodes, num_relations, device, add_inverse_edges=add_inverse)
+    graph, edge_types, edge_norm = build_encoder_graph(train, num_nodes, num_relations, device, add_inverse_edges=add_inverse)
     candidate_ids = torch.tensor(sorted(entity2id.values()), dtype=torch.long, device=device)
     known = known_positives(train + valid + test)
 
@@ -62,7 +62,7 @@ def main() -> None:
     decoder.load_state_dict(checkpoint["decoder"])
 
     hits_k = tuple(int(k) for k in training_cfg.get("hits_k", [1, 3, 10]))
-    results = filtered_eval(encoder, decoder, graph, edge_types, eval_triples, known, candidate_ids, hits_k, device)
+    results = filtered_eval(encoder, decoder, graph, edge_types, edge_norm, eval_triples, known, candidate_ids, hits_k, device)
     for key, value in results.items():
         print(f"{key}: {value:.6f}")
     output_path = run_dir / f"metrics_{args.split}.json"

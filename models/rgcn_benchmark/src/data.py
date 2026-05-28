@@ -84,13 +84,45 @@ def build_encoder_graph(
         edge_index = torch.tensor([src_ids, dst_ids], dtype=torch.long, device=device)
         # For PyG, we can approximate edge_norm similarly using dst indices
         dst = torch.tensor(dst_ids, dtype=torch.long, device=device)
-        # compute degree per node
-        deg = torch.zeros(num_nodes, dtype=torch.float, device=device)
-        for d in dst:
-            deg[d] += 1.0
-        deg = deg.clamp(min=1.0)
+        deg = torch.bincount(dst, minlength=num_nodes).float().clamp(min=1.0)
         edge_norm = (1.0 / deg[dst]).unsqueeze(1)
         return edge_index, edge_types, edge_norm
+
+
+def build_encoder_graph_from_tensors(
+    src_ids: torch.Tensor,
+    rel_ids: torch.Tensor,
+    dst_ids: torch.Tensor,
+    num_nodes: int,
+    num_relations: int,
+    device: torch.device,
+    add_inverse_edges: bool = True,
+) -> Tuple[Any, torch.Tensor, torch.Tensor]:
+    """Build the encoder graph from pre-indexed tensors.
+
+    This avoids the list-of-dicts hot path inside the training loop.
+    """
+    src_ids = src_ids.to(device=device, dtype=torch.long)
+    rel_ids = rel_ids.to(device=device, dtype=torch.long)
+    dst_ids = dst_ids.to(device=device, dtype=torch.long)
+
+    if add_inverse_edges:
+        src_ids = torch.cat([src_ids, dst_ids], dim=0)
+        dst_ids = torch.cat([dst_ids, src_ids[: rel_ids.numel()]], dim=0)
+        rel_ids = torch.cat([rel_ids, rel_ids + num_relations], dim=0)
+
+    edge_types = rel_ids
+
+    if _BACKEND == "dgl":
+        graph = dgl.graph((src_ids, dst_ids), num_nodes=num_nodes).to(device)
+        deg = graph.in_degrees().float().clamp(min=1).to(device)
+        edge_norm = (1.0 / deg[dst_ids]).unsqueeze(1)
+        return graph, edge_types, edge_norm
+
+    edge_index = torch.stack([src_ids, dst_ids], dim=0)
+    deg = torch.bincount(dst_ids, minlength=num_nodes).float().clamp(min=1.0)
+    edge_norm = (1.0 / deg[dst_ids]).unsqueeze(1)
+    return edge_index, edge_types, edge_norm
 
 def graph_num_edges(graph) -> int:
     """Return number of edges regardless of backend."""

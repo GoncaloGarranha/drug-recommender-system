@@ -14,7 +14,7 @@ from models.shared.metrics import compute_ranking_metrics
 from models.shared.runs import organize_legacy_runs, resolve_run_dir
 from models.rgcn.src.utils.seed import set_seed
 
-from .data import HEAD, TAIL, build_encoder_graph, graph_num_edges, graph_num_nodes, known_positives, load_link_prediction_data, triples_to_tensors
+from .data import HEAD, TAIL, build_encoder_graph, build_encoder_graph_from_tensors, graph_num_edges, graph_num_nodes, known_positives, load_link_prediction_data, triples_to_tensors
 from .model import DistMult, SchlichtkrullRGCN
 
 
@@ -325,6 +325,7 @@ def filtered_eval(
 
     # Precompute candidate embeddings once — avoids repeating for every triple
     cand_emb = node_emb[candidate_ids]  # [C, D]
+    rel_emb_table = decoder.rel_emb.weight
 
     all_ranks: list[float] = []
     head_ranks: list[float] = []
@@ -334,14 +335,14 @@ def filtered_eval(
         h = int(row["src_id"])
         r = int(row["rel_id"])
         t = int(row["dst_id"])
-        rel_emb = decoder.rel_emb(torch.tensor([r], device=device))  # [1, D]
+        rel_emb = rel_emb_table[r].unsqueeze(0)  # [1, D]
 
         # Tail prediction: score(h, r, c) for all candidates c
         h_emb = node_emb[h].unsqueeze(0)  # [1, D]
         tail_scores = (h_emb * rel_emb * cand_emb).sum(dim=1).cpu().numpy()  # [C]
-        for idx, candidate in enumerate(candidate_list):
-            if candidate != t and candidate in known.get((TAIL, h, r), set()):
-                tail_scores[idx] = -1e9
+        tail_known_positions = [candidate_index[c] for c in known.get((TAIL, h, r), set()) if c != t and c in candidate_index]
+        if tail_known_positions:
+            tail_scores[np.asarray(tail_known_positions, dtype=np.int64)] = -1e9
         if t in candidate_index:
             true_score = tail_scores[candidate_index[t]]
             tail_rank = 1.0 + float(np.sum(tail_scores > true_score)) + (float(np.sum(tail_scores == true_score)) - 1.0) / 2.0
@@ -353,9 +354,9 @@ def filtered_eval(
         # Head prediction: score(c, r, t) for all candidates c
         t_emb = node_emb[t].unsqueeze(0)  # [1, D]
         head_scores = (cand_emb * rel_emb * t_emb).sum(dim=1).cpu().numpy()  # [C]
-        for idx, candidate in enumerate(candidate_list):
-            if candidate != h and candidate in known.get((HEAD, r, t), set()):
-                head_scores[idx] = -1e9
+        head_known_positions = [candidate_index[c] for c in known.get((HEAD, r, t), set()) if c != h and c in candidate_index]
+        if head_known_positions:
+            head_scores[np.asarray(head_known_positions, dtype=np.int64)] = -1e9
         if h in candidate_index:
             true_score = head_scores[candidate_index[h]]
             head_rank = 1.0 + float(np.sum(head_scores > true_score)) + (float(np.sum(head_scores == true_score)) - 1.0) / 2.0
@@ -452,13 +453,17 @@ def main() -> None:
     max_iterations = int(training_cfg.get("max_iterations", 0))
     burnin_iterations = int(training_cfg.get("burnin_iterations", 0))
     eval_every = int(training_cfg.get("eval_every", 10))
+    progress_every = int(training_cfg.get("progress_every", 50))
     neg_k = int(training_cfg.get("neg_k", 1))
     graph_batch_size = int(training_cfg.get("graph_batch_size", 30000))
     graph_split_size = float(training_cfg.get("graph_split_size", 0.5))
     grad_clip_norm = float(training_cfg.get("grad_clip_norm", 0.0))
     graph_sampler = str(training_cfg.get("graph_sampler", "neighborhood")).strip().lower()
     sampler_rng = np.random.default_rng(seed)
-    neighborhood_adj_list, neighborhood_degrees = build_edge_neighborhood_index(train, num_nodes)
+    if graph_sampler in {"neighborhood", "edge_neighborhood"}:
+        neighborhood_adj_list, neighborhood_degrees = build_edge_neighborhood_index(train, num_nodes)
+    else:
+        neighborhood_adj_list, neighborhood_degrees = None, None
     hits_k = tuple(int(k) for k in training_cfg.get("hits_k", [1, 3, 10]))
     early_stopping_patience = int(training_cfg.get("early_stopping_patience", 0))
     max_eval_triples = training_cfg.get("max_eval_triples")
@@ -512,10 +517,11 @@ def main() -> None:
 
             split_n = max(1, int(graph_split_size * bsize))
             graph_perm = perm[torch.randperm(bsize, device=device)[:split_n]]
-            graph_rows = [train[i] for i in graph_perm.detach().cpu().tolist()]
 
-            batch_graph, batch_edge_types, batch_edge_norm = build_encoder_graph(
-                graph_rows,
+            batch_graph, batch_edge_types, batch_edge_norm = build_encoder_graph_from_tensors(
+                train_heads[graph_perm],
+                train_rels[graph_perm],
+                train_tails[graph_perm],
                 num_nodes,
                 num_relations,
                 device,
@@ -568,6 +574,9 @@ def main() -> None:
                 )
 
             optimizer.step()
+
+            if progress_every > 0 and step % progress_every == 0:
+                print(f"Progress Step {step:06d} | Loss: {loss.item():.4f}", flush=True)
 
             log_entry: dict[str, float | int | None] = {"step": step, "loss": float(loss.item()), "valid_mrr": None}
             if (step % eval_every == 0 and step >= burnin_iterations) or step == max_iterations:
@@ -642,10 +651,11 @@ def main() -> None:
 
             split_n = max(1, int(graph_split_size * bsize))
             graph_perm = perm[torch.randperm(bsize, device=device)[:split_n]]
-            graph_rows = [train[i] for i in graph_perm.detach().cpu().tolist()]
 
-            batch_graph, batch_edge_types, batch_edge_norm = build_encoder_graph(
-                graph_rows,
+            batch_graph, batch_edge_types, batch_edge_norm = build_encoder_graph_from_tensors(
+                train_heads[graph_perm],
+                train_rels[graph_perm],
+                train_tails[graph_perm],
                 num_nodes,
                 num_relations,
                 device,

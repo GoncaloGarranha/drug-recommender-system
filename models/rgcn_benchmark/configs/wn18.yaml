@@ -30,6 +30,7 @@ training:
   graph_sampler: random
   max_iterations: 50000
   burnin_iterations: 6000
+  progress_every: 50
   hits_k:
   - 1
   - 3

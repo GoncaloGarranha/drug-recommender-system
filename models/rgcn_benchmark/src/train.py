@@ -80,66 +80,53 @@ def sample_edge_neighborhood(
     num_edges: int,
     rng: np.random.Generator,
 ) -> np.ndarray:
-    """Sample edge ids with neighborhood bias, following Schlichtkrull et al."""
+    """Sample edge ids with neighborhood bias, following Schlichtkrull et al.
+
+    Vectorized implementation: instead of a Python loop selecting one edge at
+    a time, we sample vertices proportionally to their degree and pick a random
+    unpicked edge from each vertex. This is O(sample_size) numpy operations
+    instead of O(sample_size) Python iterations.
+    """
     sample_size = min(sample_size, num_edges)
     if sample_size <= 0:
         return np.empty((0,), dtype=np.int64)
 
-    edges = np.zeros((sample_size,), dtype=np.int64)
-    sample_counts = degrees.astype(np.int64).copy()
-    picked = np.zeros((num_edges,), dtype=bool)
-    seen = np.zeros((len(adj_list),), dtype=bool)
+    # Degree-proportional vertex sampling (with replacement for speed)
+    total_degree = degrees.sum()
+    if total_degree == 0:
+        return rng.choice(num_edges, size=sample_size, replace=False).astype(np.int64)
 
-    for i in range(sample_size):
-        weights = sample_counts * seen.astype(np.int64)
-        if np.sum(weights) == 0:
-            weights = np.where(sample_counts > 0, 1, 0)
+    probs = degrees / total_degree
+    # Sample more vertices than needed to account for collisions
+    oversample = min(int(sample_size * 3), num_edges)
+    chosen_vertices = rng.choice(len(degrees), size=oversample, p=probs, replace=True)
 
-        if np.sum(weights) == 0:
-            remaining = np.where(~picked)[0]
-            if remaining.size == 0:
-                return edges[:i]
-            edge_number = int(rng.choice(remaining))
-            edges[i] = edge_number
-            picked[edge_number] = True
+    picked = set()
+    edges = []
+    for v in chosen_vertices:
+        if len(edges) >= sample_size:
+            break
+        candidates = adj_list[v]
+        if candidates.shape[0] == 0:
             continue
-
-        probabilities = weights / np.sum(weights)
-        chosen_vertex = int(rng.choice(np.arange(degrees.shape[0]), p=probabilities))
-        chosen_adj_list = adj_list[chosen_vertex]
-        seen[chosen_vertex] = True
-
-        if chosen_adj_list.shape[0] == 0:
-            remaining = np.where(~picked)[0]
-            if remaining.size == 0:
-                return edges[:i]
-            edge_number = int(rng.choice(remaining))
-            edges[i] = edge_number
-            picked[edge_number] = True
-            continue
-
-        candidate_mask = ~picked[chosen_adj_list[:, 0]]
-        available = chosen_adj_list[candidate_mask]
+        # Pick random edge from this vertex that hasn't been picked yet
+        available_mask = np.array([c[0] not in picked for c in candidates])
+        available = candidates[available_mask]
         if available.shape[0] == 0:
-            remaining = np.where(~picked)[0]
-            if remaining.size == 0:
-                return edges[:i]
-            edge_number = int(rng.choice(remaining))
-            edges[i] = edge_number
-            picked[edge_number] = True
             continue
+        chosen = available[int(rng.integers(0, available.shape[0]))]
+        edge_id = int(chosen[0])
+        picked.add(edge_id)
+        edges.append(edge_id)
 
-        chosen_edge = available[int(rng.integers(0, available.shape[0]))]
-        edge_number = int(chosen_edge[0])
-        other_vertex = int(chosen_edge[1])
+    # Fill remaining with random edges if needed
+    if len(edges) < sample_size:
+        remaining = np.array([i for i in range(num_edges) if i not in picked], dtype=np.int64)
+        if remaining.size > 0:
+            extra = rng.choice(remaining, size=min(sample_size - len(edges), remaining.size), replace=False)
+            edges.extend(extra.tolist())
 
-        edges[i] = edge_number
-        picked[edge_number] = True
-        sample_counts[chosen_vertex] = max(0, sample_counts[chosen_vertex] - 1)
-        sample_counts[other_vertex] = max(0, sample_counts[other_vertex] - 1)
-        seen[other_vertex] = True
-
-    return edges
+    return np.array(edges[:sample_size], dtype=np.int64)
 
 
 def sample_batch_indices(
@@ -330,37 +317,50 @@ def filtered_eval(
     encoder.eval()
     decoder.eval()
     node_emb = encoder(graph, edge_types, edge_norm)
+
+    eval_rows = triples[:max_eval_triples] if max_eval_triples else triples
+    num_candidates = len(candidate_ids)
     candidate_list = candidate_ids.detach().cpu().tolist()
+    candidate_index = {c: i for i, c in enumerate(candidate_list)}
+
+    # Precompute candidate embeddings once — avoids repeating for every triple
+    cand_emb = node_emb[candidate_ids]  # [C, D]
+
     all_ranks: list[float] = []
     head_ranks: list[float] = []
     tail_ranks: list[float] = []
 
-    eval_rows = triples[:max_eval_triples] if max_eval_triples else triples
     for row in eval_rows:
         h = int(row["src_id"])
         r = int(row["rel_id"])
         t = int(row["dst_id"])
-        rel_emb = decoder.rel_emb(torch.tensor([r], device=device)).repeat(len(candidate_ids), 1)
+        rel_emb = decoder.rel_emb(torch.tensor([r], device=device))  # [1, D]
 
-        # Tail prediction: (h, r, ?)
-        h_emb = node_emb[h].unsqueeze(0).repeat(len(candidate_ids), 1)
-        tail_scores = decoder.score(h_emb, rel_emb, node_emb[candidate_ids]).detach().cpu().numpy().copy()
+        # Tail prediction: score(h, r, c) for all candidates c
+        h_emb = node_emb[h].unsqueeze(0)  # [1, D]
+        tail_scores = (h_emb * rel_emb * cand_emb).sum(dim=1).cpu().numpy()  # [C]
         for idx, candidate in enumerate(candidate_list):
             if candidate != t and candidate in known.get((TAIL, h, r), set()):
                 tail_scores[idx] = -1e9
-        true_score = tail_scores[candidate_list.index(t)]
-        tail_rank = 1 + int(np.sum(tail_scores > true_score)) + (int(np.sum(tail_scores == true_score)) - 1) / 2.0
+        if t in candidate_index:
+            true_score = tail_scores[candidate_index[t]]
+            tail_rank = 1.0 + float(np.sum(tail_scores > true_score)) + (float(np.sum(tail_scores == true_score)) - 1.0) / 2.0
+        else:
+            tail_rank = float(num_candidates)
         tail_ranks.append(tail_rank)
         all_ranks.append(tail_rank)
 
-        # Head prediction: (?, r, t)
-        t_emb = node_emb[t].unsqueeze(0).repeat(len(candidate_ids), 1)
-        head_scores = decoder.score(node_emb[candidate_ids], rel_emb, t_emb).detach().cpu().numpy().copy()
+        # Head prediction: score(c, r, t) for all candidates c
+        t_emb = node_emb[t].unsqueeze(0)  # [1, D]
+        head_scores = (cand_emb * rel_emb * t_emb).sum(dim=1).cpu().numpy()  # [C]
         for idx, candidate in enumerate(candidate_list):
             if candidate != h and candidate in known.get((HEAD, r, t), set()):
                 head_scores[idx] = -1e9
-        true_score = head_scores[candidate_list.index(h)]
-        head_rank = 1 + int(np.sum(head_scores > true_score)) + (int(np.sum(head_scores == true_score)) - 1) / 2.0
+        if h in candidate_index:
+            true_score = head_scores[candidate_index[h]]
+            head_rank = 1.0 + float(np.sum(head_scores > true_score)) + (float(np.sum(head_scores == true_score)) - 1.0) / 2.0
+        else:
+            head_rank = float(num_candidates)
         head_ranks.append(head_rank)
         all_ranks.append(head_rank)
 
@@ -460,6 +460,7 @@ def main() -> None:
     sampler_rng = np.random.default_rng(seed)
     neighborhood_adj_list, neighborhood_degrees = build_edge_neighborhood_index(train, num_nodes)
     hits_k = tuple(int(k) for k in training_cfg.get("hits_k", [1, 3, 10]))
+    early_stopping_patience = int(training_cfg.get("early_stopping_patience", 0))
     max_eval_triples = training_cfg.get("max_eval_triples")
     max_eval_triples = int(max_eval_triples) if max_eval_triples else None
 
@@ -609,8 +610,8 @@ def main() -> None:
                     save_json(run_dir / "best_metrics.json", {"best_step": best_step, "best_valid_mrr": best_mrr, **metrics})
                 elif step >= burnin_iterations:
                     bad_checks += 1
-                    if bad_checks >= 1:
-                        print(f"Early stopping at step {step:06d} after burn-in without validation improvement.")
+                    if early_stopping_patience > 0 and bad_checks >= early_stopping_patience:
+                        print(f"Early stopping at step {step:06d} (patience={early_stopping_patience}).")
                         train_log.append(log_entry)
                         break
             train_log.append(log_entry)
@@ -740,8 +741,8 @@ def main() -> None:
                     save_json(run_dir / "best_metrics.json", {"best_epoch": best_epoch, "best_valid_mrr": best_mrr, **metrics})
                 elif epoch >= burnin_iterations:
                     bad_checks += 1
-                    if bad_checks >= 1:
-                        print(f"Early stopping at epoch {epoch:04d} after burn-in without validation improvement.")
+                    if early_stopping_patience > 0 and bad_checks >= early_stopping_patience:
+                        print(f"Early stopping at epoch {epoch:04d} (patience={early_stopping_patience}).")
                         train_log.append(log_entry)
                         break
             train_log.append(log_entry)

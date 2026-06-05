@@ -85,7 +85,7 @@ def main():
     # 4) carregar entidades e construir labels finais
     entities = load_entity_table(entity_table_csv)
 
-    # entity_names.csv tem de ter: id,name (é isso que o 04_infer.py lê)
+    # entity_names.csv tem de ter: id,name (é isso que o infer.py lê)
     os.makedirs(os.path.dirname(out_csv), exist_ok=True)
     written = 0
     missing_doid = 0

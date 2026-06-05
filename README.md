@@ -306,7 +306,7 @@ kg_constructor/data/output/triples/triples.filtered.csv
 Example using the full biomedical graph (`disease_to_drug_full`):
 
 ```bash
-python -m models.rgcn.src.00_prepare_graph --config models/rgcn/configs/disease_to_drug.yaml --force
+python -m models.rgcn.src.prepare_graph --config models/rgcn/configs/disease_to_drug.yaml --force
 ```
 
 This creates indexed artefacts in the configured `processed_dir`, for example:
@@ -320,7 +320,7 @@ models/rgcn/data/processed/disease_to_drug_full/
 ### 3. Validate processed artefacts
 
 ```bash
-python -m models.rgcn.src.01_load_data --processed_dir models/rgcn/data/processed/disease_to_drug_full
+python -m models.rgcn.src.load_data --processed_dir models/rgcn/data/processed/disease_to_drug_full
 ```
 
 ---
@@ -328,7 +328,7 @@ python -m models.rgcn.src.01_load_data --processed_dir models/rgcn/data/processe
 ### 4. Train R-GCN
 
 ```bash
-python -m models.rgcn.src.02_train --config models/rgcn/configs/disease_to_drug.yaml
+python -m models.rgcn.src.train --config models/rgcn/configs/disease_to_drug.yaml
 ```
 
 ---
@@ -336,7 +336,7 @@ python -m models.rgcn.src.02_train --config models/rgcn/configs/disease_to_drug.
 ### 5. Evaluate R-GCN
 
 ```bash
-python -m models.rgcn.src.03_evaluate --runs_dir models/rgcn/runs --split test
+python -m models.rgcn.src.evaluate --runs_dir models/rgcn/runs --split test
 ```
 
 Evaluation metrics are saved in the run directory and logged to:
@@ -395,25 +395,25 @@ kg_constructor/data/output/benchmarks/wn18rr/triples.csv
 #### 2. Prepare graph artefacts
 
 ```bash
-python -m models.rgcn.src.00_prepare_graph --config models/rgcn/configs/wn18rr.yaml --force
+python -m models.rgcn.src.prepare_graph --config models/rgcn/configs/wn18rr.yaml --force
 ```
 
 #### 3. Validate processed artefacts
 
 ```bash
-python -m models.rgcn.src.01_load_data --processed_dir models/rgcn/data/processed/wn18rr
+python -m models.rgcn.src.load_data --processed_dir models/rgcn/data/processed/wn18rr
 ```
 
 #### 4. Train
 
 ```bash
-python -m models.rgcn.src.02_train --config models/rgcn/configs/wn18rr.yaml
+python -m models.rgcn.src.train --config models/rgcn/configs/wn18rr.yaml
 ```
 
 #### 5. Evaluate
 
 ```bash
-python -m models.rgcn.src.03_evaluate --runs_dir models/rgcn/runs/wn18rr --split test
+python -m models.rgcn.src.evaluate --runs_dir models/rgcn/runs/wn18rr --split test
 ```
 
 ---
@@ -435,25 +435,25 @@ kg_constructor/data/output/benchmarks/fb15k237/triples.csv
 #### 2. Prepare graph artefacts
 
 ```bash
-python -m models.rgcn.src.00_prepare_graph --config models/rgcn/configs/fb15k237.yaml --force
+python -m models.rgcn.src.prepare_graph --config models/rgcn/configs/fb15k237.yaml --force
 ```
 
 #### 3. Validate processed artefacts
 
 ```bash
-python -m models.rgcn.src.01_load_data --processed_dir models/rgcn/data/processed/fb15k237
+python -m models.rgcn.src.load_data --processed_dir models/rgcn/data/processed/fb15k237
 ```
 
 #### 4. Train
 
 ```bash
-python -m models.rgcn.src.02_train --config models/rgcn/configs/fb15k237.yaml
+python -m models.rgcn.src.train --config models/rgcn/configs/fb15k237.yaml
 ```
 
 #### 5. Evaluate
 
 ```bash
-python -m models.rgcn.src.03_evaluate --runs_dir models/rgcn/runs/fb15k237 --split test
+python -m models.rgcn.src.evaluate --runs_dir models/rgcn/runs/fb15k237 --split test
 ```
 
 
@@ -476,19 +476,19 @@ Generate predictions for a specific drug or disease, depending on the configured
 Example using a drug query:
 
 ```bash
-python -m models.rgcn.src.04_infer --query "Albuterol" --topk 10
+python -m models.rgcn.src.infer --query "Albuterol" --topk 10
 ```
 
 Example using an exact entity ID:
 
 ```bash
-python -m models.rgcn.src.04_infer --entity_id "DRUG:ALBUTEROL SULFATE" --topk 10
+python -m models.rgcn.src.infer --entity_id "DRUG:ALBUTEROL SULFATE" --topk 10
 ```
 
 Save results to JSON:
 
 ```bash
-python -m models.rgcn.src.04_infer --query "Metformin" --topk 10 --json_out predictions.json
+python -m models.rgcn.src.infer --query "Metformin" --topk 10 --json_out predictions.json
 ```
 
 ---
@@ -627,13 +627,13 @@ Where datasets differ significantly in size, prefer a common training protocol w
 ```bash
 python -m kg_constructor.src.run_kg_pipeline --config kg_constructor/configs/config.yaml
 
-python -m models.rgcn.src.00_prepare_graph --config models/rgcn/configs/disease_to_drug.yaml --force
+python -m models.rgcn.src.prepare_graph --config models/rgcn/configs/disease_to_drug.yaml --force
 
-python -m models.rgcn.src.01_load_data --processed_dir models/rgcn/data/processed/disease_to_drug_full
+python -m models.rgcn.src.load_data --processed_dir models/rgcn/data/processed/disease_to_drug_full
 
-python -m models.rgcn.src.02_train --config models/rgcn/configs/disease_to_drug.yaml
+python -m models.rgcn.src.train --config models/rgcn/configs/disease_to_drug.yaml
 
-python -m models.rgcn.src.03_evaluate --runs_dir models/rgcn/runs --split test
+python -m models.rgcn.src.evaluate --runs_dir models/rgcn/runs --split test
 
 python -m models.content-based.src.baseline --config models/rgcn/configs/disease_to_drug.yaml --split test
 ```
@@ -643,13 +643,13 @@ python -m models.content-based.src.baseline --config models/rgcn/configs/disease
 ```bash
 python -m kg_constructor.src.benchmarks.convert_benchmark --config kg_constructor/configs/wn18rr.yaml --force
 
-python -m models.rgcn.src.00_prepare_graph --config models/rgcn/configs/wn18rr.yaml --force
+python -m models.rgcn.src.prepare_graph --config models/rgcn/configs/wn18rr.yaml --force
 
-python -m models.rgcn.src.01_load_data --processed_dir models/rgcn/data/processed/wn18rr
+python -m models.rgcn.src.load_data --processed_dir models/rgcn/data/processed/wn18rr
 
-python -m models.rgcn.src.02_train --config models/rgcn/configs/wn18rr.yaml
+python -m models.rgcn.src.train --config models/rgcn/configs/wn18rr.yaml
 
-python -m models.rgcn.src.03_evaluate --runs_dir models/rgcn/runs/wn18rr --split test
+python -m models.rgcn.src.evaluate --runs_dir models/rgcn/runs/wn18rr --split test
 ```
 
 ### FB15k-237
@@ -657,13 +657,13 @@ python -m models.rgcn.src.03_evaluate --runs_dir models/rgcn/runs/wn18rr --split
 ```bash
 python -m kg_constructor.src.benchmarks.convert_benchmark --config kg_constructor/configs/fb15k237.yaml --force
 
-python -m models.rgcn.src.00_prepare_graph --config models/rgcn/configs/fb15k237.yaml --force
+python -m models.rgcn.src.prepare_graph --config models/rgcn/configs/fb15k237.yaml --force
 
-python -m models.rgcn.src.01_load_data --processed_dir models/rgcn/data/processed/fb15k237
+python -m models.rgcn.src.load_data --processed_dir models/rgcn/data/processed/fb15k237
 
-python -m models.rgcn.src.02_train --config models/rgcn/configs/fb15k237.yaml
+python -m models.rgcn.src.train --config models/rgcn/configs/fb15k237.yaml
 
-python -m models.rgcn.src.03_evaluate --runs_dir models/rgcn/runs/fb15k237 --split test
+python -m models.rgcn.src.evaluate --runs_dir models/rgcn/runs/fb15k237 --split test
 ```
 
 ---

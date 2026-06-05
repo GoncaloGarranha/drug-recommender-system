@@ -222,8 +222,9 @@ def get_or_create_splits(
             if float(stored_meta.get("test_ratio", -1)) != float(test_ratio):
                 mismatches.append("test_ratio")
             # Mode check (e.g., 'official' vs random splits)
-            stored_mode = stored_meta.get("mode")
-            if (stored_mode or None) != (split_mode or None):
+            stored_mode = stored_meta.get("mode") or "random"
+            current_mode = split_mode or "random"
+            if stored_mode != current_mode:
                 mismatches.append("mode")
             if mismatches:
                 raise ValueError(

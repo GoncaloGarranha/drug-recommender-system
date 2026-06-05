@@ -40,9 +40,9 @@ pipeline:
 # ---------------------------------------------------------
 filters:
   remove_obsolete_doid_labels: true
-  # Remove HAS_INGREDIENT relations to focus on predictive relations only.
-  # Rationale: cold-start analysis showed 0 test set drugs benefit from ingredients.
-  remove_has_ingredient: true
+  # Keep HAS_INGREDIENT relations in the full biomedical graph.
+  # Use false when the downstream model should learn from structural drug information too.
+  remove_has_ingredient: false
 
   # Generic disease blacklist is loaded from:
   # kg_constructor/configs/blacklist.txt

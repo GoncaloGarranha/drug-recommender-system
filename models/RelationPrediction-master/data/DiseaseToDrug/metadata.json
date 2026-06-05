@@ -1,0 +1,7 @@
+{
+  "num_entities": 4721,
+  "num_relations": 3,
+  "num_train": 25731,
+  "num_valid": 3216,
+  "num_test": 3217
+}

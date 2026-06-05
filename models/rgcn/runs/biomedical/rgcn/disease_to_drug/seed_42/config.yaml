@@ -1,7 +1,9 @@
 seed: 42
 data:
-  triples_path: kg_constructor/data/output/triples/triples.csv
-  processed_dir: models/rgcn/data/processed/disease_to_drug_full
+  triples_path: kg_constructor/data/output/triples/triples_ingredients_freq200.csv
+  processed_dir: models/rgcn/data/processed/disease_to_drug_freq200
+model:
+  add_inverse_edges: true
 task:
   name: disease_to_drug
   target_relation: INDICATION
@@ -12,6 +14,7 @@ task:
   - CONTRAINDICATION
   - HAS_INGREDIENT
 split:
+  mode: random
   train_ratio: 0.8
   val_ratio: 0.1
   test_ratio: 0.1
@@ -21,13 +24,13 @@ baseline:
   - CONTRAINDICATION
   - HAS_INGREDIENT
 training:
-  epochs: 4000
-  max_epochs: 4000
+  epochs: 8000
+  max_epochs: 8000
   early_stopping:
     monitor: valid_mrr
-    patience: 200
+    patience: 6000
     mode: max
-  lr: 0.001
+  lr: 0.0001
   weight_decay: 0.0001
   dropout: 0.2
   emb_dim: 128

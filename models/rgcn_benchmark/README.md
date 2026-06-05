@@ -44,7 +44,7 @@ python -m kg_constructor.src.benchmarks.convert_benchmark --config kg_constructo
 Prepare the indexed graph artifacts with the existing generic R-GCN preprocessing script:
 
 ```bash
-python -m models.rgcn.src.00_prepare_graph --config models/rgcn_schlichtkrull/configs/wn18rr.yaml --force
+python -m models.rgcn.src.prepare_graph --config models/rgcn_schlichtkrull/configs/wn18rr.yaml --force
 ```
 
 Train the standalone Schlichtkrull-style model:

@@ -1,0 +1,12 @@
+{
+  "num_entities": 4721,
+  "num_relations": 3,
+  "num_train": 21046,
+  "num_valid": 2630,
+  "num_test": 2632,
+  "relations": [
+    "CONTRAINDICATION",
+    "HAS_INGREDIENT",
+    "INDICATION"
+  ]
+}

@@ -8,14 +8,14 @@
     "num_bases": 3,
     "dropout": 0.2,
     "decoder": "DistMult",
-    "add_inverse_edges": false
+    "add_inverse_edges": true
   },
   "relation_counts": {
-    "decoder": 2,
-    "encoder": 2
+    "decoder": 3,
+    "encoder": 6
   },
   "parameter_counts": {
-    "encoder": 389512,
-    "decoder": 256
+    "encoder": 732708,
+    "decoder": 384
   }
 }

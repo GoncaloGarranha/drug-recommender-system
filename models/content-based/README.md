@@ -123,11 +123,11 @@ baseline:
 Before running the baseline, prepare and validate the graph artifacts using the same config:
 
 ```bash
-python -m models.rgcn.src.00_prepare_graph --config models/rgcn/configs/disease_to_drug.yaml --force
+python -m models.rgcn.src.prepare_graph --config models/rgcn/configs/disease_to_drug.yaml --force
 ```
 
 ```bash
-python -m models.rgcn.src.01_load_data --processed_dir models/rgcn/data/processed/disease_to_drug_full
+python -m models.rgcn.src.load_data --processed_dir models/rgcn/data/processed/disease_to_drug_full
 ```
 
 The baseline expects the processed directory to contain:

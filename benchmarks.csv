@@ -16,3 +16,8 @@ timestamp,dataset,model_name,hits@1,hits@3,hits@10,mrr,notes
 2026-05-12T10:14:37.487843,fb15k237,R-GCN (tail_prediction),0.112235,0.208150,0.314131,0.178778,Run: 2026-05-06_15-16-50_tail_prediction | Split: test
 2026-05-17T13:17:07.009458,fb15k,R-GCN (tail_prediction),0.198270,0.289533,0.403971,0.269111,Run: 2026-05-15_18-31-30_tail_prediction | Split: test
 2026-05-20T12:20:04.689327,disease_to_drug_full,R-GCN (disease_to_drug),0.547094,0.635271,0.717435,0.605942,Run: seed_42 | Split: test
+2026-06-04T10:08:47.908115,disease_to_drug_full,R-GCN (disease_to_drug),0.492174,0.613913,0.711304,0.570047,Run: seed_42 | Split: test
+2026-06-04T13:41:39.900720,disease_to_drug_full,R-GCN (disease_to_drug),0.492174,0.613913,0.711304,0.570047,Run: seed_42 | Split: test
+2026-06-04T13:48:52.271417,disease_to_drug_full,R-GCN (disease_to_drug),0.506087,0.643478,0.725217,0.584239,Run: seed_42 | Split: test
+2026-06-04T14:39:01.249953,disease_to_drug_full,R-GCN (disease_to_drug),0.506087,0.643478,0.725217,0.584239,Run: seed_42 | Split: test
+2026-06-05T12:45:17.072247,disease_to_drug_freq200,R-GCN (disease_to_drug),0.518261,0.636522,0.713043,0.590595,Run: seed_42 | Split: test

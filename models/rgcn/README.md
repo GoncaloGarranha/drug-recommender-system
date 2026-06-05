@@ -123,11 +123,11 @@ models/rgcn/
 │   └── ...
 │
 └── src/
-    ├── 00_prepare_graph.py
-    ├── 01_load_data.py
-    ├── 02_train.py
-    ├── 03_evaluate.py
-    └── 04_infer.py
+    ├── prepare_graph.py
+    ├── load_data.py
+    ├── train.py
+    ├── evaluate.py
+    └── infer.py
 ```
 
 Shared utilities used by this module are located in:
@@ -145,7 +145,7 @@ The R-GCN pipeline consists of five main stages:
 ### 1. Prepare Graph
 
 ```text
-00_prepare_graph.py
+prepare_graph.py
 ```
 
 Converts canonical triples into indexed graph artefacts.
@@ -177,7 +177,7 @@ graph_metadata.json
 ### 2. Validate Graph Data
 
 ```text
-01_load_data.py
+load_data.py
 ```
 
 Loads and validates processed graph artefacts and prints graph statistics.
@@ -187,7 +187,7 @@ Loads and validates processed graph artefacts and prints graph statistics.
 ### 3. Train Model
 
 ```text
-02_train.py
+train.py
 ```
 
 Trains an R-GCN encoder with a DistMult decoder for link prediction.
@@ -199,7 +199,7 @@ The best checkpoint is selected using validation MRR.
 ### 4. Evaluate Model
 
 ```text
-03_evaluate.py
+evaluate.py
 ```
 
 Evaluates a trained model using filtered ranking metrics.
@@ -215,7 +215,7 @@ benchmarks.csv
 ### 5. Run Inference
 
 ```text
-04_infer.py
+infer.py
 ```
 
 Generates ranked predictions for a given query entity.
@@ -501,37 +501,37 @@ All commands should be executed from the repository root.
 ### 1. Prepare graph artefacts
 
 ```bash
-python -m models.rgcn.src.00_prepare_graph --config models/rgcn/configs/disease_to_drug.yaml --force
+python -m models.rgcn.src.prepare_graph --config models/rgcn/configs/disease_to_drug.yaml --force
 ```
 
 ### 2. Validate graph artefacts
 
 ```bash
-python -m models.rgcn.src.01_load_data --processed_dir models/rgcn/data/processed/disease_to_drug_full
+python -m models.rgcn.src.load_data --processed_dir models/rgcn/data/processed/disease_to_drug_full
 ```
 
 ### 3. Train
 
 ```bash
-python -m models.rgcn.src.02_train --config models/rgcn/configs/disease_to_drug.yaml
+python -m models.rgcn.src.train --config models/rgcn/configs/disease_to_drug.yaml
 ```
 
 ### 4. Evaluate
 
 ```bash
-python -m models.rgcn.src.03_evaluate --runs_dir models/rgcn/runs --split test
+python -m models.rgcn.src.evaluate --runs_dir models/rgcn/runs --split test
 ```
 
 ### 5. Inference
 
 ```bash
-python -m models.rgcn.src.04_infer --query "Albuterol" --topk 10
+python -m models.rgcn.src.infer --query "Albuterol" --topk 10
 ```
 
 or:
 
 ```bash
-python -m models.rgcn.src.04_infer --entity_id "DRUG:ALBUTEROL SULFATE" --topk 10
+python -m models.rgcn.src.infer --entity_id "DRUG:ALBUTEROL SULFATE" --topk 10
 ```
 
 ---
@@ -550,25 +550,25 @@ Before running these commands, the benchmark must be converted by `kg_constructo
 ### 1. Prepare graph artefacts
 
 ```bash
-python -m models.rgcn.src.00_prepare_graph --config models/rgcn/configs/wn18rr.yaml --force
+python -m models.rgcn.src.prepare_graph --config models/rgcn/configs/wn18rr.yaml --force
 ```
 
 ### 2. Validate graph artefacts
 
 ```bash
-python -m models.rgcn.src.01_load_data --processed_dir models/rgcn/data/processed/wn18rr
+python -m models.rgcn.src.load_data --processed_dir models/rgcn/data/processed/wn18rr
 ```
 
 ### 3. Train
 
 ```bash
-python -m models.rgcn.src.02_train --config models/rgcn/configs/wn18rr.yaml
+python -m models.rgcn.src.train --config models/rgcn/configs/wn18rr.yaml
 ```
 
 ### 4. Evaluate
 
 ```bash
-python -m models.rgcn.src.03_evaluate --runs_dir models/rgcn/runs/wn18rr --split test
+python -m models.rgcn.src.evaluate --runs_dir models/rgcn/runs/wn18rr --split test
 ```
 
 ---
@@ -580,25 +580,25 @@ Before running these commands, the benchmark must be converted by `kg_constructo
 ### 1. Prepare graph artefacts
 
 ```bash
-python -m models.rgcn.src.00_prepare_graph --config models/rgcn/configs/fb15k237.yaml --force
+python -m models.rgcn.src.prepare_graph --config models/rgcn/configs/fb15k237.yaml --force
 ```
 
 ### 2. Validate graph artefacts
 
 ```bash
-python -m models.rgcn.src.01_load_data --processed_dir models/rgcn/data/processed/fb15k237
+python -m models.rgcn.src.load_data --processed_dir models/rgcn/data/processed/fb15k237
 ```
 
 ### 3. Train
 
 ```bash
-python -m models.rgcn.src.02_train --config models/rgcn/configs/fb15k237.yaml
+python -m models.rgcn.src.train --config models/rgcn/configs/fb15k237.yaml
 ```
 
 ### 4. Evaluate
 
 ```bash
-python -m models.rgcn.src.03_evaluate --runs_dir models/rgcn/runs/fb15k237 --split test
+python -m models.rgcn.src.evaluate --runs_dir models/rgcn/runs/fb15k237 --split test
 ```
 
 ---

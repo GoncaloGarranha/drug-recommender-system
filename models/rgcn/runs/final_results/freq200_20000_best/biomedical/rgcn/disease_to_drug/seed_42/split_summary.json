@@ -1,0 +1,19 @@
+{
+  "task_name": "disease_to_drug",
+  "target_relation": "INDICATION",
+  "train_size": 4591,
+  "valid_size": 573,
+  "test_size": 575,
+  "num_nodes": 4698,
+  "num_relations_decoder": 3,
+  "num_relations_encoder": 6,
+  "add_inverse_edges": true,
+  "num_graph_edges": 36310,
+  "candidate_pool_size": 1943,
+  "context_relations": [
+    "INDICATION",
+    "CONTRAINDICATION",
+    "HAS_INGREDIENT"
+  ],
+  "split_integrity_report": "models\\rgcn\\data\\processed\\disease_to_drug_freq200\\splits\\split_integrity_report.json"
+}

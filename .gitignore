@@ -17,7 +17,6 @@ kg_constructor/data/output/
 
 # R-GCN generated artifacts
 models/rgcn/data/processed/
-models/rgcn/runs/
 models/rgcn_benchmark/rgcn_benchmark.zip
 
 # Archives / local experiments

@@ -21,3 +21,7 @@ timestamp,dataset,model_name,hits@1,hits@3,hits@10,mrr,notes
 2026-06-04T13:48:52.271417,disease_to_drug_full,R-GCN (disease_to_drug),0.506087,0.643478,0.725217,0.584239,Run: seed_42 | Split: test
 2026-06-04T14:39:01.249953,disease_to_drug_full,R-GCN (disease_to_drug),0.506087,0.643478,0.725217,0.584239,Run: seed_42 | Split: test
 2026-06-05T12:45:17.072247,disease_to_drug_freq200,R-GCN (disease_to_drug),0.518261,0.636522,0.713043,0.590595,Run: seed_42 | Split: test
+2026-06-08T11:54:27.695708,disease_to_drug_full,R-GCN (disease_to_drug),0.521739,0.626087,0.700870,0.586996,Run: seed_42 | Split: test
+2026-06-08T17:55:16.678599,disease_to_drug_freq200,R-GCN (disease_to_drug),0.554783,0.659130,0.728696,0.616627,Run: seed_42 | Split: test
+2026-06-09T06:31:28.073747,disease_to_drug_freq200,R-GCN (disease_to_drug),0.587826,0.681739,0.733913,0.644708,Run: seed_42 | Split: test
+2026-06-09T17:04:36.843108,disease_to_drug_freq200,R-GCN (disease_to_drug),0.610435,0.692174,0.747826,0.660461,Run: seed_42 | Split: test

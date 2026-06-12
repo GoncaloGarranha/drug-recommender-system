@@ -72,6 +72,43 @@ def build_training_pairs(
         torch.tensor(dsts, dtype=torch.long, device=device),
     )
 
+def build_drug_ingredient_hard_negative_index(
+    triples: List[Dict[str, str]],
+) -> Dict[int, List[int]]:
+    """
+    Build a drug-to-hard-negative index based on shared ingredients.
+
+    For each drug, the returned list contains other drugs that share at least
+    one HAS_INGREDIENT edge with it. These drugs are harder negatives than
+    fully random drugs because they are chemically/formulation-wise closer to
+    the positive drug.
+    """
+    ingredient_to_drugs: Dict[int, set] = {}
+    drug_to_ingredients: Dict[int, set] = {}
+
+    for row in triples:
+        if (row.get("rel") or "").strip() != "HAS_INGREDIENT":
+            continue
+
+        drug_id = int(row["src_id"])
+        ingredient_id = int(row["dst_id"])
+
+        drug_to_ingredients.setdefault(drug_id, set()).add(ingredient_id)
+        ingredient_to_drugs.setdefault(ingredient_id, set()).add(drug_id)
+
+    hard_index: Dict[int, List[int]] = {}
+
+    for drug_id, ingredient_ids in drug_to_ingredients.items():
+        candidates = set()
+
+        for ingredient_id in ingredient_ids:
+            candidates.update(ingredient_to_drugs.get(ingredient_id, set()))
+
+        candidates.discard(drug_id)
+        hard_index[drug_id] = sorted(candidates)
+
+    return hard_index
+
 
 def negative_sampling(
     positive_queries: torch.Tensor,
@@ -82,20 +119,31 @@ def negative_sampling(
     k: int,
     candidate_pool: torch.Tensor,
     device: torch.device,
+    strategy: str = "random",
+    hard_negative_ratio: float = 0.0,
+    hard_negative_index: Dict[int, List[int]] | None = None,
 ) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
     """
-    Generate negative samples by corrupting the candidate entity while excluding
-    known positives for the same query or for the same (query, relation) pair
-    in tail_prediction mode.
+    Generate negative samples by corrupting the candidate entity.
+
+    Supported strategies:
+        - random: all negatives are sampled uniformly from the candidate pool.
+        - mixed: part of the negatives are hard negatives based on shared
+          ingredients, with random negatives used as fallback.
+
+    In all modes, known positives for the same query are excluded.
     """
     batch_size = positive_queries.shape[0]
     candidate_array = candidate_pool.detach().cpu().numpy()
+    candidate_pool_set = set(int(x) for x in candidate_array.tolist())
 
     neg_queries: List[int] = []
     neg_relations: List[int] = []
     neg_candidates: List[int] = []
 
     rng = np.random.default_rng()
+
+    hard_negative_ratio = max(0.0, min(1.0, float(hard_negative_ratio)))
 
     for i in range(batch_size):
         q = int(positive_queries[i].item())
@@ -113,6 +161,30 @@ def negative_sampling(
         collected = 0
         attempts = 0
 
+        n_hard = 0
+        hard_candidates: List[int] = []
+
+        if strategy == "mixed" and hard_negative_index is not None:
+            n_hard = int(round(k * hard_negative_ratio))
+            raw_hard_candidates = hard_negative_index.get(true_cand, [])
+            hard_candidates = [
+                int(candidate)
+                for candidate in raw_hard_candidates
+                if int(candidate) in candidate_pool_set and int(candidate) not in forbidden
+            ]
+            rng.shuffle(hard_candidates)
+
+        # First consume hard negatives, without duplicates.
+        for p_int in hard_candidates[:n_hard]:
+            neg_queries.append(q)
+            neg_relations.append(rel)
+            neg_candidates.append(p_int)
+            collected += 1
+
+            if collected >= k:
+                break
+
+        # Fill the remaining quota with random negatives.
         while collected < k:
             pick_count = max(8, (k - collected) * 4)
             picks = rng.choice(candidate_array, size=pick_count, replace=True)
@@ -133,9 +205,9 @@ def negative_sampling(
 
             attempts += 1
 
-            if attempts > 200 and collected == 0:
+            if attempts > 200 and collected < k:
                 raise ValueError(
-                    f"Unable to sample negatives for query {key}: "
+                    f"Unable to sample {k} negatives for query {key}: "
                     "candidate pool may be exhausted or too small."
                 )
 
@@ -144,7 +216,6 @@ def negative_sampling(
     negative_candidates = torch.tensor(neg_candidates, dtype=torch.long, device=device)
 
     return negative_queries, negative_relations, negative_candidates
-
 
 def score_training_batch(
     task_name: str,
@@ -297,6 +368,39 @@ def main() -> None:
             query_key="src_id" if task_name == "tail_prediction" else None,
             relation_key="rel_id" if task_name == "tail_prediction" else None,
             candidate_key="dst_id" if task_name == "tail_prediction" else None,
+        )
+
+    negative_sampling_strategy = str(cfg["training"].get("negative_sampling", "random"))
+    hard_negative_ratio = float(cfg["training"].get("hard_negative_ratio", 0.0))
+
+    if negative_sampling_strategy not in {"random", "mixed"}:
+        raise ValueError(
+            f"Unsupported negative sampling strategy: {negative_sampling_strategy}. "
+            "Use 'random' or 'mixed'."
+        )
+
+    hard_negative_index = None
+
+    if negative_sampling_strategy == "mixed":
+        if task_name != "disease_to_drug":
+            raise ValueError(
+                "Hard negative sampling by shared ingredients is currently only supported "
+                "for disease_to_drug."
+            )
+
+        ingredient_triples = [
+            row
+            for row in (train_target + non_target_triples)
+            if (row.get("rel") or "").strip() == "HAS_INGREDIENT"
+        ]
+        hard_negative_index = build_drug_ingredient_hard_negative_index(ingredient_triples)
+
+        print(
+            f"Hard negative sampling enabled | "
+            f"strategy={negative_sampling_strategy} | "
+            f"ratio={hard_negative_ratio} | "
+            f"ingredient_edges={len(ingredient_triples)} | "
+            f"indexed_drugs={len(hard_negative_index)}"
         )
 
     train_src, train_relations, train_dst = build_training_pairs(
@@ -478,6 +582,9 @@ def main() -> None:
             k=cfg["training"]["neg_k"],
             candidate_pool=candidate_pool,
             device=device,
+            strategy=negative_sampling_strategy,
+            hard_negative_ratio=hard_negative_ratio,
+            hard_negative_index=hard_negative_index,
         )
 
         negative_scores = score_training_batch(

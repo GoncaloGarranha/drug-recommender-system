@@ -31,8 +31,8 @@ baseline:
     - "HAS_INGREDIENT"
 
 training:
-  epochs: 8000
-  max_epochs: 8000
+  epochs: 40000
+  max_epochs: 40000
   early_stopping:
     monitor: "valid_mrr"
     patience: 6000

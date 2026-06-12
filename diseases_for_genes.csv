@@ -1,0 +1,754 @@
+id,name
+DOID:0040085,bacterial sepsis
+DOID:0050052,Rocky Mountain spotted fever
+DOID:0050073,invasive aspergillosis
+DOID:0050096,tinea barbae
+DOID:0050120,hemophagocytic lymphohistiocytosis
+DOID:0050127,sinusitis
+DOID:0050140,acute diarrhea
+DOID:0050156,idiopathic pulmonary fibrosis
+DOID:0050157,cryptogenic organizing pneumonia
+DOID:0050161,lower respiratory tract disease
+DOID:0050185,erythema multiforme
+DOID:0050228,obsolete amebic dysentery
+DOID:0050289,fusariosis
+DOID:0050328,congenital hypothyroidism
+DOID:0050336,hypophosphatemia
+DOID:0050425,restless legs syndrome
+DOID:0050452,mevalonic aciduria
+DOID:0050476,Barth syndrome
+DOID:0050489,multinodular goiter
+DOID:0050589,inflammatory bowel disease
+DOID:0050693,Brooke-Spiegler syndrome
+DOID:0050700,cardiomyopathy
+DOID:0050731,vitamin B12 deficiency
+DOID:0050741,alcohol dependence
+DOID:0050744,anaplastic large cell lymphoma
+DOID:0050745,diffuse large B-cell lymphoma
+DOID:0050746,mantle cell lymphoma
+DOID:0050748,marginal zone lymphoma
+DOID:0050758,metabolic acidosis
+DOID:0050771,pheochromocytoma
+DOID:0050784,primary progressive multiple sclerosis
+DOID:0050811,congenital adrenal hyperplasia
+DOID:0050820,atrioventricular block
+DOID:0050827,rheumatic heart disease
+DOID:0050828,artery disease
+DOID:0050830,peripheral artery disease
+DOID:0050840,cervical dystonia
+DOID:0050847,sleep apnea
+DOID:0050848,obstructive sleep apnea
+DOID:0050854,Muckle-Wells syndrome
+DOID:0050859,hemorrhagic cystitis
+DOID:0050873,follicular lymphoma
+DOID:0050902,medulloblastoma
+DOID:0050905,inflammatory myofibroblastic tumor
+DOID:0050908,myelodysplastic syndrome
+DOID:0051061,stroke
+DOID:0051062,ischemic stroke
+DOID:0051064,left ventricular failure
+DOID:0060000,infective endocarditis
+DOID:0060042,atypical autism
+DOID:0060058,lymphoma
+DOID:0060145,pain agnosia
+DOID:0060167,seasonal affective disorder
+DOID:0060180,colitis
+DOID:0060185,Clostridium difficile colitis
+DOID:0060224,atrial fibrillation
+DOID:0060260,ptosis
+DOID:0060262,gallbladder disease
+DOID:0060284,paroxysmal nocturnal hemoglobinuria
+DOID:0060317,lung abscess
+DOID:0060318,acute promyelocytic leukemia
+DOID:0060319,cardiac arrest
+DOID:0060469,Miller-Dieker lissencephaly syndrome
+DOID:0060851,pemphigus vulgaris
+DOID:0060903,thrombosis
+DOID:0061030,hemophilia
+DOID:0061139,coronary atherosclerosis
+DOID:0061214,biliary obstruction
+DOID:0070080,schizophrenia 4
+DOID:0070084,schizophrenia 8
+DOID:0070314,obstructive nephropathy
+DOID:0070355,overactive bladder syndrome
+DOID:0070663,soft tissue sarcoma
+DOID:0080147,lymphoblastic lymphoma
+DOID:0080159,Cryptococcal meningitis
+DOID:0080160,Cytomegalovirus retinitis
+DOID:0080161,cutaneous candidiasis
+DOID:0080162,lupus nephritis
+DOID:0080176,meningococcal meningitis
+DOID:0080178,mucositis
+DOID:0080188,chronic myelomonocytic leukemia
+DOID:0080217,lysosomal acid lipase deficiency
+DOID:0080322,polycystic kidney disease
+DOID:0080347,malignant pheochromocytoma
+DOID:0080365,endometrial hyperplasia
+DOID:0080367,chronic eosinophilic leukemia
+DOID:0080374,gastroesophageal cancer
+DOID:0080422,Dravet syndrome
+DOID:0080547,metabolic dysfunction-associated steatohepatitis
+DOID:0080605,ankylosing spondylitis 3
+DOID:0080652,calcium oxalate nephrolithiasis
+DOID:0080745,polymyositis
+DOID:0080747,chronic urticaria
+DOID:0080749,chronic spontaneous urticaria
+DOID:0080784,urinary tract infection
+DOID:0080809,chronic asthma
+DOID:0080810,acute asthma
+DOID:0080832,mild cognitive impairment
+DOID:0080841,pemphigoid
+DOID:0080855,Parkinsonism
+DOID:0081055,central diabetes insipidus
+DOID:0081120,Graves ophthalmopathy
+DOID:0081267,graft-versus-host disease
+DOID:0081292,traumatic brain injury
+DOID:0081445,sickle cell disease
+DOID:0090018,TNF receptor–associated periodic syndrome
+DOID:0090019,sitosterolemia
+DOID:0090061,familial cold autoinflammatory syndrome
+DOID:0090070,hypogonadotropic hypogonadism
+DOID:0110102,atopic dermatitis 6
+DOID:0110698,hypotrichosis 1
+DOID:0111084,Fanconi anemia complementation group E
+DOID:0111151,Prinzmetal angina
+DOID:0111275,speech-language disorder-1
+DOID:0111282,psoriasis 5
+DOID:0111391,mucopolysaccharidosis IVA
+DOID:0111595,congenital contractural arachnodactyly
+DOID:0111773,"46,XY sex reversal 8"
+DOID:0111936,immunodeficiency 14
+DOID:0111962,combined immunodeficiency
+DOID:0112308,central precocious puberty
+DOID:0112339,Tatton-Brown-Rahman syndrome
+DOID:1002,endometritis
+DOID:1003,pelvic inflammatory disease
+DOID:10075,diphyllobothriasis
+DOID:10126,keratoconus
+DOID:1019,osteomyelitis
+DOID:10223,dermatomyositis
+DOID:1024,leprosy
+DOID:10241,thalassemia
+DOID:10283,prostate cancer
+DOID:1029,familial periodic paralysis
+DOID:10314,endocarditis
+DOID:10322,berylliosis
+DOID:10325,silicosis
+DOID:1036,chronic leukemia
+DOID:1037,lymphoid leukemia
+DOID:10371,yaws
+DOID:1040,chronic lymphocytic leukemia
+DOID:10456,tonsillitis
+DOID:10457,Legionnaires' disease
+DOID:10459,common cold
+DOID:10534,stomach cancer
+DOID:10554,meningoencephalitis
+DOID:1059,intellectual disability
+DOID:10591,pre-eclampsia
+DOID:10603,glucose intolerance
+DOID:10607,tropical sprue
+DOID:10608,celiac disease
+DOID:10609,rickets
+DOID:1064,cystinosis
+DOID:1067,open-angle glaucoma
+DOID:10689,obsolete galactorrhea not associated with childbirth
+DOID:10718,giardiasis
+DOID:1074,kidney failure
+DOID:10754,otitis media
+DOID:10763,hypertension
+DOID:10783,methemoglobinemia
+DOID:10787,premature menopause
+DOID:10808,gastric ulcer
+DOID:10825,essential hypertension
+DOID:10915,Wernicke-Korsakoff syndrome
+DOID:10933,obsessive-compulsive disorder
+DOID:1094,attention deficit hyperactivity disorder
+DOID:10952,nephritis
+DOID:11054,urinary bladder cancer
+DOID:11077,brucellosis
+DOID:11100,Q fever
+DOID:11102,bartonellosis
+DOID:11103,rickettsialpox
+DOID:11104,spotted fever
+DOID:11126,acquired thrombocytopenia
+DOID:1115,sarcoma
+DOID:1116,pertussis
+DOID:11162,respiratory failure
+DOID:11198,DiGeorge syndrome
+DOID:11199,hypoparathyroidism
+DOID:11204,allergic conjunctivitis
+DOID:11247,disseminated intravascular coagulation
+DOID:11249,vitamin K deficiency bleeding
+DOID:11256,typhus
+DOID:11262,ornithosis
+DOID:11263,chlamydia
+DOID:11265,trachoma
+DOID:11330,erysipelas
+DOID:11335,sarcoidosis
+DOID:11338,tetanus
+DOID:11339,pneumocystosis
+DOID:11371,functional diarrhea
+DOID:11383,cryptorchidism
+DOID:11396,pulmonary edema
+DOID:114,heart disease
+DOID:11400,pyelonephritis
+DOID:11405,diphtheria
+DOID:11406,choroiditis
+DOID:11476,osteoporosis
+DOID:11503,diabetic autonomic neuropathy
+DOID:11504,autonomic neuropathy
+DOID:11506,suppurative otitis media
+DOID:11573,listeriosis
+DOID:11612,polycystic ovary syndrome
+DOID:11634,myxedema
+DOID:11638,presbyopia
+DOID:11650,bronchopulmonary dysplasia
+DOID:11678,onchocerciasis
+DOID:1172,hyperlipoproteinemia type IV
+DOID:11723,Duchenne muscular dystrophy
+DOID:11729,Lyme disease
+DOID:11758,iron deficiency anemia
+DOID:118,pericardial effusion
+DOID:11823,hepatorenal syndrome
+DOID:1184,nephrotic syndrome
+DOID:11840,coronary artery vasospasm
+DOID:11914,gastroparesis
+DOID:11917,tinea cruris
+DOID:11963,esophagitis
+DOID:11968,postmenopausal atrophic vaginitis
+DOID:11984,hypertrophic cardiomyopathy
+DOID:12017,obsolete group B streptococcal pneumonia
+DOID:12029,sympathetic ophthalmia
+DOID:12030,panuveitis
+DOID:1205,allergic disease
+DOID:12053,cryptococcosis
+DOID:1206,Rett syndrome
+DOID:12072,pylorospasm
+DOID:12098,trigeminal neuralgia
+DOID:1210,optic neuritis
+DOID:12129,bulimia nervosa
+DOID:12134,factor VIII deficiency
+DOID:12143,neurogenic bladder
+DOID:12176,goiter
+DOID:12177,common variable immunodeficiency
+DOID:12179,tinea corporis
+DOID:12197,punctate epithelial keratoconjunctivitis
+DOID:12236,primary biliary cholangitis
+DOID:12259,hemophilia B
+DOID:1227,neutropenia
+DOID:12306,vitiligo
+DOID:12336,male infertility
+DOID:12365,malaria
+DOID:12377,spinal muscular atrophy
+DOID:12384,dysentery
+DOID:12385,shigellosis
+DOID:12387,nephrogenic diabetes insipidus
+DOID:1240,leukemia
+DOID:12403,tinea pedis
+DOID:12404,obsolete tinea
+DOID:12449,aplastic anemia
+DOID:12466,secondary hyperparathyroidism
+DOID:12550,hepatic coma
+DOID:12554,hemolytic-uremic syndrome
+DOID:12556,acute kidney tubular necrosis
+DOID:12574,posterior uveitis
+DOID:1260,parametritis
+DOID:12603,acute leukemia
+DOID:12663,blastomycosis
+DOID:12678,hypercalcemia
+DOID:12698,gynecomastia
+DOID:12700,hyperprolactinemia
+DOID:1272,telangiectasis
+DOID:1273,respiratory syncytial virus infectious disease
+DOID:12783,migraine without aura
+DOID:12798,mucopolysaccharidosis
+DOID:12849,autistic disorder
+DOID:12859,choreatic disease
+DOID:12895,keratoconjunctivitis sicca
+DOID:12919,Plasmodium ovale malaria
+DOID:12930,dilated cardiomyopathy
+DOID:12978,Plasmodium vivax malaria
+DOID:12987,agranulocytosis
+DOID:13034,relapsing fever
+DOID:1307,dementia
+DOID:13074,tinea unguium
+DOID:13141,uveitis
+DOID:13146,esophageal candidiasis
+DOID:13148,acute cystitis
+DOID:13166,allergic bronchopulmonary aspergillosis
+DOID:13189,gout
+DOID:1324,lung cancer
+DOID:13250,diarrhea
+DOID:13258,typhoid fever
+DOID:13268,porphyria
+DOID:13270,erythropoietic protoporphyria
+DOID:13316,exocrine pancreatic insufficiency
+DOID:13375,temporal arteritis
+DOID:13378,Kawasaki disease
+DOID:13381,pernicious anemia
+DOID:13382,megaloblastic anemia
+DOID:1340,pure red-cell aplasia
+DOID:13419,neurogenic bowel
+DOID:1343,urethritis
+DOID:13450,coccidioidomycosis
+DOID:13515,tuberous sclerosis
+DOID:13543,hyperparathyroidism
+DOID:13548,secondary Parkinson disease
+DOID:13558,obsolete gonococcal urethritis
+DOID:13564,aspergillosis
+DOID:13581,obsolete magnesium deficiency
+DOID:13582,obsolete potassium deficiency
+DOID:13593,eclampsia
+DOID:13603,obstructive jaundice
+DOID:13725,beriberi
+DOID:13778,chancroid
+DOID:1380,endometrial cancer
+DOID:13800,inclusion conjunctivitis
+DOID:13810,familial hypercholesterolemia
+DOID:13819,lymphogranuloma venereum
+DOID:13832,patent ductus arteriosus
+DOID:13868,hypoactive sexual desire disorder
+DOID:1389,polyneuropathy
+DOID:13906,obsolete malignant pleural effusion
+DOID:13922,eosinophilic esophagitis
+DOID:13924,necrotizing ulcerative gingivitis
+DOID:13938,amenorrhea
+DOID:1398,parasitic infectious disease
+DOID:14038,obsolete precocious puberty
+DOID:1406,iritis
+DOID:14067,Plasmodium falciparum malaria
+DOID:14069,cerebral malaria
+DOID:1407,anterior uveitis
+DOID:14087,epicondylitis
+DOID:1412,bacteriuria
+DOID:14219,renal tubular acidosis
+DOID:14227,azoospermia
+DOID:14247,chronic purulent otitis media
+DOID:1432,blindness
+DOID:14320,generalized anxiety disorder
+DOID:14330,Parkinson's disease
+DOID:14332,postencephalitic Parkinson disease
+DOID:14365,systemic primary carnitine deficiency disease
+DOID:14451,hyperkalemic periodic paralysis
+DOID:14452,hypokalemic periodic paralysis
+DOID:14484,sporotrichosis
+DOID:14566,disease of cellular proliferation
+DOID:1459,hypothyroidism
+DOID:14654,prostatitis
+DOID:1468,labyrinthitis
+DOID:1470,major depressive disorder
+DOID:14735,hereditary angioedema
+DOID:1485,cystic fibrosis
+DOID:1498,cholera
+DOID:1508,candidiasis
+DOID:1540,parathyroid carcinoma
+DOID:1555,urticaria
+DOID:1558,angioedema
+DOID:1562,chromoblastomycosis
+DOID:1564,fungal infectious disease
+DOID:1586,rheumatic fever
+DOID:1587,thrombocytopenia due to platelet alloimmunization
+DOID:1588,thrombocytopenia
+DOID:1595,melancholic depression
+DOID:1596,depressive disorder
+DOID:161,keratosis
+DOID:1612,breast cancer
+DOID:162,cancer
+DOID:1673,pneumothorax
+DOID:1679,cystitis
+DOID:1682,congenital heart disease
+DOID:1686,glaucoma
+DOID:1697,ichthyosis
+DOID:1702,ichthyosis vulgaris
+DOID:1724,duodenal ulcer
+DOID:1727,retinal vein occlusion
+DOID:1731,histoplasmosis
+DOID:1749,squamous cell carcinoma
+DOID:178,vascular disease
+DOID:1781,thyroid cancer
+DOID:1787,pericarditis
+DOID:1793,pancreatic cancer
+DOID:1803,neuritis
+DOID:1824,status epilepticus
+DOID:1826,epilepsy
+DOID:1827,generalized epilepsy
+DOID:1837,diabetic ketoacidosis
+DOID:1875,impotence
+DOID:1883,hepatitis C
+DOID:1884,viral hepatitis
+DOID:1909,melanoma
+DOID:1920,hyperuricemia
+DOID:1921,Klinefelter syndrome
+DOID:1924,hypogonadism
+DOID:1926,Gaucher's disease
+DOID:1936,atherosclerosis
+DOID:1947,trichomoniasis
+DOID:1949,cholecystitis
+DOID:1967,leiomyosarcoma
+DOID:1969,cerebral palsy
+DOID:1993,rectum cancer
+DOID:2018,hyperinsulinism
+DOID:2030,anxiety disorder
+DOID:2043,hepatitis B
+DOID:205,hyperostosis
+DOID:2050,acute maxillary sinusitis
+DOID:2051,maxillary sinusitis
+DOID:2055,post-traumatic stress disorder
+DOID:2123,tularemia
+DOID:216,dental caries
+DOID:2170,vaginitis
+DOID:219,colon cancer
+DOID:2213,hemorrhagic disease
+DOID:2222,factor X deficiency
+DOID:2224,essential thrombocythemia
+DOID:2235,prothrombin deficiency
+DOID:2237,hepatitis
+DOID:224,transient cerebral ischemia
+DOID:225,syndrome
+DOID:2271,obsolete oropharyngeal candidiasis
+DOID:2272,vulvovaginal candidiasis
+DOID:2273,vulvovaginitis
+DOID:2275,pharyngitis
+DOID:2280,hidradenitis suppurativa
+DOID:2282,hidradenitis
+DOID:230,lateral sclerosis
+DOID:2312,nocardiosis
+DOID:2316,brain ischemia
+DOID:2326,gastroenteritis
+DOID:2334,obsolete metastatic carcinoma
+DOID:2349,arteriosclerosis
+DOID:2351,iron metabolism disease
+DOID:2352,hemochromatosis
+DOID:2355,anemia
+DOID:2377,multiple sclerosis
+DOID:2382,kernicterus
+DOID:2385,obsolete thiamine deficiency
+DOID:2388,renal artery disease
+DOID:2394,ovarian cancer
+DOID:2449,acromegaly
+DOID:2456,blepharoconjunctivitis
+DOID:2513,basal cell carcinoma
+DOID:2518,orchitis
+DOID:2556,relapsing polychondritis
+DOID:2568,cervicitis
+DOID:2583,agammaglobulinemia
+DOID:2703,synovitis
+DOID:2723,dermatitis
+DOID:2733,skin atrophy
+DOID:2755,Mycobacterium avium complex disease
+DOID:2773,contact dermatitis
+DOID:2797,idiopathic interstitial pneumonia
+DOID:2799,bronchiolitis obliterans
+DOID:2841,asthma
+DOID:285,hairy cell leukemia
+DOID:2871,endometrial carcinoma
+DOID:289,endometriosis
+DOID:2921,glomerulonephritis
+DOID:2942,bronchiolitis
+DOID:2945,severe acute respiratory syndrome
+DOID:2951,motion sickness
+DOID:2957,pulmonary tuberculosis
+DOID:2959,hyperimmunoglobulin syndrome
+DOID:2965,bursitis
+DOID:2987,familial Mediterranean fever
+DOID:299,adenocarcinoma
+DOID:2991,obsolete stromal neoplasm
+DOID:2998,testicular cancer
+DOID:305,carcinoma
+DOID:306,obsolete dyskinetic syndrome
+DOID:3068,glioblastoma
+DOID:3078,anaplastic astrocytoma
+DOID:308,early myoclonic encephalopathy
+DOID:3082,interstitial lung disease
+DOID:3083,chronic obstructive pulmonary disease
+DOID:3087,gingivitis
+DOID:3113,papillary carcinoma
+DOID:3127,proctitis
+DOID:3146,lipid metabolism disorder
+DOID:319,spinal cord disease
+DOID:3240,aspiration pneumonitis
+DOID:326,ischemia
+DOID:3298,vaccinia
+DOID:3309,neurodermatitis
+DOID:3310,atopic dermatitis
+DOID:3312,bipolar disorder
+DOID:3314,angiomyolipoma
+DOID:3319,lymphangioleiomyomatosis
+DOID:332,amyotrophic lateral sclerosis
+DOID:3326,purpura
+DOID:3347,osteosarcoma
+DOID:3382,liposarcoma
+DOID:3385,bacterial vaginosis
+DOID:3393,coronary artery disease
+DOID:3401,inappropriate ADH syndrome
+DOID:3407,carotid artery disease
+DOID:341,peripheral vascular disease
+DOID:3459,breast carcinoma
+DOID:3463,breast disease
+DOID:3482,plague
+DOID:3486,necrobiosis lipoidica
+DOID:3488,cellulitis
+DOID:349,systemic mastocytosis
+DOID:3490,Noonan syndrome
+DOID:3491,Turner syndrome
+DOID:350,mastocytosis
+DOID:3507,dermatofibrosarcoma protuberans
+DOID:3602,toxic encephalopathy
+DOID:3612,retinitis
+DOID:363,uterine cancer
+DOID:3650,lactic acidosis
+DOID:3669,intermittent claudication
+DOID:3686,obsolete Helicobacter pylori infectious disease
+DOID:3717,gastric adenocarcinoma
+DOID:3767,vaginal discharge
+DOID:3770,pulmonary fibrosis
+DOID:3777,granuloma annulare
+DOID:3798,pleural empyema
+DOID:3875,thrombophlebitis
+DOID:3890,acute intermittent porphyria
+DOID:3908,lung non-small cell carcinoma
+DOID:3911,progeria
+DOID:3947,adrenal gland hyperfunction
+DOID:3948,adrenocortical carcinoma
+DOID:3963,thyroid gland carcinoma
+DOID:3965,Merkel cell carcinoma
+DOID:3974,obsolete medullary carcinoma
+DOID:399,tuberculosis
+DOID:4,disease
+DOID:4074,pancreatic adenocarcinoma
+DOID:4079,heart valve disease
+DOID:409,liver disease
+DOID:4099,obsolete metastatic squamous cell carcinoma
+DOID:4131,erythrasma
+DOID:4156,primary syphilis
+DOID:4157,secondary syphilis
+DOID:4159,skin cancer
+DOID:4166,syphilis
+DOID:418,systemic scleroderma
+DOID:4195,hyperglycemia
+DOID:4239,alveolar soft part sarcoma
+DOID:4337,tinea capitis
+DOID:4362,cervical cancer
+DOID:437,myasthenia gravis
+DOID:440,neuromuscular disease
+DOID:4448,macular degeneration
+DOID:4449,macular retinal edema
+DOID:4450,renal cell carcinoma
+DOID:446,primary hyperaldosteronism
+DOID:4481,allergic rhinitis
+DOID:4483,rhinitis
+DOID:4500,hypokalemia
+DOID:4531,mucoepidermoid carcinoma
+DOID:4607,biliary tract cancer
+DOID:4660,indolent systemic mastocytosis
+DOID:4676,uremia
+DOID:4677,keratitis
+DOID:4692,endophthalmitis
+DOID:4730,vasomotor rhinitis
+DOID:4731,atrophic rhinitis
+DOID:4752,multiple system atrophy
+DOID:4798,aggressive systemic mastocytosis
+DOID:4890,juvenile myoclonic epilepsy
+DOID:4912,obsolete disseminated adenocarcinoma
+DOID:4944,gastroesophageal junction adenocarcinoma
+DOID:4947,cholangiocarcinoma
+DOID:4964,neurotic disorder
+DOID:4971,myelofibrosis
+DOID:4977,lymphedema
+DOID:4989,pancreatitis
+DOID:5003,eunuchism
+DOID:5041,esophageal cancer
+DOID:5077,subependymal giant cell astrocytoma
+DOID:5082,liver cirrhosis
+DOID:5119,ovarian cyst
+DOID:5200,urinary tract obstruction
+DOID:5214,demyelinating polyneuropathy
+DOID:5223,infertility
+DOID:526,human immunodeficiency virus infectious disease
+DOID:529,blepharospasm
+DOID:5327,retinal detachment
+DOID:5418,schizoaffective disorder
+DOID:5419,schizophrenia
+DOID:5425,ovarian hyperstimulation syndrome
+DOID:543,dystonia
+DOID:552,pneumonia
+DOID:557,kidney disease
+DOID:5575,obsolete delayed puberty
+DOID:559,acute pyelonephritis
+DOID:5614,eye disease
+DOID:574,peripheral nervous system disease
+DOID:5757,endocervicitis
+DOID:576,proteinuria
+DOID:582,hemoglobinuria
+DOID:583,hemolytic anemia
+DOID:5844,myocardial infarction
+DOID:585,nephrolithiasis
+DOID:593,agoraphobia
+DOID:594,panic disorder
+DOID:6000,congestive heart failure
+DOID:607,paraplegia
+DOID:612,primary immunodeficiency disease
+DOID:6132,bronchitis
+DOID:614,lymphopenia
+DOID:615,leukopenia
+DOID:6195,conjunctivitis
+DOID:627,severe combined immunodeficiency
+DOID:631,fibromyalgia
+DOID:635,acquired immunodeficiency syndrome
+DOID:636,central pontine myelinolysis
+DOID:6364,migraine
+DOID:643,progressive multifocal leukoencephalopathy
+DOID:6432,pulmonary hypertension
+DOID:65,connective tissue disease
+DOID:6543,acne
+DOID:657,adenoma
+DOID:6590,spondylitis
+DOID:6713,cerebrovascular disease
+DOID:676,systemic juvenile rheumatoid arthritis
+DOID:684,hepatocellular carcinoma
+DOID:711,refractory hairy cell leukemia
+DOID:7147,ankylosing spondylitis
+DOID:7148,rheumatoid arthritis
+DOID:7165,subacute thyroiditis
+DOID:7166,thyroiditis
+DOID:7188,autoimmune thyroiditis
+DOID:722,obsolete spontaneous abortion
+DOID:743,dermatographia
+DOID:7474,malignant pleural mesothelioma
+DOID:7475,diverticulitis
+DOID:749,active peptic ulcer disease
+DOID:750,peptic ulcer disease
+DOID:7551,gonorrhea
+DOID:762,obsolete bacterial endocarditis
+DOID:767,muscular atrophy
+DOID:768,retinoblastoma
+DOID:769,neuroblastoma
+DOID:783,end stage renal disease
+DOID:784,chronic kidney disease
+DOID:799,varicose veins
+DOID:7997,thyrotoxicosis
+DOID:7998,hyperthyroidism
+DOID:811,lipodystrophy
+DOID:824,periodontitis
+DOID:8283,peritonitis
+DOID:8295,scabies
+DOID:83,cataract
+DOID:8337,appendicitis
+DOID:8398,osteoarthritis
+DOID:84,osteochondritis dissecans
+DOID:841,extrinsic allergic alveolitis
+DOID:8411,kidney angiomyolipoma
+DOID:8432,polycythemia
+DOID:8445,intestinal volvulus
+DOID:8453,obsolete folic acid deficiency
+DOID:8469,influenza
+DOID:8478,actinomycosis
+DOID:848,arthritis
+DOID:8481,rheumatic myocarditis
+DOID:850,lung disease
+DOID:8504,impetigo
+DOID:8505,dermatitis herpetiformis
+DOID:8506,bullous pemphigoid
+DOID:8515,Cor pulmonale
+DOID:853,polymyalgia rheumatica
+DOID:8534,gastroesophageal reflux disease
+DOID:8535,obsolete ophthalmic herpes zoster
+DOID:8536,herpes zoster
+DOID:8538,reticulosarcoma
+DOID:8552,chronic myeloid leukemia
+DOID:8566,herpes simplex
+DOID:8567,Hodgkin's lymphoma
+DOID:8577,ulcerative colitis
+DOID:8596,scarlet fever
+DOID:8632,Kaposi's sarcoma
+DOID:8639,obsolete alcohol withdrawal delirium
+DOID:864,phlebitis
+DOID:865,vasculitis
+DOID:8659,chickenpox
+DOID:8670,eating disorder
+DOID:8691,mycosis fungoides
+DOID:8692,myeloid leukemia
+DOID:870,neuropathy
+DOID:8704,genital herpes
+DOID:8712,neurofibromatosis
+DOID:872,obsolete soft tissue disease
+DOID:874,bacterial pneumonia
+DOID:8741,seborrheic dermatitis
+DOID:8805,intermediate coronary syndrome
+DOID:8839,obsolete herpes zoster keratoconjunctivitis
+DOID:8857,lupus erythematosus
+DOID:8866,actinic keratosis
+DOID:8867,molluscum contagiosum
+DOID:8869,neuromyelitis optica
+DOID:8881,rosacea
+DOID:8886,chorioretinitis
+DOID:8893,psoriasis
+DOID:8923,skin melanoma
+DOID:8924,autoimmune thrombocytopenic purpura
+DOID:8927,learning disability
+DOID:8941,seborrheic infantile dermatitis
+DOID:8947,diabetic retinopathy
+DOID:8986,narcolepsy
+DOID:8997,polycythemia vera
+DOID:9008,psoriatic arthritis
+DOID:9065,leishmaniasis
+DOID:9074,systemic lupus erythematosus
+DOID:9080,macroglobulinemia
+DOID:9113,granuloma inguinale
+DOID:9119,acute myeloid leukemia
+DOID:9120,amyloidosis
+DOID:9146,visceral leishmaniasis
+DOID:9181,amebiasis
+DOID:9182,pemphigus
+DOID:9191,diabetic macular edema
+DOID:9201,lichen planus
+DOID:9253,gastrointestinal stromal tumor
+DOID:9256,colorectal cancer
+DOID:9263,homocystinuria
+DOID:9266,cystinuria
+DOID:9270,alkaptonuria
+DOID:9275,tyrosinemia
+DOID:9281,phenylketonuria
+DOID:9282,ocular hypertension
+DOID:934,viral infectious disease
+DOID:9351,diabetes mellitus
+DOID:9352,type 2 diabetes mellitus
+DOID:936,brain disease
+DOID:9362,status asthmaticus
+DOID:9368,keratoconjunctivitis
+DOID:9383,iridocyclitis
+DOID:9402,epididymitis
+DOID:9408,acute myocardial infarction
+DOID:9409,diabetes insipidus
+DOID:9415,allergic asthma
+DOID:9423,blepharitis
+DOID:9446,cholangitis
+DOID:9463,otitis externa
+DOID:9470,bacterial meningitis
+DOID:9471,meningitis
+DOID:9477,pulmonary embolism
+DOID:9478,postpartum depression
+DOID:9538,multiple myeloma
+DOID:9563,bronchiectasis
+DOID:9588,encephalitis
+DOID:9620,vesicoureteral reflux
+DOID:9637,stomatitis
+DOID:9667,placental abruption
+DOID:9675,pulmonary emphysema
+DOID:9699,ophthalmia neonatorum
+DOID:970,tenosynovitis
+DOID:9700,bacterial conjunctivitis
+DOID:971,tendinitis
+DOID:9743,diabetic neuropathy
+DOID:9744,type 1 diabetes mellitus
+DOID:9778,irritable bowel syndrome
+DOID:9784,trichinosis
+DOID:986,alopecia areata
+DOID:987,alopecia
+DOID:988,mitral valve prolapse
+DOID:9884,muscular dystrophy
+DOID:9938,dacryocystitis
+DOID:9952,acute lymphoblastic leukemia
+DOID:9970,obesity
+DOID:999,hypereosinophilic syndrome
+DOID:9993,hypoglycemia

@@ -1,0 +1,13 @@
+{
+  "python": "3.11.8 (tags/v3.11.8:db85d51, Feb  6 2024, 22:03:32) [MSC v.1937 64 bit (AMD64)]",
+  "executable": "D:\\FacudadeGoncalo\\Mestrado\\Tese\\drug-recommender-system\\venv\\Scripts\\python.exe",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "packages": {
+    "numpy": "2.4.1",
+    "pandas": "3.0.0",
+    "torch": "2.10.0+cpu",
+    "dgl": "1.1.2",
+    "sklearn": "1.8.0",
+    "yaml": "6.0.3"
+  }
+}

@@ -4,6 +4,8 @@ __pycache__/
 *.pyc
 *.pyo
 *.pyd
+*.py[cod]
+*$py.class
 
 # MedJsonify data
 MedJsonify-main/NER/data/

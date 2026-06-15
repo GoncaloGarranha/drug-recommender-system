@@ -25,3 +25,4 @@ timestamp,dataset,model_name,hits@1,hits@3,hits@10,mrr,notes
 2026-06-08T17:55:16.678599,disease_to_drug_freq200,R-GCN (disease_to_drug),0.554783,0.659130,0.728696,0.616627,Run: seed_42 | Split: test
 2026-06-09T06:31:28.073747,disease_to_drug_freq200,R-GCN (disease_to_drug),0.587826,0.681739,0.733913,0.644708,Run: seed_42 | Split: test
 2026-06-09T17:04:36.843108,disease_to_drug_freq200,R-GCN (disease_to_drug),0.610435,0.692174,0.747826,0.660461,Run: seed_42 | Split: test
+2026-06-13T14:12:27.655648,disease_to_drug_with_genes,R-GCN (disease_to_drug),0.659130,0.725217,0.773913,0.699288,Run: with_genes | Split: test

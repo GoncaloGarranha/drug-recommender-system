@@ -1,0 +1,22 @@
+{
+  "input_triples": 22188,
+  "output_triples": 21193,
+  "removed": {
+    "blacklisted_disease": 995
+  },
+  "blacklist_size": 4,
+  "filters": {
+    "remove_obsolete_doid_labels": true,
+    "remove_has_ingredient": false
+  },
+  "input_relation_distribution": {
+    "INDICATION": 4753,
+    "CONTRAINDICATION": 1933,
+    "HAS_INGREDIENT": 15502
+  },
+  "filtered_relation_distribution": {
+    "INDICATION": 4105,
+    "HAS_INGREDIENT": 15502,
+    "CONTRAINDICATION": 1586
+  }
+}

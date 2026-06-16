@@ -1,0 +1,46 @@
+{
+  "drug_resolution": {
+    "resolved_by_chebi": 1668,
+    "resolved_by_drugbank": 868,
+    "resolved_by_name": 218
+  },
+  "unique_drug_entities": 1796,
+  "unique_disease_entities": 753,
+  "unique_ingredient_entities": 2021,
+  "entity_resolution_config": {
+    "prefer_drugbank_id": true,
+    "prefer_chebi_id": true
+  },
+  "disease_metadata": {
+    "diseases_with_label": 753,
+    "diseases_without_label": 0,
+    "source": "MedJsonify doid_entities.text"
+  },
+  "validation": {
+    "entity_table": {
+      "total_entities": 4570,
+      "entity_type_counts": {
+        "DRUG": 1796,
+        "DISEASE": 753,
+        "INGREDIENT": 2021
+      }
+    },
+    "aliases": {
+      "total_aliases": 16726,
+      "duplicate_alias_rows": 1081,
+      "alias_type_counts": {
+        "DRUG_NAME_ORIGINAL": 2774,
+        "DRUG_NAME_NORM": 2774,
+        "CHEBI_ID": 1681,
+        "DRUGBANK_ID": 869,
+        "ING_NAME_ORIGINAL": 2123,
+        "ING_NAME_NORM": 2123,
+        "UNII_CODE": 2123,
+        "DOID_ID": 753,
+        "DISEASE_LABEL": 753,
+        "DISEASE_TEXT": 753
+      }
+    }
+  },
+  "note": "Drug entity resolution is configurable. Resolution order is DRUGBANK:<id> when prefer_drugbank_id is true and a DrugBank ID exists; CHEBI:<id> when prefer_chebi_id is true and a ChEBI ID exists; otherwise DRUG:<NAME_NORM>. Disease labels are enriched from MedJsonify doid_entities.text when available."
+}

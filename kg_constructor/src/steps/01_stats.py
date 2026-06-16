@@ -3,47 +3,14 @@ from __future__ import annotations
 import json
 from collections import Counter
 from pathlib import Path
-from typing import Any, Dict, Iterable, List
+from typing import Any, Dict, List
 
+from kg_constructor.src.utils.io import iter_json_files, load_json_file
 from kg_constructor.src.utils.log import get_logger
 
 logger = get_logger(__name__)
 
 SOURCE_FOLDERS = ("xml_files", "txt_files", "csv_files")
-
-
-def iter_json_files(folder: Path) -> Iterable[Path]:
-    """
-    Yield all JSON files in a given folder.
-
-    Args:
-        folder: Folder to scan.
-
-    Yields:
-        Path objects for files with the .json extension.
-    """
-    if not folder.exists():
-        return
-
-    for file_path in folder.iterdir():
-        if file_path.is_file() and file_path.suffix.lower() == ".json":
-            yield file_path
-
-
-def load_json_file(path: Path) -> Dict[str, Any]:
-    """
-    Load a JSON file and raise a clear error message if parsing fails.
-
-    Args:
-        path: Path to the JSON file.
-
-    Returns:
-        Parsed JSON content as a dictionary.
-    """
-    try:
-        return json.loads(path.read_text(encoding="utf-8"))
-    except Exception as exc:
-        raise RuntimeError(f"Failed to parse JSON file: {path} | Error: {exc}") from exc
 
 
 def extract_drugs(data: Dict[str, Any]) -> List[Dict[str, Any]]:
@@ -255,6 +222,10 @@ def run_stats(cfg: Dict[str, Any], paths, force: bool = False) -> None:
             "unique_ingredient_codes": len(ingredient_codes),
             "unique_doids": len(doid_counts),
             "unique_ordos": len(ordo_counts),
+        },
+        "ontology_scope": {
+            "doid": "Used as disease entities in the Knowledge Graph.",
+            "ordo": "Counted for exploratory audit only; not included in the current Knowledge Graph.",
         },
         "top_doids": doid_counts.most_common(20),
         "top_ordos": ordo_counts.most_common(20),

@@ -37,7 +37,13 @@ def import_entity_files_from_medjsonify(
         paths: Object containing pipeline paths. Must provide `input_dir`.
         force: If True, existing destination folders are removed before copying.
     """
-    source_root = Path("MedJsonify-main/NER/data/entities")
+    inputs_cfg = cfg.get("inputs", {})
+    source_root = Path(
+        inputs_cfg.get(
+            "medjsonify_entities_dir",
+            "MedJsonify-main/NER/data/entities",
+        )
+    )
     destination_root = Path(paths.input_dir)
 
     destination_root.mkdir(parents=True, exist_ok=True)

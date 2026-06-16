@@ -1,45 +1,43 @@
 from __future__ import annotations
 
-import csv
 import json
 from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Any, Dict, List, Tuple
 
+from kg_constructor.src.utils.io import read_csv, write_csv
 from kg_constructor.src.utils.log import get_logger
+from kg_constructor.src.utils.validate import (
+    validate_aliases,
+    validate_entity_table,
+)
 
 logger = get_logger(__name__)
 
 
-def read_csv(path: Path) -> List[Dict[str, str]]:
+def format_prefixed_identifier(raw_identifier: str, prefix: str) -> str:
     """
-    Read a CSV file into a list of dictionaries.
+    Format an external identifier with a canonical namespace prefix.
 
-    Args:
-        path: Path to the CSV file.
-
-    Returns:
-        List of rows as dictionaries.
+    Examples:
+        http://purl.obolibrary.org/obo/CHEBI_31672 -> CHEBI:31672
+        CHEBI_31672 -> CHEBI:31672
+        CHEBI:31672 -> CHEBI:31672
+        31672 -> CHEBI:31672
     """
-    with path.open("r", encoding="utf-8") as file_obj:
-        return list(csv.DictReader(file_obj))
+    identifier = raw_identifier.strip()
+    normalized_prefix = prefix.upper()
+    expected_prefix = f"{normalized_prefix}:"
 
+    if identifier.lower().startswith("http"):
+        identifier = identifier.rsplit("/", 1)[-1]
 
-def write_csv(path: Path, header: List[str], rows: List[List[Any]]) -> None:
-    """
-    Write rows to a CSV file.
+    identifier = identifier.replace("_", ":")
 
-    Args:
-        path: Output CSV path.
-        header: CSV header row.
-        rows: Data rows.
-    """
-    path.parent.mkdir(parents=True, exist_ok=True)
+    if identifier.upper().startswith(expected_prefix):
+        identifier = identifier.split(":", 1)[1].strip()
 
-    with path.open("w", newline="", encoding="utf-8") as file_obj:
-        writer = csv.writer(file_obj)
-        writer.writerow(header)
-        writer.writerows(rows)
+    return f"{expected_prefix}{identifier}"
 
 
 def resolve_entities(cfg: Dict[str, Any], paths, force: bool = False) -> None:
@@ -51,13 +49,23 @@ def resolve_entities(cfg: Dict[str, Any], paths, force: bool = False) -> None:
         - ingredients
         - diseases
 
-    Drug name variants are mapped to a single canonical entity ID. When a
-    DrugBank identifier is available, it is preferred as the canonical ID.
-    Otherwise, a normalized name-based identifier is used.
+    Drug name variants are mapped to a single canonical entity ID. The
+    canonical identifier strategy is controlled by:
+        cfg["entity_resolution"]["prefer_drugbank_id"]
+        cfg["entity_resolution"]["prefer_chebi_id"]
+
+    Resolution order:
+        1. DrugBank ID, when enabled and available.
+        2. ChEBI ID, when enabled and available.
+        3. Normalized drug name fallback.
+
+    Disease entities keep DOID identifiers as canonical IDs, while labels are
+    enriched from the MedJsonify text metadata when available.
 
     Inputs:
         - data/output/interim/drugs_raw.csv
         - data/output/interim/ingredients_raw.csv
+        - data/output/interim/diseases_raw.csv
         - data/output/interim/edges_raw.csv
 
     Outputs:
@@ -67,7 +75,7 @@ def resolve_entities(cfg: Dict[str, Any], paths, force: bool = False) -> None:
         - data/output/mappings/drug_name_to_entity.json
 
     Args:
-        cfg: Pipeline configuration dictionary. Kept for interface consistency.
+        cfg: Pipeline configuration dictionary.
         paths: Object containing pipeline paths. Must provide `output_dir`.
         force: If True, overwrite existing outputs.
     """
@@ -78,6 +86,7 @@ def resolve_entities(cfg: Dict[str, Any], paths, force: bool = False) -> None:
 
     drugs_csv = interim_dir / "drugs_raw.csv"
     ingredients_csv = interim_dir / "ingredients_raw.csv"
+    diseases_csv = interim_dir / "diseases_raw.csv"
     edges_csv = interim_dir / "edges_raw.csv"
 
     entity_table_csv = mappings_dir / "entity_table.csv"
@@ -95,27 +104,38 @@ def resolve_entities(cfg: Dict[str, Any], paths, force: bool = False) -> None:
 
     drug_rows = read_csv(drugs_csv)
     ingredient_rows = read_csv(ingredients_csv) if ingredients_csv.exists() else []
+    disease_rows = read_csv(diseases_csv) if diseases_csv.exists() else []
     edge_rows = read_csv(edges_csv)
 
     # -------------------------------------------------------------------------
     # Drug entity resolution
     # -------------------------------------------------------------------------
-    # For each normalized drug name, count how often each DrugBank ID appears.
+    entity_resolution_cfg = cfg.get("entity_resolution", {})
+    prefer_drugbank_id = bool(entity_resolution_cfg.get("prefer_drugbank_id", True))
+    prefer_chebi_id = bool(entity_resolution_cfg.get("prefer_chebi_id", True))
+
+    logger.info(
+        "Drug entity resolution config | prefer_drugbank_id=%s | prefer_chebi_id=%s",
+        prefer_drugbank_id,
+        prefer_chebi_id,
+    )
+
     normalized_name_to_drugbank_ids: Dict[str, Counter] = defaultdict(Counter)
+    normalized_name_to_chebi_ids: Dict[str, Counter] = defaultdict(Counter)
 
     for row in drug_rows:
         name_norm = (row.get("name_norm") or "").strip()
         drugbank_id = (row.get("drugbank_id") or "").strip()
+        chebi_id = (row.get("chebi_id") or "").strip()
 
         if not name_norm:
             continue
 
         if drugbank_id:
             normalized_name_to_drugbank_ids[name_norm][drugbank_id] += 1
+        if chebi_id:
+            normalized_name_to_chebi_ids[name_norm][chebi_id] += 1
 
-    # Build the final mapping from normalized drug name to canonical entity ID.
-    # Stats are counted after the dict is fully built to reflect unique entities,
-    # not raw CSV rows (which may contain the same drug from multiple files).
     drug_name_to_entity: Dict[str, str] = {}
 
     for row in drug_rows:
@@ -123,16 +143,21 @@ def resolve_entities(cfg: Dict[str, Any], paths, force: bool = False) -> None:
         if not name_norm:
             continue
 
-        if normalized_name_to_drugbank_ids.get(name_norm):
+        if prefer_drugbank_id and normalized_name_to_drugbank_ids.get(name_norm):
             best_drugbank_id, _ = normalized_name_to_drugbank_ids[name_norm].most_common(1)[0]
-            entity_id = f"DRUGBANK:{best_drugbank_id}"
+            entity_id = format_prefixed_identifier(best_drugbank_id, "DRUGBANK")
+        elif prefer_chebi_id and normalized_name_to_chebi_ids.get(name_norm):
+            best_chebi_id, _ = normalized_name_to_chebi_ids[name_norm].most_common(1)[0]
+            entity_id = format_prefixed_identifier(best_chebi_id, "CHEBI")
         else:
             entity_id = f"DRUG:{name_norm}"
 
         drug_name_to_entity[name_norm] = entity_id
 
     drug_resolution_stats = Counter(
-        "resolved_by_drugbank" if entity_id.startswith("DRUGBANK:") else "resolved_by_name"
+        "resolved_by_drugbank" if entity_id.startswith("DRUGBANK:")
+        else "resolved_by_chebi" if entity_id.startswith("CHEBI:")
+        else "resolved_by_name"
         for entity_id in drug_name_to_entity.values()
     )
 
@@ -146,7 +171,7 @@ def resolve_entities(cfg: Dict[str, Any], paths, force: bool = False) -> None:
         unii_code = (row.get("unii_code") or "").strip()
 
         if unii_code:
-            entity_id = f"UNII:{unii_code}"
+            entity_id = format_prefixed_identifier(unii_code, "UNII")
             label = name_norm if name_norm else unii_code
             ingredient_entities[entity_id] = ("INGREDIENT", label)
         elif name_norm:
@@ -158,9 +183,17 @@ def resolve_entities(cfg: Dict[str, Any], paths, force: bool = False) -> None:
     # -------------------------------------------------------------------------
     disease_entities: Dict[str, Tuple[str, str]] = {}
 
+    for row in disease_rows:
+        doid = (row.get("doid") or "").strip()
+        label = (row.get("label") or "").strip()
+
+        if doid.startswith("DOID:"):
+            disease_entities[doid] = ("DISEASE", label if label else doid)
+
+    # Fallback: keep DOID entities that appear in edges even if not present in diseases_raw.csv.
     for row in edge_rows:
         dst = (row.get("dst") or "").strip()
-        if dst.startswith("DOID:"):
+        if dst.startswith("DOID:") and dst not in disease_entities:
             disease_entities[dst] = ("DISEASE", dst)
 
     # -------------------------------------------------------------------------
@@ -170,11 +203,16 @@ def resolve_entities(cfg: Dict[str, Any], paths, force: bool = False) -> None:
 
     unique_drug_entities = set(drug_name_to_entity.values())
     for entity_id in sorted(unique_drug_entities):
-        label = entity_id.replace("DRUGBANK:", "").replace("DRUG:", "")
+        label = (
+            entity_id
+            .replace("DRUGBANK:", "")
+            .replace("CHEBI:", "")
+            .replace("DRUG:", "")
+        )
         entity_rows.append([entity_id, "DRUG", label])
 
-    for entity_id in sorted(disease_entities.keys()):
-        entity_rows.append([entity_id, "DISEASE", entity_id])
+    for entity_id, (entity_type, label) in sorted(disease_entities.items()):
+        entity_rows.append([entity_id, entity_type, label])
 
     for entity_id, (entity_type, label) in sorted(ingredient_entities.items()):
         entity_rows.append([entity_id, entity_type, label])
@@ -190,6 +228,8 @@ def resolve_entities(cfg: Dict[str, Any], paths, force: bool = False) -> None:
     for row in drug_rows:
         name_original = (row.get("name_original") or "").strip()
         name_norm = (row.get("name_norm") or "").strip()
+        drugbank_id = (row.get("drugbank_id") or "").strip()
+        chebi_id = (row.get("chebi_id") or "").strip()
 
         if not name_norm:
             continue
@@ -202,13 +242,18 @@ def resolve_entities(cfg: Dict[str, Any], paths, force: bool = False) -> None:
             alias_rows.append([name_original, entity_id, "DRUG_NAME_ORIGINAL"])
         alias_rows.append([name_norm, entity_id, "DRUG_NAME_NORM"])
 
+        if drugbank_id:
+            alias_rows.append([drugbank_id, entity_id, "DRUGBANK_ID"])
+        if chebi_id:
+            alias_rows.append([chebi_id, entity_id, "CHEBI_ID"])
+
     for row in ingredient_rows:
         name_original = (row.get("name_original") or "").strip()
         name_norm = (row.get("name_norm") or "").strip()
         unii_code = (row.get("unii_code") or "").strip()
 
         if unii_code:
-            entity_id = f"UNII:{unii_code}"
+            entity_id = format_prefixed_identifier(unii_code, "UNII")
         elif name_norm:
             entity_id = f"ING:{name_norm}"
         else:
@@ -221,8 +266,34 @@ def resolve_entities(cfg: Dict[str, Any], paths, force: bool = False) -> None:
         if unii_code:
             alias_rows.append([unii_code, entity_id, "UNII_CODE"])
 
+    # Disease aliases: include readable labels and full MedJsonify text when available.
+    for row in disease_rows:
+        doid = (row.get("doid") or "").strip()
+        label = (row.get("label") or "").strip()
+        text = (row.get("text") or "").strip()
+
+        if not doid.startswith("DOID:"):
+            continue
+
+        alias_rows.append([doid, doid, "DOID_ID"])
+        if label and label != doid:
+            alias_rows.append([label, doid, "DISEASE_LABEL"])
+        if text and text not in {label, doid}:
+            alias_rows.append([text, doid, "DISEASE_TEXT"])
+
     write_csv(aliases_csv, ["alias", "entity_id", "alias_type"], alias_rows)
     logger.info("Saved: %s", aliases_csv)
+
+    # -------------------------------------------------------------------------
+    # Validate mapping outputs
+    # -------------------------------------------------------------------------
+    entity_table_rows = read_csv(entity_table_csv)
+    alias_rows_dict = read_csv(aliases_csv)
+
+    validation_report = {
+        "entity_table": validate_entity_table(entity_table_rows),
+        "aliases": validate_aliases(alias_rows_dict),
+    }
 
     # -------------------------------------------------------------------------
     # Save auxiliary mapping outputs
@@ -238,7 +309,27 @@ def resolve_entities(cfg: Dict[str, Any], paths, force: bool = False) -> None:
         "unique_drug_entities": len(unique_drug_entities),
         "unique_disease_entities": len(disease_entities),
         "unique_ingredient_entities": len(ingredient_entities),
-        "note": "Drug entities prefer DRUGBANK:<id> when available; otherwise DRUG:<NAME_NORM>.",
+        "entity_resolution_config": {
+            "prefer_drugbank_id": prefer_drugbank_id,
+            "prefer_chebi_id": prefer_chebi_id,
+        },
+        "disease_metadata": {
+            "diseases_with_label": sum(
+                1 for _, (_, label) in disease_entities.items() if label and not label.startswith("DOID:")
+            ),
+            "diseases_without_label": sum(
+                1 for _, (_, label) in disease_entities.items() if not label or label.startswith("DOID:")
+            ),
+            "source": "MedJsonify doid_entities.text",
+        },
+        "validation": validation_report,
+        "note": (
+            "Drug entity resolution is configurable. Resolution order is "
+            "DRUGBANK:<id> when prefer_drugbank_id is true and a DrugBank ID exists; "
+            "CHEBI:<id> when prefer_chebi_id is true and a ChEBI ID exists; "
+            "otherwise DRUG:<NAME_NORM>. Disease labels are enriched from "
+            "MedJsonify doid_entities.text when available."
+        ),
     }
 
     report_json.write_text(

@@ -1,11 +1,11 @@
 from __future__ import annotations
 
-import csv
 import json
 from collections import Counter
 from pathlib import Path
 from typing import Any, Dict, List, Set
 
+from kg_constructor.src.utils.io import read_csv, write_csv
 from kg_constructor.src.utils.log import get_logger
 from kg_constructor.src.utils.validate import (
     validate_no_empty_values,
@@ -16,48 +16,11 @@ from kg_constructor.src.utils.validate import (
 logger = get_logger(__name__)
 
 
-def read_csv(path: Path) -> List[Dict[str, str]]:
-    """
-    Read a CSV file into a list of dictionaries.
-
-    Args:
-        path: Path to the CSV file.
-
-    Returns:
-        List of rows as dictionaries.
-    """
-    with path.open("r", encoding="utf-8") as file_obj:
-        return list(csv.DictReader(file_obj))
-
-
-def write_csv(path: Path, header: List[str], rows: List[List[Any]]) -> None:
-    """
-    Write rows to a CSV file.
-
-    Args:
-        path: Output CSV path.
-        header: CSV header row.
-        rows: Data rows.
-    """
-    path.parent.mkdir(parents=True, exist_ok=True)
-
-    with path.open("w", newline="", encoding="utf-8") as file_obj:
-        writer = csv.writer(file_obj)
-        writer.writerow(header)
-        writer.writerows(rows)
-
-
 def load_blacklist(blacklist_path: Path) -> Set[str]:
     """
     Load blacklist entries from a text file.
 
     Empty lines and inline comments are ignored.
-
-    Args:
-        blacklist_path: Path to the blacklist file.
-
-    Returns:
-        Set of blacklist entries.
     """
     if not blacklist_path.exists():
         logger.warning("Blacklist file not found: %s", blacklist_path)
@@ -86,14 +49,12 @@ def filter_graph(cfg: Dict[str, Any], paths, force: bool = False) -> None:
         - data/output/triples/triples.filtered.csv
         - data/output/reports/filter_report.json
 
-    Filters applied:
-        1. Remove blacklisted diseases (e.g. generic hub diseases)
-        2. Remove self-loops (src == dst)
+    Filters that may be applied depending on configuration:
+        1. Remove blacklisted diseases or entities
+        2. Remove self-loops
         3. Remove obsolete DOID labels
-        4. Remove HAS_INGREDIENT relations
-
-    This step keeps only task-relevant and higher-quality triples for the
-    final graph construction phase.
+        4. Optionally remove HAS_INGREDIENT relations
+        5. Reject empty or invalid triples through validation
 
     Args:
         cfg: Pipeline configuration dictionary.
@@ -181,6 +142,7 @@ def filter_graph(cfg: Dict[str, Any], paths, force: bool = False) -> None:
         {"src": src, "rel": rel, "dst": dst}
         for src, rel, dst in filtered_rows
     ]
+
     validate_triples_columns(filtered_dict_rows, ["src", "rel", "dst"])
     validate_no_empty_values(filtered_dict_rows, ["src", "rel", "dst"])
     filtered_relation_counts = validate_relation_counts(filtered_dict_rows)
@@ -204,6 +166,8 @@ def filter_graph(cfg: Dict[str, Any], paths, force: bool = False) -> None:
             "remove_obsolete_doid_labels": remove_obsolete_doid,
             "remove_has_ingredient": remove_has_ingredient,
         },
+        "input_relation_distribution": dict(input_relation_counts),
+        "filtered_relation_distribution": dict(filtered_relation_counts),
     }
 
     report_json.write_text(

@@ -1,0 +1,22 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% appendix1.tex
+%% ISEL thesis document file
+%%
+%% Chapter with example 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Material Complementar} 
+\label{material complementar}
+\begin{table}[H]
+\centering
+\caption{Resumo métrico do pipeline: volume de ficheiros e tempos de execução.}
+\label{tab:pipeline_summary}
+\footnotesize
+\begin{tabular}{|l|c|c|r|}
+\hline
+\textbf{Fase do Pipeline} & \textbf{Input (Ficheiros)} & \textbf{Output (Ficheiros)} & \textbf{Duração} \\ \hline
+Data Acquisition & 3 ZIPs & 8123 (XML/CSV/TXT) & 39m 27s \\ \hline
+Converter & 8123 & 3440 (JSON) & 4m 27s \\ \hline
+NER \& Linking & 3440 & 3395 (JSON) & 5h 01m 13s \\ \hline
+\rowcolor[HTML]{EFEFEF}
+\end{tabular}
+\end{table}

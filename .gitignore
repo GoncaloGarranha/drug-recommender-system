@@ -15,7 +15,7 @@ MedJsonify-main/jsonify/output/
 
 # KG constructor input/generated data
 kg_constructor/data/input/
-#kg_constructor/data/output/
+# kg_constructor/data/output/
 
 # R-GCN generated artifacts
 models/rgcn/data/processed/

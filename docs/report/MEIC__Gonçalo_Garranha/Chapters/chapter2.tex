@@ -1,0 +1,131 @@
+% 
+%  chapter2.tex
+%  ISELthesis
+%  
+%  Created by Matilde Pós-de-Mina Pato on 2012/10/09.
+%
+\chapter{Background e Trabalhos Relacionados}
+\label{cha:background e trabalhos relacionados}
+Neste capítulo é feita a revisão e fundamentação da literatura relevante para o desenvolvimento desta dissertação. Aqui, são introduzidos os conceitos essenciais que fornecem a base para a representação de informação clínica relevante ao contexto apresentado. Adicionalmente, serão introduzidos os princípios da aprendizagem automática sobre grafos, especificamente as Redes Neuronais de Grafos (\acrfull{gnn}), que constituem as abordagens computacionais para a identificação de relações latentes e predição de ligações no âmbito deste trabalho.
+
+De forma a facilitar a compreensão dos temas abordados, o capítulo encontra-se estruturado em duas partes principais: a Fundamentação Teórica (Secção \ref{sec:background}), que detalha os modelos de representação e aprendizagem, e o Trabalho Relacionado (Secção \ref{sec:related and art}),  que apresenta uma revisão do estado da arte na descoberta biomédica de fármacos.
+
+\section{Background}
+\label{sec:background}
+Nesta secção, detalham-se os conceitos que suportam a solução proposta, começando pela normalização de dados através de ontologias e evoluindo para a construção de Grafos de Conhecimento e aplicação de modelos de aprendizagem automática.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\paragraph{Ontologias}
+\label{subsec:ontologias}
+Este trabalho baseia-se em informação clínica e regulatória associada a medicamentos, recolhida a partir de diversas fontes públicas, nomeadamente o \emph{DailyMed} \cite{dailymed}, o \emph{Orange Book} \cite{orangebook} e o \emph{Purple Book} \cite{purplebook}. Estes dados são, por natureza, díspares e redundantes. Por exemplo, um fármaco como a \enquote{Aspirina} pode ser referido pelo nome que é comercializado, ou pelo nome químico \enquote{Ácido Acetilsalicílico}.
+
+Para resolver este desafio, utiliza-se o conceito de Ontologia. Uma ontologia é uma representação formada a partir de regras lógicas que permitem a identificação unívoca de entidades independentemente da sua fonte de origem \cite{guarino2009ontology}. Trata-se de uma representação estruturada, composta por um conjunto de conceitos (classes) e pelas relações que os unem.
+
+Neste contexto, destacam-se e são adotadas as seguintes ontologias:
+
+\begin{itemize}
+\item \acrfull{do}: ontologia estruturada para classificação de doenças humanas, que permite a integração de patologias provenientes de diferentes fontes de dados clínicos \cite{schriml2022doid}. A DOID fornece identificadores únicos para doenças, facilitando a normalização de termos como, por exemplo, \enquote{cancro do pulmão}.
+
+\item \acrfull{chebi}: ontologia focada nas substâncias ativas, atribuindo nomes padronizados e identificadores únicos para compostos químicos e ingredientes farmacêuticos \cite{hastings2016chebi}.
+
+
+\item \acrfull{hpo}: fornece um vocabulário adequado para a descrição de manifestações clínicas, permitindo associar patologias a sinais e sintomas que se manifestam no paciente \cite{Khler2020}.
+
+\item \acrfull{ordo}: fornece uma nomenclatura especializada para doenças raras e condições médicas específicas, servindo de complemento à classificação oferecida pela DOID \cite{ordo2017}.
+\end{itemize}
+Ao mapear os dados para as respetivas ontologias, é possível atribuir um identificador único (como o DOID para patologias ou o ChEBI ID para substâncias ativas) a cada entidade, permitindo ao sistema reconhecer diferentes termos como representações do mesmo conceito.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\paragraph{Tripletos e Grafos de Conhecimento}
+\label{subsec:triplets e grafos de conhecimento}
+Para que os dados provenientes das ontologias possam ser processados por modelos de aprendizagem, não podem ser apresentados como uma \enquote{simples} lista de termos. Pelo contrário, devem ser organizados numa estrutura onde há uma transformação da informação em tríplets, onde cada facto é decomposto numa relação bem definida entre duas entidades (por exemplo: Fármaco A \enquote{trata} Doença B). Esta organização permite que o sistema seja capaz de interpretar a natureza de cada interação, distinguindo, por exemplo, entre uma indicação e um efeito secundário. Ao adotar esta estrutura, a informação deixa de estar fragmentada em tabelas e passa a formar um Grafo de Conhecimento, onde a proximidade e o tipo de ligação entre os nós permitem a inferência de novas descobertas \cite{ghazvinian2019knowledgegraphs}.
+
+Esta forma de organização é essencial para descrever o domínio farmacêutico, onde as relações entre fármacos e patologias variam (por exemplo: \enquote{trata}, \enquote{previne} ou \enquote{causa}). Assim, a utilização de tripletos permite preservar estes tipos diferentes de relação, fornecendo a base necessária para a aplicação de \acrshort{gnn}.
+
+A \figurename~\ref{fig:tabular_to_graph} ilustra este processo de transição, evidenciando como dados em datasets podem passar a ser representados na forma de grafos.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{Chapters/img/exemplo-transformacao-dataset-grafo-background.pdf}
+    \caption{Ilustração da transformação de uma representação tabular fragmentada num Grafo de Conhecimento, onde entidades como medicamentos, substâncias ativas e patologias passam a estar interligadas.}
+    \label{fig:tabular_to_graph}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\paragraph{Redes Neuronais Gráficas (GNN)}
+\label{subsec:gnn}
+As Redes Neuronais Gráficas (\acrshort{gnn}) são modelos de \textit{Deep Learning} desenvolvidos para processar dados estruturados em grafos. Ao contrário das redes neuronais tradicionais, que trabalham com dados tabulares, as GNNs utilizam o estudo das propriedades do grafo para aprender relações entre os nós.
+
+As \acrshort{gnn} baseiam-se no conceito de \textit{message passing} (passagem de mensagens). Cada nó do grafo reúne informação dos seus vizinhos para atualizar a sua própria representação. Este processo permite que a informação se propague pela estrutura do grafo, capturando tanto características locais como padrões mais globais da rede \cite{Wu2021}.
+
+No contexto de grafos de conhecimento biomédicos, as GNNs oferecem várias vantagens. Conseguem capturar a complexidade das relações entre entidades biomédicas (fármacos, doenças, proteínas) de forma natural, preservando a informação estrutural do grafo. As representações aprendidas pelas GNNs podem ser utilizadas para diversas tarefas, sendo a predição de ligações a mais relevante para este trabalho.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\paragraph{Predição de Ligações (Link Prediction)}
+\label{subsec:predicao de ligacoes}
+A predição de ligações consiste na tarefa de estimar a probabilidade de existência de uma aresta (relação) entre dois nós (entidades) que não se encontram conectados no grafo original \cite{Wu2021}. Nas \acrshort{gnn}, esta tarefa é realizada através da comparação das representações latentes aprendidas para cada nó durante o processo de \textit{message passing}. Estas representações, frequentemente designadas por \textit{embeddings}, são vetores numéricos que funcionam como um identificador detalhado de cada entidade. Cada nó passa a conter informação sobre a sua vizinhança, permitindo ao nó integrar informação estrutural e relacional do grafo com base nos seus vizinhos e nas relações que os ligam. Por outras palavras, a \enquote{identidade} de um nó passa a descrever não apenas o que ele é, mas também com quem se relaciona.
+
+Assim, o modelo infere novas ligações comparando os perfis criados para cada nó. Se o perfil de um fármaco for semelhante com o de uma doença, o sistema sugere que esse medicamento pode tratar essa doença, mesmo que isso ainda não seja conhecido.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Trabalho Relacionado e Estado da Arte}
+\label{sec:related and art}
+Nesta secção é apresentada uma revisão crítica do estado da arte e dos trabalhos relacionados com esta dissertação. São analisadas abordagens já exploradas acerca da utilização de grafos de conhecimento e modelos de aprendizagem automática, em particular as \acrshort{gnn}, no domínio biomédico e farmacêutico. O objetivo desta análise é enquadrar o trabalho desenvolvido, identificar as principais contribuições da literatura e evidenciar as limitações das soluções existentes face a este contexto, justificando assim a abordagem proposta nesta dissertação.
+
+\subsection{Trabalho Relacionado}
+\label{sec:related works}
+A investigação em sistemas de recomendação e descoberta de fármacos tem evoluído através de diversas abordagens, divergindo quer na natureza dos dados utilizados quer nos mecanismos explorados. No contexto desta dissertação, é fundamental analisar os contributos recentemente desenvolvidos, proporcionando uma compreensão clara das bases metodológicas sobre as quais este trabalho se apoia e as lacunas que a presente proposta visa colmatar.
+
+
+\paragraph{Pinto et al. (2025)}
+No âmbito do desenvolvimento de sistemas de recomendação para o domínio farmacêutico, Pinto et al. \cite{pinto2025} propuseram o \emph{DRecSys-SUSA}, com uma abordagem centrada na experiência do utilizador (\emph{User Sentiment Analysis}). O trabalho foca-se na extração de sintomas e na análise de sentimento a partir de textos de avaliações (\emph{reviews}) de medicamentos, utilizando técnicas de Processamento de Linguagem Natural (NLP) para converter casos não estruturados em sugestões terapêuticas.
+
+O principal contributo deste trabalho reside na criação de um sistema capaz de validar a eficácia de um medicamento através da carga emocional e da perceção de alívio reportada pelos utilizadores. Contudo, a limitação crítica desta abordagem está na natureza dos dados. Ao depender exclusivamente de texto livre, o sistema fica sujeito a ambiguidades linguísticas e não consegue representar com precisão interações clínicas e biológicas mais complexas. Enquanto neste trabalho existiu um foco na experiência do paciente, esta dissertação evolui para o uso de ontologias e \acrshort{kg}, permitindo definir explicitamente as relações entre entidades biomédicas.
+
+\paragraph{Aveiro (2025)}
+No contexto da exploração de redes biomédicas, Aveiro~\cite{aveiro2025} focou-se na análise de conectividade em Redes Heterogéneas (\emph{Hetnets}) para a descoberta de relações entre entidades. O objetivo central deste trabalho foi identificar caminhos de associação entre fármacos e patologias, utilizando grafos que integram diferentes tipos de nós e arestas. Para contornar a falta de ligações diretas entre os dados, a metodologia baseou-se em definir padrões de ligação (metacaminhos). Estes funcionam como padrões de navegação no grafo que guiam a pesquisa na rede (por exemplo: \enquote{sequência Fármaco-Gene-Doença}, permitindo medir a proximidade entre nós que, à primeira vista, não estão ligados.
+
+O principal contributo deste trabalho encontra-se na demonstração de que uma \emph{Hetnet} pode ser explorada para encontrar ligações indiretas que não são evidentes em bases de dados simples. Assim, a limitação desta abordagem em relação à presente dissertação prende-se com a natureza "estática" dos metacaminhos. Ao basear-se em sequências pré configuradas, o sistema fica restrito ao conhecimento biológico já documentado, apresentando dificuldade em detetar padrões de associação complexos que não correspondam aos caminhos definidos previstos. Esta rigidez impede que o modelo explore de forma autónoma a totalidade do espaço relacional da rede, restringindo a descoberta a caminhos de associação previamente admitidos pelo utilizador.
+
+\paragraph{Carvalho (2025)}
+No domínio da descoberta de fármacos através de dados não estruturados, Carvalho~\cite{carvalho2025} desenvolveu o sistema \emph{Topic Drug Rec}, com o objetivo de gerar recomendações personalizadas a partir de relatos de experiências de pacientes. O trabalho recorre a \emph{User Experience Reviews}, explorando o conteúdo textual para identificar padrões de uso e eficácia percebida. A metodologia adotada foca-se na aplicação de técnicas de Modelação de Tópicos (\textit{Topic Modelling}), recorrendo a algoritmos como \emph{Latent Dirichlet Allocation} (LDA) e \emph{Non-negative Matrix Factorization} (NMF) para extrair temas latentes que associam fármacos a condições médicas específicas.
+
+O principal contributo deste estudo é a capacidade de agrupar fármacos com base na linguagem dos pacientes, revelando associações que podem não estar nos manuais médicos tradicionais. Contudo, esta abordagem baseia-se apenas na frequência com que as palavras aparecem juntas nos comentários. Isto significa que o sistema identifica que dois termos estão relacionados porque as pessoas os usam na mesma frase, mas não "compreende" a biologia por trás dessa ligação. Sem um mapa de conhecimento real (como um \acrshort{kg}), o modelo pode confundir uma opinião comum de um utilizador com um facto médico validado, faltando-lhe o rigor clínico para confirmar se aquela relação faz sentido no contexto da biomedicina.
+
+\paragraph{Nunes et al. (2025)}
+No que diz respeito à confiança e interpretabilidade dos modelos biomédicos, o trabalho de Nunes et al.~\cite{nunes2025} introduziu o \emph{REx} (\emph{Rewarding Explainability in Drug Repurposing}), focado em evitar que os algoritmos de inteligência artificial se limitem a dar um resultado sem justificar a razão, garantindo que cada recomendação seja acompanhada por uma explicação lógica que um humano consiga validar. O foco principal da investigação é gerar explicações científicas fundamentadas para o reposicionamento de fármacos, utilizando \acrshort{kg} para justificar as recomendações resultantes. A metodologia baseia-se num agente de Aprendizagem por Reforço (\emph{Reinforcement Learning}) que é "recompensado" ao identificar caminhos no grafo que respeitem propriedades de explicação científica recorrendo a ontologias para validar estas associações.
+
+O principal contributo deste estudo é a capacidade de fornecer provas visíveis que um especialista do domínio possa validar, em vez de apenas apresentar um resultado numérico. Porém, esta abordagem está limitada pela complexidade da pesquisa de caminhos em grafos de larga escala através de agentes de reforço, o que pode ser computacionalmente exigente e difícil de otimizar para todas as relações possíveis. Esta dissertação diferencia-se ao integrar a preocupação com a explicabilidade do modelo \emph{REx}, mas recorrendo a modelos de aprendizagem que processam diretamente a estrutura relacional do grafo. O objetivo é aproveitar a capacidade destes sistemas para aprender automaticamente as interações complexas da rede, procurando uma solução que equilibre o poder de previsão com uma estrutura que permita interpretar as recomendações de forma mais eficiente e direta.
+
+\paragraph{Pereira et al. (2025)}
+No âmbito da integração e normalização de dados biomédicos, o trabalho de Pereira et al. \cite{pereira2025mapping} propõe uma metodologia para a construção e visualização de um \acrshort{kg} focado no domínio farmacêutico. O objetivo central da investigação é superar a fragmentação e a falta de normalização de fontes diversas, permitindo a extração de conhecimentos biomédicos através de uma estrutura unificada e semanticamente consistente (por exemplo, \enquote{Aspirina} é sempre representada pelo mesmo identificador, independentemente de surgir como \enquote{Aspirina} ou \enquote{ácido acetilsalicílico}). Para tal, foram utilizados dados regulatórios provenientes das bases de dados \emph{DailyMed} \cite{dailymed}, \emph{Purple Book} \cite{purplebook} e \emph{Orange Book} \cite{orangebook}. A metodologia desenvolvida, designada \emph{MedJsonify}, utiliza uma \emph{pipeline} de processamento que converte dados variados para o formato JSON, aplicando Reconhecimento de Entidades Nomeadas (\acrshort{ner}) e uma estratégia de mapeamento para ontologias como \emph{ChEBI} \cite{hastings2016chebi}, \emph{DrugBank} \cite{Wishart2017}, \emph{Disease Ontology} \cite{schriml2022doid} e \emph{Orphanet} \cite{ordo2017}.
+
+Este trabalho é de particular relevância para a presente dissertação, uma vez que a ferramenta \emph{MedJsonify} constituiu a base fundamental para todo o processo de tratamento, limpeza e normalização dos dados aqui utilizados. O principal contributo de Pereira et al. \cite{pereira2025mapping} reside na capacidade de transformar dados regulatórios heterogéneos numa estrutura pronta para análise. Contudo, enquanto o estudo original se centra sobretudo na exploração visual e na consulta interativa dos dados através do Neo4j, a presente dissertação utiliza os dados normalizados e anotados produzidos pelo \emph{MedJsonify} como ponto de partida para uma modelação relacional própria. Desta forma, o pré-processamento e a definição das entidades realizados fornecem a base sólida necessária para a aplicação de modelos de aprendizagem profunda orientados à predição de novas associações.
+
+\paragraph{Zitnik et al. (2018)}
+Um dos marcos no uso da aprendizagem em grafos para o domínio farmacêutico é o trabalho de Zitnik et al.~\cite{zitnik2018}, que introduziu o modelo \emph{Decagon}. O objetivo principal da investigação foi prever efeitos secundários resultantes da polifarmácia (uso combinado de vários fármacos), um problema cuja complexidade impede a testagem exaustiva de todas as combinações possíveis. Para tal, os autores utilizaram uma rede multimodal de larga escala. Esta estrutura integra interações entre proteínas (como as moléculas do nosso corpo comunicam entre si), alvos terapêuticos (o local exato onde o medicamento atua para fazer efeito) e um registo detalhado de mais de 960 tipos de efeitos secundários que surgem apenas quando dois fármacos são tomados em conjunto. Este tipo de dados permite ao modelo entender não só o fármaco de forma isolada, mas também o impacto da sua combinação no organismo.
+
+Este trabalho mostrou-se de grande relevância por demonstrar a eficácia de modelos de aprendizagem capazes de processar grafos multi-relacionais. Ao contrário de abordagens tradicionais que assumem um único tipo de ligação, este estudo prova que é possível modelar explicitamente vários tipos de relações (como "trata" ou "causa"), aprendendo representações que contêm o conteúdo informativo das relações específicas de cada associação. Desta forma, o trabalho de Zitnik et al. mostrou-se uma grande referência para esta dissertação, ao validar que a previsão de novas relações no contexto biomédico deve considerar a diversidade das relações presentes num grafo de conhecimento, permitindo uma inferência mais informativa do que a análise de vizinhança entre nós.
+
+\subsection{Estado da Arte}
+\label{sec:State of Art}
+Após a análise dos trabalhos relacionados, torna-se evidente que a descoberta de novas indicações terapêuticas através de \acrshort{kg} exige modelos capazes de capturar não só a estrutura da rede, como também a informação das várias relações. As abordagens analisadas demonstram que soluções baseadas exclusivamente em texto, regras pré-definidas ou exploração explícita de caminhos comprometem a identificação de padrões latentes e o desempenho algorítmico face à grande escala dos grafos atuais.
+
+Desta forma, será explorada a fundamentação teórica das arquiteturas de aprendizagem em grafos, estabelecendo as bases necessárias para o processamento eficiente de grandes volumes de dados multi-relacionais e para a inferência de novos conhecimentos no âmbito da biomedicina.
+
+\paragraph{Graph Convolutional Networks (GCN)}
+As \emph{Graph Convolutional Networks} (GCN) foram das primeiras abordagens bem-sucedidas para a aprendizagem em grafos, baseando-se no princípio de \emph{message passing} \cite{Zhang2019}. Estes modelos aprendem representações de nós ao agregar, de forma normalizada, a informação proveniente da sua vizinhança. Esta arquitetura permite gerar representações numéricas (\emph{embeddings}) que retratam a estrutura local do grafo em torno de uma entidade específica (nó), apresentando resultados eficazes em tarefas de predição de ligações quando aplicadas a grafos homogéneos \cite{Wu2021}.
+
+No entanto, a principal limitação das GCN neste contexto reside na suposição de um grafo onde todas as ligações partilham a mesma natureza. Esta uniformidade impede a distinção entre tipos de relações criticamente diferentes, como, por exemplo, \enquote{tratamento} ou \enquote{contraindicação}, comprometendo a fidelidade do modelo face à realidade farmacêutica. Conforme notado por Schlichtkrull et al. \cite{schlichtkrull2018modeling}, esta incapacidade de processar os vários tipos de ligações torna as GCN insuficientes para modelos que precisem de distinguir o significado real de cada ligação entre fármacos, doenças e outras entidades presentes.
+
+\paragraph{Kolmogorov-Arnold Networks - KAN}
+As \emph{Kolmogorov-Arnold Networks} (KAN) \cite{liu2025kankolmogorovarnoldnetworks} surgem como uma alternativa recente às redes neuronais tradicionais, como as \emph{Multilayer Perceptrons} (MLP), com o objetivo de aumentar a capacidade de representação e a interpretabilidade dos modelos. A principal diferença é a forma como a informação é transformada ao longo da rede. Enquanto nas arquiteturas clássicas os neurónios aplicam funções de ativação fixas e as ligações entre camadas são definidas por pesos, nas KAN as transformações associadas às ligações são modeladas por funções aprendidas.
+
+Em particular, as KAN utilizam funções flexíveis baseadas em \emph{splines}, que permitem aprender de forma explícita como cada entrada é transformada ao longo das ligações da rede. Esta abordagem torna o modelo mais adaptável a padrões nos dados e facilita a interpretação do papel de cada ligação no processo de decisão. Como resultado, as KAN apresentam-se como uma arquitetura promissora para cenários onde a transparência do modelo é relevante, tendo sido consideradas como alternativa no contexto desta dissertação.
+
+Apesar do seu potencial em termos de precisão, as KAN não foram a arquitetura selecionada para este trabalho por dois motivos. Primeiro, estas redes foram otimizadas para trabalhar com funções matemáticas contínuas (comuns em problemas da física), enquanto os \acrshort{kg} biomédicos são compostos por relações discretas e categóricas (como 'indicato para' ou 'contraindicado em'). Segundo, a complexidade de treinar funções individuais em cada ligação torna-se computacionalmente muito exigente para grafos com milhares de interações.
+
+\paragraph{Relational Graph Convolutional Network - RGCN}
+Para superar as limitações das GCN e a complexidade das KAN, esta dissertação adota as \acrfull{rgcn} como arquitetura central. Proposta por Schlichtkrull et al. \cite{schlichtkrull2018modeling}, esta rede foi desenhada para analisar grafos onde as ligações têm significados diferentes. Enquanto uma rede convencional trata todas as conexões como iguais, a \acrshort{rgcn} utiliza um mecanismo de aprendizagem específico para cada tipo de relação ($W_r$).
+
+Na prática, isto significa que o modelo aprende, por exemplo, que uma ligação de \enquote{indicação} tem um impacto oposto ao de uma de \enquote{contraindicação}. Em vez de apenas ver que duas entidades estão ligadas, o modelo avalia a intenção dessa ligação. Uma patologia pode ser propícia a um fármaco indicado (sinal positivo), mas rejeitar um fármaco contraindicado (sinal negativo). Esta distinção é o que permite ao sistema ir além da simples análise estatística e respeitar o rigor clínico imposto. Ao utilizar os dados pré-processados e as entidades normalizadas fornecidas pelo \emph{MedJsonify}, as \acrshort{rgcn} operam sobre uma base estrutural consistente, permitindo que a predição de ligações resulte da aprendizagem das relações do grafo, e não apenas da proximidade entre nós.

@@ -1,0 +1,44 @@
+% 
+%  chapter1.tex
+%  ThesisISEL
+%  
+%  Created by Matilde Pós-de-Mina Pato on 2012/10/09.
+%
+\chapter{Introdução}
+\label{cha:introdução}
+A utilização de sistemas de informação na área da saúde tem contribuído para o aumento da quantidade de dados clínicos e farmacêuticos disponibilizados para investigação de novas descobertas \cite{raghupathi2014bigdata}. Estes dados são provenientes de diversas entidades reguladoras, instituições de investigação e bases de dados públicas, desempenhando um papel fundamental no suporte à prática clínica e à investigação biomédica, sendo essenciais para a compreensão da informação associada aos medicamentos \cite{jensen2012mining}.
+
+No domínio farmacêutico, a informação disponibilizada abrange, entre outros aspetos, indicações terapêuticas, contraindicações, substâncias ativas e relações com patologias específicas. No entanto, esta informação encontra-se frequentemente distribuída por múltiplas fontes, apresentada em formatos heterogéneos e com diferentes níveis de estruturação, o que torna a sua integração e análise um desafio complexo.
+
+Para além disso, a complexidade que acompanha este domínio resulta não apenas do volume de dados, mas sobretudo do elevado número de entidades envolvidas e das inúmeras relações existentes entre elas. Fármacos, ingredientes, patologias e efeitos adversos formam uma rede de conhecimento densa, exigindo modelos de representação capazes de entender e descrever estas relações de forma clara e consistente. Neste contexto, as abordagens baseadas em \textbf{Grafos de Conhecimento} (\acrfull{kg}) surgem como uma solução  \cite{ghazvinian2019knowledgegraphs}. Permitem estruturar a informação de forma a facilitar a aplicação de técnicas de aprendizagem automática. 
+
+\section{Motivação}
+\label{sec:motivação}
+Do ponto de vista informático, para uma aplicação eficaz de técnicas de aprendizagem automática, há uma grande dependência na forma em que os dados são estruturados e representados. Em particular, quando se trabalha com dados reais, provenientes de fontes externas, a qualidade da representação assume um papel mais importante do que a complexidade do modelo utilizado.
+
+Na prática, os dados utilizados neste contexto apresentam frequentemente problemas estruturais, semânticos e de informação incompleta. Estes aspetos condicionam a capacidade dos algoritmos na extração de padrões relevantes, tornando insuficiente uma abordagem que se limite à aplicação direta de modelos sobre dados pouco estruturados.
+
+Adicionalmente, em cenários onde a dimensão dos conjuntos de dados é considerada limitada, a utilização de modelos complexos tende a não produzir os resultados esperados, podendo mesmo comprometer a resposta dada pelos modelos. Nestes contextos, torna-se fundamental privilegiar abordagens centradas na organização da informação, na definição explícita das relações relevantes e na construção de representações de conhecimento do domínio de forma estruturada.
+
+Assim, a motivação desta dissertação não se limita apenas à transformação e organização dos dados, mas também à exploração de abordagens que permitam tirar partido de representações baseadas em grafos para suportar tarefas de recomendação e dedução. Em particular, pretende-se investigar de que forma grafos de conhecimento, em conjunto com técnicas de aprendizagem automática em grafos, podem ser utilizados para identificar padrões relevantes, prever associações entre entidades e apoiar processos de descoberta e reposicionamento de fármacos.
+
+\section{Objetivos}
+\label{sec:objetivos}
+O objetivo principal desta dissertação é desenvolver um sistema de recomendação de hipóteses biomédicas baseado em Grafos de Conhecimento, capaz de aprender e inferir novas associações entre entidades biomédicas, com um foco maior nas relações fármaco-patologia, relevantes para o reposicionamento de fármacos.
+
+Para atingir este objetivo, o trabalho procura responder à questão de como a integração de diferentes fontes regulatórias num Grafo de Conhecimento multi-relacional pode contribuir para a identificação de novas hipóteses terapêuticas. Em particular, analisa-se o impacto da utilização de modelos de aprendizagem relacional, nomeadamente as Redes Neuronais Convolucionais Relacionais (R-GCN), na predição de novas ligações, em comparação com modelos de grafos mais simples que não distinguem a tipologia das relações. Ao analisar as limitações das soluções atuais, pretende-se demonstrar que diferenciar a natureza das relações no grafo permite gerar predições mais precisas e clinicamente úteis para o reposicionamento de fármacos.
+
+O sucesso da solução será avaliado através de critérios de desempenho quantitativos e qualitativos. Na ótica quantitativa, o sistema será avaliado recorrendo a métricas padrão de predição de ligações em grafos, nomeadamente o \emph{Mean Reciprocal Rank} (MRR) e o \emph{Hits@k}, esperando-se superar os resultados obtidos por modelos baseados em grafos simples. Na avaliação qualitativa, as recomendações que o modelo considera mais prováveis serão validadas através do confronto com literatura científica e registos de ensaios clínicos, assegurando que as previsões são coerentes com o conhecimento médico atual.
+
+\section{Estrutura do Documento}
+\label{sec:estrutura}
+O restante documento encontra-se organizado da seguinte forma:
+\begin{itemize}
+    \item Capítulo 1 – Introdução: Apresenta a contextualização do problema, os objetivos do trabalho, as questões de investigação e a estratégia de validação.
+    
+    \item Capítulo 2 - Background e Trabalhos Relacionados: Apresenta a fundamentação teórica sobre ontologias, grafos de conhecimento e Redes Neuronais Gráficas (GNN), com a adição de uma revisão crítica do estado da arte em sistemas de recomendação biomédicos.
+
+    \item Capítulo 3 – Metodologia e Arquitetura da Solução: Descreve a metodologia proposta, incluindo as fontes de dados e o pipeline utilizado, a construção e caracterização do Grafo de Conhecimento, bem como a definição da arquitetura baseada em Redes Neuronais Convolucionais Relacionais (R-GCN) e a estratégia de avaliação adotada.
+
+    \item Capítulo 4 – Planeamento e Gestão do Projeto: Apresenta o planeamento temporal do trabalho, a análise de riscos através de uma análise SWOT e a organização das diferentes fases do projeto.
+\end{itemize}

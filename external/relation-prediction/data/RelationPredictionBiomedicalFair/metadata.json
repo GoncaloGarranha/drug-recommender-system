@@ -1,0 +1,44 @@
+{
+  "candidate_type": "DRUG",
+  "num_graph_train": 35103,
+  "num_test": 575,
+  "num_loss_train": 4591,
+  "context_relations": [
+    "ASSOCIATED_WITH_GENE",
+    "CONTRAINDICATION",
+    "HAS_INGREDIENT",
+    "INDICATION"
+  ],
+  "valid_relation_distribution": {
+    "INDICATION": 573
+  },
+  "notes": "graph_train.txt is used by the GCN encoder; loss_train.txt/train.txt contain only target training triples for supervised optimization; valid/test contain target triples.",
+  "num_candidate_drugs": 1947,
+  "num_relations": 4,
+  "source_splits_dir": "/workspace/models/rgcn/data/processed/disease_to_drug_with_genes_fair/splits",
+  "graph_train_relation_distribution": {
+    "HAS_INGREDIENT": 18349,
+    "INDICATION": 4591,
+    "CONTRAINDICATION": 2220,
+    "ASSOCIATED_WITH_GENE": 9943
+  },
+  "target_relation": "INDICATION",
+  "num_entities": 8417,
+  "test_relation_distribution": {
+    "INDICATION": 575
+  },
+  "dataset_name": "RelationPredictionBiomedicalFair",
+  "num_valid": 573,
+  "loss_train_relation_distribution": {
+    "INDICATION": 4591
+  },
+  "num_query_diseases": 753,
+  "relations": [
+    "ASSOCIATED_WITH_GENE",
+    "CONTRAINDICATION",
+    "HAS_INGREDIENT",
+    "INDICATION"
+  ],
+  "query_type": "DISEASE",
+  "source_processed_dir": "/workspace/models/rgcn/data/processed/disease_to_drug_with_genes_fair"
+}

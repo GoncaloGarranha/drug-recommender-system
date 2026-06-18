@@ -1,0 +1,23 @@
+{
+  "dataset_name": "RelationPredictionIndicationOnlyFair",
+  "source_processed_dir": "models\\rgcn\\data\\processed\\disease_to_drug_with_genes_fair",
+  "target_relation": "INDICATION",
+  "num_entities": 2167,
+  "num_relations": 1,
+  "num_train": 4591,
+  "num_valid": 573,
+  "num_test": 575,
+  "train_relation_distribution": {
+    "INDICATION": 4591
+  },
+  "valid_relation_distribution": {
+    "INDICATION": 573
+  },
+  "test_relation_distribution": {
+    "INDICATION": 575
+  },
+  "relations": [
+    "INDICATION"
+  ],
+  "notes": "Target-only fair dataset: train, valid and test contain only INDICATION triples using the same split as disease_to_drug_with_genes_fair."
+}

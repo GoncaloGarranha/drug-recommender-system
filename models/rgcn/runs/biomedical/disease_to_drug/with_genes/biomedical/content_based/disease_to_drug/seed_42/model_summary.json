@@ -1,0 +1,26 @@
+{
+  "model_name": "content_based",
+  "task_name": "disease_to_drug",
+  "seed": 42,
+  "baseline": {
+    "use_ingredients": true,
+    "feature_relations": null,
+    "target_relation": "INDICATION",
+    "use_train_indication_genes": false,
+    "gene_relation": "ASSOCIATED_WITH_GENE",
+    "gene_feature_prefix": "TRAIN_INDICATION_GENE",
+    "leakage_policy": "gene features are derived only from train INDICATION triples"
+  },
+  "candidate_count": 1947,
+  "feature_stats": {
+    "direct_feature_relations": [
+      "HAS_INGREDIENT"
+    ],
+    "direct_feature_triples": 18349,
+    "use_train_indication_genes": false,
+    "gene_relation": "ASSOCIATED_WITH_GENE",
+    "gene_feature_prefix": "TRAIN_INDICATION_GENE",
+    "train_gene_tokens": 0,
+    "drugs_with_train_gene_tokens": 0
+  }
+}

@@ -22,7 +22,13 @@ from models.shared.config import load_config
 from models.shared.experiment_integrity import validate_experiment_integrity
 from models.shared.io import read_json
 from models.shared.metrics import compute_ranking_metrics
-from models.shared.runs import capture_environment, capture_git_commit, resolve_run_dir, save_metrics, write_run_artifacts
+from models.shared.runs import (
+    capture_environment,
+    capture_git_commit,
+    resolve_run_dir,
+    save_metrics,
+    write_run_artifacts,
+)
 from models.shared.splits import build_known_positives, get_split_ratios, get_or_create_splits
 
 
@@ -37,17 +43,28 @@ def resolve_existing_path(*relative_candidates):
 
 
 class ContentBasedBaseline:
-    def __init__(self, triples_full_path: Path, candidate_entities: List[str], use_ingredients: bool = True, feature_relations: list | None = None, target_relation: str | None = None, task_name: str | None = None):
+    def __init__(
+        self,
+        triples_full_path: Path,
+        candidate_entities: List[str],
+        use_ingredients: bool = True,
+        feature_relations: list | None = None,
+        target_relation: str | None = None,
+        task_name: str | None = None,
+        train_triples: pd.DataFrame | None = None,
+        use_train_indication_genes: bool = False,
+        gene_relation: str = "ASSOCIATED_WITH_GENE",
+        gene_feature_prefix: str = "TRAIN_INDICATION_GENE",
+    ):
         print("--- [1/3] Initializing aligned content-based baseline (TF-IDF + cosine) ---")
         self.task_name = task_name or "disease_to_drug"
-        
-        # Validate that the task is supported
+
         if self.task_name != "disease_to_drug":
             raise ValueError(
                 f"Content-Based baseline is currently supported only for disease_to_drug. "
-                f"Received: {self.task_name}. The ingredient-based representation is defined over drug candidates."
+                f"Received: {self.task_name}. The representation is defined over drug candidates."
             )
-        
+
         df_all = pd.read_csv(triples_full_path, dtype=str)
 
         if not candidate_entities:
@@ -58,58 +75,111 @@ class ContentBasedBaseline:
         self.use_ingredients = use_ingredients
         self.feature_relations = feature_relations or []
         self.target_relation = target_relation
+        self.use_train_indication_genes = use_train_indication_genes
+        self.gene_relation = gene_relation
+        self.gene_feature_prefix = gene_feature_prefix
 
-        # Build document representation from configured feature relations
+        # Build document representation from configured direct drug-profile relations.
         allowed_rels = set(self.feature_relations)
-        
+
         if self.use_ingredients:
             allowed_rels.add("HAS_INGREDIENT")
-        
-        # Remove target relation to avoid data leakage
+
+        # Remove target relation to avoid direct label leakage. The optional gene
+        # enrichment below may use train-only INDICATION triples as a bridge, but
+        # never as direct drug-profile tokens.
         if self.target_relation is not None and self.target_relation in allowed_rels:
             allowed_rels.discard(self.target_relation)
-        
-        if not allowed_rels:
+
+        if not allowed_rels and not self.use_train_indication_genes:
             raise ValueError(
                 "No feature relations available for Content-Based baseline. "
-                "Set config.baseline.feature_relations and/or config.baseline.use_ingredients=true."
+                "Set config.baseline.feature_relations, config.baseline.use_ingredients=true, "
+                "and/or config.baseline.use_train_indication_genes=true."
             )
-        
-        docs_df = df_all[
-            (df_all["src"].isin(self.entity_list)) &
-            (df_all["rel"].isin(allowed_rels))
-        ].copy()
-        
+
+        if allowed_rels:
+            docs_df = df_all[
+                (df_all["src"].isin(self.entity_list))
+                & (df_all["rel"].isin(allowed_rels))
+            ].copy()
+        else:
+            docs_df = pd.DataFrame(columns=df_all.columns)
+
         if docs_df.empty:
-            raise ValueError(
-                f"No feature triples found for candidate entities using relations: {sorted(allowed_rels)}. "
-                f"Available entities: {self.entity_list[:5]}..."
+            doc_map: Dict[str, List[str]] = {}
+        else:
+            doc_map = (
+                docs_df.assign(token=docs_df["rel"].astype(str) + ":" + docs_df["dst"].astype(str))
+                .groupby("src")["token"]
+                .apply(list)
+                .to_dict()
             )
-        
-        # Create token map: src → [rel:dst, rel:dst, ...]
-        doc_map = (
-            docs_df.assign(token=docs_df["rel"].astype(str) + ":" + docs_df["dst"].astype(str))
-            .groupby("src")["token"]
-            .apply(list)
-            .to_dict()
-        )
-        
+
+        train_gene_token_count = 0
+        drugs_with_train_gene_tokens = 0
+        if self.use_train_indication_genes:
+            if train_triples is None:
+                raise ValueError("baseline.use_train_indication_genes=true requires train triples.")
+            if self.target_relation is None:
+                raise ValueError("baseline.use_train_indication_genes=true requires a target relation.")
+
+            disease_to_genes = (
+                df_all[df_all["rel"] == self.gene_relation]
+                .groupby("src")["dst"]
+                .apply(lambda values: sorted(set(str(value) for value in values)))
+                .to_dict()
+            )
+
+            # In disease_to_drug, target triples are stored as Drug --INDICATION--> Disease.
+            # Therefore each train indication maps drug=row["src"] to disease=row["dst"].
+            train_indications = train_triples[
+                (train_triples["rel"] == self.target_relation)
+                & (train_triples["src"].isin(self.entity_list))
+            ]
+
+            drug_to_genes: Dict[str, set] = {}
+            for _, row in train_indications.iterrows():
+                drug = str(row["src"])
+                disease = str(row["dst"])
+                genes = disease_to_genes.get(disease, [])
+                if genes:
+                    drug_to_genes.setdefault(drug, set()).update(genes)
+
+            for drug, genes in drug_to_genes.items():
+                tokens = [f"{self.gene_feature_prefix}:{gene}" for gene in sorted(genes)]
+                if tokens:
+                    doc_map.setdefault(drug, []).extend(tokens)
+                    train_gene_token_count += len(tokens)
+                    drugs_with_train_gene_tokens += 1
+
+        self.feature_stats = {
+            "direct_feature_relations": sorted(allowed_rels),
+            "direct_feature_triples": int(len(docs_df)),
+            "use_train_indication_genes": self.use_train_indication_genes,
+            "gene_relation": self.gene_relation,
+            "gene_feature_prefix": self.gene_feature_prefix,
+            "train_gene_tokens": int(train_gene_token_count),
+            "drugs_with_train_gene_tokens": int(drugs_with_train_gene_tokens),
+        }
+        print(f"-> Feature stats: {self.feature_stats}")
+
         self.documents = [" ".join(doc_map.get(entity, [])) for entity in self.entity_list]
 
         if not any(doc.strip() for doc in self.documents):
-            # Fallback: if no textual features are available, use the entity id as a token
-            self.documents = [str(e) for e in self.entity_list]
+            # Fallback: if no textual features are available, use the entity id as a token.
+            self.documents = [str(entity) for entity in self.entity_list]
 
         self.vectorizer = TfidfVectorizer(
             max_df=0.9,
             min_df=1,
-            token_pattern=r"[a-zA-Z0-9:]+"
+            token_pattern=r"[a-zA-Z0-9:]+",
         )
 
         try:
             self.tfidf_matrix = self.vectorizer.fit_transform(self.documents)
-        except ValueError as e:
-            print(f"Vectorization error: {e}")
+        except ValueError as err:
+            print(f"Vectorization error: {err}")
             print("Sample text passed to the vectorizer:", self.documents[0])
             sys.exit(1)
 
@@ -124,12 +194,12 @@ class ContentBasedBaseline:
     ) -> List[float]:
         print("--- [2/3] Generating filtered rankings with cosine similarity ---")
 
-        # For disease_to_drug: query=disease(dst), candidate=drug(src)
+        # For disease_to_drug: query=disease(dst), candidate=drug(src).
         query_col, candidate_col = "dst", "src"
 
         query_to_train_indices = (
             train_triples.groupby(query_col)[candidate_col]
-            .apply(lambda x: [self.entity_to_idx[e] for e in x if e in self.entity_to_idx])
+            .apply(lambda values: [self.entity_to_idx[entity] for entity in values if entity in self.entity_to_idx])
             .to_dict()
         )
 
@@ -165,7 +235,8 @@ class ContentBasedBaseline:
 
         return ranks
 
-if __name__ == "__main__":
+
+def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--config", default="models/rgcn/configs/disease_to_drug.yaml")
     parser.add_argument("--split", default="test", choices=["valid", "test"])
@@ -176,7 +247,6 @@ if __name__ == "__main__":
         config_path = resolve_existing_path(args.config)
         cfg = load_config(config_path)
 
-        # Use triples path from config to allow filtered / alternate triple files
         triples_cfg = cfg["data"].get("triples_path", "kg_constructor/data/output/triples/triples.csv")
         triples_full_path = resolve_existing_path(triples_cfg)
 
@@ -197,6 +267,9 @@ if __name__ == "__main__":
         sys.exit(1)
 
     seed = int(cfg.get("seed", 42))
+    random.seed(seed)
+    np.random.seed(seed)
+
     target_relation = cfg["task"]["target_relation"]
     task_name = cfg["task"].get("name", "disease_to_drug")
     run_dir = resolve_run_dir(cfg["runs"]["out_dir"], cfg, model_name="content_based", seed=seed)
@@ -231,7 +304,6 @@ if __name__ == "__main__":
     eval_df = valid_df if args.split == "valid" else test_df
     all_target_df = pd.concat([train_df, valid_df, test_df], ignore_index=True)
 
-    # Build known_positives for disease_to_drug
     known_positives = build_known_positives(
         all_target_df.to_dict(orient="records"),
         query_key="dst",
@@ -256,9 +328,15 @@ if __name__ == "__main__":
     baseline_cfg = cfg.get("baseline", {})
     use_ingredients = bool(baseline_cfg.get("use_ingredients", True))
     feature_relations = baseline_cfg.get("feature_relations", None)
+    use_train_indication_genes = bool(baseline_cfg.get("use_train_indication_genes", False))
+    gene_relation = baseline_cfg.get("gene_relation", "ASSOCIATED_WITH_GENE")
+    gene_feature_prefix = baseline_cfg.get("gene_feature_prefix", "TRAIN_INDICATION_GENE")
 
-    if (not use_ingredients) and (not feature_relations):
-        print("Error: baseline.use_ingredients is false but baseline.feature_relations is not set in the config.")
+    if (not use_ingredients) and (not feature_relations) and (not use_train_indication_genes):
+        print(
+            "Error: no baseline features configured. Set baseline.use_ingredients=true, "
+            "baseline.feature_relations, and/or baseline.use_train_indication_genes=true."
+        )
         sys.exit(1)
 
     split_summary = {
@@ -273,6 +351,19 @@ if __name__ == "__main__":
         "split_integrity_report": split_integrity_report["report_path"],
     }
 
+    model = ContentBasedBaseline(
+        triples_full_path=triples_full_path,
+        candidate_entities=candidate_entities,
+        use_ingredients=use_ingredients,
+        feature_relations=feature_relations,
+        target_relation=target_relation,
+        task_name=task_name,
+        train_triples=train_df,
+        use_train_indication_genes=use_train_indication_genes,
+        gene_relation=gene_relation,
+        gene_feature_prefix=gene_feature_prefix,
+    )
+
     model_summary = {
         "model_name": "content_based",
         "task_name": task_name,
@@ -281,8 +372,13 @@ if __name__ == "__main__":
             "use_ingredients": use_ingredients,
             "feature_relations": feature_relations,
             "target_relation": target_relation,
+            "use_train_indication_genes": use_train_indication_genes,
+            "gene_relation": gene_relation,
+            "gene_feature_prefix": gene_feature_prefix,
+            "leakage_policy": "gene features are derived only from train INDICATION triples",
         },
         "candidate_count": len(candidate_entities),
+        "feature_stats": model.feature_stats,
     }
 
     write_run_artifacts(
@@ -295,14 +391,6 @@ if __name__ == "__main__":
         git_commit=capture_git_commit(),
     )
 
-    model = ContentBasedBaseline(
-        triples_full_path=triples_full_path,
-        candidate_entities=candidate_entities,
-        use_ingredients=use_ingredients,
-        feature_relations=feature_relations,
-        target_relation=target_relation,
-        task_name=task_name,
-    )
     ranks = model.predict_ranks(eval_df, train_df, known_positives)
 
     if not ranks:
@@ -331,8 +419,12 @@ if __name__ == "__main__":
         mrr=mrr,
         notes=(
             f"Aligned with R-GCN protocol | Config: {Path(config_path).name} "
-            f"| Split: {args.split}"
+            f"| Split: {args.split} | use_train_indication_genes={use_train_indication_genes}"
         ),
     )
 
     save_metrics(run_dir, args.split, metrics)
+
+
+if __name__ == "__main__":
+    main()

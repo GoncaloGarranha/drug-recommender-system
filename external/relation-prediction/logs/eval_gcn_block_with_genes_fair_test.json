@@ -1,0 +1,14 @@
+{
+  "checkpoint": "models/GcnBlockRelationPredictionWithGenesFair-30",
+  "dataset": "data/RelationPredictionWithGenesFair",
+  "graph_train_triples": 35103,
+  "hits@1": 0.010434782608695653,
+  "hits@10": 0.05391304347826087,
+  "hits@3": 0.02434782608695652,
+  "loss_train_triples": 2841,
+  "mrr": 0.028568201845032143,
+  "num_candidate_subjects": 1947,
+  "num_queries": 575,
+  "protocol": "disease_to_drug_subject_prediction_restricted_to_candidate_drugs",
+  "split": "test"
+}

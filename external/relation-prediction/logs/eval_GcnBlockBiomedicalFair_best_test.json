@@ -1,0 +1,14 @@
+{
+  "checkpoint": "models/GcnBlockBiomedicalFair-38",
+  "dataset": "data/RelationPredictionBiomedicalFair",
+  "graph_train_triples": 35103,
+  "hits@1": 0.17739130434782607,
+  "hits@10": 0.391304347826087,
+  "hits@3": 0.2956521739130435,
+  "loss_train_triples": 4591,
+  "mrr": 0.2539656478359328,
+  "num_candidate_subjects": 1947,
+  "num_queries": 575,
+  "protocol": "disease_to_drug_subject_prediction_restricted_to_candidate_drugs",
+  "split": "test"
+}

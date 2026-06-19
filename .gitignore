@@ -22,7 +22,6 @@ models/rgcn/data/processed/
 models/rgcn_benchmark/rgcn_benchmark.zip
 
 # Archives / local experiments
-models/RelationPrediction-master/
 models/shared.zip
 
 # OS/editor
@@ -30,3 +29,4 @@ models/shared.zip
 Thumbs.db
 .vscode/
 .idea/
+

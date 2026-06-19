@@ -81,7 +81,7 @@ def sorted_unique(triples: Iterable[Triple]) -> List[Triple]:
 def main() -> None:
     parser = argparse.ArgumentParser(
         description=(
-            "Build a RelationPrediction-master biomedical dataset with separate "
+            "Build a external RelationPrediction implementation biomedical dataset with separate "
             "context graph and target loss triples."
         )
     )
@@ -197,3 +197,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+

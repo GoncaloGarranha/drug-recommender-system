@@ -11,7 +11,7 @@ RUN pip install --no-cache-dir \
     configparser \
     Theano==0.9.0
 
-ENV PYTHONPATH=/workspace/models/RelationPrediction-master/code:/workspace/models/RelationPrediction-master/code/optimization:/workspace/models/RelationPrediction-master/code/optimization/tensorflow_backend:/workspace/models/RelationPrediction-master/code/optimization/theano_backend
+ENV PYTHONPATH=/workspace/external/relation-prediction/code:/workspace/external/relation-prediction/code/optimization:/workspace/external/relation-prediction/code/optimization/tensorflow_backend:/workspace/external/relation-prediction/code/optimization/theano_backend
 ENV LC_ALL=C.UTF-8
 ENV LANG=C.UTF-8
 ENV PYTHONIOENCODING=utf-8

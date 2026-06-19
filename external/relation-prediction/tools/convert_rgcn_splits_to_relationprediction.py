@@ -46,7 +46,7 @@ def main() -> None:
     parser.add_argument(
         "--out_dir",
         required=True,
-        help="Output directory in RelationPrediction-master/data format",
+        help="Output directory in the external RelationPrediction data format",
     )
     args = parser.parse_args()
 
@@ -82,7 +82,7 @@ def main() -> None:
     with (out_dir / "metadata.json").open("w", encoding="utf-8") as f:
         json.dump(metadata, f, indent=2, ensure_ascii=False)
 
-    print("Dataset convertido para RelationPrediction-master")
+    print("Dataset convertido para external/relation-prediction")
     print(f"Output: {out_dir}")
     print(json.dumps(metadata, indent=2, ensure_ascii=False))
 

@@ -1,0 +1,12 @@
+{
+  "input_csv": "kg_constructor\\data\\output\\interim\\drug_active_substance_groups.csv",
+  "output_csv": "kg_constructor\\data\\output\\interim\\drug_similarity.csv",
+  "rows_input": 2391,
+  "unique_drugs": 2312,
+  "unique_active_substance_groups": 1110,
+  "similar_pairs": 3443,
+  "counts": {
+    "shared_confidence:high": 2752,
+    "shared_confidence:medium": 691
+  }
+}

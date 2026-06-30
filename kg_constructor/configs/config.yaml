@@ -41,7 +41,8 @@ pipeline:
     - "03_resolve_entities"
     - "04_build_triples"
     - "05_filter_graph"
-
+    - "06_add_gene_associations"
+    - "07_build_drug_similarity_groups"
 # ---------------------------------------------------------
 # Filtering rules (used in 05_filter_graph)
 # ---------------------------------------------------------
@@ -65,3 +66,29 @@ entity_resolution:
   prefer_drugbank_id: true
   prefer_chebi_id: true
 
+# ---------------------------------------------------------
+# Optional disease-gene associations (used by with_genes datasets)
+# ---------------------------------------------------------
+gene_associations:
+  enabled: false
+  diseases_for_genes_path: "diseases_for_genes.csv"
+  input_triples_path: "kg_constructor/data/output/triples/triples.csv"
+  open_targets_disease_path: "kg_constructor/data/external/open_targets/disease/disease.parquet"
+  open_targets_association_path: "kg_constructor/data/external/open_targets/association_overall_direct"
+  open_targets_target_path: "kg_constructor/data/external/open_targets/target"
+  output_dir: "kg_constructor/data/output/gene_associations"
+  output_triples_path: "kg_constructor/data/output/triples/triples_with_genes.csv"
+  top_k_genes_per_disease: 25
+  min_score: 0.1
+
+# ---------------------------------------------------------
+# Drug similarity groups (used by semantic model evaluation)
+# ---------------------------------------------------------
+drug_similarity:
+  enabled: true
+  input_path: "kg_constructor/data/output/triples/triples.filtered.csv"
+  source_relation: "HAS_INGREDIENT"
+  jaccard_threshold: 0.5
+  min_shared_features: 1
+  output_path: "kg_constructor/data/processed/drug_similarity_groups.json"
+  report_path: "kg_constructor/data/output/reports/drug_similarity_groups_report.json"

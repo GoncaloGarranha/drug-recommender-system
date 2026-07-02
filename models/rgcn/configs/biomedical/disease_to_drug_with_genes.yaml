@@ -44,4 +44,5 @@ training:
   device: "cpu"
 
 runs:
-  out_dir: "models/rgcn/runs/biomedical/disease_to_drug/with_genes"
+  out_dir: "results/runs/rgcn"
+  experiment_name: "with_genes"

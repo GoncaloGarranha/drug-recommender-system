@@ -46,7 +46,7 @@ The baseline follows these steps:
 6. Compute cosine similarity between candidate drugs.
 7. Load or create the same train/valid/test splits used by R-GCN.
 8. Compute filtered ranking metrics on the selected split (`valid` or `test`).
-9. Log results to `benchmarks.csv` and save a full structured run under `runs/`.
+9. Log results to `results/benchmarks.csv` and save a full structured run under `results/runs/content-based/`.
 
 ---
 
@@ -177,7 +177,7 @@ MRR
 The results are appended to:
 
 ```text
-benchmarks.csv
+results/benchmarks.csv
 ```
 
 at the repository root.
@@ -266,5 +266,5 @@ Hits@1:  0.4620
 Hits@3:  0.5258
 Hits@10: 0.5805
 MRR:     0.5066
-Logged benchmark to benchmarks.csv
+Logged benchmark to results/benchmarks.csv
 ```

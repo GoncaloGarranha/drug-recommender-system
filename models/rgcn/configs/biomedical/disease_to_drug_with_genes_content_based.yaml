@@ -57,4 +57,5 @@ training:
   device: "cpu"
 
 runs:
-  out_dir: "models/content-based/runs/biomedical/disease_to_drug/with_genes"
+  out_dir: "results/runs/content-based"
+  experiment_name: "with_genes"

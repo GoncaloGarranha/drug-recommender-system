@@ -1,0 +1,21 @@
+{
+  "model_name": "rgcn",
+  "task_name": "tail_prediction",
+  "seed": 42,
+  "architecture": {
+    "embedding_dim": 128,
+    "num_layers": 2,
+    "num_bases": 11,
+    "dropout": 0.2,
+    "decoder": "DistMult",
+    "add_inverse_edges": true
+  },
+  "relation_counts": {
+    "decoder": 11,
+    "encoder": 22
+  },
+  "parameter_counts": {
+    "encoder": 4189924,
+    "decoder": 1408
+  }
+}

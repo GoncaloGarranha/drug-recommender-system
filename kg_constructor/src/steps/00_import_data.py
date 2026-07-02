@@ -75,10 +75,3 @@ def import_entity_files_from_medjsonify(
 
 # Alias used by the pipeline runner
 run = import_entity_files_from_medjsonify
-
-
-if __name__ == "__main__":
-    class Paths:
-        input_dir = "kg_constructor/data/input"
-
-    import_entity_files_from_medjsonify(cfg={}, paths=Paths(), force=True)

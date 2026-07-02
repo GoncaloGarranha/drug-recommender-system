@@ -1,0 +1,17 @@
+dataset:
+  name: "wn18rr_sampled"
+  type: "benchmark"
+
+input:
+  raw_dir: "kg_constructor/data/input/benchmarks/wn18rr_sampled/raw"
+
+output:
+  triples_path: "kg_constructor/data/output/benchmarks/wn18rr_sampled/triples.csv"
+
+format:
+  delimiter: "\t"
+  has_header: false
+  columns:
+    - src
+    - rel
+    - dst

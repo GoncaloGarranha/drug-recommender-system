@@ -43,6 +43,9 @@ pipeline:
     - "05_filter_graph"
     - "06_add_gene_associations"
     - "07_build_drug_similarity_groups"
+    - "08_build_active_ingredients"
+    - "09_build_active_substance_groups"
+    - "10_build_pharmacological_groups"
 # ---------------------------------------------------------
 # Filtering rules (used in 05_filter_graph)
 # ---------------------------------------------------------
@@ -92,3 +95,24 @@ drug_similarity:
   min_shared_features: 1
   output_path: "kg_constructor/data/processed/drug_similarity_groups.json"
   report_path: "kg_constructor/data/output/reports/drug_similarity_groups_report.json"
+
+# ---------------------------------------------------------
+# Optional downstream KG enrichment steps (08-10)
+# ---------------------------------------------------------
+active_ingredients:
+  enabled: true
+  input_subdir: "xml_files"
+  output_csv: "interim/active_ingredients_raw.csv"
+  summary_json: "interim/active_ingredients_summary.json"
+
+active_substance_groups:
+  enabled: true
+  input_csv: "interim/active_ingredients_raw.csv"
+  output_csv: "interim/drug_active_substance_groups.csv"
+  summary_json: "interim/drug_active_substance_groups_summary.json"
+
+pharmacological_groups:
+  enabled: true
+  input_csv: "interim/drug_active_substance_groups.csv"
+  output_csv: "interim/drug_pharmacological_groups.csv"
+  summary_json: "interim/drug_pharmacological_groups_summary.json"

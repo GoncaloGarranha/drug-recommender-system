@@ -12,7 +12,7 @@ The project currently supports:
 - R-GCN model;
 - Content-Based baseline;
 - Shared evaluation utilities;
-- Centralized summary logging in `benchmarks.csv`, with full per-run artifacts stored under `runs/`.
+- Centralized summary logging in `results/benchmarks.csv`, with full per-run artifacts stored under `results/runs/`.
 
 ---
 
@@ -29,7 +29,6 @@ The project currently supports:
 │   ├── rgcn/                    # R-GCN model for link prediction
 │   │   ├── configs/             # Model configurations
 │   │   ├── data/processed/      # Processed graph artefacts
-│   │   ├── runs/                # Training outputs and checkpoints
 │   │   └── src/                 # Training, evaluation and inference scripts
 │   │
 │   ├── content-based/           # Content-based baseline
@@ -47,8 +46,11 @@ The project currently supports:
 │   ├── wn18rr/
 │   └── fb15k237/
 │
-├── benchmarks.csv               # Summary table for consolidated results
-├── runs/                        # Structured per-run artifacts
+├── results/
+│   ├── benchmarks.csv           # Summary table for consolidated results
+│   ├── final/                   # Final reports and summaries
+│   ├── runs/                    # Structured per-run artifacts
+│   └── figures/                 # Generated figures and plots
 ├── requirements.txt
 └── README.md
 ```
@@ -336,13 +338,13 @@ python -m models.rgcn.src.train --config models/rgcn/configs/disease_to_drug.yam
 ### 5. Evaluate R-GCN
 
 ```bash
-python -m models.rgcn.src.evaluate --runs_dir models/rgcn/runs --split test
+python -m models.rgcn.src.evaluate --runs_dir results/runs/rgcn --split test
 ```
 
 Evaluation metrics are saved in the run directory and logged to:
 
 ```text
-benchmarks.csv
+results/benchmarks.csv
 ```
 
 ---
@@ -413,7 +415,7 @@ python -m models.rgcn.src.train --config models/rgcn/configs/wn18rr.yaml
 #### 5. Evaluate
 
 ```bash
-python -m models.rgcn.src.evaluate --runs_dir models/rgcn/runs/wn18rr --split test
+python -m models.rgcn.src.evaluate --runs_dir results/runs/rgcn --split test
 ```
 
 ---
@@ -453,7 +455,7 @@ python -m models.rgcn.src.train --config models/rgcn/configs/fb15k237.yaml
 #### 5. Evaluate
 
 ```bash
-python -m models.rgcn.src.evaluate --runs_dir models/rgcn/runs/fb15k237 --split test
+python -m models.rgcn.src.evaluate --runs_dir results/runs/rgcn --split test
 ```
 
 
@@ -498,7 +500,7 @@ python -m models.rgcn.src.infer --query "Metformin" --topk 10 --json_out predict
 All evaluated experiments are logged to:
 
 ```text
-benchmarks.csv
+results/benchmarks.csv
 ```
 
 This file is the central results table for model comparison.
@@ -614,7 +616,7 @@ For final experiments:
 - evaluate the best checkpoint on the test set;
 - run multiple seeds when possible;
 - report mean and standard deviation;
-- log all results to `benchmarks.csv`.
+- log all results to `results/benchmarks.csv`.
 
 Where datasets differ significantly in size, prefer a common training protocol with early stopping rather than forcing the same number of epochs.
 
@@ -633,7 +635,7 @@ python -m models.rgcn.src.load_data --processed_dir models/rgcn/data/processed/d
 
 python -m models.rgcn.src.train --config models/rgcn/configs/disease_to_drug.yaml
 
-python -m models.rgcn.src.evaluate --runs_dir models/rgcn/runs --split test
+python -m models.rgcn.src.evaluate --runs_dir results/runs/rgcn --split test
 
 python -m models.content-based.src.baseline --config models/rgcn/configs/disease_to_drug.yaml --split test
 ```
@@ -649,7 +651,7 @@ python -m models.rgcn.src.load_data --processed_dir models/rgcn/data/processed/w
 
 python -m models.rgcn.src.train --config models/rgcn/configs/wn18rr.yaml
 
-python -m models.rgcn.src.evaluate --runs_dir models/rgcn/runs/wn18rr --split test
+python -m models.rgcn.src.evaluate --runs_dir results/runs/rgcn --split test
 ```
 
 ### FB15k-237
@@ -663,7 +665,7 @@ python -m models.rgcn.src.load_data --processed_dir models/rgcn/data/processed/f
 
 python -m models.rgcn.src.train --config models/rgcn/configs/fb15k237.yaml
 
-python -m models.rgcn.src.evaluate --runs_dir models/rgcn/runs/fb15k237 --split test
+python -m models.rgcn.src.evaluate --runs_dir results/runs/rgcn --split test
 ```
 
 ---

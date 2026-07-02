@@ -1,34 +1,16 @@
 from __future__ import annotations
 
-import argparse
-import csv
 import json
 from collections import Counter
 from pathlib import Path
 from typing import Dict, List
 
-
-DEFAULT_INPUT_CSV = Path("kg_constructor/data/output/interim/active_ingredients_raw.csv")
-DEFAULT_OUTPUT_CSV = Path("kg_constructor/data/output/interim/drug_active_substance_groups.csv")
-DEFAULT_SUMMARY_JSON = Path("kg_constructor/data/output/interim/drug_active_substance_groups_summary.json")
-
-
-def read_csv(path: Path) -> List[Dict[str, str]]:
-    with path.open("r", encoding="utf-8", newline="") as f:
-        return list(csv.DictReader(f))
-
-
-def write_csv(path: Path, rows: List[Dict[str, str]], fieldnames: List[str]) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-
-    with path.open("w", encoding="utf-8", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames)
-        writer.writeheader()
-        writer.writerows(rows)
+from kg_constructor.src.utils.io import read_csv_dicts, write_csv_dicts
+from kg_constructor.src.utils.paths import build_output_paths, resolve_relative_path
 
 
 def build_groups(input_csv: Path, output_csv: Path, summary_json: Path) -> None:
-    raw_rows = read_csv(input_csv)
+    raw_rows = read_csv_dicts(input_csv)
 
     output_rows: List[Dict[str, str]] = []
     seen = set()
@@ -86,7 +68,7 @@ def build_groups(input_csv: Path, output_csv: Path, summary_json: Path) -> None:
         "source_file",
     ]
 
-    write_csv(output_csv, output_rows, fieldnames)
+    write_csv_dicts(output_csv, output_rows, fieldnames)
 
     drug_count = len({(row["source_file"], row["drug_name"]) for row in output_rows})
     group_count = len({row["active_substance_group_id"] for row in output_rows})
@@ -112,23 +94,15 @@ def build_groups(input_csv: Path, output_csv: Path, summary_json: Path) -> None:
     print(json.dumps(summary_payload, indent=2, ensure_ascii=False))
 
 
-def main() -> None:
-    parser = argparse.ArgumentParser(
-        description="Build active substance group membership table from active ingredients."
-    )
+def run(cfg: Dict[str, object], paths, force: bool = False) -> None:
+    step_cfg = cfg.get("active_substance_groups", {}) if isinstance(cfg, dict) else {}
+    out = build_output_paths(paths.output_dir)
 
-    parser.add_argument("--input_csv", type=Path, default=DEFAULT_INPUT_CSV)
-    parser.add_argument("--output_csv", type=Path, default=DEFAULT_OUTPUT_CSV)
-    parser.add_argument("--summary_json", type=Path, default=DEFAULT_SUMMARY_JSON)
+    input_csv = resolve_relative_path(out.root, step_cfg.get("input_csv", "interim/active_ingredients_raw.csv"))
+    output_csv = resolve_relative_path(out.root, step_cfg.get("output_csv", "interim/drug_active_substance_groups.csv"))
+    summary_json = resolve_relative_path(out.root, step_cfg.get("summary_json", "interim/drug_active_substance_groups_summary.json"))
 
-    args = parser.parse_args()
+    if not force and output_csv.exists() and summary_json.exists():
+        return
 
-    build_groups(
-        input_csv=args.input_csv,
-        output_csv=args.output_csv,
-        summary_json=args.summary_json,
-    )
-
-
-if __name__ == "__main__":
-    main()
+    build_groups(input_csv=input_csv, output_csv=output_csv, summary_json=summary_json)

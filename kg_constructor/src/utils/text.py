@@ -9,7 +9,7 @@ def clean_whitespace(text: str) -> str:
     return " ".join(text.strip().split())
 
 
-def normalize_name(text: str) -> str:
+def normalize_canonical_label(text: str) -> str:
     return clean_whitespace(text).upper()
 
 

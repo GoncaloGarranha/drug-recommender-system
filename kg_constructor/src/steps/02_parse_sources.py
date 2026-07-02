@@ -19,11 +19,12 @@ from kg_constructor.src.utils.io import (
     write_csv,
 )
 from kg_constructor.src.utils.log import get_logger
+from kg_constructor.src.utils.paths import build_output_paths
 from kg_constructor.src.utils.text import (
     clean_disease_label,
     clean_whitespace,
     normalize_doid,
-    normalize_name,
+    normalize_canonical_label,
 )
 from kg_constructor.src.utils.validate import (
     validate_diseases_raw,
@@ -107,8 +108,9 @@ def parse_sources(cfg: Dict[str, Any], paths, force: bool = False) -> None:
     """
     input_dir = Path(paths.input_dir)
     output_dir = Path(paths.output_dir)
-    interim_dir = output_dir / "interim"
-    reports_dir = output_dir / "reports"
+    out = build_output_paths(paths.output_dir)
+    interim_dir = out.interim
+    reports_dir = out.reports
     interim_dir.mkdir(parents=True, exist_ok=True)
     reports_dir.mkdir(parents=True, exist_ok=True)
 
@@ -152,7 +154,7 @@ def parse_sources(cfg: Dict[str, Any], paths, force: bool = False) -> None:
                     continue
 
                 name_original = clean_whitespace(drug_name)
-                name_norm = normalize_name(name_original)
+                name_norm = normalize_canonical_label(name_original)
 
                 drugbank_id = drug.get("drugbank_id")
                 chebi_id = drug.get("chebi_id")
@@ -183,7 +185,7 @@ def parse_sources(cfg: Dict[str, Any], paths, force: bool = False) -> None:
                     if isinstance(ingredient_name, str) and ingredient_name.strip()
                     else ""
                 )
-                name_norm = normalize_name(name_original) if name_original else ""
+                name_norm = normalize_canonical_label(name_original) if name_original else ""
                 unii_code = (
                     clean_whitespace(ingredient_code)
                     if isinstance(ingredient_code, str) and ingredient_code.strip()
@@ -211,7 +213,7 @@ def parse_sources(cfg: Dict[str, Any], paths, force: bool = False) -> None:
             if drug_records:
                 first_drug_name = drug_records[0].get("name")
                 if isinstance(first_drug_name, str) and first_drug_name.strip():
-                    primary_drug_name_norm = normalize_name(first_drug_name)
+                    primary_drug_name_norm = normalize_canonical_label(first_drug_name)
 
             if not primary_drug_name_norm:
                 continue
@@ -259,7 +261,7 @@ def parse_sources(cfg: Dict[str, Any], paths, force: bool = False) -> None:
                     if isinstance(ingredient_name, str) and ingredient_name.strip()
                     else ""
                 )
-                name_norm = normalize_name(name_original) if name_original else ""
+                name_norm = normalize_canonical_label(name_original) if name_original else ""
                 unii_code = (
                     clean_whitespace(ingredient_code)
                     if isinstance(ingredient_code, str) and ingredient_code.strip()
@@ -323,11 +325,3 @@ def parse_sources(cfg: Dict[str, Any], paths, force: bool = False) -> None:
 
 
 run = parse_sources
-
-
-if __name__ == "__main__":
-    class Paths:
-        input_dir = "kg_constructor/data/input"
-        output_dir = "kg_constructor/data/output"
-
-    parse_sources(cfg={}, paths=Paths(), force=True)

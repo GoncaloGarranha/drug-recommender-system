@@ -14,13 +14,13 @@ def log_experiment(
     notes: str = "",
     dataset: str = "",
 ) -> None:
-    """Append a benchmark row to `benchmarks.csv` at the repository root.
+    """Append a benchmark row to `results/benchmarks.csv`.
 
     This is intentionally lightweight: it creates the CSV if missing and appends
     a single row describing the run.
     """
     repo_root = Path(__file__).resolve().parents[2]
-    out_path = repo_root / "benchmarks.csv"
+    out_path = repo_root / "results" / "benchmarks.csv"
 
     row = {
         "timestamp": datetime.utcnow().isoformat(),

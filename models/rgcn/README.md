@@ -207,7 +207,7 @@ Evaluates a trained model using filtered ranking metrics.
 Metrics are saved inside the run directory and logged to:
 
 ```text
-benchmarks.csv
+results/benchmarks.csv
 ```
 
 ---
@@ -430,7 +430,7 @@ early_stopping:
   mode: "max"
 
 runs:
-  out_dir: "models/rgcn/runs"
+  out_dir: "results/runs/rgcn"
 ```
 
 ---
@@ -474,7 +474,7 @@ early_stopping:
   mode: "max"
 
 runs:
-  out_dir: "models/rgcn/runs/wn18rr"
+  out_dir: "results/runs/rgcn"
 ```
 
 For FB15k-237, change:
@@ -485,7 +485,7 @@ data:
   processed_dir: "models/rgcn/data/processed/fb15k237"
 
 runs:
-  out_dir: "models/rgcn/runs/fb15k237"
+  out_dir: "results/runs/rgcn"
 ```
 
 ---
@@ -519,7 +519,7 @@ python -m models.rgcn.src.train --config models/rgcn/configs/disease_to_drug.yam
 ### 4. Evaluate
 
 ```bash
-python -m models.rgcn.src.evaluate --runs_dir models/rgcn/runs --split test
+python -m models.rgcn.src.evaluate --runs_dir results/runs/rgcn --split test
 ```
 
 ### 5. Inference
@@ -568,7 +568,7 @@ python -m models.rgcn.src.train --config models/rgcn/configs/wn18rr.yaml
 ### 4. Evaluate
 
 ```bash
-python -m models.rgcn.src.evaluate --runs_dir models/rgcn/runs/wn18rr --split test
+python -m models.rgcn.src.evaluate --runs_dir results/runs/rgcn --split test
 ```
 
 ---
@@ -598,7 +598,7 @@ python -m models.rgcn.src.train --config models/rgcn/configs/fb15k237.yaml
 ### 4. Evaluate
 
 ```bash
-python -m models.rgcn.src.evaluate --runs_dir models/rgcn/runs/fb15k237 --split test
+python -m models.rgcn.src.evaluate --runs_dir results/runs/rgcn --split test
 ```
 
 ---
@@ -636,7 +636,7 @@ Evaluation uses filtered ranking.
 Results are logged to:
 
 ```text
-benchmarks.csv
+results/benchmarks.csv
 ```
 
 and saved in the corresponding run directory.
@@ -648,7 +648,7 @@ and saved in the corresponding run directory.
 Each evaluation run appends metrics to:
 
 ```text
-benchmarks.csv
+results/benchmarks.csv
 ```
 
 at the repository root.
@@ -699,7 +699,7 @@ For final experiments:
 - run multiple seeds when possible;
 - report mean and standard deviation;
 - use early stopping where appropriate;
-- log all results to `benchmarks.csv`.
+- log all results to `results/benchmarks.csv`.
 
 Where datasets differ significantly in size and structure, prefer a common protocol with validation-based model selection rather than forcing the same number of epochs.
 

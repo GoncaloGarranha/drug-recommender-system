@@ -39,8 +39,9 @@ def build_triples(cfg: Dict[str, Any], paths, force: bool = False) -> None:
         - data/output/reports/build_triples_report.json
     """
     output_dir = Path(paths.output_dir)
-    interim_dir = output_dir / "interim"
-    mappings_dir = output_dir / "mappings"
+    out = build_output_paths(paths.output_dir)
+    interim_dir = out.interim
+    mappings_dir = out.mappings
     triples_dir = output_dir / "triples"
     reports_dir = output_dir / "reports"
 
@@ -168,11 +169,3 @@ def build_triples(cfg: Dict[str, Any], paths, force: bool = False) -> None:
 
 
 run = build_triples
-
-
-if __name__ == "__main__":
-    class Paths:
-        input_dir = "kg_constructor/data/input"
-        output_dir = "kg_constructor/data/output"
-
-    build_triples(cfg={}, paths=Paths(), force=True)

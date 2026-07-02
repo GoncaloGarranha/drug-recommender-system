@@ -37,4 +37,5 @@ training:
   device: "cpu"
 
 runs:
-  out_dir: "models/rgcn/runs/biomedical/drug_to_disease/full_3rel"
+  out_dir: "results/runs/rgcn"
+  experiment_name: "full_3rel"

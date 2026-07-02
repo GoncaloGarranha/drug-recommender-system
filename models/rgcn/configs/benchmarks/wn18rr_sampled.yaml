@@ -21,11 +21,11 @@ split:
   test_ratio: 0.1
 
 training:
-  epochs: 300
-  max_epochs: 300
+  epochs: 40000
+  max_epochs: 40000
   early_stopping:
     monitor: "valid_mrr"
-    patience: 10
+    patience: 500
     mode: "max"
 
   lr: 0.001
@@ -41,4 +41,5 @@ training:
   device: "cpu"
 
 runs:
-  out_dir: "models/rgcn/runs/benchmarks/wn18rr_sampled"
+  out_dir: "results/runs/rgcn"
+  experiment_name: "wn18rr_sampled"

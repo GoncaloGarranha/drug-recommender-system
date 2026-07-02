@@ -6,11 +6,25 @@ from pathlib import Path
 from typing import Any, Dict, Iterable, List
 
 
-def read_csv(path: str | Path) -> List[Dict[str, str]]:
+def read_csv_dicts(path: str | Path) -> List[Dict[str, str]]:
     path = Path(path)
 
     with path.open("r", encoding="utf-8") as file_obj:
         return list(csv.DictReader(file_obj))
+
+
+def write_csv_dicts(path: str | Path, rows: List[Dict[str, Any]], fieldnames: List[str]) -> None:
+    path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+
+    with path.open("w", newline="", encoding="utf-8") as file_obj:
+        writer = csv.DictWriter(file_obj, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerows(rows)
+
+
+def read_csv(path: str | Path) -> List[Dict[str, str]]:
+    return read_csv_dicts(path)
 
 
 def write_csv(path: str | Path, header: List[str], rows: List[List[Any]]) -> None:
@@ -21,6 +35,10 @@ def write_csv(path: str | Path, header: List[str], rows: List[List[Any]]) -> Non
         writer = csv.writer(file_obj)
         writer.writerow(header)
         writer.writerows(rows)
+
+
+def write_csv_rows(path: str | Path, header: List[str], rows: List[List[Any]]) -> None:
+    write_csv(path, header, rows)
 
 
 def iter_json_files(folder: str | Path) -> Iterable[Path]:

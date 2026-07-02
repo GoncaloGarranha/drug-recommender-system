@@ -230,7 +230,8 @@ def run_stats(cfg: Dict[str, Any], paths, force: bool = False) -> None:
         "top_doids": doid_counts.most_common(20),
         "top_ordos": ordo_counts.most_common(20),
     }
-
+    out = build_output_paths(paths.output_dir)
+    reports_dir = out.reports
     audit_report_path.write_text(
         json.dumps(report, indent=2, ensure_ascii=False),
         encoding="utf-8",
@@ -247,11 +248,3 @@ def run_stats(cfg: Dict[str, Any], paths, force: bool = False) -> None:
 
 # Alias used by the pipeline runner
 run = run_stats
-
-
-if __name__ == "__main__":
-    class Paths:
-        input_dir = "kg_constructor/data/input"
-        output_dir = "kg_constructor/data/output"
-
-    run_stats(cfg={}, paths=Paths(), force=True)

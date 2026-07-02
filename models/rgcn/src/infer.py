@@ -12,11 +12,11 @@ Supported task modes:
 Usage examples:
     python -m models.rgcn.src.infer --query "diabetes" --topk 10
     python -m models.rgcn.src.infer --entity_id "DOID:9352" --topk 10
-    python -m models.rgcn.src.infer --run_dir models/rgcn/runs/<run_name> --query "asthma"
+    python -m models.rgcn.src.infer --run_dir results/runs/rgcn/<run_name> --query "asthma"
 
 For generic benchmark tail prediction, provide the relation explicitly:
     python -m models.rgcn.src.infer \
-        --run_dir models/rgcn/runs/<run_name> \
+        --run_dir results/runs/rgcn/<run_name> \
         --entity_id "<HEAD_ENTITY_ID>" \
         --relation "<RELATION_NAME>" \
         --topk 10
@@ -152,7 +152,7 @@ def main() -> None:
     configured task.
     """
     parser = argparse.ArgumentParser()
-    parser.add_argument("--runs_dir", default="models/rgcn/runs")
+    parser.add_argument("--runs_dir", default="results/runs/rgcn")
     parser.add_argument("--run_dir", default=None)
     parser.add_argument("--query", default=None, help="Entity name or fuzzy query string.")
     parser.add_argument("--entity_id", default=None, help="Exact canonical entity ID.")

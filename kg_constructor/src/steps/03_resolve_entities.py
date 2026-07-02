@@ -82,7 +82,8 @@ def resolve_entities(cfg: Dict[str, Any], paths, force: bool = False) -> None:
     output_dir = Path(paths.output_dir)
     interim_dir = output_dir / "interim"
     mappings_dir = output_dir / "mappings"
-    mappings_dir.mkdir(parents=True, exist_ok=True)
+        out = build_output_paths(paths.output_dir)
+        interim_dir = out.interim
 
     drugs_csv = interim_dir / "drugs_raw.csv"
     ingredients_csv = interim_dir / "ingredients_raw.csv"
@@ -341,11 +342,3 @@ def resolve_entities(cfg: Dict[str, Any], paths, force: bool = False) -> None:
 
 # Alias used by the pipeline runner
 run = resolve_entities
-
-
-if __name__ == "__main__":
-    class Paths:
-        input_dir = "kg_constructor/data/input"
-        output_dir = "kg_constructor/data/output"
-
-    resolve_entities(cfg={}, paths=Paths(), force=True)

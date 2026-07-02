@@ -45,4 +45,5 @@ training:
   device: "cpu"
 
 runs:
-  out_dir: "models/rgcn/runs/benchmarks/fb15k_heavy"
+  out_dir: "results/runs/rgcn"
+  experiment_name: "fb15k_heavy"

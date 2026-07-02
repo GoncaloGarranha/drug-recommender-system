@@ -43,13 +43,18 @@ def resolve_run_dir(
 	model_name: str,
 	seed: int | None = None,
 ) -> Path:
-	"""Build the canonical run directory for a model/config pair."""
+	"""Build the canonical run directory for a model/config pair.
+
+	The shared run root is expected to be model-specific, e.g.
+	`results/runs/rgcn` or `results/runs/content-based`.
+	"""
 	domain = infer_run_domain(cfg)
 	task_name = str(cfg.get("task", {}).get("name") or Path(str(cfg.get("data", {}).get("processed_dir", "run"))).name)
+	experiment_name = str(cfg.get("runs", {}).get("experiment_name") or "run")
 	seed_value = seed if seed is not None else int(cfg.get("seed", 42))
 	base_path = Path(base_out_dir)
 
-	return base_path / domain / slugify(model_name) / slugify(task_name) / f"seed_{seed_value}"
+	return base_path / domain / slugify(task_name) / slugify(experiment_name) / f"seed_{seed_value}"
 
 
 def organize_legacy_runs(

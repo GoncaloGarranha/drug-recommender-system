@@ -62,7 +62,8 @@ def filter_graph(cfg: Dict[str, Any], paths, force: bool = False) -> None:
         force: If True, overwrite existing outputs.
     """
     output_dir = Path(paths.output_dir)
-    triples_dir = output_dir / "triples"
+    out = build_output_paths(paths.output_dir)
+    triples_dir = out.triples
     reports_dir = output_dir / "reports"
     reports_dir.mkdir(parents=True, exist_ok=True)
 
@@ -179,18 +180,3 @@ def filter_graph(cfg: Dict[str, Any], paths, force: bool = False) -> None:
 
 # Alias used by the pipeline runner
 run = filter_graph
-
-
-if __name__ == "__main__":
-    from kg_constructor.src.utils.config import load_config
-
-    class Paths:
-        def __init__(self, root: Path):
-            self.root = root
-            self.output_dir = root / "kg_constructor" / "data" / "output"
-
-    root = Path(__file__).parent.parent.parent.parent
-    cfg = load_config(root / "kg_constructor" / "configs" / "config.yaml")
-    paths = Paths(root)
-
-    filter_graph(cfg, paths, force=True)

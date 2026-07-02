@@ -178,7 +178,3 @@ def main() -> None:
 
 
 run = add_gene_associations
-
-
-if __name__ == "__main__":
-    main()

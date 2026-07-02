@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import argparse
 import csv
 import json
 import re
@@ -8,10 +7,7 @@ from collections import Counter
 from pathlib import Path
 from typing import Any, Dict, List, Set, Tuple
 
-
-DEFAULT_INPUT_DIR = Path("kg_constructor/data/input/xml_files")
-DEFAULT_OUTPUT_CSV = Path("kg_constructor/data/output/interim/active_ingredients_raw.csv")
-DEFAULT_SUMMARY_JSON = Path("kg_constructor/data/output/interim/active_ingredients_summary.json")
+from kg_constructor.src.utils.paths import build_output_paths, resolve_relative_path
 
 
 SALT_OR_FORM_WORDS = {
@@ -30,7 +26,7 @@ EXCIPIENT_HINTS = {
 }
 
 
-def normalize_name(value: Any) -> str:
+def normalize_name_for_matching(value: Any) -> str:
     text = str(value or "").lower()
     text = text.replace("&", " and ")
     text = re.sub(r"[^a-z0-9]+", " ", text)
@@ -38,13 +34,13 @@ def normalize_name(value: Any) -> str:
 
 
 def canonical_for_salt_matching(value: Any) -> str:
-    tokens = normalize_name(value).split()
+    tokens = normalize_name_for_matching(value).split()
     tokens = [tok for tok in tokens if tok not in SALT_OR_FORM_WORDS]
     return " ".join(tokens)
 
 
 def is_combination_name(value: str) -> bool:
-    norm = normalize_name(value)
+    norm = normalize_name_for_matching(value)
     return " and " in f" {norm} " or "/" in value or "+" in value or "," in value
 
 
@@ -65,7 +61,7 @@ def identifier_set(row: Dict[str, Any]) -> Set[str]:
 
 
 def looks_like_excipient(name: str) -> bool:
-    norm = normalize_name(name)
+    norm = normalize_name_for_matching(name)
     return any(hint in norm for hint in EXCIPIENT_HINTS)
 
 
@@ -84,7 +80,7 @@ def add_result(
     key = (
         drug_name,
         extract_identifier(ingredient),
-        normalize_name(ingredient.get("name")),
+        normalize_name_for_matching(ingredient.get("name")),
     )
 
     if key in seen:
@@ -154,10 +150,10 @@ def infer_active_ingredients(data: Dict[str, Any], file_name: str) -> List[Dict[
     for drug in drug_entries:
         drug_name = str(drug.get("name") or data.get("name") or "").strip()
         drug_reference_id = extract_identifier(drug)
-        drug_norm = normalize_name(drug_name)
+        drug_norm = normalize_name_for_matching(drug_name)
 
         for ingredient in ingredient_entries:
-            if drug_norm and drug_norm == normalize_name(ingredient.get("name")):
+            if drug_norm and drug_norm == normalize_name_for_matching(ingredient.get("name")):
                 add_result(
                     results,
                     seen,
@@ -299,23 +295,16 @@ def build_active_ingredients(input_dir: Path, output_csv: Path, summary_json: Pa
     print(json.dumps(summary_payload, indent=2, ensure_ascii=False))
 
 
-def main() -> None:
-    parser = argparse.ArgumentParser(
-        description="Build active ingredient table from normalized MedJsonify JSON files."
-    )
+def run(cfg: Dict[str, Any], paths, force: bool = False) -> None:
+    step_cfg = cfg.get("active_ingredients", {}) if isinstance(cfg, dict) else {}
+    out = build_output_paths(paths.output_dir)
 
-    parser.add_argument("--input_dir", type=Path, default=DEFAULT_INPUT_DIR)
-    parser.add_argument("--output_csv", type=Path, default=DEFAULT_OUTPUT_CSV)
-    parser.add_argument("--summary_json", type=Path, default=DEFAULT_SUMMARY_JSON)
+    input_subdir = step_cfg.get("input_subdir", "xml_files")
+    input_dir = resolve_relative_path(paths.input_dir, input_subdir)
+    output_csv = resolve_relative_path(out.root, step_cfg.get("output_csv", "interim/active_ingredients_raw.csv"))
+    summary_json = resolve_relative_path(out.root, step_cfg.get("summary_json", "interim/active_ingredients_summary.json"))
 
-    args = parser.parse_args()
+    if not force and output_csv.exists() and summary_json.exists():
+        return
 
-    build_active_ingredients(
-        input_dir=args.input_dir,
-        output_csv=args.output_csv,
-        summary_json=args.summary_json,
-    )
-
-
-if __name__ == "__main__":
-    main()
+    build_active_ingredients(input_dir=input_dir, output_csv=output_csv, summary_json=summary_json)

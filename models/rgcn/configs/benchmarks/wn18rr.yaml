@@ -39,4 +39,5 @@ training:
   device: "cpu"
 
 runs:
-  out_dir: "models/rgcn/runs/wn18rr"
+  out_dir: "results/runs/rgcn"
+  experiment_name: "wn18rr"

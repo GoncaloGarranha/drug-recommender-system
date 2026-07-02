@@ -75,7 +75,8 @@ def build_drug_similarity_groups(cfg: Dict[str, Any], paths, force: bool = False
         return
 
     output_dir = Path(paths.output_dir)
-    processed_dir = Path(paths.processed_dir)
+    out = build_output_paths(paths.output_dir)
+    processed_dir = out.processed
     reports_dir = output_dir / "reports"
     reports_dir.mkdir(parents=True, exist_ok=True)
     processed_dir.mkdir(parents=True, exist_ok=True)

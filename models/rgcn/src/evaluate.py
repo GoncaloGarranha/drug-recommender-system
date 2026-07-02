@@ -10,8 +10,8 @@ Supported task modes:
     - tail_prediction
 
 Usage:
-    python -m models.rgcn.src.evaluate --runs_dir models/rgcn/runs
-    python -m models.rgcn.src.evaluate --run_dir models/rgcn/runs/<run_name> --split test
+    python -m models.rgcn.src.evaluate --runs_dir results/runs/rgcn
+    python -m models.rgcn.src.evaluate --run_dir results/runs/rgcn/<run_name> --split test
 """
 
 from __future__ import annotations
@@ -38,7 +38,7 @@ def main() -> None:
     Load a trained checkpoint and evaluate it on the validation or test split.
     """
     parser = argparse.ArgumentParser()
-    parser.add_argument("--runs_dir", default="models/rgcn/runs")
+    parser.add_argument("--runs_dir", default="results/runs/rgcn")
     parser.add_argument("--run_dir", default=None)
     parser.add_argument("--split", default="test", choices=["valid", "test"])
     args = parser.parse_args()

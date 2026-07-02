@@ -47,4 +47,5 @@ training:
     mode: max
 
 runs:
-  out_dir: models/rgcn/runs/biomedical_full_link_prediction
+  out_dir: results/runs/rgcn
+  experiment_name: biomedical_full_link_prediction

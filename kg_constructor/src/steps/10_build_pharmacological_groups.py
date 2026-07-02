@@ -1,31 +1,13 @@
 from __future__ import annotations
 
-import argparse
-import csv
 import json
 import hashlib
 from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Dict, List, Set
 
-
-DEFAULT_INPUT_CSV = Path("kg_constructor/data/output/interim/drug_active_substance_groups.csv")
-DEFAULT_OUTPUT_CSV = Path("kg_constructor/data/output/interim/drug_pharmacological_groups.csv")
-DEFAULT_SUMMARY_JSON = Path("kg_constructor/data/output/interim/drug_pharmacological_groups_summary.json")
-
-
-def read_csv(path: Path) -> List[Dict[str, str]]:
-    with path.open("r", encoding="utf-8", newline="") as f:
-        return list(csv.DictReader(f))
-
-
-def write_csv(path: Path, rows: List[Dict[str, str]], fieldnames: List[str]) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-
-    with path.open("w", encoding="utf-8", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames)
-        writer.writeheader()
-        writer.writerows(rows)
+from kg_constructor.src.utils.io import read_csv_dicts, write_csv_dicts
+from kg_constructor.src.utils.paths import build_output_paths, resolve_relative_path
 
 
 def build_drug_key(row: Dict[str, str]) -> str:
@@ -53,7 +35,7 @@ def build_pharmacological_groups(
     output_csv: Path,
     summary_json: Path,
 ) -> None:
-    rows = read_csv(input_csv)
+    rows = read_csv_dicts(input_csv)
 
     drug_meta: Dict[str, Dict[str, str]] = {}
     drug_to_substances: Dict[str, Set[str]] = defaultdict(set)
@@ -132,7 +114,7 @@ def build_pharmacological_groups(
         "group_confidence",
     ]
 
-    write_csv(output_csv, output_rows, fieldnames)
+    write_csv_dicts(output_csv, output_rows, fieldnames)
 
     unique_groups = len({row["pharmacological_group_id"] for row in output_rows})
 
@@ -157,23 +139,19 @@ def build_pharmacological_groups(
     print(json.dumps(summary_payload, indent=2, ensure_ascii=False))
 
 
-def main() -> None:
-    parser = argparse.ArgumentParser(
-        description="Build pharmacological groups from active substance memberships."
-    )
+def run(cfg: Dict[str, object], paths, force: bool = False) -> None:
+    step_cfg = cfg.get("pharmacological_groups", {}) if isinstance(cfg, dict) else {}
+    out = build_output_paths(paths.output_dir)
 
-    parser.add_argument("--input_csv", type=Path, default=DEFAULT_INPUT_CSV)
-    parser.add_argument("--output_csv", type=Path, default=DEFAULT_OUTPUT_CSV)
-    parser.add_argument("--summary_json", type=Path, default=DEFAULT_SUMMARY_JSON)
+    input_csv = resolve_relative_path(out.root, step_cfg.get("input_csv", "interim/drug_active_substance_groups.csv"))
+    output_csv = resolve_relative_path(out.root, step_cfg.get("output_csv", "interim/drug_pharmacological_groups.csv"))
+    summary_json = resolve_relative_path(out.root, step_cfg.get("summary_json", "interim/drug_pharmacological_groups_summary.json"))
 
-    args = parser.parse_args()
+    if not force and output_csv.exists() and summary_json.exists():
+        return
 
     build_pharmacological_groups(
-        input_csv=args.input_csv,
-        output_csv=args.output_csv,
-        summary_json=args.summary_json,
+        input_csv=input_csv,
+        output_csv=output_csv,
+        summary_json=summary_json,
     )
-
-
-if __name__ == "__main__":
-    main()

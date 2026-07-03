@@ -36,3 +36,4 @@ timestamp,dataset,model_name,hits@1,hits@3,hits@10,mrr,notes
 2026-06-24T15:04:48.513213,fb15k237_sampled,R-GCN (tail_prediction),0.025217,0.053913,0.120000,0.057407,Run: seed_42 | Split: test
 2026-06-30T13:47:43.340322,disease_to_drug_with_genes,R-GCN (disease_to_drug),0.659130,0.725217,0.773913,0.699288,Run: with_genes_best | Split: test
 2026-07-02T09:35:17.295822,disease_to_drug_with_genes,R-GCN (disease_to_drug),0.659130,0.725217,0.773913,0.699288,Run: with_genes_best | Split: test
+2026-07-02T15:33:17.091747,hetionet_biomedical,R-GCN (disease_to_drug),0.223684,0.447368,0.789474,0.387418,Run: seed_42 | Split: test

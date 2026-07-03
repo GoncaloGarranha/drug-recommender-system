@@ -1,0 +1,686 @@
+[
+  {
+    "src_id": "53",
+    "rel_id": "1",
+    "dst_id": "840",
+    "src": "DOID:2998",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB00970",
+    "split": "train"
+  },
+  {
+    "src_id": "9",
+    "rel_id": "1",
+    "dst_id": "334",
+    "src": "DOID:10763",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB00384",
+    "split": "train"
+  },
+  {
+    "src_id": "49",
+    "rel_id": "1",
+    "dst_id": "161",
+    "src": "DOID:2531",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB00188",
+    "split": "train"
+  },
+  {
+    "src_id": "51",
+    "rel_id": "1",
+    "dst_id": "242",
+    "src": "DOID:2841",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB00277",
+    "split": "valid"
+  },
+  {
+    "src_id": "57",
+    "rel_id": "1",
+    "dst_id": "665",
+    "src": "DOID:3310",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB00764",
+    "split": "train"
+  },
+  {
+    "src_id": "47",
+    "rel_id": "1",
+    "dst_id": "210",
+    "src": "DOID:2377",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB00242",
+    "split": "test"
+  },
+  {
+    "src_id": "53",
+    "rel_id": "1",
+    "dst_id": "865",
+    "src": "DOID:2998",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB00997",
+    "split": "test"
+  },
+  {
+    "src_id": "77",
+    "rel_id": "1",
+    "dst_id": "1070",
+    "src": "DOID:7148",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB01234",
+    "split": "train"
+  },
+  {
+    "src_id": "64",
+    "rel_id": "1",
+    "dst_id": "627",
+    "src": "DOID:4159",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB00724",
+    "split": "test"
+  },
+  {
+    "src_id": "77",
+    "rel_id": "1",
+    "dst_id": "690",
+    "src": "DOID:7148",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB00795",
+    "split": "train"
+  },
+  {
+    "src_id": "40",
+    "rel_id": "1",
+    "dst_id": "864",
+    "src": "DOID:1826",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB00996",
+    "split": "train"
+  },
+  {
+    "src_id": "36",
+    "rel_id": "1",
+    "dst_id": "663",
+    "src": "DOID:1612",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB00762",
+    "split": "train"
+  },
+  {
+    "src_id": "20",
+    "rel_id": "1",
+    "dst_id": "475",
+    "src": "DOID:12306",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB00553",
+    "split": "valid"
+  },
+  {
+    "src_id": "87",
+    "rel_id": "1",
+    "dst_id": "152",
+    "src": "DOID:9352",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB00178",
+    "split": "train"
+  },
+  {
+    "src_id": "51",
+    "rel_id": "1",
+    "dst_id": "1171",
+    "src": "DOID:2841",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB01409",
+    "split": "train"
+  },
+  {
+    "src_id": "40",
+    "rel_id": "1",
+    "dst_id": "590",
+    "src": "DOID:1826",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB00683",
+    "split": "train"
+  },
+  {
+    "src_id": "11",
+    "rel_id": "1",
+    "dst_id": "865",
+    "src": "DOID:11054",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB00997",
+    "split": "train"
+  },
+  {
+    "src_id": "9",
+    "rel_id": "1",
+    "dst_id": "452",
+    "src": "DOID:10763",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB00524",
+    "split": "train"
+  },
+  {
+    "src_id": "77",
+    "rel_id": "1",
+    "dst_id": "547",
+    "src": "DOID:7148",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB00635",
+    "split": "valid"
+  },
+  {
+    "src_id": "63",
+    "rel_id": "1",
+    "dst_id": "865",
+    "src": "DOID:4045",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB00997",
+    "split": "valid"
+  },
+  {
+    "src_id": "82",
+    "rel_id": "1",
+    "dst_id": "594",
+    "src": "DOID:8893",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB00688",
+    "split": "train"
+  },
+  {
+    "src_id": "9",
+    "rel_id": "1",
+    "dst_id": "1038",
+    "src": "DOID:10763",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB01197",
+    "split": "train"
+  },
+  {
+    "src_id": "57",
+    "rel_id": "1",
+    "dst_id": "382",
+    "src": "DOID:3310",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB00443",
+    "split": "train"
+  },
+  {
+    "src_id": "57",
+    "rel_id": "1",
+    "dst_id": "392",
+    "src": "DOID:3310",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB00455",
+    "split": "train"
+  },
+  {
+    "src_id": "50",
+    "rel_id": "1",
+    "dst_id": "380",
+    "src": "DOID:263",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB00441",
+    "split": "train"
+  },
+  {
+    "src_id": "48",
+    "rel_id": "1",
+    "dst_id": "830",
+    "src": "DOID:2394",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB00958",
+    "split": "train"
+  },
+  {
+    "src_id": "6",
+    "rel_id": "1",
+    "dst_id": "1341",
+    "src": "DOID:10283",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB06699",
+    "split": "train"
+  },
+  {
+    "src_id": "48",
+    "rel_id": "1",
+    "dst_id": "1084",
+    "src": "DOID:2394",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB01248",
+    "split": "train"
+  },
+  {
+    "src_id": "57",
+    "rel_id": "1",
+    "dst_id": "934",
+    "src": "DOID:3310",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB01075",
+    "split": "train"
+  },
+  {
+    "src_id": "76",
+    "rel_id": "1",
+    "dst_id": "831",
+    "src": "DOID:7147",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB00959",
+    "split": "train"
+  },
+  {
+    "src_id": "87",
+    "rel_id": "1",
+    "dst_id": "191",
+    "src": "DOID:9352",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB00222",
+    "split": "train"
+  },
+  {
+    "src_id": "6",
+    "rel_id": "1",
+    "dst_id": "1302",
+    "src": "DOID:10283",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB05812",
+    "split": "train"
+  },
+  {
+    "src_id": "49",
+    "rel_id": "1",
+    "dst_id": "737",
+    "src": "DOID:2531",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB00851",
+    "split": "train"
+  },
+  {
+    "src_id": "29",
+    "rel_id": "1",
+    "dst_id": "1066",
+    "src": "DOID:1324",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB01229",
+    "split": "train"
+  },
+  {
+    "src_id": "59",
+    "rel_id": "1",
+    "dst_id": "642",
+    "src": "DOID:332",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB00740",
+    "split": "train"
+  },
+  {
+    "src_id": "74",
+    "rel_id": "1",
+    "dst_id": "428",
+    "src": "DOID:635",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB00495",
+    "split": "test"
+  },
+  {
+    "src_id": "14",
+    "rel_id": "1",
+    "dst_id": "845",
+    "src": "DOID:11476",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB00977",
+    "split": "train"
+  },
+  {
+    "src_id": "82",
+    "rel_id": "1",
+    "dst_id": "881",
+    "src": "DOID:8893",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB01013",
+    "split": "train"
+  },
+  {
+    "src_id": "37",
+    "rel_id": "1",
+    "dst_id": "1053",
+    "src": "DOID:1686",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB01214",
+    "split": "train"
+  },
+  {
+    "src_id": "49",
+    "rel_id": "1",
+    "dst_id": "229",
+    "src": "DOID:2531",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB00262",
+    "split": "test"
+  },
+  {
+    "src_id": "18",
+    "rel_id": "1",
+    "dst_id": "490",
+    "src": "DOID:11934",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB00570",
+    "split": "train"
+  },
+  {
+    "src_id": "38",
+    "rel_id": "1",
+    "dst_id": "865",
+    "src": "DOID:1781",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB00997",
+    "split": "test"
+  },
+  {
+    "src_id": "16",
+    "rel_id": "1",
+    "dst_id": "884",
+    "src": "DOID:11714",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB01016",
+    "split": "test"
+  },
+  {
+    "src_id": "17",
+    "rel_id": "1",
+    "dst_id": "671",
+    "src": "DOID:1192",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB00773",
+    "split": "train"
+  },
+  {
+    "src_id": "29",
+    "rel_id": "1",
+    "dst_id": "490",
+    "src": "DOID:1324",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB00570",
+    "split": "train"
+  },
+  {
+    "src_id": "22",
+    "rel_id": "1",
+    "dst_id": "980",
+    "src": "DOID:12365",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB01131",
+    "split": "train"
+  },
+  {
+    "src_id": "39",
+    "rel_id": "1",
+    "dst_id": "663",
+    "src": "DOID:1793",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB00762",
+    "split": "train"
+  },
+  {
+    "src_id": "52",
+    "rel_id": "1",
+    "dst_id": "254",
+    "src": "DOID:2994",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB00290",
+    "split": "train"
+  },
+  {
+    "src_id": "40",
+    "rel_id": "1",
+    "dst_id": "238",
+    "src": "DOID:1826",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB00273",
+    "split": "train"
+  },
+  {
+    "src_id": "9",
+    "rel_id": "1",
+    "dst_id": "567",
+    "src": "DOID:10763",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB00657",
+    "split": "train"
+  },
+  {
+    "src_id": "48",
+    "rel_id": "1",
+    "dst_id": "421",
+    "src": "DOID:2394",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB00488",
+    "split": "test"
+  },
+  {
+    "src_id": "36",
+    "rel_id": "1",
+    "dst_id": "1084",
+    "src": "DOID:1612",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB01248",
+    "split": "test"
+  },
+  {
+    "src_id": "11",
+    "rel_id": "1",
+    "dst_id": "384",
+    "src": "DOID:11054",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB00445",
+    "split": "valid"
+  },
+  {
+    "src_id": "29",
+    "rel_id": "1",
+    "dst_id": "456",
+    "src": "DOID:1324",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB00530",
+    "split": "train"
+  },
+  {
+    "src_id": "37",
+    "rel_id": "1",
+    "dst_id": "835",
+    "src": "DOID:1686",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB00964",
+    "split": "train"
+  },
+  {
+    "src_id": "82",
+    "rel_id": "1",
+    "dst_id": "117",
+    "src": "DOID:8893",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB00136",
+    "split": "train"
+  },
+  {
+    "src_id": "41",
+    "rel_id": "1",
+    "dst_id": "865",
+    "src": "DOID:184",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB00997",
+    "split": "train"
+  },
+  {
+    "src_id": "44",
+    "rel_id": "1",
+    "dst_id": "613",
+    "src": "DOID:2043",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB00709",
+    "split": "train"
+  },
+  {
+    "src_id": "29",
+    "rel_id": "1",
+    "dst_id": "553",
+    "src": "DOID:1324",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB00642",
+    "split": "train"
+  },
+  {
+    "src_id": "60",
+    "rel_id": "1",
+    "dst_id": "686",
+    "src": "DOID:3393",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB00790",
+    "split": "train"
+  },
+  {
+    "src_id": "49",
+    "rel_id": "1",
+    "dst_id": "316",
+    "src": "DOID:2531",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB00361",
+    "split": "train"
+  },
+  {
+    "src_id": "60",
+    "rel_id": "1",
+    "dst_id": "1403",
+    "src": "DOID:3393",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB08860",
+    "split": "train"
+  },
+  {
+    "src_id": "6",
+    "rel_id": "1",
+    "dst_id": "573",
+    "src": "DOID:10283",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB00665",
+    "split": "train"
+  },
+  {
+    "src_id": "9",
+    "rel_id": "1",
+    "dst_id": "766",
+    "src": "DOID:10763",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB00881",
+    "split": "train"
+  },
+  {
+    "src_id": "85",
+    "rel_id": "1",
+    "dst_id": "594",
+    "src": "DOID:9074",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB00688",
+    "split": "train"
+  },
+  {
+    "src_id": "55",
+    "rel_id": "1",
+    "dst_id": "1171",
+    "src": "DOID:3083",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB01409",
+    "split": "train"
+  },
+  {
+    "src_id": "82",
+    "rel_id": "1",
+    "dst_id": "643",
+    "src": "DOID:8893",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB00741",
+    "split": "train"
+  },
+  {
+    "src_id": "84",
+    "rel_id": "1",
+    "dst_id": "1070",
+    "src": "DOID:9008",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB01234",
+    "split": "test"
+  },
+  {
+    "src_id": "90",
+    "rel_id": "1",
+    "dst_id": "1002",
+    "src": "DOID:9970",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB01156",
+    "split": "train"
+  },
+  {
+    "src_id": "82",
+    "rel_id": "1",
+    "dst_id": "475",
+    "src": "DOID:8893",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB00553",
+    "split": "train"
+  },
+  {
+    "src_id": "4",
+    "rel_id": "1",
+    "dst_id": "383",
+    "src": "DOID:0060073",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB00444",
+    "split": "train"
+  },
+  {
+    "src_id": "17",
+    "rel_id": "1",
+    "dst_id": "895",
+    "src": "DOID:1192",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB01030",
+    "split": "train"
+  },
+  {
+    "src_id": "9",
+    "rel_id": "1",
+    "dst_id": "782",
+    "src": "DOID:10763",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB00903",
+    "split": "train"
+  },
+  {
+    "src_id": "46",
+    "rel_id": "1",
+    "dst_id": "483",
+    "src": "DOID:219",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB00563",
+    "split": "train"
+  },
+  {
+    "src_id": "14",
+    "rel_id": "1",
+    "dst_id": "415",
+    "src": "DOID:11476",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB00481",
+    "split": "train"
+  },
+  {
+    "src_id": "77",
+    "rel_id": "1",
+    "dst_id": "483",
+    "src": "DOID:7148",
+    "rel": "INDICATION",
+    "dst": "DRUGBANK:DB00563",
+    "split": "valid"
+  }
+]

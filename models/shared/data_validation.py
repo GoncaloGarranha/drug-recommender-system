@@ -19,6 +19,8 @@ def infer_entity_type(entity_id: str) -> str:
 		return "DISEASE"
 	if entity_id.startswith("UNII:") or entity_id.startswith("ING:"):
 		return "INGREDIENT"
+	if entity_id.startswith("GENE:"):
+		return "GENE"
 	return "UNKNOWN"
 
 

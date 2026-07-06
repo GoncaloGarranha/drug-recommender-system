@@ -1,0 +1,11 @@
+{
+  "task_name": "disease_to_drug",
+  "target_relation": "INDICATION",
+  "train_size": 3802,
+  "valid_size": 475,
+  "test_size": 476,
+  "candidate_pool_size": 429,
+  "candidate_entity_type": "DRUG",
+  "split_mode": "random",
+  "split_integrity_report": "/Users/garranha/workspace/ISEL/Mestrado/Tese/tese/models/rgcn/data/processed/disease_to_drug_full/splits/split_integrity_report.json"
+}

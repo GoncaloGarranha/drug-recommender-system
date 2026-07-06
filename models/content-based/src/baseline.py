@@ -216,7 +216,7 @@ class ContentBasedBaseline:
             known_train_indices = query_to_train_indices.get(query, [])
 
             if known_train_indices:
-                scores = np.max(self.similarity_matrix[:, known_train_indices], axis=1).astype(np.float64)
+                scores = np.mean(self.similarity_matrix[:, known_train_indices], axis=1)
             else:
                 scores = np.zeros(len(self.entity_list), dtype=np.float64)
 

@@ -1,0 +1,7 @@
+experiment,model,dataset,task,split,mrr,hits@1,hits@3,hits@10,notes
+with_genes_best,R-GCN,triples_with_genes,disease_to_drug,test,0.699288,0.659130,0.725217,0.773913,Main thesis result
+disease_to_drug_full,R-GCN,biomedical_full,disease_to_drug,test,0.616627,0.554783,0.659130,0.728696,Biomedical KG without gene enrichment
+with_genes_content_based,Content-Based,triples_with_genes,disease_to_drug,test,0.316175,0.273043,0.325217,0.391304,Best TF-IDF baseline with train indication genes
+fb15k237_sampled,R-GCN,FB15k-237 sampled,tail_prediction,test,0.057407,0.025217,0.053913,0.120000,External benchmark
+hetionet_biomedical,R-GCN,Hetionet biomedical,disease_to_drug,test,0.387418,0.223684,0.447368,0.789474,External Hetionet-derived benchmark
+hetionet_enriched,R-GCN,Hetionet enriched,disease_to_drug,test,0.431013,0.330435,0.443478,0.669565,External Hetionet-derived benchmark enriched with genes

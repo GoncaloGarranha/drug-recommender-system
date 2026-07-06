@@ -82,9 +82,6 @@ def resolve_entities(cfg: Dict[str, Any], paths, force: bool = False) -> None:
     output_dir = Path(paths.output_dir)
     interim_dir = output_dir / "interim"
     mappings_dir = output_dir / "mappings"
-        out = build_output_paths(paths.output_dir)
-        interim_dir = out.interim
-
     drugs_csv = interim_dir / "drugs_raw.csv"
     ingredients_csv = interim_dir / "ingredients_raw.csv"
     diseases_csv = interim_dir / "diseases_raw.csv"

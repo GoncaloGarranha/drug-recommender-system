@@ -1,3 +1,6 @@
+from __future__ import annotations
+
+from kg_constructor.src.utils.paths import build_output_paths
 """
 Step 04: Convert raw edges into canonical triples (src, rel, dst).
 
@@ -8,7 +11,6 @@ In addition to the training-oriented triples.csv file, this step also
 generates triples_with_provenance.csv for auditability and traceability.
 """
 
-from __future__ import annotations
 
 import json
 from pathlib import Path

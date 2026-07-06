@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from kg_constructor.src.utils.paths import build_output_paths
 import json
 from collections import defaultdict
 from pathlib import Path

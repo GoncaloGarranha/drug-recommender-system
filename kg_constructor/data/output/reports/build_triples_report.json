@@ -1,15 +1,15 @@
 {
   "input_edges": 27086,
-  "output_triples": 22188,
+  "output_triples": 22136,
   "output_triples_with_provenance": 27086,
   "skipped": {
     "missing_drug_mapping": 0,
     "invalid_rows": 0,
-    "canonical_duplicates": 4898
+    "canonical_duplicates": 4950
   },
   "relation_distribution": {
-    "INDICATION": 4753,
-    "CONTRAINDICATION": 1933,
-    "HAS_INGREDIENT": 15502
+    "INDICATION": 4705,
+    "CONTRAINDICATION": 1936,
+    "HAS_INGREDIENT": 15495
   }
 }

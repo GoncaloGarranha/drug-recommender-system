@@ -1,8 +1,8 @@
 {
-  "input_triples": 22188,
-  "output_triples": 21193,
+  "input_triples": 22136,
+  "output_triples": 21145,
   "removed": {
-    "blacklisted_disease": 995
+    "blacklisted_disease": 991
   },
   "blacklist_size": 4,
   "filters": {
@@ -10,13 +10,13 @@
     "remove_has_ingredient": false
   },
   "input_relation_distribution": {
-    "INDICATION": 4753,
-    "CONTRAINDICATION": 1933,
-    "HAS_INGREDIENT": 15502
+    "INDICATION": 4705,
+    "CONTRAINDICATION": 1936,
+    "HAS_INGREDIENT": 15495
   },
   "filtered_relation_distribution": {
-    "INDICATION": 4105,
-    "HAS_INGREDIENT": 15502,
-    "CONTRAINDICATION": 1586
+    "INDICATION": 4061,
+    "CONTRAINDICATION": 1589,
+    "HAS_INGREDIENT": 15495
   }
 }

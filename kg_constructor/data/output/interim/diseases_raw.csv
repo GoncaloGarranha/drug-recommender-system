@@ -1,652 +1,347 @@
 doid,label,text,source_section,file
-DOID:10825,essential hypertension,essential hypertension (DOID:10825),indications,004f0059-4ede-4748-9489-45e27c177424.json
-DOID:10763,hypertension,hypertension (DOID:10763),indications,004f0059-4ede-4748-9489-45e27c177424.json
-DOID:225,syndrome,syndrome (DOID:225),contraindications,004f0059-4ede-4748-9489-45e27c177424.json
-DOID:1924,hypogonadism,hypogonadism (DOID:1924),indications,006ee4e6-e4d9-49d1-b481-1667c03378af.json
-DOID:11383,cryptorchidism,cryptorchidism (DOID:11383),indications,006ee4e6-e4d9-49d1-b481-1667c03378af.json
-DOID:2518,orchitis,orchitis (DOID:2518),indications,006ee4e6-e4d9-49d1-b481-1667c03378af.json
-DOID:0090070,hypogonadotropic hypogonadism,hypogonadotropic hypogonadism (DOID:0090070),indications,006ee4e6-e4d9-49d1-b481-1667c03378af.json
-DOID:9538,multiple myeloma,multiple myeloma (DOID:9538),indications,0084ff5d-3707-4f95-b2d1-a32504b025bf.json
-DOID:9120,amyloidosis,amyloidosis (DOID:9120),indications,0084ff5d-3707-4f95-b2d1-a32504b025bf.json
-DOID:4,disease,disease (DOID:4),indications,0084ff5d-3707-4f95-b2d1-a32504b025bf.json
-DOID:1947,trichomoniasis,trichomoniasis (DOID:1947),indications,0086502b-b500-4fe7-8c02-83a783f7e422.json
-DOID:5757,endocervicitis,endocervicitis (DOID:5757),indications,0086502b-b500-4fe7-8c02-83a783f7e422.json
-DOID:2568,cervicitis,cervicitis (DOID:2568),indications,0086502b-b500-4fe7-8c02-83a783f7e422.json
-DOID:9181,amebiasis,amebiasis (DOID:9181),indications,0086502b-b500-4fe7-8c02-83a783f7e422.json
-DOID:0050228,amebic dysentery,amebic dysentery (DOID:0050228),indications,0086502b-b500-4fe7-8c02-83a783f7e422.json
-DOID:12384,dysentery,dysentery (DOID:12384),indications,0086502b-b500-4fe7-8c02-83a783f7e422.json
-DOID:8283,peritonitis,peritonitis (DOID:8283),indications,0086502b-b500-4fe7-8c02-83a783f7e422.json
-DOID:1002,endometritis,endometritis (DOID:1002),indications,0086502b-b500-4fe7-8c02-83a783f7e422.json
-DOID:9471,meningitis,meningitis (DOID:9471),indications,0086502b-b500-4fe7-8c02-83a783f7e422.json
-DOID:552,pneumonia,pneumonia (DOID:552),indications,0086502b-b500-4fe7-8c02-83a783f7e422.json
-DOID:3798,empyema,empyema (DOID:3798),indications,0086502b-b500-4fe7-8c02-83a783f7e422.json
-DOID:0060317,lung abscess,lung abscess (DOID:0060317),indications,0086502b-b500-4fe7-8c02-83a783f7e422.json
-DOID:10314,endocarditis,endocarditis (DOID:10314),indications,0086502b-b500-4fe7-8c02-83a783f7e422.json
-DOID:4989,pancreatitis,pancreatitis (DOID:4989),indications,00a3d4e3-2364-47fd-919a-f336c12ece0d.json
-DOID:3393,coronary heart disease,coronary heart disease (DOID:3393),indications,00a3d4e3-2364-47fd-919a-f336c12ece0d.json
-DOID:114,heart disease,heart disease (DOID:114),indications,00a3d4e3-2364-47fd-919a-f336c12ece0d.json
-DOID:9352,type 2 diabetes,type 2 diabetes (DOID:9352),indications,00a3d4e3-2364-47fd-919a-f336c12ece0d.json
-DOID:9351,diabetes,diabetes (DOID:9351),indications,00a3d4e3-2364-47fd-919a-f336c12ece0d.json
-DOID:8986,narcolepsy,narcolepsy (DOID:8986),indications,00ed2765-de34-ebd3-fece-c10ccfe03bd2.json
-DOID:0050848,obstructive sleep apnea,obstructive sleep apnea (DOID:0050848),indications,00ed2765-de34-ebd3-fece-c10ccfe03bd2.json
-DOID:0050847,sleep apnea,sleep apnea (DOID:0050847),indications,00ed2765-de34-ebd3-fece-c10ccfe03bd2.json
-DOID:1826,epilepsy,epilepsy (DOID:1826),indications,01196905-4565-450b-8c37-8ed986ed3adb.json
-DOID:9970,obesity,obesity (DOID:9970),indications,011f7a40-4e77-4a1d-a85b-f7c6728cc2ba.json
-DOID:9478,postpartum depression,postpartum depression (DOID:9478),indications,01239ea3-4398-481d-82b8-5577f56169b9.json
-DOID:1596,depression,depression (DOID:1596),indications,01239ea3-4398-481d-82b8-5577f56169b9.json
-DOID:5419,schizophrenia,schizophrenia (DOID:5419),indications,01261008-5f42-4844-8a65-d4545a67a309.json
-DOID:3312,bipolar disorder,bipolar disorder (DOID:3312),indications,01261008-5f42-4844-8a65-d4545a67a309.json
-DOID:11339,pneumocystis jirovecii pneumonia,pneumocystis jirovecii pneumonia (DOID:11339),indications,012dfac7-9b72-48a5-a364-e62bbe150cfe.json
-DOID:12385,shigellosis,shigellosis (DOID:12385),indications,012dfac7-9b72-48a5-a364-e62bbe150cfe.json
-DOID:6000,congestive heart failure,congestive heart failure (DOID:6000),indications,012e4c94-e23e-49b8-9241-29c3567c441d.json
-DOID:0051064,left ventricular dysfunction,left ventricular dysfunction (DOID:0051064),indications,012e4c94-e23e-49b8-9241-29c3567c441d.json
-DOID:12987,agranulocytosis,agranulocytosis (DOID:12987),indications,012e4c94-e23e-49b8-9241-29c3567c441d.json
-DOID:178,vascular disease,vascular disease (DOID:178),indications,012e4c94-e23e-49b8-9241-29c3567c441d.json
-DOID:1558,angioedema,angioedema (DOID:1558),indications,012e4c94-e23e-49b8-9241-29c3567c441d.json
-DOID:2394,ovarian cancer,ovarian cancer (DOID:2394),indications,0142c57f-6211-4638-8c48-c215686871b8.json
-DOID:162,cancer,cancer (DOID:162),indications,0142c57f-6211-4638-8c48-c215686871b8.json
-DOID:1612,breast cancer,breast cancer (DOID:1612),indications,0142c57f-6211-4638-8c48-c215686871b8.json
-DOID:1793,pancreatic cancer,pancreatic cancer (DOID:1793),indications,0142c57f-6211-4638-8c48-c215686871b8.json
-DOID:4074,pancreatic adenocarcinoma,pancreatic adenocarcinoma (DOID:4074),indications,0142c57f-6211-4638-8c48-c215686871b8.json
-DOID:299,adenocarcinoma,adenocarcinoma (DOID:299),indications,0142c57f-6211-4638-8c48-c215686871b8.json
-DOID:10283,prostate cancer,prostate cancer (DOID:10283),indications,0142c57f-6211-4638-8c48-c215686871b8.json
-DOID:8469,influenza,influenza (DOID:8469),indications,0161b0e8-ab09-4887-91d9-fc9b79b9dfac.json
-DOID:0080855,parkinsonism,parkinsonism (DOID:0080855),indications,0161b0e8-ab09-4887-91d9-fc9b79b9dfac.json
-DOID:934,virus infection,virus infection (DOID:934),indications,0161b0e8-ab09-4887-91d9-fc9b79b9dfac.json
-DOID:14330,paralysis agitans,paralysis agitans (DOID:14330),indications,0161b0e8-ab09-4887-91d9-fc9b79b9dfac.json
-DOID:14332,postencephalitic parkinsonism,postencephalitic parkinsonism (DOID:14332),indications,0161b0e8-ab09-4887-91d9-fc9b79b9dfac.json
-DOID:13548,symptomatic parkinsonism,symptomatic parkinsonism (DOID:13548),indications,0161b0e8-ab09-4887-91d9-fc9b79b9dfac.json
-DOID:2349,arteriosclerosis,arteriosclerosis (DOID:2349),indications,0161b0e8-ab09-4887-91d9-fc9b79b9dfac.json
-DOID:0051061,stroke,stroke (DOID:0051061),indications,016461a7-40a7-4ebc-9342-66ea16cdb6fc.json
-DOID:557,nephropathy,nephropathy (DOID:557),indications,016461a7-40a7-4ebc-9342-66ea16cdb6fc.json
-DOID:576,proteinuria,proteinuria (DOID:576),indications,016461a7-40a7-4ebc-9342-66ea16cdb6fc.json
-DOID:635,aids,aids (DOID:635),indications,0169dbda-53df-4cd9-b989-ff7544f1bdf5.json
-DOID:8632,kaposi sarcoma,kaposi sarcoma (DOID:8632),indications,0169dbda-53df-4cd9-b989-ff7544f1bdf5.json
-DOID:1115,sarcoma,sarcoma (DOID:1115),indications,0169dbda-53df-4cd9-b989-ff7544f1bdf5.json
-DOID:4195,hyperglycemia,hyperglycemia (DOID:4195),contraindications,017828fd-5bec-452c-8e2e-28d8205e9e80.json
-DOID:1485,cystic fibrosis,cystic fibrosis (DOID:1485),indications,01ba9ce0-19a7-4c2b-b833-cdb8d7516890.json
-DOID:14654,prostatitis,prostatitis (DOID:14654),contraindications,01e976a4-eb3a-4d1a-a384-46222c20afc5.json
-DOID:3482,plague,plague (DOID:3482),contraindications,01e976a4-eb3a-4d1a-a384-46222c20afc5.json
-DOID:0080784,urinary tract infection,urinary tract infection (DOID:0080784),contraindications,01e976a4-eb3a-4d1a-a384-46222c20afc5.json
-DOID:559,acute pyelonephritis,acute pyelonephritis (DOID:559),contraindications,01e976a4-eb3a-4d1a-a384-46222c20afc5.json
-DOID:11400,pyelonephritis,pyelonephritis (DOID:11400),contraindications,01e976a4-eb3a-4d1a-a384-46222c20afc5.json
-DOID:6132,chronic bronchitis,chronic bronchitis (DOID:6132),contraindications,01e976a4-eb3a-4d1a-a384-46222c20afc5.json
-DOID:0050127,sinusitis,sinusitis (DOID:0050127),contraindications,01e976a4-eb3a-4d1a-a384-46222c20afc5.json
-DOID:4500,hypokalemia,hypokalemia (DOID:4500),indications,01fbdb24-0987-40f6-a920-f36349f6ba61.json
-DOID:14452,hypokalemic familial periodic paralysis,hypokalemic familial periodic paralysis (DOID:14452),indications,01fbdb24-0987-40f6-a920-f36349f6ba61.json
-DOID:1029,familial periodic paralysis,familial periodic paralysis (DOID:1029),indications,01fbdb24-0987-40f6-a920-f36349f6ba61.json
-DOID:574,peripheral neuropathy,peripheral neuropathy (DOID:574),indications,01fdf4a0-c622-4213-a676-c0012ab88b57.json
-DOID:870,neuropathy,neuropathy (DOID:870),indications,01fdf4a0-c622-4213-a676-c0012ab88b57.json
-DOID:631,fibromyalgia,fibromyalgia (DOID:631),indications,01fdf4a0-c622-4213-a676-c0012ab88b57.json
-DOID:1094,attention deficit hyperactivity disorder,attention deficit hyperactivity disorder (DOID:1094),indications,02271fb1-d7ad-49cb-a6a4-622e458e5db7.json
-DOID:7148,rheumatoid arthritis,rheumatoid arthritis (DOID:7148),indications,024ab85d-682d-b3cb-9886-57dd821426c8.json
-DOID:848,arthritis,arthritis (DOID:848),indications,024ab85d-682d-b3cb-9886-57dd821426c8.json
-DOID:10933,obsessive compulsive disorder,obsessive compulsive disorder (DOID:10933),indications,025ad0df-842c-405c-a782-c26bfe26fd22.json
-DOID:84,ocd,ocd (DOID:84),indications,025ad0df-842c-405c-a782-c26bfe26fd22.json
-DOID:5844,myocardial infarction,myocardial infarction (DOID:5844),indications,027eb780-1ddd-4ba5-9226-cb88bbb4f45d.json
-DOID:224,transient ischemic attack,transient ischemic attack (DOID:224),indications,027eb780-1ddd-4ba5-9226-cb88bbb4f45d.json
-DOID:0061139,coronary atherosclerosis,coronary atherosclerosis (DOID:0061139),indications,027eb780-1ddd-4ba5-9226-cb88bbb4f45d.json
-DOID:1936,atherosclerosis,atherosclerosis (DOID:1936),indications,027eb780-1ddd-4ba5-9226-cb88bbb4f45d.json
-DOID:13810,familial hypercholesterolemia,familial hypercholesterolemia (DOID:13810),indications,027eb780-1ddd-4ba5-9226-cb88bbb4f45d.json
-DOID:3717,gastric adenocarcinoma,gastric adenocarcinoma (DOID:3717),contraindications,028039d7-2228-498b-868a-b786d6939fc4.json
-DOID:1470,major depressive disorder,major depressive disorder (DOID:1470),indications,02a076a5-939b-4575-b011-9e7d73d3985c.json
-DOID:12098,trigeminal neuralgia,trigeminal neuralgia (DOID:12098),contraindications,02ae3166-20ad-4295-9cd8-29221136e13f.json
-DOID:1432,vision loss,vision loss (DOID:1432),indications,02bb57b3-3949-4111-bb90-3a1d4f38b205.json
-DOID:4450,renal cell carcinoma,renal cell carcinoma (DOID:4450),indications,02c78486-121e-4184-aaaa-40fd9feebe66.json
-DOID:305,carcinoma,carcinoma (DOID:305),indications,02c78486-121e-4184-aaaa-40fd9feebe66.json
-DOID:1909,melanoma,melanoma (DOID:1909),indications,02c78486-121e-4184-aaaa-40fd9feebe66.json
-DOID:1324,lung cancer,lung cancer (DOID:1324),indications,02c78486-121e-4184-aaaa-40fd9feebe66.json
-DOID:3908,nsclc,nsclc (DOID:3908),indications,02c78486-121e-4184-aaaa-40fd9feebe66.json
-DOID:1749,squamous cell carcinoma,squamous cell carcinoma (DOID:1749),indications,02c78486-121e-4184-aaaa-40fd9feebe66.json
-DOID:9256,colorectal cancer,colorectal cancer (DOID:9256),indications,02c78486-121e-4184-aaaa-40fd9feebe66.json
-DOID:684,hepatocellular carcinoma,hepatocellular carcinoma (DOID:684),indications,02c78486-121e-4184-aaaa-40fd9feebe66.json
-DOID:5041,esophageal cancer,esophageal cancer (DOID:5041),indications,02c78486-121e-4184-aaaa-40fd9feebe66.json
-DOID:10534,gastric cancer,gastric cancer (DOID:10534),indications,02c78486-121e-4184-aaaa-40fd9feebe66.json
-DOID:2841,asthma,asthma (DOID:2841),indications,0318e892-0db1-4a82-a649-9e530a2d1d05.json
-DOID:3083,chronic obstructive pulmonary disease,chronic obstructive pulmonary disease (DOID:3083),indications,0318e892-0db1-4a82-a649-9e530a2d1d05.json
-DOID:2271,oropharyngeal candidiasis,oropharyngeal candidiasis (DOID:2271),contraindications,0318e892-0db1-4a82-a649-9e530a2d1d05.json
-DOID:1508,candidiasis,candidiasis (DOID:1508),contraindications,0318e892-0db1-4a82-a649-9e530a2d1d05.json
-DOID:6364,migraine,migraine (DOID:6364),indications,035bf713-1642-4215-83ec-0ed07c29f92c.json
-DOID:3310,atopic dermatitis,atopic dermatitis (DOID:3310),indications,037de180-ad46-486f-b8fd-26a52b0c425c.json
-DOID:2723,dermatitis,dermatitis (DOID:2723),indications,037de180-ad46-486f-b8fd-26a52b0c425c.json
-DOID:2773,contact dermatitis,contact dermatitis (DOID:2773),indications,037de180-ad46-486f-b8fd-26a52b0c425c.json
-DOID:1205,hypersensitivity,hypersensitivity (DOID:1205),indications,037de180-ad46-486f-b8fd-26a52b0c425c.json
-DOID:8505,dermatitis herpetiformis,dermatitis herpetiformis (DOID:8505),indications,037de180-ad46-486f-b8fd-26a52b0c425c.json
-DOID:1564,mycosis,mycosis (DOID:1564),indications,037de180-ad46-486f-b8fd-26a52b0c425c.json
-DOID:8691,mycosis fungoides,mycosis fungoides (DOID:8691),indications,037de180-ad46-486f-b8fd-26a52b0c425c.json
-DOID:9182,pemphigus,pemphigus (DOID:9182),indications,037de180-ad46-486f-b8fd-26a52b0c425c.json
-DOID:0050185,erythema multiforme,erythema multiforme (DOID:0050185),indications,037de180-ad46-486f-b8fd-26a52b0c425c.json
-DOID:0050811,congenital adrenal hyperplasia,congenital adrenal hyperplasia (DOID:0050811),indications,037de180-ad46-486f-b8fd-26a52b0c425c.json
-DOID:12678,hypercalcemia,hypercalcemia (DOID:12678),indications,037de180-ad46-486f-b8fd-26a52b0c425c.json
-DOID:7166,thyroiditis,thyroiditis (DOID:7166),indications,037de180-ad46-486f-b8fd-26a52b0c425c.json
-DOID:8577,ulcerative colitis,ulcerative colitis (DOID:8577),indications,037de180-ad46-486f-b8fd-26a52b0c425c.json
-DOID:0060180,colitis,colitis (DOID:0060180),indications,037de180-ad46-486f-b8fd-26a52b0c425c.json
-DOID:583,hemolytic anemia,hemolytic anemia (DOID:583),indications,037de180-ad46-486f-b8fd-26a52b0c425c.json
-DOID:2355,anemia,anemia (DOID:2355),indications,037de180-ad46-486f-b8fd-26a52b0c425c.json
-DOID:8924,idiopathic thrombocytopenic purpura,idiopathic thrombocytopenic purpura (DOID:8924),indications,037de180-ad46-486f-b8fd-26a52b0c425c.json
-DOID:3326,purpura,purpura (DOID:3326),indications,037de180-ad46-486f-b8fd-26a52b0c425c.json
-DOID:1340,pure red cell aplasia,pure red cell aplasia (DOID:1340),indications,037de180-ad46-486f-b8fd-26a52b0c425c.json
-DOID:11126,secondary thrombocytopenia,secondary thrombocytopenia (DOID:11126),indications,037de180-ad46-486f-b8fd-26a52b0c425c.json
-DOID:1588,thrombocytopenia,thrombocytopenia (DOID:1588),indications,037de180-ad46-486f-b8fd-26a52b0c425c.json
-DOID:9784,trichinosis,trichinosis (DOID:9784),indications,037de180-ad46-486f-b8fd-26a52b0c425c.json
-DOID:2377,multiple sclerosis,multiple sclerosis (DOID:2377),indications,037de180-ad46-486f-b8fd-26a52b0c425c.json
-DOID:12029,sympathetic ophthalmia,sympathetic ophthalmia (DOID:12029),indications,037de180-ad46-486f-b8fd-26a52b0c425c.json
-DOID:13141,uveitis,uveitis (DOID:13141),indications,037de180-ad46-486f-b8fd-26a52b0c425c.json
-DOID:1184,nephrotic syndrome,nephrotic syndrome (DOID:1184),indications,037de180-ad46-486f-b8fd-26a52b0c425c.json
-DOID:8857,lupus,lupus (DOID:8857),indications,037de180-ad46-486f-b8fd-26a52b0c425c.json
-DOID:10322,berylliosis,berylliosis (DOID:10322),indications,037de180-ad46-486f-b8fd-26a52b0c425c.json
-DOID:2957,pulmonary tuberculosis,pulmonary tuberculosis (DOID:2957),indications,037de180-ad46-486f-b8fd-26a52b0c425c.json
-DOID:399,tuberculosis,tuberculosis (DOID:399),indications,037de180-ad46-486f-b8fd-26a52b0c425c.json
-DOID:11335,sarcoidosis,sarcoidosis (DOID:11335),indications,037de180-ad46-486f-b8fd-26a52b0c425c.json
-DOID:13189,gouty arthritis,gouty arthritis (DOID:13189),indications,037de180-ad46-486f-b8fd-26a52b0c425c.json
-DOID:8481,acute rheumatic carditis,acute rheumatic carditis (DOID:8481),indications,037de180-ad46-486f-b8fd-26a52b0c425c.json
-DOID:0050827,rheumatic carditis,rheumatic carditis (DOID:0050827),indications,037de180-ad46-486f-b8fd-26a52b0c425c.json
-DOID:7147,ankylosing spondylitis,ankylosing spondylitis (DOID:7147),indications,037de180-ad46-486f-b8fd-26a52b0c425c.json
-DOID:6590,spondylitis,spondylitis (DOID:6590),indications,037de180-ad46-486f-b8fd-26a52b0c425c.json
-DOID:9008,psoriatic arthritis,psoriatic arthritis (DOID:9008),indications,037de180-ad46-486f-b8fd-26a52b0c425c.json
-DOID:676,juvenile rheumatoid arthritis,juvenile rheumatoid arthritis (DOID:676),indications,037de180-ad46-486f-b8fd-26a52b0c425c.json
-DOID:10223,dermatomyositis,dermatomyositis (DOID:10223),indications,037de180-ad46-486f-b8fd-26a52b0c425c.json
-DOID:13375,temporal arteritis,temporal arteritis (DOID:13375),indications,037de180-ad46-486f-b8fd-26a52b0c425c.json
-DOID:0080745,polymyositis,polymyositis (DOID:0080745),indications,037de180-ad46-486f-b8fd-26a52b0c425c.json
-DOID:0060319,cardiac arrest,cardiac arrest (DOID:0060319),contraindications,037de180-ad46-486f-b8fd-26a52b0c425c.json
-DOID:1686,glaucoma,glaucoma (DOID:1686),indications,0392e11a-1290-442f-9765-e1f79ec43eae.json
-DOID:1724,duodenal ulcer,duodenal ulcer (DOID:1724),indications,03a01242-5574-46c3-83d1-418c43ecdc8f.json
-DOID:10808,gastric ulcer,gastric ulcer (DOID:10808),indications,03a01242-5574-46c3-83d1-418c43ecdc8f.json
-DOID:8534,gastroesophageal reflux,gastroesophageal reflux (DOID:8534),indications,03a01242-5574-46c3-83d1-418c43ecdc8f.json
-DOID:11963,esophagitis,esophagitis (DOID:11963),indications,03a01242-5574-46c3-83d1-418c43ecdc8f.json
-DOID:0050052,rocky mountain spotted fever,rocky mountain spotted fever (DOID:0050052),contraindications,03cb5078-768e-41a1-b922-f1dee98e8760.json
-DOID:11104,spotted fever,spotted fever (DOID:11104),contraindications,03cb5078-768e-41a1-b922-f1dee98e8760.json
-DOID:11263,chlamydia,chlamydia (DOID:11263),contraindications,03cb5078-768e-41a1-b922-f1dee98e8760.json
-DOID:1343,nongonococcal urethritis,nongonococcal urethritis (DOID:1343),contraindications,03cb5078-768e-41a1-b922-f1dee98e8760.json
-DOID:4166,syphilis,syphilis (DOID:4166),contraindications,03cb5078-768e-41a1-b922-f1dee98e8760.json
-DOID:12365,malaria,malaria (DOID:12365),contraindications,03cb5078-768e-41a1-b922-f1dee98e8760.json
-DOID:8398,osteoarthritis,osteoarthritis (DOID:8398),indications,03f0493b-2440-4e4f-a5ac-a079a564f408.json
-DOID:2965,bursitis,bursitis (DOID:2965),indications,03f0493b-2440-4e4f-a5ac-a079a564f408.json
-DOID:6543,acne,acne (DOID:6543),indications,03f16a28-7c10-4fa0-a4c8-ac29335c6be7.json
-DOID:1781,thyroid cancer,thyroid cancer (DOID:1781),indications,03fee098-20c7-4a04-81a7-06fb7d8b1470.json
-DOID:437,myasthenia gravis,myasthenia gravis (DOID:437),indications,0429e410-7623-2f45-6170-d4a2eadd8742.json
-DOID:12129,bulimia nervosa,bulimia nervosa (DOID:12129),indications,042adae3-83f7-431b-a947-3ce3680cb001.json
-DOID:594,panic disorder,panic disorder (DOID:594),indications,042adae3-83f7-431b-a947-3ce3680cb001.json
-DOID:593,agoraphobia,agoraphobia (DOID:593),indications,042adae3-83f7-431b-a947-3ce3680cb001.json
-DOID:8670,eating disorder,eating disorder (DOID:8670),indications,047c243d-9336-4ef2-b5a8-a7cae312b1be.json
-DOID:783,end stage renal disease,end stage renal disease (DOID:783),contraindications,047c243d-9336-4ef2-b5a8-a7cae312b1be.json
-DOID:3146,dyslipidemia,dyslipidemia (DOID:3146),indications,0488aa52-5670-4d63-b19d-c87064af839d.json
-DOID:8712,neurofibromatosis,neurofibromatosis (DOID:8712),indications,04b4df94-158e-4bb2-92c9-effe844e8fdc.json
-DOID:2951,motion sickness,motion sickness (DOID:2951),indications,04bda8ed-8f80-4c9f-989d-055958928ac7.json
-DOID:0060145,analgesia,analgesia (DOID:0060145),indications,04bda8ed-8f80-4c9f-989d-055958928ac7.json
-DOID:10241,thalassemia,thalassemia (DOID:10241),indications,04d9f1ba-0c7f-4daa-ad52-143b7e2ce684.json
-DOID:409,liver disease,liver disease (DOID:409),contraindications,051a0580-638b-4498-8770-850bceeb5180.json
-DOID:2449,acromegaly,acromegaly (DOID:2449),contraindications,054af266-c850-45c8-b027-d810d7d5f0ae.json
-DOID:9744,type 1 diabetes mellitus,type 1 diabetes mellitus (DOID:9744),indications,057c1420-60f7-4a86-922c-44b37df317f6.json
-DOID:11476,osteoporosis,osteoporosis (DOID:11476),indications,05897af5-690c-4f91-9534-8a669c1d9b9e.json
-DOID:0080160,cmv retinitis,cmv retinitis (DOID:0080160),indications,058fa4c8-4170-4506-a930-dcacb28d9eff.json
-DOID:3612,retinitis,retinitis (DOID:3612),indications,058fa4c8-4170-4506-a930-dcacb28d9eff.json
-DOID:612,immunodeficiency syndrome,immunodeficiency syndrome (DOID:612),indications,058fa4c8-4170-4506-a930-dcacb28d9eff.json
-DOID:0050425,restless legs syndrome,restless legs syndrome (DOID:0050425),indications,061e4779-5a53-4782-bb85-03abe1c98ce1.json
-DOID:0081445,sickle cell disease,sickle cell disease (DOID:0081445),indications,0635706e-180e-435e-92cf-c85e0ca4f7e0.json
-DOID:1682,congenital heart disease,congenital heart disease (DOID:1682),indications,063d2028-f666-4304-8cd3-21d882d8c97f.json
-DOID:1227,neutropenia,neutropenia (DOID:1227),indications,063f36a7-6f99-40fa-af02-8a5183c51e99.json
-DOID:2237,hepatitis,hepatitis (DOID:2237),contraindications,06798821-0e55-4684-98fd-09ec6db77dbe.json
-DOID:2043,hepatitis b,hepatitis b (DOID:2043),contraindications,06798821-0e55-4684-98fd-09ec6db77dbe.json
-DOID:8927,learning disability,learning disability (DOID:8927),indications,06b4c32e-1880-40e9-9de2-0927cb8c1500.json
-DOID:1787,pericarditis,pericarditis (DOID:1787),indications,06e8e958-641f-4573-9907-15590e0625a0.json
-DOID:8596,scarlet fever,scarlet fever (DOID:8596),indications,06e8e958-641f-4573-9907-15590e0625a0.json
-DOID:11330,erysipelas,erysipelas (DOID:11330),indications,06e8e958-641f-4573-9907-15590e0625a0.json
-DOID:3087,gingivitis,gingivitis (DOID:3087),indications,06e8e958-641f-4573-9907-15590e0625a0.json
-DOID:2275,pharyngitis,pharyngitis (DOID:2275),indications,06e8e958-641f-4573-9907-15590e0625a0.json
-DOID:1586,rheumatic fever,rheumatic fever (DOID:1586),indications,06e8e958-641f-4573-9907-15590e0625a0.json
-DOID:12859,chorea,chorea (DOID:12859),indications,06e8e958-641f-4573-9907-15590e0625a0.json
-DOID:762,bacterial endocarditis,bacterial endocarditis (DOID:762),indications,06e8e958-641f-4573-9907-15590e0625a0.json
-DOID:4079,valvular heart disease,valvular heart disease (DOID:4079),indications,06e8e958-641f-4573-9907-15590e0625a0.json
-DOID:10754,otitis media,otitis media (DOID:10754),contraindications,06e8e958-641f-4573-9907-15590e0625a0.json
-DOID:0050741,alcohol dependence,alcohol dependence (DOID:0050741),indications,074fe42c-ca67-4dda-8bc8-30a6c2cd1c4f.json
-DOID:636,osmotic demyelination syndrome,osmotic demyelination syndrome (DOID:636),contraindications,0770d1c7-920a-4569-9e1d-de264bea58b1.json
-DOID:4159,skin cancer,skin cancer (DOID:4159),indications,078c15b1-8509-4ac2-96f8-419ed08fb3a5.json
-DOID:2030,anxiety,anxiety (DOID:2030),indications,07a122c0-d29d-4e60-8c0a-01a533f0d978.json
-DOID:306,dyskinesia,dyskinesia (DOID:306),indications,07a122c0-d29d-4e60-8c0a-01a533f0d978.json
-DOID:14320,generalized anxiety disorder,generalized anxiety disorder (DOID:14320),indications,07a122c0-d29d-4e60-8c0a-01a533f0d978.json
-DOID:1059,mental retardation,mental retardation (DOID:1059),indications,07a122c0-d29d-4e60-8c0a-01a533f0d978.json
-DOID:5575,delayed puberty,delayed puberty (DOID:5575),indications,07c89b2d-5710-46ca-b642-a0fbd51026af.json
-DOID:5003,eunuchism,eunuchism (DOID:5003),contraindications,07c89b2d-5710-46ca-b642-a0fbd51026af.json
-DOID:3459,breast carcinoma,breast carcinoma (DOID:3459),contraindications,07c89b2d-5710-46ca-b642-a0fbd51026af.json
-DOID:12849,autistic disorder,autistic disorder (DOID:12849),indications,07e84436-8be5-4a0b-bcb8-5621edf984a9.json
-DOID:12783,migraine without aura,migraine without aura (DOID:12783),indications,07fd3ef4-ef45-4b86-a6ab-75457fbe68ca.json
-DOID:2055,ptsd,ptsd (DOID:2055),indications,080b5b16-2263-47e6-9a0b-dbebacd04800.json
-DOID:0111084,face,face (DOID:0111084),contraindications,081b7bbb-6692-4512-b135-863b73bf30a5.json
-DOID:9408,acute myocardial infarction,acute myocardial infarction (DOID:9408),indications,08b65561-0817-44e6-a23b-b68ab6ee2666.json
-DOID:3385,bacterial vaginosis,bacterial vaginosis (DOID:3385),indications,08bcc2dc-71ea-4664-89e8-73d6a3a01322.json
-DOID:2170,vaginitis,vaginitis (DOID:2170),indications,08bcc2dc-71ea-4664-89e8-73d6a3a01322.json
-DOID:3767,vaginal discharge,vaginal discharge (DOID:3767),indications,08bcc2dc-71ea-4664-89e8-73d6a3a01322.json
-DOID:2273,vulvovaginitis,vulvovaginitis (DOID:2273),indications,08bcc2dc-71ea-4664-89e8-73d6a3a01322.json
-DOID:8566,herpes simplex,herpes simplex (DOID:8566),indications,08bcc2dc-71ea-4664-89e8-73d6a3a01322.json
-DOID:0050908,myelodysplastic syndrome,myelodysplastic syndrome (DOID:0050908),indications,08cbdb93-4103-c31c-1b0d-67d870c16ddc.json
-DOID:0060469,mds,mds (DOID:0060469),indications,08cbdb93-4103-c31c-1b0d-67d870c16ddc.json
-DOID:0080188,chronic myelomonocytic leukemia,chronic myelomonocytic leukemia (DOID:0080188),indications,08cbdb93-4103-c31c-1b0d-67d870c16ddc.json
-DOID:1240,leukemia,leukemia (DOID:1240),indications,08cbdb93-4103-c31c-1b0d-67d870c16ddc.json
-DOID:4239,alveolar soft part sarcoma,alveolar soft part sarcoma (DOID:4239),indications,090baf8e-6c5c-4021-a54c-7373d4df1759.json
-DOID:2998,testicular cancer,testicular cancer (DOID:2998),indications,0918e5a7-e79c-4a33-9736-18b2d067fe59.json
-DOID:0050859,hemorrhagic cystitis,hemorrhagic cystitis (DOID:0050859),contraindications,0918e5a7-e79c-4a33-9736-18b2d067fe59.json
-DOID:1679,cystitis,cystitis (DOID:1679),contraindications,0918e5a7-e79c-4a33-9736-18b2d067fe59.json
-DOID:4944,gastroesophageal junction adenocarcinoma,gastroesophageal junction adenocarcinoma (DOID:4944),indications,0921bf2c-8d88-4b27-bcf2-7e776577ffe1.json
-DOID:0050073,invasive aspergillosis,invasive aspergillosis (DOID:0050073),indications,098ae684-783c-4cf1-9126-146e1d462b22.json
-DOID:13564,aspergillosis,aspergillosis (DOID:13564),indications,098ae684-783c-4cf1-9126-146e1d462b22.json
-DOID:13146,esophageal candidiasis,esophageal candidiasis (DOID:13146),indications,098ae684-783c-4cf1-9126-146e1d462b22.json
-DOID:0050289,fusariosis,fusariosis (DOID:0050289),contraindications,098ae684-783c-4cf1-9126-146e1d462b22.json
-DOID:216,dental caries,dental caries (DOID:216),indications,09bc5271-dc75-4315-8adc-6cc099e1d60f.json
-DOID:784,chronic kidney disease,chronic kidney disease (DOID:784),contraindications,09d2278c-577b-400f-a781-7be3f5b07834.json
-DOID:0060903,thrombosis,thrombosis (DOID:0060903),indications,09f5d2c9-0912-4d49-8343-c61e6bc411b0.json
-DOID:9477,pulmonary embolism,pulmonary embolism (DOID:9477),indications,09f5d2c9-0912-4d49-8343-c61e6bc411b0.json
-DOID:11247,disseminated intravascular coagulation,disseminated intravascular coagulation (DOID:11247),indications,09f5d2c9-0912-4d49-8343-c61e6bc411b0.json
-DOID:1074,renal failure,renal failure (DOID:1074),contraindications,0a086407-4d3c-435c-b251-43640c0d57dc.json
-DOID:5082,cirrhosis,cirrhosis (DOID:5082),contraindications,0a086407-4d3c-435c-b251-43640c0d57dc.json
-DOID:1595,endogenous depression,endogenous depression (DOID:1595),indications,0a19e9a7-43b3-4a32-b672-5df7959b3b08.json
-DOID:1875,erectile dysfunction,erectile dysfunction (DOID:1875),indications,0a6ac33c-4a1f-4d07-b60e-453bb7111c9f.json
-DOID:9282,ocular hypertension,ocular hypertension (DOID:9282),indications,0a8b58c2-69be-46f6-8fd1-3b44ceea1283.json
-DOID:3347,osteosarcoma,osteosarcoma (DOID:3347),indications,0ac32e99-c204-4104-8d83-4a24c0baccf1.json
-DOID:8453,folic acid deficiency,folic acid deficiency (DOID:8453),indications,0ac32e99-c204-4104-8d83-4a24c0baccf1.json
-DOID:13382,megaloblastic anemia,megaloblastic anemia (DOID:13382),contraindications,0ac32e99-c204-4104-8d83-4a24c0baccf1.json
-DOID:8867,molluscum contagiosum,molluscum contagiosum (DOID:8867),indications,0af12ae7-bb37-4319-94d1-8074b39d4e1b.json
-DOID:749,gi bleeding,gi bleeding (DOID:749),indications,0b1ec3e1-8489-4738-b5c8-9dfa5d8ebb95.json
-DOID:8805,unstable angina,unstable angina (DOID:8805),indications,0b4edca9-12af-4534-baad-4fa5c1cc9ac8.json
-DOID:13250,diarrhea,diarrhea (DOID:13250),indications,0b577d32-713b-4ad8-b6f0-d54f886c38c3.json
-DOID:13258,typhoid,typhoid (DOID:13258),indications,0b577d32-713b-4ad8-b6f0-d54f886c38c3.json
-DOID:7551,gonorrhea,gonorrhea (DOID:7551),indications,0b577d32-713b-4ad8-b6f0-d54f886c38c3.json
-DOID:0060224,atrial fibrillation,atrial fibrillation (DOID:0060224),indications,0b8c048e-43c6-4996-b2be-2e9c1339e386.json
-DOID:13543,hyperparathyroidism,hyperparathyroidism (DOID:13543),indications,0bc105d8-d6f2-4632-8b97-70fecc2783d1.json
-DOID:0111595,cca,cca (DOID:0111595),contraindications,0bc105d8-d6f2-4632-8b97-70fecc2783d1.json
-DOID:4481,seasonal allergic rhinitis,seasonal allergic rhinitis (DOID:4481),indications,0be90d39-6559-4241-b8be-c1ee438be718.json
-DOID:4483,rhinitis,rhinitis (DOID:4483),indications,0be90d39-6559-4241-b8be-c1ee438be718.json
-DOID:9074,systemic lupus erythematosus,systemic lupus erythematosus (DOID:9074),indications,0be90d39-6559-4241-b8be-c1ee438be718.json
-DOID:970,tenosynovitis,tenosynovitis (DOID:970),indications,0be90d39-6559-4241-b8be-c1ee438be718.json
-DOID:14087,epicondylitis,epicondylitis (DOID:14087),indications,0be90d39-6559-4241-b8be-c1ee438be718.json
-DOID:2703,synovitis,synovitis (DOID:2703),indications,0be90d39-6559-4241-b8be-c1ee438be718.json
-DOID:987,alopecia,alopecia (DOID:987),indications,0be90d39-6559-4241-b8be-c1ee438be718.json
-DOID:986,alopecia areata,alopecia areata (DOID:986),indications,0be90d39-6559-4241-b8be-c1ee438be718.json
-DOID:3777,granuloma annulare,granuloma annulare (DOID:3777),indications,0be90d39-6559-4241-b8be-c1ee438be718.json
-DOID:9201,lichen planus,lichen planus (DOID:9201),indications,0be90d39-6559-4241-b8be-c1ee438be718.json
-DOID:3309,neurodermatitis,neurodermatitis (DOID:3309),indications,0be90d39-6559-4241-b8be-c1ee438be718.json
-DOID:3486,necrobiosis lipoidica,necrobiosis lipoidica (DOID:3486),indications,0be90d39-6559-4241-b8be-c1ee438be718.json
-DOID:7998,hyperthyroidism,hyperthyroidism (DOID:7998),indications,0c10d860-d116-4178-9ea5-8c067f2c4c26.json
-DOID:0050489,multinodular goiter,multinodular goiter (DOID:0050489),indications,0c10d860-d116-4178-9ea5-8c067f2c4c26.json
-DOID:12176,goiter,goiter (DOID:12176),indications,0c10d860-d116-4178-9ea5-8c067f2c4c26.json
-DOID:0080747,chronic urticaria,chronic urticaria (DOID:0080747),indications,0c90956b-50b1-4f90-97b3-e2f831693504.json
-DOID:1555,urticaria,urticaria (DOID:1555),indications,0c90956b-50b1-4f90-97b3-e2f831693504.json
-DOID:8639,delirium tremens,delirium tremens (DOID:8639),indications,0c90956b-50b1-4f90-97b3-e2f831693504.json
-DOID:8893,psoriasis,psoriasis (DOID:8893),contraindications,0c9854c3-18cc-4b0d-9267-04eb49108f8e.json
+DOID:13189,gout,gout (DOID:13189),indications,183fab96-5c7b-4fcc-a475-5d1832bbf9c6.json
+DOID:557,nephropathy,nephropathy (DOID:557),indications,183fab96-5c7b-4fcc-a475-5d1832bbf9c6.json
+DOID:1240,leukemia,leukemia (DOID:1240),indications,183fab96-5c7b-4fcc-a475-5d1832bbf9c6.json
+DOID:0060058,lymphoma,lymphoma (DOID:0060058),indications,183fab96-5c7b-4fcc-a475-5d1832bbf9c6.json
+DOID:162,cancer,cancer (DOID:162),indications,183fab96-5c7b-4fcc-a475-5d1832bbf9c6.json
+DOID:1920,hyperuricemia,hyperuricemia (DOID:1920),indications,183fab96-5c7b-4fcc-a475-5d1832bbf9c6.json
+DOID:225,syndrome,syndrome (DOID:225),indications,3afc2af9-3600-3648-e063-6394a90a7e51.json
+DOID:9351,diabetes,diabetes (DOID:9351),indications,3648f3fd-6202-42cd-e063-6394a90a229c.json
+DOID:83,cataract,cataract (DOID:83),indications,36f06de1-9842-0b4a-e063-6394a90a2b66.json
+DOID:0060224,atrial fibrillation,atrial fibrillation (DOID:0060224),indications,41b16e34-8b2c-19d5-e063-6394a90a8d7e.json
+DOID:114,heart disease,heart disease (DOID:114),indications,41b16e34-8b2c-19d5-e063-6394a90a8d7e.json
+DOID:4,disease,disease (DOID:4),indications,41b16e34-8b2c-19d5-e063-6394a90a8d7e.json
+DOID:0050820,av block,av block (DOID:0050820),contraindications,41b16e34-8b2c-19d5-e063-6394a90a8d7e.json
+DOID:0051061,stroke,stroke (DOID:0051061),indications,34169945-6c2a-c534-5f38-eeafa24cd108.json
+DOID:0060903,thrombosis,thrombosis (DOID:0060903),indications,34169945-6c2a-c534-5f38-eeafa24cd108.json
+DOID:9477,pulmonary embolism,pulmonary embolism (DOID:9477),indications,34169945-6c2a-c534-5f38-eeafa24cd108.json
 DOID:1407,anterior uveitis,anterior uveitis (DOID:1407),indications,0ca84757-3322-4341-9246-6612758af09d.json
-DOID:0050828,artery disease,artery disease (DOID:0050828),indications,0d404b23-eb94-419a-9d37-10d139dfc593.json
-DOID:326,ischemia,ischemia (DOID:326),indications,0d404b23-eb94-419a-9d37-10d139dfc593.json
-DOID:2282,hidradenitis,hidradenitis (DOID:2282),indications,0d5a902f-4ca8-46d2-a790-b167842f62e4.json
-DOID:2280,hidradenitis suppurativa,hidradenitis suppurativa (DOID:2280),indications,0d5a902f-4ca8-46d2-a790-b167842f62e4.json
-DOID:12030,panuveitis,panuveitis (DOID:12030),indications,0d5a902f-4ca8-46d2-a790-b167842f62e4.json
-DOID:3770,pulmonary fibrosis,pulmonary fibrosis (DOID:3770),indications,0d60ec15-427d-43a3-87f0-d83c33221fe1.json
-DOID:2797,ipf,ipf (DOID:2797),indications,0d60ec15-427d-43a3-87f0-d83c33221fe1.json
-DOID:1040,chronic lymphocytic leukemia,chronic lymphocytic leukemia (DOID:1040),indications,0da27d65-9d0a-4e91-90f4-3b6135454a4b.json
-DOID:1036,cll,cll (DOID:1036),indications,0da27d65-9d0a-4e91-90f4-3b6135454a4b.json
-DOID:0050873,follicular lymphoma,follicular lymphoma (DOID:0050873),indications,0da27d65-9d0a-4e91-90f4-3b6135454a4b.json
-DOID:0060058,lymphoma,lymphoma (DOID:0060058),indications,0da27d65-9d0a-4e91-90f4-3b6135454a4b.json
-DOID:0080162,lupus nephritis,lupus nephritis (DOID:0080162),indications,0da27d65-9d0a-4e91-90f4-3b6135454a4b.json
-DOID:10952,nephritis,nephritis (DOID:10952),indications,0da27d65-9d0a-4e91-90f4-3b6135454a4b.json
-DOID:9368,keratoconjunctivitis,keratoconjunctivitis (DOID:9368),indications,0dc3c832-fe01-4913-ba52-47cca4c890b4.json
-DOID:12895,keratoconjunctivitis sicca,keratoconjunctivitis sicca (DOID:12895),indications,0dc3c832-fe01-4913-ba52-47cca4c890b4.json
-DOID:0060167,seasonal affective disorder,seasonal affective disorder (DOID:0060167),indications,0de542bc-6bdc-426f-bfdd-e004fca8405c.json
-DOID:2382,kernicterus,kernicterus (DOID:2382),indications,0e18774c-a32c-4961-9684-f5c6ffce64a1.json
-DOID:0051062,ischemic stroke,ischemic stroke (DOID:0051062),indications,0e2da4e0-7930-4f20-a63e-bd8b75cfb47d.json
-DOID:11723,duchenne muscular dystrophy,duchenne muscular dystrophy (DOID:11723),indications,0e3b8e29-64dd-430f-998d-5aca82258a8d.json
-DOID:9884,muscular dystrophy,muscular dystrophy (DOID:9884),indications,0e3b8e29-64dd-430f-998d-5aca82258a8d.json
-DOID:8552,chronic myeloid leukemia,chronic myeloid leukemia (DOID:8552),indications,0e4d3a09-2813-d066-3d1b-2a7e0b196fd5.json
-DOID:8692,myeloid leukemia,myeloid leukemia (DOID:8692),indications,0e4d3a09-2813-d066-3d1b-2a7e0b196fd5.json
+DOID:13141,uveitis,uveitis (DOID:13141),indications,0ca84757-3322-4341-9246-6612758af09d.json
+DOID:10283,prostate cancer,prostate cancer (DOID:10283),indications,3a0d0281-d4b1-c003-e063-6294a90a8e2e.json
+DOID:2377,multiple sclerosis,multiple sclerosis (DOID:2377),indications,4148bb57-7d2c-1724-e063-6294a90a34fd.json
+DOID:1826,epilepsy,epilepsy (DOID:1826),indications,365be0d1-cb8d-861b-e063-6294a90a9d8b.json
+DOID:1697,ichthyosis,ichthyosis (DOID:1697),indications,41b78ae2-f68a-768a-e063-6294a90a5bdb.json
+DOID:2723,dermatitis,dermatitis (DOID:2723),indications,41b78ae2-f68a-768a-e063-6294a90a5bdb.json
+DOID:8893,psoriasis,psoriasis (DOID:8893),indications,41b78ae2-f68a-768a-e063-6294a90a5bdb.json
+DOID:1094,attention deficit hyperactivity disorder,attention deficit hyperactivity disorder (DOID:1094),indications,cab174ea-4e48-462d-95a2-fb975f3205a1.json
+DOID:8534,gastroesophageal reflux,gastroesophageal reflux (DOID:8534),indications,39813881-28a9-4d03-e063-6394a90a95c5.json
+DOID:1724,duodenal ulcer,duodenal ulcer (DOID:1724),indications,39813881-28a9-4d03-e063-6394a90a95c5.json
+DOID:6364,migraine,migraine (DOID:6364),indications,0e9f4d69-138c-4098-93b3-527229f49acd.json
+DOID:319,spinal cord disease,spinal cord disease (DOID:319),indications,22a3e440-266d-4a3e-a1fe-6df83fea6abd.json
+DOID:1969,cerebral palsy,cerebral palsy (DOID:1969),indications,22a3e440-266d-4a3e-a1fe-6df83fea6abd.json
+DOID:9253,gastrointestinal stromal tumor,gastrointestinal stromal tumor (DOID:9253),indications,5cf92ebf-46ff-4b14-becc-848ef1a79282.json
+DOID:349,systemic mastocytosis,systemic mastocytosis (DOID:349),indications,5cf92ebf-46ff-4b14-becc-848ef1a79282.json
+DOID:350,mastocytosis,mastocytosis (DOID:350),indications,5cf92ebf-46ff-4b14-becc-848ef1a79282.json
+DOID:4798,aggressive systemic mastocytosis,aggressive systemic mastocytosis (DOID:4798),indications,5cf92ebf-46ff-4b14-becc-848ef1a79282.json
+DOID:14566,neoplasm,neoplasm (DOID:14566),indications,5cf92ebf-46ff-4b14-becc-848ef1a79282.json
+DOID:4660,indolent systemic mastocytosis,indolent systemic mastocytosis (DOID:4660),indications,5cf92ebf-46ff-4b14-becc-848ef1a79282.json
+DOID:1686,glaucoma,glaucoma (DOID:1686),indications,c9120f44-4d13-49f1-924f-34e36f35da10.json
+DOID:9282,ocular hypertension,ocular hypertension (DOID:9282),indications,c9120f44-4d13-49f1-924f-34e36f35da10.json
+DOID:10763,hypertension,hypertension (DOID:10763),indications,c9120f44-4d13-49f1-924f-34e36f35da10.json
 DOID:13938,amenorrhea,amenorrhea (DOID:13938),indications,0e592d4b-25b6-42fe-8afa-4fa554e99a3b.json
 DOID:363,uterine cancer,uterine cancer (DOID:363),indications,0e592d4b-25b6-42fe-8afa-4fa554e99a3b.json
 DOID:0080365,endometrial hyperplasia,endometrial hyperplasia (DOID:0080365),indications,0e592d4b-25b6-42fe-8afa-4fa554e99a3b.json
-DOID:13778,chancroid,chancroid (DOID:13778),contraindications,0e8b0786-c3c0-4d85-9bd4-43a87084e205.json
-DOID:13558,gonococcal urethritis,gonococcal urethritis (DOID:13558),contraindications,0e8b0786-c3c0-4d85-9bd4-43a87084e205.json
-DOID:1459,hypothyroidism,hypothyroidism (DOID:1459),indications,0ea7070d-3328-482d-8801-96ad5a86ce59.json
-DOID:7165,subacute thyroiditis,subacute thyroiditis (DOID:7165),indications,0ea7070d-3328-482d-8801-96ad5a86ce59.json
-DOID:9463,otitis externa,otitis externa (DOID:9463),indications,0ef8a636-e2f1-44b7-9a8e-f2da62fbd084.json
-DOID:1883,hepatitis c,hepatitis c (DOID:1883),indications,10075230-5570-43a0-a0ee-4f138688af50.json
-DOID:1019,osteomyelitis,osteomyelitis (DOID:1019),indications,10908e43-13f5-43eb-8581-502158a4d764.json
-DOID:1824,status epilepticus,status epilepticus (DOID:1824),contraindications,109c2b88-9bf1-4537-aab1-16e804fcb49a.json
-DOID:0050830,peripheral artery disease,peripheral artery disease (DOID:0050830),indications,10a06ab0-1eb3-4b5a-8374-65ccbe6ce29e.json
-DOID:9402,epididymitis,epididymitis (DOID:9402),indications,10b501ca-c77f-4b3f-85df-ddf2715bfcd0.json
-DOID:1949,acute cholecystitis,acute cholecystitis (DOID:1949),indications,10b501ca-c77f-4b3f-85df-ddf2715bfcd0.json
-DOID:13603,obstructive jaundice,obstructive jaundice (DOID:13603),indications,10b501ca-c77f-4b3f-85df-ddf2715bfcd0.json
-DOID:0060185,pseudomembranous colitis,pseudomembranous colitis (DOID:0060185),indications,111ffd76-ed44-4999-b1e1-42d17d1797ba.json
-DOID:1380,endometrial cancer,endometrial cancer (DOID:1380),contraindications,11c5dbc7-30bb-482c-bac7-4c94b72c44ee.json
-DOID:289,endometriosis,endometriosis (DOID:289),contraindications,11c5dbc7-30bb-482c-bac7-4c94b72c44ee.json
+DOID:5844,myocardial infarction,myocardial infarction (DOID:5844),indications,070de403-d27c-46dc-b44d-6ce2f921e0b8.json
+DOID:13810,familial hypercholesterolemia,familial hypercholesterolemia (DOID:13810),indications,070de403-d27c-46dc-b44d-6ce2f921e0b8.json
+DOID:1067,open angle glaucoma,open angle glaucoma (DOID:1067),indications,719ecc42-4162-497f-ad35-9e36b8eef0d5.json
+DOID:6543,acne,acne (DOID:6543),indications,33621d74-84ee-4831-8935-95cd618398fc.json
+DOID:8881,rosacea,rosacea (DOID:8881),indications,33621d74-84ee-4831-8935-95cd618398fc.json
+DOID:8741,seborrheic dermatitis,seborrheic dermatitis (DOID:8741),indications,33621d74-84ee-4831-8935-95cd618398fc.json
+DOID:13250,diarrhea,diarrhea (DOID:13250),indications,e8e6f73c-5771-44a4-84b6-6f0ed79c63d2.json
+DOID:1596,depression,depression (DOID:1596),indications,3a870ceb-5a96-9351-e063-6294a90a3027.json
+DOID:2030,anxiety,anxiety (DOID:2030),indications,3a870ceb-5a96-9351-e063-6294a90a3027.json
+DOID:0050741,alcoholism,alcoholism (DOID:0050741),indications,3a870ceb-5a96-9351-e063-6294a90a3027.json
+DOID:4964,psychoneurosis,psychoneurosis (DOID:4964),indications,3a870ceb-5a96-9351-e063-6294a90a3027.json
+DOID:3083,chronic obstructive pulmonary disease,chronic obstructive pulmonary disease (DOID:3083),indications,79996212-633b-464e-9967-834039fb13a4.json
+DOID:2841,asthma,asthma (DOID:2841),indications,79996212-633b-464e-9967-834039fb13a4.json
+DOID:7148,rheumatoid arthritis,rheumatoid arthritis (DOID:7148),indications,4bb3d4bf-dd51-4b81-84ab-501c160142d2.json
+DOID:848,arthritis,arthritis (DOID:848),indications,4bb3d4bf-dd51-4b81-84ab-501c160142d2.json
+DOID:676,juvenile idiopathic arthritis,juvenile idiopathic arthritis (DOID:676),indications,4bb3d4bf-dd51-4b81-84ab-501c160142d2.json
+DOID:9008,psoriatic arthritis,psoriatic arthritis (DOID:9008),indications,4bb3d4bf-dd51-4b81-84ab-501c160142d2.json
+DOID:7147,ankylosing spondylitis,ankylosing spondylitis (DOID:7147),indications,4bb3d4bf-dd51-4b81-84ab-501c160142d2.json
+DOID:6590,spondylitis,spondylitis (DOID:6590),indications,4bb3d4bf-dd51-4b81-84ab-501c160142d2.json
+DOID:8577,ulcerative colitis,ulcerative colitis (DOID:8577),indications,4bb3d4bf-dd51-4b81-84ab-501c160142d2.json
+DOID:0060180,colitis,colitis (DOID:0060180),indications,4bb3d4bf-dd51-4b81-84ab-501c160142d2.json
+DOID:2282,hidradenitis,hidradenitis (DOID:2282),indications,4bb3d4bf-dd51-4b81-84ab-501c160142d2.json
+DOID:2280,hidradenitis suppurativa,hidradenitis suppurativa (DOID:2280),indications,4bb3d4bf-dd51-4b81-84ab-501c160142d2.json
+DOID:12030,panuveitis,panuveitis (DOID:12030),indications,4bb3d4bf-dd51-4b81-84ab-501c160142d2.json
+DOID:1470,major depressive disorder,major depressive disorder (DOID:1470),indications,371b2d56-528e-3af9-e063-6394a90a1c38.json
+DOID:14320,generalized anxiety disorder,generalized anxiety disorder (DOID:14320),indications,371b2d56-528e-3af9-e063-6394a90a1c38.json
+DOID:574,peripheral neuropathy,peripheral neuropathy (DOID:574),indications,371b2d56-528e-3af9-e063-6394a90a1c38.json
+DOID:870,neuropathy,neuropathy (DOID:870),indications,371b2d56-528e-3af9-e063-6394a90a1c38.json
+DOID:9408,acute myocardial infarction,acute myocardial infarction (DOID:9408),indications,08b65561-0817-44e6-a23b-b68ab6ee2666.json
+DOID:1837,diabetic ketoacidosis,diabetic ketoacidosis (DOID:1837),indications,580c8514-2277-42bd-9f60-58cf1a6f0b7b.json
+DOID:811,lipodystrophy,lipodystrophy (DOID:811),contraindications,580c8514-2277-42bd-9f60-58cf1a6f0b7b.json
+DOID:9120,amyloidosis,amyloidosis (DOID:9120),contraindications,580c8514-2277-42bd-9f60-58cf1a6f0b7b.json
+DOID:11963,esophagitis,esophagitis (DOID:11963),contraindications,4136d849-f075-057c-e063-6394a90a91f1.json
+DOID:631,fibromyalgia,fibromyalgia (DOID:631),indications,83b34539-0b55-4015-b0c4-5ab050c57a3b.json
+DOID:3087,gingivitis,gingivitis (DOID:3087),indications,40a7bbe1-0774-2617-e063-6294a90a6aa7.json
+DOID:13924,acute necrotizing ulcerative gingivitis,acute necrotizing ulcerative gingivitis (DOID:13924),indications,40a7bbe1-0774-2617-e063-6294a90a6aa7.json
+DOID:824,periodontitis,periodontitis (DOID:824),indications,40a7bbe1-0774-2617-e063-6294a90a6aa7.json
+DOID:8538,histiocytic lymphoma,histiocytic lymphoma (DOID:8538),indications,52b2c7d0-920d-417e-aa04-231d15b5b50a.json
+DOID:9538,multiple myeloma,multiple myeloma (DOID:9538),indications,52b2c7d0-920d-417e-aa04-231d15b5b50a.json
+DOID:1564,mycosis,mycosis (DOID:1564),indications,52b2c7d0-920d-417e-aa04-231d15b5b50a.json
+DOID:8691,mycosis fungoides,mycosis fungoides (DOID:8691),indications,52b2c7d0-920d-417e-aa04-231d15b5b50a.json
+DOID:769,neuroblastoma,neuroblastoma (DOID:769),indications,52b2c7d0-920d-417e-aa04-231d15b5b50a.json
+DOID:299,adenocarcinoma,adenocarcinoma (DOID:299),indications,52b2c7d0-920d-417e-aa04-231d15b5b50a.json
+DOID:768,retinoblastoma,retinoblastoma (DOID:768),indications,52b2c7d0-920d-417e-aa04-231d15b5b50a.json
+DOID:3459,breast carcinoma,breast carcinoma (DOID:3459),indications,52b2c7d0-920d-417e-aa04-231d15b5b50a.json
+DOID:305,carcinoma,carcinoma (DOID:305),indications,52b2c7d0-920d-417e-aa04-231d15b5b50a.json
+DOID:1184,nephrotic syndrome,nephrotic syndrome (DOID:1184),indications,52b2c7d0-920d-417e-aa04-231d15b5b50a.json
+DOID:11338,tetanus,tetanus (DOID:11338),contraindications,53ba7308-02bf-4520-ae39-5c69e17852c5.json
+DOID:3875,thrombophlebitis,thrombophlebitis (DOID:3875),contraindications,53ba7308-02bf-4520-ae39-5c69e17852c5.json
+DOID:1459,hypothyroidism,hypothyroidism (DOID:1459),indications,97c0bb6f-0f8d-414d-88eb-a1590aeaeb9c.json
+DOID:1781,thyroid cancer,thyroid cancer (DOID:1781),indications,97c0bb6f-0f8d-414d-88eb-a1590aeaeb9c.json
+DOID:12176,goiter,goiter (DOID:12176),indications,97c0bb6f-0f8d-414d-88eb-a1590aeaeb9c.json
+DOID:7998,hyperthyroidism,hyperthyroidism (DOID:7998),indications,97c0bb6f-0f8d-414d-88eb-a1590aeaeb9c.json
+DOID:7165,subacute thyroiditis,subacute thyroiditis (DOID:7165),indications,97c0bb6f-0f8d-414d-88eb-a1590aeaeb9c.json
+DOID:7166,thyroiditis,thyroiditis (DOID:7166),indications,97c0bb6f-0f8d-414d-88eb-a1590aeaeb9c.json
 DOID:9281,phenylketonuria,phenylketonuria (DOID:9281),indications,11ee25bc-f501-4f9d-b63d-63b2eee0147e.json
-DOID:2733,skin atrophy,skin atrophy (DOID:2733),contraindications,12719a3b-0bf5-4d12-8562-1c3799d5391c.json
-DOID:864,phlebitis,phlebitis (DOID:864),contraindications,127c3c05-ab6d-4c6c-84f9-9552f450f58b.json
-DOID:12919,ovale malaria,ovale malaria (DOID:12919),indications,129278f0-8928-4330-899a-b1602818700d.json
-DOID:1398,parasitemia,parasitemia (DOID:1398),indications,129278f0-8928-4330-899a-b1602818700d.json
-DOID:14069,cerebral malaria,cerebral malaria (DOID:14069),indications,129278f0-8928-4330-899a-b1602818700d.json
-DOID:11405,diphtheria,diphtheria (DOID:11405),indications,129ba067-a214-45c6-8c39-cafc82a32546.json
-DOID:4131,erythrasma,erythrasma (DOID:4131),indications,129ba067-a214-45c6-8c39-cafc82a32546.json
-DOID:1003,pelvic inflammatory disease,pelvic inflammatory disease (DOID:1003),indications,129ba067-a214-45c6-8c39-cafc82a32546.json
-DOID:10457,legionella,legionella (DOID:10457),indications,129ba067-a214-45c6-8c39-cafc82a32546.json
-DOID:10456,tonsillitis,tonsillitis (DOID:10456),indications,129ba067-a214-45c6-8c39-cafc82a32546.json
-DOID:988,mitral valve prolapse,mitral valve prolapse (DOID:988),indications,129ba067-a214-45c6-8c39-cafc82a32546.json
-DOID:0070355,overactive bladder,overactive bladder (DOID:0070355),indications,12a258f8-c123-4b47-b013-153c2bba88d8.json
-DOID:2326,gastroenteritis,gastroenteritis (DOID:2326),indications,12c51c2a-c9f9-4028-b3fb-83a0afae02a0.json
-DOID:8881,rosacea,rosacea (DOID:8881),indications,1314d411-e0a5-402b-89ff-49847937838d.json
-DOID:1468,labyrinthitis,labyrinthitis (DOID:1468),indications,131b9f89-35ac-4e38-b2c1-0180c0fbdf0b.json
-DOID:12072,pylorospasm,pylorospasm (DOID:12072),indications,131b9f89-35ac-4e38-b2c1-0180c0fbdf0b.json
-DOID:1498,cholera,cholera (DOID:1498),indications,131b9f89-35ac-4e38-b2c1-0180c0fbdf0b.json
-DOID:13593,eclampsia,eclampsia (DOID:13593),indications,131b9f89-35ac-4e38-b2c1-0180c0fbdf0b.json
-DOID:11338,tetanus,tetanus (DOID:11338),indications,131b9f89-35ac-4e38-b2c1-0180c0fbdf0b.json
-DOID:1024,leprosy,leprosy (DOID:1024),indications,133a7b8c-5bf0-41f7-84e1-7dac278986d7.json
+DOID:3312,bipolar disorder,bipolar disorder (DOID:3312),indications,38d049b4-5581-724a-e063-6394a90a19b3.json
+DOID:11476,osteoporosis,osteoporosis (DOID:11476),indications,c6ae957a-83c9-442d-89b2-9febb63c82d4.json
+DOID:1612,breast cancer,breast cancer (DOID:1612),indications,c6ae957a-83c9-442d-89b2-9febb63c82d4.json
+DOID:576,proteinuria,proteinuria (DOID:576),indications,38dcaa90-daef-cef7-e063-6294a90ab743.json
+DOID:9352,type 2 diabetes,type 2 diabetes (DOID:9352),indications,38dcaa90-daef-cef7-e063-6294a90ab743.json
+DOID:615,leukopenia,leukopenia (DOID:615),indications,39ae5dd3-dcaa-d40f-e063-6294a90a78af.json
+DOID:12987,agranulocytosis,agranulocytosis (DOID:12987),indications,39ae5dd3-dcaa-d40f-e063-6294a90a78af.json
+DOID:3113,papillary carcinoma,papillary carcinoma (DOID:3113),indications,94e38a38-8923-499d-bd75-f85754d7c730.json
+DOID:1595,endogenous depression,endogenous depression (DOID:1595),indications,0a19e9a7-43b3-4a32-b672-5df7959b3b08.json
+DOID:2703,synovitis,synovitis (DOID:2703),indications,431445cb-3625-82d8-e063-6394a90aeaea.json
+DOID:12678,hypercalcemia,hypercalcemia (DOID:12678),indications,2edfaa42-e7db-451c-9268-ef3bbead7263.json
+DOID:1824,status epilepticus,status epilepticus (DOID:1824),indications,bb38bc6a-99c7-4cda-b3f0-37f629d060cf.json
+DOID:783,end stage renal disease,end stage renal disease (DOID:783),contraindications,71d449de-955b-4711-9a44-1e1f66e2e9eb.json
+DOID:5200,urinary obstruction,urinary obstruction (DOID:5200),indications,3a252793-1516-fe1a-e063-6294a90ac250.json
+DOID:0050745,dlbcl,dlbcl (DOID:0050745),indications,8f7b35a5-7b7b-43b0-bf17-9db095df11ed.json
+DOID:0050873,follicular lymphoma,follicular lymphoma (DOID:0050873),indications,8f7b35a5-7b7b-43b0-bf17-9db095df11ed.json
+DOID:5419,schizophrenia,schizophrenia (DOID:5419),indications,1e5f9343-d43d-4ff7-b1ae-b6358640bbba.json
+DOID:84,ocd,ocd (DOID:84),indications,3a7784f8-edc2-8cb2-e063-6294a90a8cdc.json
+DOID:594,panic disorder,panic disorder (DOID:594),indications,3a7784f8-edc2-8cb2-e063-6294a90a8cdc.json
+DOID:2055,ptsd,ptsd (DOID:2055),indications,3a7784f8-edc2-8cb2-e063-6294a90a8cdc.json
+DOID:6000,congestive heart failure,congestive heart failure (DOID:6000),indications,40869a3b-6045-4595-98fa-d95fbce2fba0.json
+DOID:0051064,left ventricular dysfunction,left ventricular dysfunction (DOID:0051064),indications,40869a3b-6045-4595-98fa-d95fbce2fba0.json
+DOID:178,vascular disease,vascular disease (DOID:178),indications,40869a3b-6045-4595-98fa-d95fbce2fba0.json
+DOID:1558,angioedema,angioedema (DOID:1558),indications,40869a3b-6045-4595-98fa-d95fbce2fba0.json
+DOID:9423,blepharitis,blepharitis (DOID:9423),indications,42678f74-383b-962f-e063-6394a90a3315.json
+DOID:6195,conjunctivitis,conjunctivitis (DOID:6195),indications,42678f74-383b-962f-e063-6394a90a3315.json
+DOID:4677,keratitis,keratitis (DOID:4677),indications,42678f74-383b-962f-e063-6394a90a3315.json
+DOID:4692,endophthalmitis,endophthalmitis (DOID:4692),indications,42678f74-383b-962f-e063-6394a90a3315.json
+DOID:0060318,acute promyelocytic leukemia,acute promyelocytic leukemia (DOID:0060318),indications,438426ea-1729-4b61-ad21-b979924204fe.json
+DOID:0050840,cervical dystonia,cervical dystonia (DOID:0050840),indications,41c1a48c-e928-1099-e063-6294a90a359f.json
+DOID:543,dystonia,dystonia (DOID:543),indications,41c1a48c-e928-1099-e063-6294a90a359f.json
+DOID:1324,lung cancer,lung cancer (DOID:1324),indications,3a365319-7ba8-4454-8239-7b0e7ff8a18e.json
+DOID:3908,nsclc,nsclc (DOID:3908),indications,3a365319-7ba8-4454-8239-7b0e7ff8a18e.json
+DOID:10754,otitis media,otitis media (DOID:10754),indications,1aa9f5fb-453f-4a14-b3af-937865241dd0.json
+DOID:2051,maxillary sinusitis,maxillary sinusitis (DOID:2051),indications,1aa9f5fb-453f-4a14-b3af-937865241dd0.json
+DOID:0050127,sinusitis,sinusitis (DOID:0050127),indications,1aa9f5fb-453f-4a14-b3af-937865241dd0.json
+DOID:6132,chronic bronchitis,chronic bronchitis (DOID:6132),indications,1aa9f5fb-453f-4a14-b3af-937865241dd0.json
+DOID:7551,gonorrhea,gonorrhea (DOID:7551),indications,1aa9f5fb-453f-4a14-b3af-937865241dd0.json
+DOID:11729,lyme disease,lyme disease (DOID:11729),indications,1aa9f5fb-453f-4a14-b3af-937865241dd0.json
+DOID:1924,hypogonadism,hypogonadism (DOID:1924),indications,bf29e2da-9fe8-fb44-d683-759fa6ff85e3.json
+DOID:11383,cryptorchidism,cryptorchidism (DOID:11383),indications,bf29e2da-9fe8-fb44-d683-759fa6ff85e3.json
+DOID:2518,orchitis,orchitis (DOID:2518),indications,bf29e2da-9fe8-fb44-d683-759fa6ff85e3.json
+DOID:0090070,hypogonadotropic hypogonadism,hypogonadotropic hypogonadism (DOID:0090070),indications,bf29e2da-9fe8-fb44-d683-759fa6ff85e3.json
+DOID:1485,cystic fibrosis,cystic fibrosis (DOID:1485),indications,b9fda214-e81f-4c3e-8094-5bfbb7946674.json
+DOID:8986,narcolepsy,narcolepsy (DOID:8986),indications,39fb17a2-617d-37dc-e063-6394a90a1be3.json
+DOID:11984,hypertrophic obstructive cardiomyopathy,hypertrophic obstructive cardiomyopathy (DOID:11984),indications,386b65ee-b908-0daf-e063-6394a90a9bbb.json
+DOID:0050700,cardiomyopathy,cardiomyopathy (DOID:0050700),indications,386b65ee-b908-0daf-e063-6394a90a9bbb.json
+DOID:11339,pneumocystis jirovecii pneumonia,pneumocystis jirovecii pneumonia (DOID:11339),indications,4124a674-5e02-72c3-e063-6294a90ad785.json
+DOID:552,pneumonia,pneumonia (DOID:552),indications,4124a674-5e02-72c3-e063-6294a90ad785.json
+DOID:14735,hereditary angioedema,hereditary angioedema (DOID:14735),indications,a15c0e04-117a-434d-8b34-b664701b787f.json
+DOID:9778,irritable bowel syndrome,irritable bowel syndrome (DOID:9778),indications,e1090510-fc11-4037-9c00-3ec17a4d5043.json
+DOID:0060319,cardiac arrest,cardiac arrest (DOID:0060319),indications,b921cbc0-5518-42f4-a67a-db48966dfc42.json
+DOID:3393,coronary artery disease,coronary artery disease (DOID:3393),contraindications,b921cbc0-5518-42f4-a67a-db48966dfc42.json
+DOID:0050828,artery disease,artery disease (DOID:0050828),contraindications,b921cbc0-5518-42f4-a67a-db48966dfc42.json
+DOID:8927,learning disability,learning disability (DOID:8927),indications,3778547e-11ab-3b30-e063-6394a90ab5b1.json
+DOID:10933,obsessive compulsive disorder,obsessive compulsive disorder (DOID:10933),indications,042adae3-83f7-431b-a947-3ce3680cb001.json
+DOID:12129,bulimia nervosa,bulimia nervosa (DOID:12129),indications,042adae3-83f7-431b-a947-3ce3680cb001.json
+DOID:593,agoraphobia,agoraphobia (DOID:593),indications,042adae3-83f7-431b-a947-3ce3680cb001.json
+DOID:0060145,analgesia,analgesia (DOID:0060145),indications,105d22a7-a7bb-4d60-8714-ad0838bff0e2.json
+DOID:8552,chronic myeloid leukemia,chronic myeloid leukemia (DOID:8552),indications,13b46e09-62d2-4ce9-b3c0-deafcb1f1842.json
+DOID:8692,myeloid leukemia,myeloid leukemia (DOID:8692),indications,13b46e09-62d2-4ce9-b3c0-deafcb1f1842.json
+DOID:1036,cml,cml (DOID:1036),indications,13b46e09-62d2-4ce9-b3c0-deafcb1f1842.json
+DOID:12978,vivax malaria,vivax malaria (DOID:12978),indications,36c0e266-7161-2887-e063-6294a90a9fc1.json
+DOID:12365,malaria,malaria (DOID:12365),indications,36c0e266-7161-2887-e063-6294a90a9fc1.json
+DOID:0060000,infective endocarditis,infective endocarditis (DOID:0060000),indications,41e692d7-587f-a852-e063-6294a90aded1.json
+DOID:10314,endocarditis,endocarditis (DOID:10314),indications,41e692d7-587f-a852-e063-6294a90aded1.json
+DOID:8536,herpes zoster,herpes zoster (DOID:8536),indications,aa26cf31-7dfe-4454-9d18-53ecd28dbc15.json
+DOID:8566,herpes simplex,herpes simplex (DOID:8566),indications,aa26cf31-7dfe-4454-9d18-53ecd28dbc15.json
+DOID:9743,diabetic neuropathy,diabetic neuropathy (DOID:9743),indications,aa26cf31-7dfe-4454-9d18-53ecd28dbc15.json
+DOID:12403,tinea pedis,tinea pedis (DOID:12403),indications,aa26cf31-7dfe-4454-9d18-53ecd28dbc15.json
+DOID:1227,neutropenia,neutropenia (DOID:1227),contraindications,19947991-db65-4143-a57c-dc180d695426.json
+DOID:3310,atopic dermatitis,atopic dermatitis (DOID:3310),indications,77e41a00-cced-47fd-b14f-3b010f75ae8c.json
+DOID:9362,status asthmaticus,status asthmaticus (DOID:9362),indications,77e41a00-cced-47fd-b14f-3b010f75ae8c.json
+DOID:13922,eosinophilic esophagitis,eosinophilic esophagitis (DOID:13922),indications,77e41a00-cced-47fd-b14f-3b010f75ae8c.json
+DOID:0080749,chronic spontaneous urticaria,chronic spontaneous urticaria (DOID:0080749),indications,77e41a00-cced-47fd-b14f-3b010f75ae8c.json
+DOID:1555,urticaria,urticaria (DOID:1555),indications,77e41a00-cced-47fd-b14f-3b010f75ae8c.json
+DOID:8506,bullous pemphigoid,bullous pemphigoid (DOID:8506),indications,77e41a00-cced-47fd-b14f-3b010f75ae8c.json
+DOID:0080841,pemphigoid,pemphigoid (DOID:0080841),indications,77e41a00-cced-47fd-b14f-3b010f75ae8c.json
+DOID:10126,keratoconus,keratoconus (DOID:10126),indications,f63ef247-b3d5-4962-a80d-4e24d2f0d725.json
+DOID:0050693,bss,bss (DOID:0050693),contraindications,f63ef247-b3d5-4962-a80d-4e24d2f0d725.json
+DOID:1343,urethritis,urethritis (DOID:1343),indications,37c3f70d-0dd3-f2ba-e063-6294a90a301a.json
+DOID:2568,cervicitis,cervicitis (DOID:2568),indications,37c3f70d-0dd3-f2ba-e063-6294a90a301a.json
+DOID:13778,chancroid,chancroid (DOID:13778),contraindications,37c3f70d-0dd3-f2ba-e063-6294a90a301a.json
+DOID:13558,gonococcal urethritis,gonococcal urethritis (DOID:13558),contraindications,37c3f70d-0dd3-f2ba-e063-6294a90a301a.json
+DOID:0050811,congenital adrenal hyperplasia,congenital adrenal hyperplasia (DOID:0050811),indications,365c5d43-cebe-f66d-e063-6394a90a7881.json
+DOID:8398,osteoarthritis,osteoarthritis (DOID:8398),indications,365c5d43-cebe-f66d-e063-6394a90a7881.json
+DOID:2965,bursitis,bursitis (DOID:2965),indications,365c5d43-cebe-f66d-e063-6394a90a7881.json
+DOID:14087,epicondylitis,epicondylitis (DOID:14087),indications,365c5d43-cebe-f66d-e063-6394a90a7881.json
+DOID:970,tenosynovitis,tenosynovitis (DOID:970),indications,365c5d43-cebe-f66d-e063-6394a90a7881.json
+DOID:0080605,ankylosing spondylitis 3,ankylosing spondylitis 3 (DOID:0080605),indications,365c5d43-cebe-f66d-e063-6394a90a7881.json
+DOID:9074,systemic lupus erythematosus,systemic lupus erythematosus (DOID:9074),indications,365c5d43-cebe-f66d-e063-6394a90a7881.json
+DOID:8857,lupus,lupus (DOID:8857),indications,365c5d43-cebe-f66d-e063-6394a90a7881.json
+DOID:8481,acute rheumatic carditis,acute rheumatic carditis (DOID:8481),indications,365c5d43-cebe-f66d-e063-6394a90a7881.json
+DOID:0050827,rheumatic carditis,rheumatic carditis (DOID:0050827),indications,365c5d43-cebe-f66d-e063-6394a90a7881.json
+DOID:9182,pemphigus,pemphigus (DOID:9182),indications,365c5d43-cebe-f66d-e063-6394a90a7881.json
+DOID:0050185,erythema multiforme,erythema multiforme (DOID:0050185),indications,365c5d43-cebe-f66d-e063-6394a90a7881.json
+DOID:8505,dermatitis herpetiformis,dermatitis herpetiformis (DOID:8505),indications,365c5d43-cebe-f66d-e063-6394a90a7881.json
+DOID:2773,contact dermatitis,contact dermatitis (DOID:2773),indications,365c5d43-cebe-f66d-e063-6394a90a7881.json
+DOID:4481,allergic rhinitis,allergic rhinitis (DOID:4481),indications,365c5d43-cebe-f66d-e063-6394a90a7881.json
+DOID:4483,rhinitis,rhinitis (DOID:4483),indications,365c5d43-cebe-f66d-e063-6394a90a7881.json
+DOID:1205,hypersensitivity,hypersensitivity (DOID:1205),indications,365c5d43-cebe-f66d-e063-6394a90a7881.json
+DOID:8535,herpes zoster ophthalmicus,herpes zoster ophthalmicus (DOID:8535),indications,365c5d43-cebe-f66d-e063-6394a90a7881.json
+DOID:1406,iritis,iritis (DOID:1406),indications,365c5d43-cebe-f66d-e063-6394a90a7881.json
+DOID:9383,iridocyclitis,iridocyclitis (DOID:9383),indications,365c5d43-cebe-f66d-e063-6394a90a7881.json
+DOID:8886,chorioretinitis,chorioretinitis (DOID:8886),indications,365c5d43-cebe-f66d-e063-6394a90a7881.json
+DOID:12574,posterior uveitis,posterior uveitis (DOID:12574),indications,365c5d43-cebe-f66d-e063-6394a90a7881.json
+DOID:11406,choroiditis,choroiditis (DOID:11406),indications,365c5d43-cebe-f66d-e063-6394a90a7881.json
+DOID:1210,optic neuritis,optic neuritis (DOID:1210),indications,365c5d43-cebe-f66d-e063-6394a90a7881.json
+DOID:1803,neuritis,neuritis (DOID:1803),indications,365c5d43-cebe-f66d-e063-6394a90a7881.json
+DOID:12029,sympathetic ophthalmia,sympathetic ophthalmia (DOID:12029),indications,365c5d43-cebe-f66d-e063-6394a90a7881.json
+DOID:11204,allergic conjunctivitis,allergic conjunctivitis (DOID:11204),indications,365c5d43-cebe-f66d-e063-6394a90a7881.json
+DOID:11335,sarcoidosis,sarcoidosis (DOID:11335),indications,365c5d43-cebe-f66d-e063-6394a90a7881.json
+DOID:10322,berylliosis,berylliosis (DOID:10322),indications,365c5d43-cebe-f66d-e063-6394a90a7881.json
+DOID:2957,pulmonary tuberculosis,pulmonary tuberculosis (DOID:2957),indications,365c5d43-cebe-f66d-e063-6394a90a7881.json
+DOID:399,tuberculosis,tuberculosis (DOID:399),indications,365c5d43-cebe-f66d-e063-6394a90a7881.json
+DOID:3240,aspiration pneumonitis,aspiration pneumonitis (DOID:3240),indications,365c5d43-cebe-f66d-e063-6394a90a7881.json
+DOID:583,hemolytic anemia,hemolytic anemia (DOID:583),indications,365c5d43-cebe-f66d-e063-6394a90a7881.json
+DOID:2355,anemia,anemia (DOID:2355),indications,365c5d43-cebe-f66d-e063-6394a90a7881.json
+DOID:8924,idiopathic thrombocytopenic purpura,idiopathic thrombocytopenic purpura (DOID:8924),indications,365c5d43-cebe-f66d-e063-6394a90a7881.json
+DOID:3326,purpura,purpura (DOID:3326),indications,365c5d43-cebe-f66d-e063-6394a90a7881.json
+DOID:11126,secondary thrombocytopenia,secondary thrombocytopenia (DOID:11126),indications,365c5d43-cebe-f66d-e063-6394a90a7881.json
+DOID:1588,thrombocytopenia,thrombocytopenia (DOID:1588),indications,365c5d43-cebe-f66d-e063-6394a90a7881.json
+DOID:12603,acute leukemia,acute leukemia (DOID:12603),indications,365c5d43-cebe-f66d-e063-6394a90a7881.json
+DOID:4676,uremia,uremia (DOID:4676),indications,365c5d43-cebe-f66d-e063-6394a90a7881.json
+DOID:9471,meningitis,meningitis (DOID:9471),indications,365c5d43-cebe-f66d-e063-6394a90a7881.json
+DOID:9784,trichinosis,trichinosis (DOID:9784),indications,365c5d43-cebe-f66d-e063-6394a90a7881.json
+DOID:3947,adrenocortical hyperfunction,adrenocortical hyperfunction (DOID:3947),indications,365c5d43-cebe-f66d-e063-6394a90a7881.json
+DOID:9201,lichen planus,lichen planus (DOID:9201),indications,365c5d43-cebe-f66d-e063-6394a90a7881.json
+DOID:3777,granuloma annulare,granuloma annulare (DOID:3777),indications,365c5d43-cebe-f66d-e063-6394a90a7881.json
+DOID:3309,neurodermatitis,neurodermatitis (DOID:3309),indications,365c5d43-cebe-f66d-e063-6394a90a7881.json
+DOID:3486,necrobiosis lipoidica,necrobiosis lipoidica (DOID:3486),indications,365c5d43-cebe-f66d-e063-6394a90a7881.json
+DOID:987,alopecia,alopecia (DOID:987),indications,365c5d43-cebe-f66d-e063-6394a90a7881.json
+DOID:986,alopecia areata,alopecia areata (DOID:986),indications,365c5d43-cebe-f66d-e063-6394a90a7881.json
+DOID:2271,oropharyngeal candidiasis,oropharyngeal candidiasis (DOID:2271),contraindications,3afd06db-cf37-7bbc-e063-6394a90a157a.json
+DOID:1508,candidiasis,candidiasis (DOID:1508),contraindications,3afd06db-cf37-7bbc-e063-6394a90a157a.json
+DOID:216,dental caries,dental caries (DOID:216),indications,399c637c-0e25-9b11-e063-6294a90a4c28.json
+DOID:0111084,face,face (DOID:0111084),contraindications,36d4399b-bfdf-2776-e063-6294a90adef1.json
+DOID:3491,turner syndrome,turner syndrome (DOID:3491),indications,715f8c80-039d-4e58-9b58-4bc1b7f918c5.json
+DOID:12384,infectious diarrhea,infectious diarrhea (DOID:12384),indications,36b0c0b6-8368-77aa-e063-6394a90a0cc7.json
+DOID:13258,typhoid,typhoid (DOID:13258),indications,36b0c0b6-8368-77aa-e063-6394a90a0cc7.json
+DOID:3482,plague,plague (DOID:3482),indications,36b0c0b6-8368-77aa-e063-6394a90a0cc7.json
+DOID:14654,prostatitis,prostatitis (DOID:14654),indications,36b0c0b6-8368-77aa-e063-6394a90a0cc7.json
+DOID:0080784,uti,uti (DOID:0080784),indications,36b0c0b6-8368-77aa-e063-6394a90a0cc7.json
+DOID:1679,cystitis,cystitis (DOID:1679),indications,36b0c0b6-8368-77aa-e063-6394a90a0cc7.json
+DOID:11400,pyelonephritis,pyelonephritis (DOID:11400),indications,36b0c0b6-8368-77aa-e063-6394a90a0cc7.json
+DOID:13148,acute cystitis,acute cystitis (DOID:13148),indications,3fa646b7-8ad6-3da8-e063-6394a90af80b.json
+DOID:1412,bacteriuria,bacteriuria (DOID:1412),indications,3fa646b7-8ad6-3da8-e063-6394a90af80b.json
+DOID:11968,atrophic vaginitis,atrophic vaginitis (DOID:11968),indications,2df3b31e-32a6-49cd-a636-5b7779a5ed0c.json
+DOID:2170,vaginitis,vaginitis (DOID:2170),indications,2df3b31e-32a6-49cd-a636-5b7779a5ed0c.json
+DOID:1380,endometrial cancer,endometrial cancer (DOID:1380),contraindications,2df3b31e-32a6-49cd-a636-5b7779a5ed0c.json
+DOID:289,endometriosis,endometriosis (DOID:289),contraindications,2df3b31e-32a6-49cd-a636-5b7779a5ed0c.json
+DOID:0050052,rocky mountain spotted fever,rocky mountain spotted fever (DOID:0050052),contraindications,03cb5078-768e-41a1-b922-f1dee98e8760.json
+DOID:11104,spotted fever,spotted fever (DOID:11104),contraindications,03cb5078-768e-41a1-b922-f1dee98e8760.json
+DOID:11263,chlamydia,chlamydia (DOID:11263),contraindications,03cb5078-768e-41a1-b922-f1dee98e8760.json
+DOID:4166,syphilis,syphilis (DOID:4166),contraindications,03cb5078-768e-41a1-b922-f1dee98e8760.json
+DOID:10808,gastric ulcer,gastric ulcer (DOID:10808),indications,1ab3d2c4-43c7-504d-e063-6394a90a9ba9.json
+DOID:10825,essential hypertension,essential hypertension (DOID:10825),indications,1680cb4f-6b46-483a-bc9f-d3289bb6c925.json
+DOID:8283,peritonitis,peritonitis (DOID:8283),indications,19ade85b-3da4-44af-8ad0-d68d15a48193.json
+DOID:1884,viral hepatitis,viral hepatitis (DOID:1884),contraindications,1e22a070-f384-4dbf-af00-d1596421b622.json
+DOID:2237,hepatitis,hepatitis (DOID:2237),contraindications,1e22a070-f384-4dbf-af00-d1596421b622.json
+DOID:614,lymphopenia,lymphopenia (DOID:614),contraindications,1e22a070-f384-4dbf-af00-d1596421b622.json
+DOID:8805,unstable angina,unstable angina (DOID:8805),indications,365e81d5-5c85-30c7-e063-6294a90ae356.json
+DOID:9744,type 1 diabetes mellitus,type 1 diabetes mellitus (DOID:9744),indications,3bf9383a-afe0-4989-b952-50c995bd3fa5.json
+DOID:4989,pancreatitis,pancreatitis (DOID:4989),indications,3bf9383a-afe0-4989-b952-50c995bd3fa5.json
+DOID:1883,chronic hepatitis c,chronic hepatitis c (DOID:1883),indications,21d93204-5c90-4b70-aec4-f7e60b197fac.json
+DOID:5082,cirrhosis,cirrhosis (DOID:5082),contraindications,21d93204-5c90-4b70-aec4-f7e60b197fac.json
+DOID:784,chronic kidney disease,chronic kidney disease (DOID:784),indications,5626304b-344f-4155-9afa-d7cfe733d819.json
+DOID:526,hiv infection,hiv infection (DOID:526),contraindications,5626304b-344f-4155-9afa-d7cfe733d819.json
+DOID:1587,immune thrombocytopenia,immune thrombocytopenia (DOID:1587),indications,2a2c4ac6-ebb4-4019-8f2b-369c42df3d62.json
+DOID:0050908,myelodysplastic syndrome,myelodysplastic syndrome (DOID:0050908),indications,2a2c4ac6-ebb4-4019-8f2b-369c42df3d62.json
+DOID:0060469,mds,mds (DOID:0060469),indications,2a2c4ac6-ebb4-4019-8f2b-369c42df3d62.json
+DOID:11758,iron deficiency anemia,iron deficiency anemia (DOID:11758),contraindications,6d143a9f-af68-48d6-a2ef-92044ac3223a.json
+DOID:11573,listeriosis,listeriosis (DOID:11573),indications,63d64de0-c590-4542-b3f3-92600d7dca18.json
+DOID:1116,pertussis,pertussis (DOID:1116),indications,63d64de0-c590-4542-b3f3-92600d7dca18.json
+DOID:11405,diphtheria,diphtheria (DOID:11405),indications,63d64de0-c590-4542-b3f3-92600d7dca18.json
+DOID:4131,erythrasma,erythrasma (DOID:4131),indications,63d64de0-c590-4542-b3f3-92600d7dca18.json
+DOID:9181,amebiasis,amebiasis (DOID:9181),indications,63d64de0-c590-4542-b3f3-92600d7dca18.json
+DOID:1003,pelvic inflammatory disease,pelvic inflammatory disease (DOID:1003),indications,63d64de0-c590-4542-b3f3-92600d7dca18.json
+DOID:4156,primary syphilis,primary syphilis (DOID:4156),indications,63d64de0-c590-4542-b3f3-92600d7dca18.json
+DOID:10457,legionella,legionella (DOID:10457),indications,63d64de0-c590-4542-b3f3-92600d7dca18.json
+DOID:1586,rheumatic fever,rheumatic fever (DOID:1586),indications,63d64de0-c590-4542-b3f3-92600d7dca18.json
+DOID:10456,tonsillitis,tonsillitis (DOID:10456),indications,63d64de0-c590-4542-b3f3-92600d7dca18.json
+DOID:2275,pharyngitis,pharyngitis (DOID:2275),indications,63d64de0-c590-4542-b3f3-92600d7dca18.json
+DOID:11162,respiratory failure,respiratory failure (DOID:11162),indications,ef45ae21-8cc6-43bd-9028-c4b8eea10961.json
+DOID:6432,pulmonary hypertension,pulmonary hypertension (DOID:6432),indications,ef45ae21-8cc6-43bd-9028-c4b8eea10961.json
+DOID:874,bacterial pneumonia,bacterial pneumonia (DOID:874),indications,364befdd-44a1-4e90-e063-6294a90a0293.json
+DOID:8712,neurofibromatosis,neurofibromatosis (DOID:8712),indications,04b4df94-158e-4bb2-92c9-effe844e8fdc.json
+DOID:10534,gastric cancer,gastric cancer (DOID:10534),contraindications,211287cb-7401-4f31-b437-aafd5bf02a2f.json
+DOID:5041,esophageal cancer,esophageal cancer (DOID:5041),contraindications,211287cb-7401-4f31-b437-aafd5bf02a2f.json
+DOID:4362,cervical cancer,cervical cancer (DOID:4362),contraindications,211287cb-7401-4f31-b437-aafd5bf02a2f.json
+DOID:4450,rcc,rcc (DOID:4450),contraindications,211287cb-7401-4f31-b437-aafd5bf02a2f.json
+DOID:2871,endometrial carcinoma,endometrial carcinoma (DOID:2871),contraindications,211287cb-7401-4f31-b437-aafd5bf02a2f.json
+DOID:2043,hepatitis b,hepatitis b (DOID:2043),contraindications,5f81e6ed-7a85-44db-8683-f039e3445bde.json
+DOID:934,virus infection,virus infection (DOID:934),contraindications,5f81e6ed-7a85-44db-8683-f039e3445bde.json
+DOID:0070314,con,con (DOID:0070314),indications,39e77e07-bdc8-28e9-e063-6394a90a120c.json
+DOID:4500,hypokalemia,hypokalemia (DOID:4500),indications,39e77e07-bdc8-28e9-e063-6394a90a120c.json
+DOID:3798,empyema,empyema (DOID:3798),indications,2af1dbb1-255d-4de0-9cc2-3e44002b0441.json
+DOID:0060317,lung abscess,lung abscess (DOID:0060317),indications,2af1dbb1-255d-4de0-9cc2-3e44002b0441.json
+DOID:1002,endometritis,endometritis (DOID:1002),indications,2af1dbb1-255d-4de0-9cc2-3e44002b0441.json
+DOID:1260,pelvic cellulitis,pelvic cellulitis (DOID:1260),indications,2af1dbb1-255d-4de0-9cc2-3e44002b0441.json
+DOID:3488,cellulitis,cellulitis (DOID:3488),indications,2af1dbb1-255d-4de0-9cc2-3e44002b0441.json
+DOID:9970,obesity,obesity (DOID:9970),contraindications,2af1dbb1-255d-4de0-9cc2-3e44002b0441.json
+DOID:0080810,acute asthma,acute asthma (DOID:0080810),indications,2106fae5-cfb5-49f9-bf0b-72e7dcb18b8d.json
+DOID:14227,azoospermia,azoospermia (DOID:14227),contraindications,cf526da9-3b55-4383-89d0-87bf22eea963.json
+DOID:2394,ovarian cancer,ovarian cancer (DOID:2394),indications,e9f76142-15d0-4234-8f2e-5f5014160eff.json
+DOID:635,aids,aids (DOID:635),indications,e9f76142-15d0-4234-8f2e-5f5014160eff.json
+DOID:1115,sarcoma,sarcoma (DOID:1115),indications,e9f76142-15d0-4234-8f2e-5f5014160eff.json
+DOID:1793,pancreatic cancer,pancreatic cancer (DOID:1793),indications,0142c57f-6211-4638-8c48-c215686871b8.json
+DOID:4074,pancreatic adenocarcinoma,pancreatic adenocarcinoma (DOID:4074),indications,0142c57f-6211-4638-8c48-c215686871b8.json
+DOID:12783,migraine without aura,migraine without aura (DOID:12783),indications,1d8fa8b1-75e6-42af-863d-a775791da7a6.json
+DOID:8337,appendicitis,appendicitis (DOID:8337),contraindications,665bf3ee-17b1-49dc-acfa-ed7fc2d82c8e.json
+DOID:0060167,seasonal affective disorder,seasonal affective disorder (DOID:0060167),indications,4256bae5-6d8e-49fd-a5cc-4e2ed45de1b0.json
+DOID:8504,impetigo,impetigo (DOID:8504),indications,1560b587-27d8-49cd-9b43-21cc6c30afc1.json
+DOID:0080855,parkinsonism,parkinsonism (DOID:0080855),indications,3763c9d2-9df3-d6b8-e063-6394a90a3d99.json
+DOID:306,dyskinesia,dyskinesia (DOID:306),indications,3763c9d2-9df3-d6b8-e063-6394a90a3d99.json
+DOID:4730,vasomotor rhinitis,vasomotor rhinitis (DOID:4730),indications,41b48ab2-962e-790a-e063-6394a90a6106.json
 DOID:0080159,cryptococcal meningitis,cryptococcal meningitis (DOID:0080159),indications,1369d969-91c2-42dc-b8c5-27e8703a2b68.json
 DOID:9146,visceral leishmaniasis,visceral leishmaniasis (DOID:9146),indications,1369d969-91c2-42dc-b8c5-27e8703a2b68.json
 DOID:9065,leishmaniasis,leishmaniasis (DOID:9065),indications,1369d969-91c2-42dc-b8c5-27e8703a2b68.json
-DOID:8515,cor pulmonale,cor pulmonale (DOID:8515),contraindications,13bc9538-700e-4405-bf4e-802b1450ca7b.json
-DOID:0081055,central diabetes insipidus,central diabetes insipidus (DOID:0081055),indications,13ec577b-9bd8-4429-ad53-f8bf5a118995.json
-DOID:9409,diabetes insipidus,diabetes insipidus (DOID:9409),indications,13ec577b-9bd8-4429-ad53-f8bf5a118995.json
-DOID:0061030,hemophilia,hemophilia (DOID:0061030),indications,13ec577b-9bd8-4429-ad53-f8bf5a118995.json
-DOID:12387,nephrogenic diabetes insipidus,nephrogenic diabetes insipidus (DOID:12387),indications,13ec577b-9bd8-4429-ad53-f8bf5a118995.json
-DOID:1884,viral hepatitis,viral hepatitis (DOID:1884),contraindications,13f26758-52b4-4239-9981-a4b550e740e2.json
-DOID:11204,allergic conjunctivitis,allergic conjunctivitis (DOID:11204),indications,1436683c-28de-4c28-94f2-d062d1918b2a.json
-DOID:6195,conjunctivitis,conjunctivitis (DOID:6195),indications,1436683c-28de-4c28-94f2-d062d1918b2a.json
-DOID:83,cataract,cataract (DOID:83),indications,1436683c-28de-4c28-94f2-d062d1918b2a.json
-DOID:5418,schizoaffective disorder,schizoaffective disorder (DOID:5418),indications,14601465-eda2-4063-b606-cb6cfcaaca3d.json
-DOID:11984,hypertrophic obstructive cardiomyopathy,hypertrophic obstructive cardiomyopathy (DOID:11984),indications,149c50c5-59ad-4602-ad9e-58ad960eb91d.json
-DOID:0050700,cardiomyopathy,cardiomyopathy (DOID:0050700),indications,149c50c5-59ad-4602-ad9e-58ad960eb91d.json
-DOID:3068,glioblastoma,glioblastoma (DOID:3068),indications,14b0f256-a380-424d-a9d4-fafb6ec0e246.json
-DOID:0050902,medulloblastoma,medulloblastoma (DOID:0050902),indications,14b0f256-a380-424d-a9d4-fafb6ec0e246.json
-DOID:8538,histiocytic lymphoma,histiocytic lymphoma (DOID:8538),indications,14b3b66b-0e87-4e71-8507-e23c8214cc50.json
-DOID:769,neuroblastoma,neuroblastoma (DOID:769),indications,14b3b66b-0e87-4e71-8507-e23c8214cc50.json
-DOID:768,retinoblastoma,retinoblastoma (DOID:768),indications,14b3b66b-0e87-4e71-8507-e23c8214cc50.json
-DOID:9700,bacterial conjunctivitis,bacterial conjunctivitis (DOID:9700),indications,14b4bf1f-07ed-4578-96ac-47fc9c7c058b.json
-DOID:2921,glomerulonephritis,glomerulonephritis (DOID:2921),indications,14f28c3d-3503-4c0f-ace5-eec0dd298b4b.json
-DOID:8504,impetigo,impetigo (DOID:8504),indications,1560b587-27d8-49cd-9b43-21cc6c30afc1.json
-DOID:4752,multiple system atrophy,multiple system atrophy (DOID:4752),indications,15a3d787-2fea-4455-9932-dd2eae43ac5f.json
-DOID:11503,diabetic autonomic neuropathy,diabetic autonomic neuropathy (DOID:11503),indications,15a3d787-2fea-4455-9932-dd2eae43ac5f.json
-DOID:11504,autonomic neuropathy,autonomic neuropathy (DOID:11504),indications,15a3d787-2fea-4455-9932-dd2eae43ac5f.json
-DOID:0080161,cutaneous candidiasis,cutaneous candidiasis (DOID:0080161),indications,16c2de34-749a-4ef7-8ac0-ba7d494585df.json
-DOID:3127,proctitis,proctitis (DOID:3127),indications,173a5f3c-dd2d-411a-b03c-d5b01d428222.json
-DOID:526,hiv infection,hiv infection (DOID:526),contraindications,175f5d1a-aae9-43d5-b004-65eefec167d4.json
-DOID:1389,polyneuropathy,polyneuropathy (DOID:1389),indications,1791a81a-d261-4b66-b699-273afe02c380.json
-DOID:9952,acute lymphoblastic leukemia,acute lymphoblastic leukemia (DOID:9952),indications,17c4ec02-6dbb-436a-b6f4-a59cc13c6af5.json
-DOID:1037,lymphoblastic leukemia,lymphoblastic leukemia (DOID:1037),indications,17c4ec02-6dbb-436a-b6f4-a59cc13c6af5.json
-DOID:0080147,lymphoblastic lymphoma,lymphoblastic lymphoma (DOID:0080147),indications,17c4ec02-6dbb-436a-b6f4-a59cc13c6af5.json
-DOID:1920,hyperuricemia,hyperuricemia (DOID:1920),contraindications,17c4ec02-6dbb-436a-b6f4-a59cc13c6af5.json
-DOID:12403,tinea pedis,tinea pedis (DOID:12403),indications,17cf1fbb-ac20-4379-b1e3-ec0e9c2ff802.json
-DOID:11917,tinea cruris,tinea cruris (DOID:11917),indications,17cf1fbb-ac20-4379-b1e3-ec0e9c2ff802.json
-DOID:12179,tinea corporis,tinea corporis (DOID:12179),indications,17cf1fbb-ac20-4379-b1e3-ec0e9c2ff802.json
-DOID:11199,hypoparathyroidism,hypoparathyroidism (DOID:11199),indications,17d2bb82-605c-43be-9918-63aeb7102d8c.json
-DOID:12663,blastomycosis,blastomycosis (DOID:12663),indications,17ebcbb4-d52b-44b8-a4ef-42ddae5034db.json
-DOID:1731,histoplasmosis,histoplasmosis (DOID:1731),indications,17ebcbb4-d52b-44b8-a4ef-42ddae5034db.json
-DOID:13074,tinea unguium,tinea unguium (DOID:13074),indications,17ebcbb4-d52b-44b8-a4ef-42ddae5034db.json
-DOID:12700,hyperprolactinemia,hyperprolactinemia (DOID:12700),indications,17f3a343-1782-4799-95ba-31dfe93be2cf.json
-DOID:10689,galactorrhea,galactorrhea (DOID:10689),indications,17f3a343-1782-4799-95ba-31dfe93be2cf.json
-DOID:5223,infertility,infertility (DOID:5223),indications,17f3a343-1782-4799-95ba-31dfe93be2cf.json
-DOID:657,adenomas,adenomas (DOID:657),indications,17f3a343-1782-4799-95ba-31dfe93be2cf.json
-DOID:750,peptic ulcer disease,peptic ulcer disease (DOID:750),indications,18066b80-1ec6-4092-80d9-70adb0ecac85.json
-DOID:12143,neurogenic bladder,neurogenic bladder (DOID:12143),indications,1811d8f0-3236-4dc7-a270-49e870188ff2.json
-DOID:0050745,dlbcl,dlbcl (DOID:0050745),indications,18bc96b4-ca4e-4bff-bc25-7c904578905f.json
-DOID:4531,mec,mec (DOID:4531),indications,191cbbc6-c6ba-409c-b78c-a691f851a565.json
-DOID:14735,hereditary angioedema,hereditary angioedema (DOID:14735),indications,1992039f-246f-4057-899b-987d45df152f.json
-DOID:446,primary hyperaldosteronism,primary hyperaldosteronism (DOID:446),contraindications,1a5fb32a-215b-41a6-a726-ec7de893be20.json
-DOID:2051,maxillary sinusitis,maxillary sinusitis (DOID:2051),indications,1aa9f5fb-453f-4a14-b3af-937865241dd0.json
-DOID:11729,lyme disease,lyme disease (DOID:11729),indications,1aa9f5fb-453f-4a14-b3af-937865241dd0.json
-DOID:12259,hemophilia b,hemophilia b (DOID:12259),indications,1b44b4bb-22db-4dcb-b0e2-70c9657d3542.json
-DOID:9470,bacterial meningitis,bacterial meningitis (DOID:9470),indications,1be878fd-112e-49ad-904c-3def0847ba19.json
-DOID:12017,group b,group b (DOID:12017),indications,1be878fd-112e-49ad-904c-3def0847ba19.json
-DOID:8337,appendicitis,appendicitis (DOID:8337),contraindications,1c3dc47a-2988-4d82-8d64-eeaeb6083eba.json
-DOID:7475,diverticulitis,diverticulitis (DOID:7475),indications,1c473f01-dccd-4be7-bb0b-9a028f90fd22.json
-DOID:9778,irritable bowel syndrome,irritable bowel syndrome (DOID:9778),indications,1c473f01-dccd-4be7-bb0b-9a028f90fd22.json
-DOID:13419,neurogenic bowel,neurogenic bowel (DOID:13419),indications,1c473f01-dccd-4be7-bb0b-9a028f90fd22.json
-DOID:10459,acute rhinitis,acute rhinitis (DOID:10459),indications,1c473f01-dccd-4be7-bb0b-9a028f90fd22.json
-DOID:1307,dementia,dementia (DOID:1307),indications,1c695653-b7dd-40af-b5eb-a6e3ecbab14d.json
-DOID:0050758,metabolic acidosis,metabolic acidosis (DOID:0050758),indications,1cc6a0c6-0475-4c98-92ab-a6184974cfd7.json
-DOID:3650,lactic acidosis,lactic acidosis (DOID:3650),indications,1cc6a0c6-0475-4c98-92ab-a6184974cfd7.json
-DOID:11823,hepatorenal syndrome,hepatorenal syndrome (DOID:11823),indications,1d0832a2-debc-40bf-8bbe-59383d0bd3c6.json
-DOID:9699,ophthalmia neonatorum,ophthalmia neonatorum (DOID:9699),indications,1d46b877-1df6-46f8-86c6-0eb975dca22d.json
-DOID:582,hemoglobinuria,hemoglobinuria (DOID:582),indications,1d87cb2b-beb5-4396-9950-7e5853cb3aab.json
-DOID:1260,pelvic cellulitis,pelvic cellulitis (DOID:1260),indications,1db107a1-4c41-432c-a64c-b9110705ab40.json
-DOID:3488,cellulitis,cellulitis (DOID:3488),indications,1db107a1-4c41-432c-a64c-b9110705ab40.json
-DOID:614,lymphopenia,lymphopenia (DOID:614),contraindications,1e22a070-f384-4dbf-af00-d1596421b622.json
-DOID:2513,basal cell carcinoma,basal cell carcinoma (DOID:2513),indications,1e241c47-2ccb-434e-95f5-d45aa9e1ecf3.json
-DOID:8741,seborrheic dermatitis,seborrheic dermatitis (DOID:8741),indications,1eeb3ee1-834d-4cfa-9745-8b83c1d3d183.json
-DOID:12574,posterior uveitis,posterior uveitis (DOID:12574),indications,1eeb3ee1-834d-4cfa-9745-8b83c1d3d183.json
-DOID:9383,iridocyclitis,iridocyclitis (DOID:9383),indications,1eeb3ee1-834d-4cfa-9745-8b83c1d3d183.json
-DOID:4676,uremia,uremia (DOID:4676),indications,1eeb3ee1-834d-4cfa-9745-8b83c1d3d183.json
-DOID:3947,adrenocortical hyperfunction,adrenocortical hyperfunction (DOID:3947),contraindications,1eeb3ee1-834d-4cfa-9745-8b83c1d3d183.json
-DOID:767,muscle wasting,muscle wasting (DOID:767),contraindications,1eeb3ee1-834d-4cfa-9745-8b83c1d3d183.json
-DOID:1837,diabetic ketoacidosis,diabetic ketoacidosis (DOID:1837),indications,1f95ff46-b4bf-42d3-b39b-b7221c7e07da.json
-DOID:12236,primary biliary cholangitis,primary biliary cholangitis (DOID:12236),indications,20823686-4796-42e1-ac93-fa5cf3be27f8.json
-DOID:9446,cholangitis,cholangitis (DOID:9446),indications,20823686-4796-42e1-ac93-fa5cf3be27f8.json
-DOID:4890,juvenile myoclonic epilepsy,juvenile myoclonic epilepsy (DOID:4890),indications,209d3e24-7513-4cf2-a4c9-8cf503b5e9c5.json
-DOID:308,myoclonic epilepsy,myoclonic epilepsy (DOID:308),indications,209d3e24-7513-4cf2-a4c9-8cf503b5e9c5.json
-DOID:1827,idiopathic generalized epilepsy,idiopathic generalized epilepsy (DOID:1827),indications,209d3e24-7513-4cf2-a4c9-8cf503b5e9c5.json
-DOID:0080810,acute asthma,acute asthma (DOID:0080810),indications,2106fae5-cfb5-49f9-bf0b-72e7dcb18b8d.json
-DOID:4362,cervical cancer,cervical cancer (DOID:4362),contraindications,211287cb-7401-4f31-b437-aafd5bf02a2f.json
-DOID:2871,endometrial carcinoma,endometrial carcinoma (DOID:2871),contraindications,211287cb-7401-4f31-b437-aafd5bf02a2f.json
-DOID:12466,secondary hyperparathyroidism,secondary hyperparathyroidism (DOID:12466),indications,211361e9-87ad-476a-af8f-8b887c3b6c4e.json
-DOID:4964,psychoneurosis,psychoneurosis (DOID:4964),indications,214b6c35-74ab-eea4-e063-6294a90a1b26.json
-DOID:0050820,av block,av block (DOID:0050820),contraindications,21717db2-03d0-4bc9-bb5a-f21869be846c.json
-DOID:11840,coronary artery spasm,coronary artery spasm (DOID:11840),contraindications,2180c38c-9155-4c89-83c0-ea9e0bb568fb.json
-DOID:11249,vitamin k deficiency,vitamin k deficiency (DOID:11249),indications,219e0da6-2fee-450f-ba9c-ff2595f90b69.json
-DOID:13582,k deficiency,k deficiency (DOID:13582),indications,219e0da6-2fee-450f-ba9c-ff2595f90b69.json
-DOID:2235,prothrombin deficiency,prothrombin deficiency (DOID:2235),indications,219e0da6-2fee-450f-ba9c-ff2595f90b69.json
-DOID:2213,hemorrhagic disease,hemorrhagic disease (DOID:2213),indications,219e0da6-2fee-450f-ba9c-ff2595f90b69.json
-DOID:10608,celiac disease,celiac disease (DOID:10608),indications,219e0da6-2fee-450f-ba9c-ff2595f90b69.json
-DOID:2987,familial mediterranean fever,familial mediterranean fever (DOID:2987),indications,21c1692d-b2d1-4361-b882-a6acbd751c95.json
-DOID:11077,mediterranean fever,mediterranean fever (DOID:11077),indications,21c1692d-b2d1-4361-b882-a6acbd751c95.json
-DOID:1969,cerebral palsy,cerebral palsy (DOID:1969),indications,21d9a176-5277-4fa4-83c5-91ef3743368d.json
-DOID:0060000,infective endocarditis,infective endocarditis (DOID:0060000),indications,223f4011-f4e6-44b9-b470-bad7e13fb32b.json
-DOID:0080749,chronic idiopathic urticaria,chronic idiopathic urticaria (DOID:0080749),indications,2263eac3-aa51-4b35-8535-db7e21cf5660.json
-DOID:319,spinal cord disease,spinal cord disease (DOID:319),indications,22a3e440-266d-4a3e-a1fe-6df83fea6abd.json
-DOID:874,bacterial pneumonia,bacterial pneumonia (DOID:874),indications,22bf0411-3002-43cd-a13f-1a18b519e0ae.json
-DOID:9080,macroglobulinemia,macroglobulinemia (DOID:9080),indications,2339daa7-cae4-4e46-aba6-5cd2a5ea0a68.json
-DOID:0081267,graft versus host disease,graft versus host disease (DOID:0081267),indications,2339daa7-cae4-4e46-aba6-5cd2a5ea0a68.json
+DOID:657,adenomas,adenomas (DOID:657),indications,42c607ee-eb27-a72c-e063-6394a90a653c.json
+DOID:1074,renal failure,renal failure (DOID:1074),contraindications,42c607ee-eb27-a72c-e063-6394a90a653c.json
+DOID:0050425,restless legs syndrome,restless legs syndrome (DOID:0050425),indications,2ab8bb44-e4ba-4ae0-8ce9-0e9153de59f3.json
+DOID:12930,dilated cardiomyopathy,dilated cardiomyopathy (DOID:12930),indications,8ab000cd-0258-489a-b1bb-4cc1ca359d6c.json
+DOID:2733,skin atrophy,skin atrophy (DOID:2733),contraindications,35f40d2c-b958-4c7a-88b1-47b1790996ee.json
+DOID:971,tendinitis,tendinitis (DOID:971),indications,41d72ed1-2f68-852b-e063-6294a90a6401.json
+DOID:409,liver disease,liver disease (DOID:409),indications,42c9ddc6-1aae-a645-e063-6294a90a8b1a.json
+DOID:14452,hypokalemic familial periodic paralysis,hypokalemic familial periodic paralysis (DOID:14452),indications,39e7acd5-8db4-e5cc-e063-6294a90a6baa.json
+DOID:1029,familial periodic paralysis,familial periodic paralysis (DOID:1029),indications,39e7acd5-8db4-e5cc-e063-6294a90a6baa.json
+DOID:10223,dermatomyositis,dermatomyositis (DOID:10223),indications,43e3bba6-a836-f5e7-e063-6294a90a10e4.json
+DOID:0080745,polymyositis,polymyositis (DOID:0080745),indications,43e3bba6-a836-f5e7-e063-6294a90a10e4.json
+DOID:750,peptic ulcer disease,peptic ulcer disease (DOID:750),contraindications,43e3bba6-a836-f5e7-e063-6294a90a10e4.json
+DOID:8469,influenza,influenza (DOID:8469),indications,3c34406c-7a00-48b6-87fd-796e9d3e8068.json
+DOID:7997,thyrotoxicosis,thyrotoxicosis (DOID:7997),indications,a64c6dcb-7a81-4f7e-bd26-7ca72c56003b.json
+DOID:11723,duchenne muscular dystrophy,duchenne muscular dystrophy (DOID:11723),indications,5fbaac76-f7cb-4f43-99f8-af43c2655ff0.json
+DOID:9884,muscular dystrophy,muscular dystrophy (DOID:9884),indications,5fbaac76-f7cb-4f43-99f8-af43c2655ff0.json
+DOID:13593,eclampsia,eclampsia (DOID:13593),indications,23de70ab-5c05-464a-82f5-c5835a855bb0.json
 DOID:10591,preeclampsia,preeclampsia (DOID:10591),indications,23de70ab-5c05-464a-82f5-c5835a855bb0.json
-DOID:14038,precocious puberty,precocious puberty (DOID:14038),indications,24e33d5f-c64b-4d45-a5ae-e18a1f696cfa.json
-DOID:0112308,cpp,cpp (DOID:0112308),indications,24e33d5f-c64b-4d45-a5ae-e18a1f696cfa.json
-DOID:11758,iron deficiency anemia,iron deficiency anemia (DOID:11758),indications,2552acd1-62ae-49aa-9f88-e3baba1db724.json
-DOID:0080832,mild cognitive impairment,mild cognitive impairment (DOID:0080832),indications,2587cf41-574d-46cd-ac6f-8ece4862a4dd.json
-DOID:4677,keratitis,keratitis (DOID:4677),indications,25a1ff72-3013-4b8b-b1b6-db0d65346ce0.json
-DOID:8536,herpes zoster,herpes zoster (DOID:8536),indications,25a1ff72-3013-4b8b-b1b6-db0d65346ce0.json
-DOID:8535,herpes zoster ophthalmicus,herpes zoster ophthalmicus (DOID:8535),indications,25a1ff72-3013-4b8b-b1b6-db0d65346ce0.json
-DOID:1406,iritis,iritis (DOID:1406),indications,25a1ff72-3013-4b8b-b1b6-db0d65346ce0.json
-DOID:8886,chorioretinitis,chorioretinitis (DOID:8886),indications,25a1ff72-3013-4b8b-b1b6-db0d65346ce0.json
-DOID:11406,choroiditis,choroiditis (DOID:11406),indications,25a1ff72-3013-4b8b-b1b6-db0d65346ce0.json
-DOID:1210,optic neuritis,optic neuritis (DOID:1210),indications,25a1ff72-3013-4b8b-b1b6-db0d65346ce0.json
-DOID:1803,neuritis,neuritis (DOID:1803),indications,25a1ff72-3013-4b8b-b1b6-db0d65346ce0.json
-DOID:3240,aspiration pneumonitis,aspiration pneumonitis (DOID:3240),indications,25a1ff72-3013-4b8b-b1b6-db0d65346ce0.json
-DOID:12603,acute leukemia,acute leukemia (DOID:12603),indications,25a1ff72-3013-4b8b-b1b6-db0d65346ce0.json
-DOID:2755,mycobacterium avium complex,mycobacterium avium complex (DOID:2755),indications,25e74b16-cdf0-4959-be62-1745c4e4cf0a.json
-DOID:9993,hypoglycemia,hypoglycemia (DOID:9993),contraindications,25f8d4d3-5597-40b9-a57a-67f930eee938.json
-DOID:11634,myxedema,myxedema (DOID:11634),indications,260cd9b6-671f-4c8a-9baf-f3ab0f34f69b.json
-DOID:7188,chronic lymphocytic thyroiditis,chronic lymphocytic thyroiditis (DOID:7188),indications,260cd9b6-671f-4c8a-9baf-f3ab0f34f69b.json
-DOID:3113,papillary carcinoma,papillary carcinoma (DOID:3113),contraindications,260cd9b6-671f-4c8a-9baf-f3ab0f34f69b.json
-DOID:3974,medullary carcinoma,medullary carcinoma (DOID:3974),contraindications,260cd9b6-671f-4c8a-9baf-f3ab0f34f69b.json
-DOID:0081120,graves ophthalmopathy,graves ophthalmopathy (DOID:0081120),contraindications,260cd9b6-671f-4c8a-9baf-f3ab0f34f69b.json
-DOID:0050328,congenital hypothyroidism,congenital hypothyroidism (DOID:0050328),contraindications,260cd9b6-671f-4c8a-9baf-f3ab0f34f69b.json
-DOID:1273,respiratory syncytial virus,respiratory syncytial virus (DOID:1273),indications,264becb4-6a98-4e35-834b-0dc635cc44b1.json
-DOID:0050161,lower respiratory tract disease,lower respiratory tract disease (DOID:0050161),indications,264becb4-6a98-4e35-834b-0dc635cc44b1.json
-DOID:11256,typhus,typhus (DOID:11256),indications,274d9362-34ed-49c1-8d4b-c1bc6ff1989f.json
-DOID:11100,q fever,q fever (DOID:11100),indications,274d9362-34ed-49c1-8d4b-c1bc6ff1989f.json
-DOID:11103,rickettsialpox,rickettsialpox (DOID:11103),indications,274d9362-34ed-49c1-8d4b-c1bc6ff1989f.json
-DOID:11262,psittacosis,psittacosis (DOID:11262),indications,274d9362-34ed-49c1-8d4b-c1bc6ff1989f.json
-DOID:13819,lymphogranuloma venereum,lymphogranuloma venereum (DOID:13819),indications,274d9362-34ed-49c1-8d4b-c1bc6ff1989f.json
-DOID:9113,granuloma inguinale,granuloma inguinale (DOID:9113),indications,274d9362-34ed-49c1-8d4b-c1bc6ff1989f.json
-DOID:13034,relapsing fever,relapsing fever (DOID:13034),indications,274d9362-34ed-49c1-8d4b-c1bc6ff1989f.json
-DOID:10371,yaws,yaws (DOID:10371),indications,274d9362-34ed-49c1-8d4b-c1bc6ff1989f.json
-DOID:11265,trachoma,trachoma (DOID:11265),indications,274d9362-34ed-49c1-8d4b-c1bc6ff1989f.json
-DOID:3875,thrombophlebitis,thrombophlebitis (DOID:3875),contraindications,274d9362-34ed-49c1-8d4b-c1bc6ff1989f.json
-DOID:4157,secondary syphilis,secondary syphilis (DOID:4157),contraindications,274d9362-34ed-49c1-8d4b-c1bc6ff1989f.json
-DOID:8432,polycythemia,polycythemia (DOID:8432),indications,27514371-c611-4b76-bac4-c0520f87d0ed.json
-DOID:8997,polycythemia vera,polycythemia vera (DOID:8997),indications,27514371-c611-4b76-bac4-c0520f87d0ed.json
-DOID:2224,essential thrombocythemia,essential thrombocythemia (DOID:2224),indications,27514371-c611-4b76-bac4-c0520f87d0ed.json
-DOID:4971,myelofibrosis,myelofibrosis (DOID:4971),indications,27514371-c611-4b76-bac4-c0520f87d0ed.json
-DOID:0050746,mantle cell lymphoma,mantle cell lymphoma (DOID:0050746),indications,27f6f56f-fefb-4caf-aee7-9e7e2a9c74f4.json
-DOID:811,lipodystrophy,lipodystrophy (DOID:811),contraindications,2849e8ad-9457-4f55-8b96-8e4ed847bf03.json
-DOID:0060318,acute promyelocytic leukemia,acute promyelocytic leukemia (DOID:0060318),indications,28fe0658-5c6d-4176-95cc-1b74cf1d8a37.json
-DOID:0060260,blepharoptosis,blepharoptosis (DOID:0060260),indications,29070ca5-a098-4227-9710-b4a8d1587370.json
-DOID:1587,immune thrombocytopenia,immune thrombocytopenia (DOID:1587),indications,2a2c4ac6-ebb4-4019-8f2b-369c42df3d62.json
-DOID:12053,cryptococcosis,cryptococcosis (DOID:12053),indications,2aaf23f5-9b8f-4c5a-8c90-5c83765ad889.json
-DOID:7474,malignant pleural mesothelioma,malignant pleural mesothelioma (DOID:7474),contraindications,2b93c1ef-2564-4502-bf1c-45b27159abc4.json
-DOID:8567,hodgkin lymphoma,hodgkin lymphoma (DOID:8567),contraindications,2b93c1ef-2564-4502-bf1c-45b27159abc4.json
-DOID:4099,metastatic squamous cell carcinoma,metastatic squamous cell carcinoma (DOID:4099),contraindications,2b93c1ef-2564-4502-bf1c-45b27159abc4.json
-DOID:0080374,gastroesophageal cancer,gastroesophageal cancer (DOID:0080374),contraindications,2b93c1ef-2564-4502-bf1c-45b27159abc4.json
-DOID:3382,liposarcoma,liposarcoma (DOID:3382),indications,2c75a415-0b1e-4c36-8301-c50ac155d980.json
-DOID:6713,cerebrovascular disease,cerebrovascular disease (DOID:6713),indications,2d56d8bc-f503-4652-8ade-dc7e033c0da5.json
-DOID:341,peripheral vascular disease,peripheral vascular disease (DOID:341),indications,2d56d8bc-f503-4652-8ade-dc7e033c0da5.json
-DOID:9270,alkaptonuria,alkaptonuria (DOID:9270),indications,2d883e57-720f-494e-be8f-db592ba0aa32.json
-DOID:13832,patent ductus arteriosus,patent ductus arteriosus (DOID:13832),contraindications,2d8f2280-bc20-45ba-bdf3-12c055684017.json
-DOID:3686,helicobacter pylori infection,helicobacter pylori infection (DOID:3686),indications,2dbe0ab6-f36b-4c21-82c1-ec72d1b6687d.json
-DOID:3965,merkel cell carcinoma,merkel cell carcinoma (DOID:3965),indications,2dd864f8-7ef8-42c4-87e7-d90df062edbd.json
-DOID:11968,atrophic vaginitis,atrophic vaginitis (DOID:11968),indications,2df3b31e-32a6-49cd-a636-5b7779a5ed0c.json
-DOID:13924,acute necrotizing ulcerative gingivitis,acute necrotizing ulcerative gingivitis (DOID:13924),indications,2fac9716-1d45-4a37-b795-c7b051395d55.json
-DOID:824,periodontitis,periodontitis (DOID:824),indications,2fac9716-1d45-4a37-b795-c7b051395d55.json
-DOID:2334,metastatic carcinoma,metastatic carcinoma (DOID:2334),indications,2fc24d11-bf17-4007-8a65-d949793a972e.json
-DOID:10325,silicosis,silicosis (DOID:10325),indications,3015cc07-8b51-4018-845f-99bad1b9fab8.json
-DOID:0060262,gallbladder disease,gallbladder disease (DOID:0060262),indications,31a7329b-a246-4638-b436-6d3bb337c582.json
-DOID:1172,familial hypertriglyceridemia,familial hypertriglyceridemia (DOID:1172),indications,31a7329b-a246-4638-b436-6d3bb337c582.json
-DOID:0080217,lal deficiency,lal deficiency (DOID:0080217),contraindications,341de317-904b-4933-88da-b239c5989871.json
-DOID:1064,cystinosis,cystinosis (DOID:1064),indications,34dba967-28b4-4fc8-876d-2e30d32a0f95.json
-DOID:0060851,pemphigus vulgaris,pemphigus vulgaris (DOID:0060851),indications,355275b5-9e8c-4929-8787-0e59ebc7f7c9.json
-DOID:11638,presbyopia,presbyopia (DOID:11638),indications,35bee113-ab9f-605d-e063-6394a90ac5a2.json
-DOID:607,paraplegia,paraplegia (DOID:607),indications,3645e239-9893-f2b1-e063-6394a90a8d8e.json
-DOID:850,lung disease,lung disease (DOID:850),contraindications,3645e239-9893-f2b1-e063-6394a90a8d8e.json
-DOID:8704,genital herpes,genital herpes (DOID:8704),indications,364a2f8b-adfa-b8ce-e063-6394a90a8f9d.json
-DOID:8659,chickenpox,chickenpox (DOID:8659),indications,364a2f8b-adfa-b8ce-e063-6394a90a8f9d.json
-DOID:971,tendinitis,tendinitis (DOID:971),indications,364bf038-24c0-7e44-e063-6394a90ae0ef.json
-DOID:0080605,ankylosing spondylitis 3,ankylosing spondylitis 3 (DOID:0080605),indications,365c5d43-cebe-f66d-e063-6394a90a7881.json
-DOID:4449,macular edema,macular edema (DOID:4449),indications,365c77cf-f72f-3fa6-e063-6294a90af24b.json
-DOID:10783,methemoglobinemia,methemoglobinemia (DOID:10783),contraindications,365e4b50-2df9-1a48-e063-6294a90a69f2.json
-DOID:10609,rickets,rickets (DOID:10609),indications,3696e558-ebe1-103e-e063-6294a90adf55.json
-DOID:0050336,hypophosphatemia,hypophosphatemia (DOID:0050336),indications,3696e558-ebe1-103e-e063-6294a90adf55.json
-DOID:8295,scabies,scabies (DOID:8295),contraindications,36991086-14b5-9e66-e063-6394a90ad654.json
-DOID:2945,sars,sars (DOID:2945),indications,36addfa4-2f5b-46b1-e063-6394a90a90d2.json
-DOID:12177,common variable immunodeficiency,common variable immunodeficiency (DOID:12177),indications,36addfa4-2f5b-46b1-e063-6394a90a90d2.json
-DOID:627,severe combined immunodeficiency,severe combined immunodeficiency (DOID:627),indications,36addfa4-2f5b-46b1-e063-6394a90a90d2.json
-DOID:0111962,combined immunodeficiency,combined immunodeficiency (DOID:0111962),indications,36addfa4-2f5b-46b1-e063-6394a90a90d2.json
-DOID:11198,digeorge syndrome,digeorge syndrome (DOID:11198),indications,36addfa4-2f5b-46b1-e063-6394a90a90d2.json
-DOID:0110698,hhs,hhs (DOID:0110698),indications,36addfa4-2f5b-46b1-e063-6394a90a90d2.json
-DOID:3963,thyroid carcinoma,thyroid carcinoma (DOID:3963),indications,36b5d209-cacb-b09d-e063-6294a90ac3ac.json
-DOID:13581,magnesium deficiency,magnesium deficiency (DOID:13581),indications,36bf495e-3966-8317-e063-6294a90a055f.json
-DOID:12978,vivax malaria,vivax malaria (DOID:12978),indications,36c0e266-7161-2887-e063-6294a90a9fc1.json
-DOID:1697,ichthyosis,ichthyosis (DOID:1697),indications,36c18d8c-6e56-ad83-e063-6294a90a25fc.json
-DOID:161,keratosis,keratosis (DOID:161),indications,36c18d8c-6e56-ad83-e063-6294a90a25fc.json
-DOID:13148,acute cystitis,acute cystitis (DOID:13148),indications,36d61f2d-930e-f113-e063-6294a90aaf7a.json
-DOID:1412,bacteriuria,bacteriuria (DOID:1412),indications,36d61f2d-930e-f113-e063-6294a90aaf7a.json
-DOID:9266,cystinuria,cystinuria (DOID:9266),indications,36d7fad3-57c6-67e7-e063-6294a90ad7b5.json
-DOID:10718,giardiasis,giardiasis (DOID:10718),indications,36d804aa-0040-15a6-e063-6294a90abc0f.json
-DOID:13316,exocrine pancreatic insufficiency,exocrine pancreatic insufficiency (DOID:13316),indications,36e934b1-3fbb-8f0c-e063-6294a90a968c.json
-DOID:4730,vasomotor rhinitis,vasomotor rhinitis (DOID:4730),indications,36f60cbe-813d-cfa8-e063-6294a90a0b0a.json
-DOID:743,dermographism,dermographism (DOID:743),indications,36f60cbe-813d-cfa8-e063-6294a90a0b0a.json
-DOID:0111151,variant angina,variant angina (DOID:0111151),indications,3714a872-b6c6-4d74-88d2-add8a895e311.json
-DOID:14247,chronic suppurative otitis media,chronic suppurative otitis media (DOID:14247),contraindications,3745661f-5d20-487d-e063-6294a90a5a68.json
-DOID:11506,suppurative otitis media,suppurative otitis media (DOID:11506),contraindications,3745661f-5d20-487d-e063-6294a90a5a68.json
-DOID:13800,inclusion conjunctivitis,inclusion conjunctivitis (DOID:13800),indications,374f0796-60bf-5e18-e063-6294a90a67f7.json
-DOID:2123,tularemia,tularemia (DOID:2123),indications,374f0796-60bf-5e18-e063-6294a90a67f7.json
-DOID:11102,bartonellosis,bartonellosis (DOID:11102),indications,374f0796-60bf-5e18-e063-6294a90a67f7.json
-DOID:11573,listeriosis,listeriosis (DOID:11573),indications,374f0796-60bf-5e18-e063-6294a90a67f7.json
-DOID:8478,actinomycosis,actinomycosis (DOID:8478),indications,374f0796-60bf-5e18-e063-6294a90a67f7.json
-DOID:0080176,meningococcal meningitis,meningococcal meningitis (DOID:0080176),indications,374f0796-60bf-5e18-e063-6294a90a67f7.json
-DOID:7997,thyrotoxicosis,thyrotoxicosis (DOID:7997),indications,37b5006f-2441-f90b-e063-6294a90abb12.json
-DOID:0050784,primary progressive multiple sclerosis,primary progressive multiple sclerosis (DOID:0050784),indications,37d2fbfc-59e6-437f-90d2-cab7b7d099f1.json
-DOID:0080809,chronic asthma,chronic asthma (DOID:0080809),contraindications,37ece9da-94d1-ebda-e063-6294a90a2c44.json
-DOID:350,mastocytosis,mastocytosis (DOID:350),indications,37ece9da-94d3-ebda-e063-6294a90a2c44.json
-DOID:11054,bladder cancer,bladder cancer (DOID:11054),indications,3851a6cd-d487-2012-e063-6394a90aa33e.json
-DOID:2316,cerebral ischemia,cerebral ischemia (DOID:2316),contraindications,3855c3da-ff24-8301-e063-6294a90a22b3.json
-DOID:13906,malignant pleural effusion,malignant pleural effusion (DOID:13906),indications,386130d4-1b0d-5e87-e063-6394a90aefa7.json
-DOID:1673,pneumothorax,pneumothorax (DOID:1673),indications,386130d4-1b0d-5e87-e063-6394a90aefa7.json
-DOID:2456,blepharoconjunctivitis,blepharoconjunctivitis (DOID:2456),indications,3864b355-c103-d2ff-e063-6294a90aba07.json
-DOID:14067,falciparum malaria,falciparum malaria (DOID:14067),indications,3890be50-58ca-4301-91c4-5e8ab19923ad.json
-DOID:4798,aggressive systemic mastocytosis,aggressive systemic mastocytosis (DOID:4798),indications,38a9944b-db90-72f2-3f0b-7767da490ae2.json
-DOID:349,systemic mastocytosis,systemic mastocytosis (DOID:349),indications,38a9944b-db90-72f2-3f0b-7767da490ae2.json
-DOID:999,hypereosinophilic syndrome,hypereosinophilic syndrome (DOID:999),indications,38a9944b-db90-72f2-3f0b-7767da490ae2.json
-DOID:0080367,chronic eosinophilic leukemia,chronic eosinophilic leukemia (DOID:0080367),indications,38a9944b-db90-72f2-3f0b-7767da490ae2.json
-DOID:3507,dermatofibrosarcoma protuberans,dermatofibrosarcoma protuberans (DOID:3507),indications,38a9944b-db90-72f2-3f0b-7767da490ae2.json
-DOID:2991,stromal tumors,stromal tumors (DOID:2991),indications,38a9944b-db90-72f2-3f0b-7767da490ae2.json
-DOID:9253,gist,gist (DOID:9253),indications,38a9944b-db90-72f2-3f0b-7767da490ae2.json
-DOID:3319,lymphangioleiomyomatosis,lymphangioleiomyomatosis (DOID:3319),indications,38c957b7-27e3-d35c-e063-6294a90aa511.json
-DOID:1702,ichthyosis vulgaris,ichthyosis vulgaris (DOID:1702),indications,38e594a2-48af-5554-e063-6294a90a376e.json
-DOID:5200,urinary obstruction,urinary obstruction (DOID:5200),indications,38f32e51-5ff7-7191-e063-6294a90ae02b.json
-DOID:0081292,traumatic brain injury,traumatic brain injury (DOID:0081292),indications,38f390d9-1f7e-7409-e063-6294a90a17e4.json
-DOID:0111282,psoriasis 5,psoriasis 5 (DOID:0111282),indications,38f61d6e-960d-3735-e063-6394a90a055c.json
-DOID:0110102,atopic dermatitis 6,atopic dermatitis 6 (DOID:0110102),indications,38f61d6e-960d-3735-e063-6394a90a055c.json
-DOID:8941,seborrhea sicca,seborrhea sicca (DOID:8941),indications,390ab477-4120-9fd3-e063-6294a90aa010.json
-DOID:205,hyperostosis,hyperostosis (DOID:205),indications,3955ac41-ad5d-c43a-e063-6394a90a1e10.json
-DOID:14219,renal tubular acidosis,renal tubular acidosis (DOID:14219),indications,395a52e7-d488-26c6-e063-6394a90a8158.json
-DOID:2272,vulvovaginal candidiasis,vulvovaginal candidiasis (DOID:2272),indications,395de373-caf5-13e9-e063-6294a90a5684.json
-DOID:1272,telangiectasia,telangiectasia (DOID:1272),indications,396bb675-13eb-724b-e063-6294a90ab1d4.json
-DOID:8866,actinic keratosis,actinic keratosis (DOID:8866),indications,396bb675-13eb-724b-e063-6294a90ab1d4.json
-DOID:0050589,inflammatory bowel disease,inflammatory bowel disease (DOID:0050589),indications,396f56bc-648b-1251-e063-6294a90a5fe8.json
-DOID:0050140,acute diarrhea,acute diarrhea (DOID:0050140),contraindications,396f56bc-648b-1251-e063-6294a90a5fe8.json
-DOID:2385,thiamine deficiency,thiamine deficiency (DOID:2385),indications,3972cf2f-88ce-e507-e063-6394a90a8da5.json
-DOID:13725,beriberi,beriberi (DOID:13725),indications,3972cf2f-88ce-e507-e063-6394a90a8da5.json
-DOID:936,encephalopathy,encephalopathy (DOID:936),indications,3972cf2f-88ce-e507-e063-6394a90a8da5.json
-DOID:10915,korsakoff syndrome,korsakoff syndrome (DOID:10915),contraindications,3972cf2f-88ce-e507-e063-6394a90a8da5.json
-DOID:3078,anaplastic astrocytoma,anaplastic astrocytoma (DOID:3078),indications,39a0cb7d-c7e0-45d1-8761-ada92a2a15d7.json
-DOID:615,leukopenia,leukopenia (DOID:615),indications,39ae5dd3-dcaa-d40f-e063-6294a90a78af.json
-DOID:3407,carotid artery disease,carotid artery disease (DOID:3407),indications,39e73fd2-1ad0-aae8-e063-6294a90acd5a.json
-DOID:10787,premature menopause,premature menopause (DOID:10787),indications,39e73fd2-1ad0-aae8-e063-6294a90acd5a.json
-DOID:0061214,biliary obstruction,biliary obstruction (DOID:0061214),indications,39e73fd2-1ad0-aae8-e063-6294a90acd5a.json
-DOID:0070314,con,con (DOID:0070314),indications,39e77e07-bdc8-28e9-e063-6394a90a120c.json
-DOID:0080652,calcium oxalate nephrolithiasis,calcium oxalate nephrolithiasis (DOID:0080652),indications,39e81850-ac5b-656e-e063-6294a90a1d94.json
-DOID:585,nephrolithiasis,nephrolithiasis (DOID:585),indications,39e81850-ac5b-656e-e063-6294a90a1d94.json
-DOID:11162,respiratory failure,respiratory failure (DOID:11162),indications,3a136eac-7cc3-31ea-e063-6294a90afb91.json
-DOID:6432,pulmonary hypertension,pulmonary hypertension (DOID:6432),indications,3a136eac-7cc3-31ea-e063-6294a90afb91.json
-DOID:0070080,schizophrenia 4,schizophrenia 4 (DOID:0070080),contraindications,3a38572a-6805-90f5-e063-6394a90a9b93.json
-DOID:0070084,schizophrenia 8,schizophrenia 8 (DOID:0070084),contraindications,3a38572a-6805-90f5-e063-6394a90a9b93.json
-DOID:0111773,tdd,tdd (DOID:0111773),contraindications,3a851e5a-f061-4676-e063-6294a90ac16c.json
-DOID:13515,tuberous sclerosis,tuberous sclerosis (DOID:13515),indications,3a9816a9-9cf6-a63d-e063-6394a90a48f7.json
-DOID:1921,klinefelter syndrome,klinefelter syndrome (DOID:1921),indications,3aac9578-4106-2eff-e063-6294a90a16ca.json
-DOID:3890,acute intermittent porphyria,acute intermittent porphyria (DOID:3890),indications,3aafccc1-2525-9315-e063-6294a90a9e1e.json
-DOID:13268,porphyria,porphyria (DOID:13268),indications,3aafccc1-2525-9315-e063-6294a90a9e1e.json
-DOID:0050731,vitamin b12 deficiency,vitamin b12 deficiency (DOID:0050731),contraindications,3b113cb9-5e61-10da-e063-6394a90a84a7.json
-DOID:14365,primary carnitine deficiency,primary carnitine deficiency (DOID:14365),indications,3beded34-64c8-4a1d-80d4-02b3007233b9.json
-DOID:0080422,dravet syndrome,dravet syndrome (DOID:0080422),indications,3d0d64c8-00d5-4cd5-9a98-d0c9c648ea43.json
-DOID:14451,hyperkalemic periodic paralysis,hyperkalemic periodic paralysis (DOID:14451),indications,3ef66eca-f35a-46a8-bebe-b286dfbbb376.json
-DOID:1067,open angle glaucoma,open angle glaucoma (DOID:1067),indications,3f7a0323-bf68-c2b4-1f31-11df63e41dec.json
-DOID:3602,neurotoxicity,neurotoxicity (DOID:3602),contraindications,4072f3df-e754-4c2e-be0c-af3c8edb9211.json
-DOID:10603,glucose intolerance,glucose intolerance (DOID:10603),contraindications,4083b5c8-ad5f-43f6-ab19-3c87acb2883f.json
-DOID:230,lateral sclerosis,lateral sclerosis (DOID:230),indications,40905b35-f5ad-1c99-e063-6294a90a22d4.json
-DOID:332,als,als (DOID:332),indications,40905b35-f5ad-1c99-e063-6294a90a22d4.json
-DOID:3948,adrenocortical carcinoma,adrenocortical carcinoma (DOID:3948),indications,40a4cc96-c834-c03b-e063-6394a90a01d1.json
-DOID:1540,parathyroid carcinoma,parathyroid carcinoma (DOID:1540),indications,40aa0834-3fd8-c230-e063-6294a90a800d.json
-DOID:11678,onchocerciasis,onchocerciasis (DOID:11678),indications,410f2173-90f1-2f73-e063-6394a90a0aa9.json
-DOID:8445,volvulus,volvulus (DOID:8445),indications,410f2173-90f1-2f73-e063-6394a90a0aa9.json
-DOID:0090019,sitosterolemia,sitosterolemia (DOID:0090019),indications,411f7e5b-cb87-22d4-e063-6394a90a518c.json
-DOID:0060284,paroxysmal nocturnal hemoglobinuria,paroxysmal nocturnal hemoglobinuria (DOID:0060284),indications,41262953-a849-4095-b9c2-5a1d8b0238cc.json
-DOID:12554,hemolytic uremic syndrome,hemolytic uremic syndrome (DOID:12554),indications,41262953-a849-4095-b9c2-5a1d8b0238cc.json
-DOID:8869,neuromyelitis optica,neuromyelitis optica (DOID:8869),indications,41262953-a849-4095-b9c2-5a1d8b0238cc.json
-DOID:2050,acute maxillary sinusitis,acute maxillary sinusitis (DOID:2050),indications,41392bb7-d916-446c-e063-6294a90a2c5c.json
-DOID:0112339,dos,dos (DOID:0112339),contraindications,416dbd88-4408-43c2-b47d-c14911c050d0.json
-DOID:1967,leiomyosarcoma,leiomyosarcoma (DOID:1967),indications,419ad993-edf5-f3b9-e063-6294a90a1962.json
-DOID:0050476,barth syndrome,barth syndrome (DOID:0050476),indications,41c197ca-7d69-d807-e063-6294a90ae017.json
-DOID:0050840,cervical dystonia,cervical dystonia (DOID:0050840),indications,41c1a48c-e928-1099-e063-6294a90a359f.json
-DOID:543,dystonia,dystonia (DOID:543),indications,41c1a48c-e928-1099-e063-6294a90a359f.json
-DOID:4448,macular degeneration,macular degeneration (DOID:4448),indications,42277606-719f-1fd3-e063-6394a90ad9d6.json
-DOID:1727,retinal vein occlusion,retinal vein occlusion (DOID:1727),indications,42277606-719f-1fd3-e063-6394a90ad9d6.json
-DOID:9191,diabetic macular edema,diabetic macular edema (DOID:9191),indications,42277606-719f-1fd3-e063-6394a90ad9d6.json
-DOID:8947,diabetic retinopathy,diabetic retinopathy (DOID:8947),indications,42277606-719f-1fd3-e063-6394a90ad9d6.json
-DOID:4692,endophthalmitis,endophthalmitis (DOID:4692),contraindications,42277606-719f-1fd3-e063-6394a90ad9d6.json
-DOID:5327,retinal detachment,retinal detachment (DOID:5327),contraindications,42277606-719f-1fd3-e063-6394a90ad9d6.json
-DOID:5614,eye disease,eye disease (DOID:5614),indications,4239a5a7-4073-8551-e063-6394a90ae10a.json
-DOID:9637,stomatitis,stomatitis (DOID:9637),indications,424dba13-53c3-5abf-e063-6394a90a4722.json
-DOID:8411,renal angiomyolipoma,renal angiomyolipoma (DOID:8411),contraindications,42518037-5af1-d432-e063-6394a90ae7a2.json
-DOID:3314,angiomyolipoma,angiomyolipoma (DOID:3314),contraindications,42518037-5af1-d432-e063-6394a90ae7a2.json
-DOID:5077,sega,sega (DOID:5077),contraindications,42518037-5af1-d432-e063-6394a90ae7a2.json
-DOID:9423,blepharitis,blepharitis (DOID:9423),indications,42678f74-383b-962f-e063-6394a90a3315.json
-DOID:3491,turner syndrome,turner syndrome (DOID:3491),indications,4285f380-615e-420b-b756-1e0a775f785b.json
-DOID:219,colon cancer,colon cancer (DOID:219),indications,42b31bbf-e149-216a-e063-6394a90ae1d5.json
-DOID:1993,rectal cancer,rectal cancer (DOID:1993),indications,42b31bbf-e149-216a-e063-6394a90ae1d5.json
-DOID:11612,polycystic ovary,polycystic ovary (DOID:11612),indications,42c33e9f-eb66-30dd-e063-6294a90a16b1.json
-DOID:5425,ovarian hyperstimulation syndrome,ovarian hyperstimulation syndrome (DOID:5425),indications,42c33e9f-eb66-30dd-e063-6294a90a16b1.json
-DOID:12336,male infertility,male infertility (DOID:12336),indications,42c33e9f-eb66-30dd-e063-6294a90a16b1.json
-DOID:12698,gynecomastia,gynecomastia (DOID:12698),indications,42c33e9f-eb66-30dd-e063-6294a90a16b1.json
-DOID:5119,ovarian cyst,ovarian cyst (DOID:5119),contraindications,42c33e9f-eb66-30dd-e063-6294a90a16b1.json
-DOID:9263,homocystinuria,homocystinuria (DOID:9263),indications,42c7a42b-6a75-69d3-e063-6294a90acc18.json
-DOID:9275,tyrosinemia,tyrosinemia (DOID:9275),indications,42c7c79b-1aa1-12bc-e063-6394a90a5ff8.json
-DOID:11371,functional diarrhea,functional diarrhea (DOID:11371),indications,43144b43-adf2-3d58-e063-6394a90a2b81.json
+DOID:1340,pure red cell aplasia,pure red cell aplasia (DOID:1340),indications,4344ec30-3fdd-5210-e063-6394a90a5de4.json
+DOID:13375,temporal arteritis,temporal arteritis (DOID:13375),indications,4344ec30-3fdd-5210-e063-6394a90a5de4.json
 DOID:9415,allergic asthma,allergic asthma (DOID:9415),indications,4344ec30-3fdd-5210-e063-6394a90a5de4.json
 DOID:841,hypersensitivity pneumonitis,hypersensitivity pneumonitis (DOID:841),indications,4344ec30-3fdd-5210-e063-6394a90a5de4.json
 DOID:0050156,idiopathic pulmonary fibrosis,idiopathic pulmonary fibrosis (DOID:0050156),indications,4344ec30-3fdd-5210-e063-6394a90a5de4.json
+DOID:3770,pulmonary fibrosis,pulmonary fibrosis (DOID:3770),indications,4344ec30-3fdd-5210-e063-6394a90a5de4.json
 DOID:13166,allergic bronchopulmonary aspergillosis,allergic bronchopulmonary aspergillosis (DOID:13166),indications,4344ec30-3fdd-5210-e063-6394a90a5de4.json
+DOID:13564,aspergillosis,aspergillosis (DOID:13564),indications,4344ec30-3fdd-5210-e063-6394a90a5de4.json
 DOID:2942,bronchiolitis,bronchiolitis (DOID:2942),indications,4344ec30-3fdd-5210-e063-6394a90a5de4.json
 DOID:2799,bronchiolitis obliterans,bronchiolitis obliterans (DOID:2799),indications,4344ec30-3fdd-5210-e063-6394a90a5de4.json
 DOID:0050157,bronchiolitis obliterans organizing pneumonia,bronchiolitis obliterans organizing pneumonia (DOID:0050157),indications,4344ec30-3fdd-5210-e063-6394a90a5de4.json
@@ -654,101 +349,406 @@ DOID:853,polymyalgia rheumatica,polymyalgia rheumatica (DOID:853),indications,43
 DOID:2556,relapsing polychondritis,relapsing polychondritis (DOID:2556),indications,4344ec30-3fdd-5210-e063-6394a90a5de4.json
 DOID:865,vasculitis,vasculitis (DOID:865),indications,4344ec30-3fdd-5210-e063-6394a90a5de4.json
 DOID:118,pericardial effusion,pericardial effusion (DOID:118),indications,4344ec30-3fdd-5210-e063-6394a90a5de4.json
-DOID:0060042,pdd,pdd (DOID:0060042),contraindications,4352c1c1-8fb2-d457-e063-6294a90ab64b.json
-DOID:11914,gastroparesis,gastroparesis (DOID:11914),indications,4367fc1e-eb19-0e80-e063-6394a90a58bd.json
-DOID:13270,erythropoietic protoporphyria,erythropoietic protoporphyria (DOID:13270),indications,4370e5cf-443b-ea3b-e063-6294a90a16f3.json
+DOID:1019,osteomyelitis,osteomyelitis (DOID:1019),indications,a056472e-f434-47af-ab72-11769146cdb8.json
+DOID:3146,dyslipidemia,dyslipidemia (DOID:3146),indications,7e9530d1-a940-42e8-b754-0d4089b39db1.json
+DOID:1059,mental retardation,mental retardation (DOID:1059),indications,365e2405-914b-bc98-e063-6394a90adf9a.json
+DOID:3890,acute intermittent porphyria,acute intermittent porphyria (DOID:3890),indications,408fffc1-e900-e47f-e063-6394a90a3230.json
+DOID:13268,porphyria,porphyria (DOID:13268),indications,408fffc1-e900-e47f-e063-6394a90a3230.json
+DOID:3717,gastric adenocarcinoma,gastric adenocarcinoma (DOID:3717),indications,0e5faa31-6fd8-49b5-b838-1278cf068666.json
+DOID:12663,blastomycosis,blastomycosis (DOID:12663),indications,17ebcbb4-d52b-44b8-a4ef-42ddae5034db.json
+DOID:1731,histoplasmosis,histoplasmosis (DOID:1731),indications,17ebcbb4-d52b-44b8-a4ef-42ddae5034db.json
+DOID:13074,tinea unguium,tinea unguium (DOID:13074),indications,17ebcbb4-d52b-44b8-a4ef-42ddae5034db.json
+DOID:13146,esophageal candidiasis,esophageal candidiasis (DOID:13146),contraindications,17ebcbb4-d52b-44b8-a4ef-42ddae5034db.json
+DOID:3319,lymphangioleiomyomatosis,lymphangioleiomyomatosis (DOID:3319),indications,38c957b7-27e3-d35c-e063-6294a90aa511.json
+DOID:12143,neurogenic bladder,neurogenic bladder (DOID:12143),indications,495472e9-88f2-4df2-b2e9-f3c5b5806cd9.json
+DOID:1273,respiratory syncytial virus,respiratory syncytial virus (DOID:1273),indications,264becb4-6a98-4e35-834b-0dc635cc44b1.json
+DOID:0050161,lower respiratory tract disease,lower respiratory tract disease (DOID:0050161),indications,264becb4-6a98-4e35-834b-0dc635cc44b1.json
+DOID:6713,cerebrovascular disease,cerebrovascular disease (DOID:6713),indications,2d56d8bc-f503-4652-8ade-dc7e033c0da5.json
+DOID:341,peripheral vascular disease,peripheral vascular disease (DOID:341),indications,2d56d8bc-f503-4652-8ade-dc7e033c0da5.json
+DOID:0070355,overactive bladder,overactive bladder (DOID:0070355),indications,12a258f8-c123-4b47-b013-153c2bba88d8.json
+DOID:10459,common cold,common cold (DOID:10459),indications,4a4078af-9f10-4969-bf4a-1f11f47b6dca.json
+DOID:3401,siadh,siadh (DOID:3401),indications,701668e3-9542-46eb-b6c9-f7553d33385d.json
+DOID:0051062,ischemic stroke,ischemic stroke (DOID:0051062),indications,95eccfc9-ff4e-47fa-a9c2-3e61a61b7da3.json
+DOID:10241,thalassemia,thalassemia (DOID:10241),indications,85bc2162-59ea-409a-94c2-0edef74922f5.json
+DOID:2987,familial mediterranean fever,familial mediterranean fever (DOID:2987),indications,21c1692d-b2d1-4361-b882-a6acbd751c95.json
+DOID:11077,mediterranean fever,mediterranean fever (DOID:11077),indications,21c1692d-b2d1-4361-b882-a6acbd751c95.json
+DOID:11914,gastroparesis,gastroparesis (DOID:11914),contraindications,4d8f40b7-bd03-44af-8c72-641a31b76d26.json
+DOID:8295,scabies,scabies (DOID:8295),indications,d8c6d2d8-2e47-48c6-8a3a-10a2442f9940.json
+DOID:1432,vision loss,vision loss (DOID:1432),indications,02bb57b3-3949-4111-bb90-3a1d4f38b205.json
+DOID:9700,bacterial conjunctivitis,bacterial conjunctivitis (DOID:9700),indications,29272b83-77cf-4cd1-9aed-b80d0cc6edb5.json
+DOID:0050830,peripheral artery disease,peripheral artery disease (DOID:0050830),indications,10a06ab0-1eb3-4b5a-8374-65ccbe6ce29e.json
+DOID:999,hypereosinophilic syndrome,hypereosinophilic syndrome (DOID:999),indications,738e942d-ce15-46ae-8220-70275cc2daa1.json
+DOID:9119,acute myeloid leukemia,acute myeloid leukemia (DOID:9119),indications,677002b4-7b30-4d32-ae99-5ee630c5b5fb.json
+DOID:0080178,mucositis,mucositis (DOID:0080178),contraindications,677002b4-7b30-4d32-ae99-5ee630c5b5fb.json
+DOID:1307,dementia,dementia (DOID:1307),indications,30b4d5c4-0a32-c385-e063-6394a90adbce.json
+DOID:10783,methemoglobinemia,methemoglobinemia (DOID:10783),contraindications,eb59b468-0778-4910-820c-36ca56b935d5.json
+DOID:2945,sars,sars (DOID:2945),indications,36addfa4-2f5b-46b1-e063-6394a90a90d2.json
+DOID:1040,chronic lymphocytic leukemia,chronic lymphocytic leukemia (DOID:1040),indications,36addfa4-2f5b-46b1-e063-6394a90a90d2.json
+DOID:8567,hodgkin lymphoma,hodgkin lymphoma (DOID:8567),indications,36addfa4-2f5b-46b1-e063-6394a90a90d2.json
+DOID:12177,common variable immunodeficiency,common variable immunodeficiency (DOID:12177),indications,36addfa4-2f5b-46b1-e063-6394a90a90d2.json
+DOID:627,severe combined immunodeficiency,severe combined immunodeficiency (DOID:627),indications,36addfa4-2f5b-46b1-e063-6394a90a90d2.json
+DOID:0111962,combined immunodeficiency,combined immunodeficiency (DOID:0111962),indications,36addfa4-2f5b-46b1-e063-6394a90a90d2.json
+DOID:11198,digeorge syndrome,digeorge syndrome (DOID:11198),indications,36addfa4-2f5b-46b1-e063-6394a90a90d2.json
+DOID:0110698,hhs,hhs (DOID:0110698),indications,36addfa4-2f5b-46b1-e063-6394a90a90d2.json
+DOID:9470,bacterial meningitis,bacterial meningitis (DOID:9470),indications,2cc1b620-59dd-4d45-8edf-af20bdd82ee5.json
+DOID:12017,group b,group b (DOID:12017),indications,2cc1b620-59dd-4d45-8edf-af20bdd82ee5.json
+DOID:9402,epididymitis,epididymitis (DOID:9402),contraindications,2cc1b620-59dd-4d45-8edf-af20bdd82ee5.json
+DOID:2272,vulvovaginal candidiasis,vulvovaginal candidiasis (DOID:2272),indications,395de373-caf5-13e9-e063-6294a90a5684.json
+DOID:2273,vulvovaginitis,vulvovaginitis (DOID:2273),indications,395de373-caf5-13e9-e063-6294a90a5684.json
+DOID:1682,congenital heart disease,congenital heart disease (DOID:1682),indications,063d2028-f666-4304-8cd3-21d882d8c97f.json
+DOID:0081292,traumatic brain injury,traumatic brain injury (DOID:0081292),indications,d68a08e0-d0d9-4144-be01-47b636dfa7e1.json
+DOID:4890,juvenile myoclonic epilepsy,juvenile myoclonic epilepsy (DOID:4890),indications,4e9803fc-a0ec-4345-bfe1-1a940b9847a5.json
+DOID:308,myoclonic epilepsy,myoclonic epilepsy (DOID:308),indications,4e9803fc-a0ec-4345-bfe1-1a940b9847a5.json
+DOID:1827,idiopathic generalized epilepsy,idiopathic generalized epilepsy (DOID:1827),indications,4e9803fc-a0ec-4345-bfe1-1a940b9847a5.json
+DOID:4607,biliary tract cancer,biliary tract cancer (DOID:4607),indications,8da60248-1456-4fa3-80d2-9c75ce77a1cf.json
+DOID:8670,eating disorder,eating disorder (DOID:8670),indications,047c243d-9336-4ef2-b5a8-a7cae312b1be.json
+DOID:10325,silicosis,silicosis (DOID:10325),indications,3966e8ed-31f4-6d0a-e063-6294a90a3233.json
+DOID:2050,acute maxillary sinusitis,acute maxillary sinusitis (DOID:2050),indications,803b37ff-46c6-4dcb-9d9f-a118c4c4601b.json
+DOID:161,keratosis,keratosis (DOID:161),indications,3986ebfb-9121-fedc-e063-6394a90a1766.json
+DOID:11199,hypoparathyroidism,hypoparathyroidism (DOID:11199),indications,17d2bb82-605c-43be-9918-63aeb7102d8c.json
+DOID:3347,osteosarcoma,osteosarcoma (DOID:3347),indications,17d2bb82-605c-43be-9918-63aeb7102d8c.json
+DOID:4944,gastroesophageal junction adenocarcinoma,gastroesophageal junction adenocarcinoma (DOID:4944),indications,bfb39624-e969-49ce-9beb-4f2a5834f572.json
+DOID:3082,ild,ild (DOID:3082),contraindications,bfb39624-e969-49ce-9beb-4f2a5834f572.json
+DOID:8632,kaposi sarcoma,kaposi sarcoma (DOID:8632),indications,0169dbda-53df-4cd9-b989-ff7544f1bdf5.json
+DOID:0050784,primary progressive multiple sclerosis,primary progressive multiple sclerosis (DOID:0050784),indications,8658f2e1-ad36-4ce0-af12-80814bd8bf5c.json
+DOID:864,phlebitis,phlebitis (DOID:864),contraindications,364ab45e-b526-f310-e063-6394a90a4421.json
+DOID:9699,ophthalmia neonatorum,ophthalmia neonatorum (DOID:9699),indications,774d7de5-e3e2-4ec5-ba24-7033af9789a3.json
+DOID:13800,chlamydial conjunctivitis,chlamydial conjunctivitis (DOID:13800),contraindications,774d7de5-e3e2-4ec5-ba24-7033af9789a3.json
+DOID:3127,proctitis,proctitis (DOID:3127),indications,173a5f3c-dd2d-411a-b03c-d5b01d428222.json
+DOID:3686,helicobacter pylori infection,helicobacter pylori infection (DOID:3686),indications,6842c7a1-52e9-4047-81e1-22da3ec35505.json
+DOID:14451,hyperkalemic periodic paralysis,hyperkalemic periodic paralysis (DOID:14451),indications,b51876d3-ec0b-42a5-bf5d-e6ed5d09c32b.json
+DOID:9263,homocystinuria,homocystinuria (DOID:9263),indications,e89ca7b8-3efb-4476-9c6f-49f574c30046.json
+DOID:12449,aplastic anemia,aplastic anemia (DOID:12449),indications,62e82905-3810-472f-b7fd-ba45f1b2b443.json
+DOID:9667,abruptio placentae,abruptio placentae (DOID:9667),indications,62e82905-3810-472f-b7fd-ba45f1b2b443.json
+DOID:224,transient ischemic attack,transient ischemic attack (DOID:224),indications,396b7726-713e-5203-e063-6394a90a19d7.json
+DOID:0061139,coronary atherosclerosis,coronary atherosclerosis (DOID:0061139),indications,396b7726-713e-5203-e063-6394a90a19d7.json
+DOID:1936,atherosclerosis,atherosclerosis (DOID:1936),indications,396b7726-713e-5203-e063-6394a90a19d7.json
+DOID:3385,bacterial vaginosis,bacterial vaginosis (DOID:3385),indications,39aad100-8ae1-4e5e-e063-6294a90afd4c.json
+DOID:3767,vaginal discharge,vaginal discharge (DOID:3767),indications,39aad100-8ae1-4e5e-e063-6294a90afd4c.json
+DOID:437,myasthenia gravis,myasthenia gravis (DOID:437),indications,0429e410-7623-2f45-6170-d4a2eadd8742.json
+DOID:4159,skin cancer,skin cancer (DOID:4159),indications,078c15b1-8509-4ac2-96f8-419ed08fb3a5.json
+DOID:205,hyperostosis,hyperostosis (DOID:205),contraindications,8105505f-9df6-4bc4-b201-7281a2d3af00.json
+DOID:4971,myelofibrosis,myelofibrosis (DOID:4971),indications,3b1ce049-1571-4d2d-add5-a046496204d6.json
+DOID:8432,polycythemia,polycythemia (DOID:8432),indications,3b1ce049-1571-4d2d-add5-a046496204d6.json
+DOID:8997,polycythemia vera,polycythemia vera (DOID:8997),indications,3b1ce049-1571-4d2d-add5-a046496204d6.json
+DOID:2224,essential thrombocythemia,essential thrombocythemia (DOID:2224),indications,3b1ce049-1571-4d2d-add5-a046496204d6.json
+DOID:0111282,psoriasis 5,psoriasis 5 (DOID:0111282),indications,39ad1b16-aed6-d09b-e063-6294a90ab3e9.json
+DOID:0110102,atopic dermatitis 6,atopic dermatitis 6 (DOID:0110102),indications,39ad1b16-aed6-d09b-e063-6294a90ab3e9.json
+DOID:767,muscle wasting,muscle wasting (DOID:767),contraindications,39ad1b16-aed6-d09b-e063-6294a90ab3e9.json
+DOID:0111773,tdd,tdd (DOID:0111773),contraindications,3a851e5a-f061-4676-e063-6294a90ac16c.json
+DOID:14067,falciparum malaria,falciparum malaria (DOID:14067),indications,8cd4d427-50ac-4f9c-a029-e7c2d063679a.json
+DOID:850,lung disease,lung disease (DOID:850),indications,cc34c74c-c2f0-4f57-a465-c91ecec91547.json
+DOID:2797,idiopathic interstitial pneumonia,idiopathic interstitial pneumonia (DOID:2797),indications,cc34c74c-c2f0-4f57-a465-c91ecec91547.json
+DOID:65,connective tissue disease,connective tissue disease (DOID:65),indications,cc34c74c-c2f0-4f57-a465-c91ecec91547.json
+DOID:872,tissue disease,tissue disease (DOID:872),indications,cc34c74c-c2f0-4f57-a465-c91ecec91547.json
+DOID:7475,diverticulitis,diverticulitis (DOID:7475),indications,54977a6e-6c83-40c7-8433-dc4f17f4faa7.json
+DOID:12072,pylorospasm,pylorospasm (DOID:12072),indications,54977a6e-6c83-40c7-8433-dc4f17f4faa7.json
+DOID:12306,vitiligo,vitiligo (DOID:12306),indications,a32bcaac-6cd8-41be-8686-3e10268e0539.json
+DOID:4448,macular degeneration,macular degeneration (DOID:4448),indications,42277606-719f-1fd3-e063-6394a90ad9d6.json
+DOID:4449,macular edema,macular edema (DOID:4449),indications,42277606-719f-1fd3-e063-6394a90ad9d6.json
+DOID:1727,retinal vein occlusion,retinal vein occlusion (DOID:1727),indications,42277606-719f-1fd3-e063-6394a90ad9d6.json
+DOID:9191,diabetic macular edema,diabetic macular edema (DOID:9191),indications,42277606-719f-1fd3-e063-6394a90ad9d6.json
+DOID:8947,diabetic retinopathy,diabetic retinopathy (DOID:8947),indications,42277606-719f-1fd3-e063-6394a90ad9d6.json
+DOID:5327,retinal detachment,retinal detachment (DOID:5327),contraindications,42277606-719f-1fd3-e063-6394a90ad9d6.json
+DOID:11638,presbyopia,presbyopia (DOID:11638),indications,35bee113-ab9f-605d-e063-6394a90ac5a2.json
+DOID:0111151,variant angina,variant angina (DOID:0111151),indications,37376c12-9753-62fd-e063-6394a90a1321.json
+DOID:11823,hepatorenal syndrome,hepatorenal syndrome (DOID:11823),indications,1d0832a2-debc-40bf-8bbe-59383d0bd3c6.json
+DOID:2326,gastroenteritis,gastroenteritis (DOID:2326),indications,12c51c2a-c9f9-4028-b3fb-83a0afae02a0.json
+DOID:230,lateral sclerosis,lateral sclerosis (DOID:230),indications,40905b35-f5ad-1c99-e063-6294a90a22d4.json
+DOID:332,als,als (DOID:332),indications,40905b35-f5ad-1c99-e063-6294a90a22d4.json
+DOID:0050758,metabolic acidosis,metabolic acidosis (DOID:0050758),indications,369f6461-7294-6462-e063-6394a90a78a9.json
+DOID:10075,fish tapeworm,fish tapeworm (DOID:10075),indications,5a299d3b-fc7a-44a0-a9bc-fbcd7eb83e19.json
+DOID:8453,folic acid deficiency,folic acid deficiency (DOID:8453),indications,5a299d3b-fc7a-44a0-a9bc-fbcd7eb83e19.json
+DOID:10607,tropical sprue,tropical sprue (DOID:10607),indications,5a299d3b-fc7a-44a0-a9bc-fbcd7eb83e19.json
+DOID:13381,pernicious anemia,pernicious anemia (DOID:13381),contraindications,5a299d3b-fc7a-44a0-a9bc-fbcd7eb83e19.json
+DOID:9266,cystinuria,cystinuria (DOID:9266),indications,4098f871-874f-92ec-e063-6394a90af53f.json
+DOID:2583,agammaglobulinemia,agammaglobulinemia (DOID:2583),indications,9af28485-0480-441a-9e20-414a611a9e6c.json
+DOID:11917,tinea cruris,tinea cruris (DOID:11917),indications,17cf1fbb-ac20-4379-b1e3-ec0e9c2ff802.json
+DOID:12179,tinea corporis,tinea corporis (DOID:12179),indications,17cf1fbb-ac20-4379-b1e3-ec0e9c2ff802.json
+DOID:0081055,central diabetes insipidus,central diabetes insipidus (DOID:0081055),indications,b3758a34-6d45-473a-acf6-f149c11454bf.json
+DOID:9409,diabetes insipidus,diabetes insipidus (DOID:9409),indications,b3758a34-6d45-473a-acf6-f149c11454bf.json
+DOID:12387,nephrogenic diabetes insipidus,nephrogenic diabetes insipidus (DOID:12387),indications,b3758a34-6d45-473a-acf6-f149c11454bf.json
+DOID:4731,atrophic rhinitis,atrophic rhinitis (DOID:4731),indications,b3758a34-6d45-473a-acf6-f149c11454bf.json
+DOID:3669,intermittent claudication,intermittent claudication (DOID:3669),indications,487b6848-958f-43a0-9c81-2594eebd168b.json
+DOID:4195,hyperglycemia,hyperglycemia (DOID:4195),contraindications,2749b522-e8e5-dae7-e063-6394a90ae724.json
+DOID:12134,factor viii deficiency,factor viii deficiency (DOID:12134),indications,fe6730c0-e1fc-43bf-baa1-f8a1b628b851.json
+DOID:12259,congenital factor ix deficiency,congenital factor ix deficiency (DOID:12259),indications,fe6730c0-e1fc-43bf-baa1-f8a1b628b851.json
+DOID:3490,noonan syndrome,noonan syndrome (DOID:3490),indications,b67c2419-4feb-4ce1-b97e-88760a8e1aee.json
+DOID:2951,motion sickness,motion sickness (DOID:2951),indications,bf5cc977-efa8-40b8-b227-13ee42f0f374.json
+DOID:2449,acromegaly,acromegaly (DOID:2449),indications,190f135a-df9d-45be-8c5d-a06af0c8d25c.json
+DOID:2382,kernicterus,kernicterus (DOID:2382),indications,510c2d51-4943-401c-a008-ea22f61c6938.json
+DOID:1921,klinefelter syndrome,klinefelter syndrome (DOID:1921),indications,a14695b7-4362-4486-a348-61e1625112f3.json
+DOID:0060851,pemphigus vulgaris,pemphigus vulgaris (DOID:0060851),indications,6d7dcd95-bbc2-4b1b-b044-5d6b06e3ca38.json
+DOID:0080832,mild cognitive impairment,mild cognitive impairment (DOID:0080832),indications,2587cf41-574d-46cd-ac6f-8ece4862a4dd.json
+DOID:5614,eye disease,eye disease (DOID:5614),indications,6ffc1a8a-2c1c-4368-9dde-3a46634b7dd9.json
+DOID:582,hemoglobinuria,hemoglobinuria (DOID:582),indications,1d87cb2b-beb5-4396-9950-7e5853cb3aab.json
+DOID:9256,colorectal cancer,colorectal cancer (DOID:9256),indications,9bb2572f-fe38-4675-ae4b-3edc0a437e9d.json
+DOID:11634,myxedema,myxedema (DOID:11634),indications,260cd9b6-671f-4c8a-9baf-f3ab0f34f69b.json
+DOID:7188,chronic lymphocytic thyroiditis,chronic lymphocytic thyroiditis (DOID:7188),indications,260cd9b6-671f-4c8a-9baf-f3ab0f34f69b.json
+DOID:0050489,multinodular goiter,multinodular goiter (DOID:0050489),indications,260cd9b6-671f-4c8a-9baf-f3ab0f34f69b.json
+DOID:3974,medullary carcinoma,medullary carcinoma (DOID:3974),contraindications,260cd9b6-671f-4c8a-9baf-f3ab0f34f69b.json
+DOID:0081120,graves ophthalmopathy,graves ophthalmopathy (DOID:0081120),contraindications,260cd9b6-671f-4c8a-9baf-f3ab0f34f69b.json
+DOID:0050328,congenital hypothyroidism,congenital hypothyroidism (DOID:0050328),contraindications,260cd9b6-671f-4c8a-9baf-f3ab0f34f69b.json
+DOID:0111936,apds,apds (DOID:0111936),indications,ad61f987-e1eb-4da6-9060-cb1915d3636f.json
+DOID:12798,mucopolysaccharidosis,mucopolysaccharidosis (DOID:12798),indications,d3f50b07-ab7c-4922-83b5-6441be0c3c11.json
+DOID:0111391,mps iva,mps iva (DOID:0111391),indications,d3f50b07-ab7c-4922-83b5-6441be0c3c11.json
+DOID:3407,carotid artery disease,carotid artery disease (DOID:3407),indications,401f73b1-98f5-b6d1-e063-6394a90acf6e.json
+DOID:10787,premature menopause,premature menopause (DOID:10787),indications,401f73b1-98f5-b6d1-e063-6394a90acf6e.json
+DOID:8639,delirium tremens,delirium tremens (DOID:8639),indications,3645e239-9893-f2b1-e063-6394a90a8d8e.json
+DOID:607,paraplegia,paraplegia (DOID:607),indications,3645e239-9893-f2b1-e063-6394a90a8d8e.json
+DOID:0080160,cmv retinitis,cmv retinitis (DOID:0080160),indications,058fa4c8-4170-4506-a930-dcacb28d9eff.json
+DOID:3612,retinitis,retinitis (DOID:3612),indications,058fa4c8-4170-4506-a930-dcacb28d9eff.json
+DOID:612,immunodeficiency syndrome,immunodeficiency syndrome (DOID:612),indications,058fa4c8-4170-4506-a930-dcacb28d9eff.json
+DOID:0050073,invasive aspergillosis,invasive aspergillosis (DOID:0050073),indications,12633f28-49ec-44ca-ae20-d2f012403247.json
+DOID:0050289,fusariosis,fusariosis (DOID:0050289),contraindications,12633f28-49ec-44ca-ae20-d2f012403247.json
+DOID:2334,metastatic carcinoma,metastatic carcinoma (DOID:2334),indications,2fc24d11-bf17-4007-8a65-d949793a972e.json
+DOID:0050096,tinea barbae,tinea barbae (DOID:0050096),indications,79afc7a7-d77e-48eb-b1c6-6ea974801f38.json
+DOID:4337,tinea capitis,tinea capitis (DOID:4337),indications,79afc7a7-d77e-48eb-b1c6-6ea974801f38.json
+DOID:8478,actinomycosis,actinomycosis (DOID:8478),indications,79afc7a7-d77e-48eb-b1c6-6ea974801f38.json
+DOID:14484,sporotrichosis,sporotrichosis (DOID:14484),indications,79afc7a7-d77e-48eb-b1c6-6ea974801f38.json
+DOID:1562,chromoblastomycosis,chromoblastomycosis (DOID:1562),indications,79afc7a7-d77e-48eb-b1c6-6ea974801f38.json
+DOID:13450,coccidioidomycosis,coccidioidomycosis (DOID:13450),indications,79afc7a7-d77e-48eb-b1c6-6ea974801f38.json
+DOID:12053,cryptococcosis,cryptococcosis (DOID:12053),indications,79afc7a7-d77e-48eb-b1c6-6ea974801f38.json
+DOID:2312,nocardiosis,nocardiosis (DOID:2312),indications,79afc7a7-d77e-48eb-b1c6-6ea974801f38.json
+DOID:8411,renal angiomyolipoma,renal angiomyolipoma (DOID:8411),contraindications,42518037-5af1-d432-e063-6394a90ae7a2.json
+DOID:3314,angiomyolipoma,angiomyolipoma (DOID:3314),contraindications,42518037-5af1-d432-e063-6394a90ae7a2.json
+DOID:5077,sega,sega (DOID:5077),contraindications,42518037-5af1-d432-e063-6394a90ae7a2.json
+DOID:12556,acute tubular necrosis,acute tubular necrosis (DOID:12556),contraindications,62ff03a3-fb25-41d8-9c6c-d1ad61ea3d31.json
+DOID:12859,chorea,chorea (DOID:12859),indications,e5459b2b-579f-6e7f-91a9-23ee61f86399.json
+DOID:9993,hypoglycemia,hypoglycemia (DOID:9993),contraindications,38516eee-640b-10f4-e063-6394a90a21ec.json
+DOID:12550,hepatic coma,hepatic coma (DOID:12550),contraindications,4b33337a-4e4b-42f3-923f-5b61f02fc463.json
+DOID:684,hepatocellular carcinoma,hepatocellular carcinoma (DOID:684),indications,36b5d209-cacb-b09d-e063-6294a90ac3ac.json
+DOID:3963,thyroid carcinoma,thyroid carcinoma (DOID:3963),indications,36b5d209-cacb-b09d-e063-6294a90ac3ac.json
+DOID:5214,demyelinating polyneuropathy,demyelinating polyneuropathy (DOID:5214),indications,6a4d5d91-cc5e-4b6f-86c2-47e5498faa53.json
+DOID:1389,polyneuropathy,polyneuropathy (DOID:1389),indications,6a4d5d91-cc5e-4b6f-86c2-47e5498faa53.json
+DOID:10609,rickets,rickets (DOID:10609),indications,3696e558-ebe1-103e-e063-6294a90adf55.json
+DOID:0050336,hypophosphatemia,hypophosphatemia (DOID:0050336),indications,3696e558-ebe1-103e-e063-6294a90adf55.json
+DOID:219,colon cancer,colon cancer (DOID:219),indications,b349bdd1-79de-44e6-ab0b-892a65bda6f6.json
+DOID:0111275,cas,cas (DOID:0111275),indications,7c1db393-3664-425f-af20-8d2175fb634e.json
+DOID:0080162,lupus nephritis,lupus nephritis (DOID:0080162),indications,413a060a-faf5-af00-e063-6394a90af847.json
+DOID:10952,nephritis,nephritis (DOID:10952),indications,413a060a-faf5-af00-e063-6394a90af847.json
+DOID:0080747,chronic urticaria,chronic urticaria (DOID:0080747),indications,36c1922f-56d1-9a55-e063-6294a90a5571.json
+DOID:8704,genital herpes,genital herpes (DOID:8704),indications,364a2f8b-adfa-b8ce-e063-6394a90a8f9d.json
+DOID:8659,chickenpox,chickenpox (DOID:8659),indications,364a2f8b-adfa-b8ce-e063-6394a90a8f9d.json
+DOID:12466,secondary hyperparathyroidism,secondary hyperparathyroidism (DOID:12466),indications,211361e9-87ad-476a-af8f-8b887c3b6c4e.json
+DOID:13543,hyperparathyroidism,hyperparathyroidism (DOID:13543),indications,211361e9-87ad-476a-af8f-8b887c3b6c4e.json
+DOID:2456,blepharoconjunctivitis,blepharoconjunctivitis (DOID:2456),indications,396b50c4-6ca8-360c-e063-6394a90a263d.json
+DOID:12098,trigeminal neuralgia,trigeminal neuralgia (DOID:12098),contraindications,387c0d2b-bfb4-4415-a8c6-002bcd78f049.json
 DOID:13868,hypoactive sexual desire disorder,hypoactive sexual desire disorder (DOID:13868),indications,437e6c45-dfb9-35ec-e063-6394a90a7874.json
-DOID:0050693,bss,bss (DOID:0050693),contraindications,44559f09-e0e2-a332-e063-6394a90aa296.json
-DOID:0090061,fcas,fcas (DOID:0090061),indications,45376297-5629-4f69-a583-48a97e905a82.json
-DOID:0050854,mws,mws (DOID:0050854),indications,45376297-5629-4f69-a583-48a97e905a82.json
+DOID:0060262,gallbladder disease,gallbladder disease (DOID:0060262),indications,31a7329b-a246-4638-b436-6d3bb337c582.json
+DOID:1172,familial hypertriglyceridemia,familial hypertriglyceridemia (DOID:1172),indications,31a7329b-a246-4638-b436-6d3bb337c582.json
+DOID:12236,primary biliary cholangitis,primary biliary cholangitis (DOID:12236),indications,20823686-4796-42e1-ac93-fa5cf3be27f8.json
+DOID:9446,cholangitis,cholangitis (DOID:9446),indications,20823686-4796-42e1-ac93-fa5cf3be27f8.json
+DOID:1993,rectal cancer,rectal cancer (DOID:1993),indications,f0b40b2c-ed11-4197-bf8b-e1fe8476bc6a.json
+DOID:11249,vitamin k deficiency,vitamin k deficiency (DOID:11249),indications,219e0da6-2fee-450f-ba9c-ff2595f90b69.json
+DOID:13582,k deficiency,k deficiency (DOID:13582),indications,219e0da6-2fee-450f-ba9c-ff2595f90b69.json
+DOID:2235,prothrombin deficiency,prothrombin deficiency (DOID:2235),indications,219e0da6-2fee-450f-ba9c-ff2595f90b69.json
+DOID:2213,hemorrhagic disease,hemorrhagic disease (DOID:2213),indications,219e0da6-2fee-450f-ba9c-ff2595f90b69.json
+DOID:13603,obstructive jaundice,obstructive jaundice (DOID:13603),indications,219e0da6-2fee-450f-ba9c-ff2595f90b69.json
+DOID:10608,celiac disease,celiac disease (DOID:10608),indications,219e0da6-2fee-450f-ba9c-ff2595f90b69.json
+DOID:12377,spinal muscular atrophy,spinal muscular atrophy (DOID:12377),indications,d0fbae48-8b5a-4dfa-9574-cb1a2d2e7ff8.json
+DOID:1875,erectile dysfunction,erectile dysfunction (DOID:1875),indications,374d4807-739b-5381-e063-6394a90affba.json
+DOID:5575,delayed puberty,delayed puberty (DOID:5575),indications,d5da1ec5-4a9e-4714-9240-039f802b2c1e.json
+DOID:9270,alkaptonuria,alkaptonuria (DOID:9270),indications,2d883e57-720f-494e-be8f-db592ba0aa32.json
+DOID:4977,lymphedema,lymphedema (DOID:4977),indications,c8158f85-c286-402d-9cca-85bcfe4e4085.json
+DOID:11396,pulmonary edema,pulmonary edema (DOID:11396),indications,c8158f85-c286-402d-9cca-85bcfe4e4085.json
+DOID:0080322,polycystic kidney disease,polycystic kidney disease (DOID:0080322),indications,6424b47e-d581-4a0f-8baa-e66eee8d5902.json
+DOID:4531,mec,mec (DOID:4531),indications,4ab2e965-912b-4a1c-80e7-a07217c96d35.json
+DOID:13548,symptomatic parkinsonism,symptomatic parkinsonism (DOID:13548),indications,40a9fe53-d24b-d4ad-e063-6294a90aeff5.json
+DOID:1947,trichomoniasis,trichomoniasis (DOID:1947),indications,0086502b-b500-4fe7-8c02-83a783f7e422.json
+DOID:5757,endocervicitis,endocervicitis (DOID:5757),indications,0086502b-b500-4fe7-8c02-83a783f7e422.json
+DOID:0050228,amebic dysentery,amebic dysentery (DOID:0050228),indications,0086502b-b500-4fe7-8c02-83a783f7e422.json
+DOID:0090019,sitosterolemia,sitosterolemia (DOID:0090019),indications,41245086-1b60-b4a1-e063-6394a90a2d0f.json
+DOID:3463,breast disease,breast disease (DOID:3463),indications,d546f4fe-ebb3-47cf-9222-563d15caa8b1.json
+DOID:2388,renal artery disease,renal artery disease (DOID:2388),indications,d546f4fe-ebb3-47cf-9222-563d15caa8b1.json
+DOID:5418,schizoaffective disorder,schizoaffective disorder (DOID:5418),indications,38837e2a-084f-4179-e063-6394a90afd45.json
+DOID:0050589,inflammatory bowel disease,inflammatory bowel disease (DOID:0050589),indications,3b0ab2d0-97cd-853f-e063-6294a90a31b3.json
+DOID:0050140,acute diarrhea,acute diarrhea (DOID:0050140),contraindications,3b0ab2d0-97cd-853f-e063-6294a90a31b3.json
+DOID:0050848,obstructive sleep apnea,obstructive sleep apnea (DOID:0050848),indications,7165bd7b-3337-b9c9-51b3-6c9c29993329.json
+DOID:0050847,sleep apnea,sleep apnea (DOID:0050847),indications,7165bd7b-3337-b9c9-51b3-6c9c29993329.json
+DOID:0081267,graft versus host disease,graft versus host disease (DOID:0081267),indications,962695b7-21f5-44bb-80e0-cb3b48c80be6.json
+DOID:7474,malignant pleural mesothelioma,malignant pleural mesothelioma (DOID:7474),indications,5106d88b-1681-4c38-b80b-8f3d9158d3e4.json
+DOID:9463,otitis externa,otitis externa (DOID:9463),contraindications,3745661f-5d20-487d-e063-6294a90a5a68.json
+DOID:14247,chronic suppurative otitis media,chronic suppurative otitis media (DOID:14247),contraindications,3745661f-5d20-487d-e063-6294a90a5a68.json
+DOID:11506,suppurative otitis media,suppurative otitis media (DOID:11506),contraindications,3745661f-5d20-487d-e063-6294a90a5a68.json
+DOID:14219,renal tubular acidosis,renal tubular acidosis (DOID:14219),indications,39e81850-ac5b-656e-e063-6294a90a1d94.json
+DOID:0080652,calcium oxalate nephrolithiasis,calcium oxalate nephrolithiasis (DOID:0080652),indications,39e81850-ac5b-656e-e063-6294a90a1d94.json
+DOID:585,nephrolithiasis,nephrolithiasis (DOID:585),indications,39e81850-ac5b-656e-e063-6294a90a1d94.json
+DOID:9637,stomatitis,stomatitis (DOID:9637),indications,424dba13-53c3-5abf-e063-6394a90a4722.json
+DOID:0080547,mash,mash (DOID:0080547),indications,4b92e0b3-da0b-4c1a-a926-295b389a1a57.json
+DOID:3650,lactic acidosis,lactic acidosis (DOID:3650),indications,1cc6a0c6-0475-4c98-92ab-a6184974cfd7.json
+DOID:743,dermographism,dermographism (DOID:743),indications,36f60cbe-813d-cfa8-e063-6294a90a0b0a.json
+DOID:9620,vesicoureteral reflux,vesicoureteral reflux (DOID:9620),indications,5407234f-5a9d-9a66-2e42-6629c0c74aec.json
+DOID:1702,ichthyosis vulgaris,ichthyosis vulgaris (DOID:1702),indications,38e594a2-48af-5554-e063-6294a90a376e.json
+DOID:11650,bronchopulmonary dysplasia,bronchopulmonary dysplasia (DOID:11650),indications,e49058c9-f9f1-4636-a19f-2fc6d2a37979.json
+DOID:3068,glioblastoma,glioblastoma (DOID:3068),indications,14b0f256-a380-424d-a9d4-fafb6ec0e246.json
+DOID:0050902,medulloblastoma,medulloblastoma (DOID:0050902),indications,14b0f256-a380-424d-a9d4-fafb6ec0e246.json
+DOID:1909,melanoma,melanoma (DOID:1909),indications,652f415f-d3b2-4805-975a-ab1a444510de.json
+DOID:4239,alveolar soft part sarcoma,alveolar soft part sarcoma (DOID:4239),indications,652f415f-d3b2-4805-975a-ab1a444510de.json
+DOID:11612,polycystic ovary,polycystic ovary (DOID:11612),indications,42c33e9f-eb66-30dd-e063-6294a90a16b1.json
+DOID:5425,ovarian hyperstimulation syndrome,ovarian hyperstimulation syndrome (DOID:5425),indications,42c33e9f-eb66-30dd-e063-6294a90a16b1.json
+DOID:10689,galactorrhea,galactorrhea (DOID:10689),indications,42c33e9f-eb66-30dd-e063-6294a90a16b1.json
+DOID:12700,hyperprolactinemia,hyperprolactinemia (DOID:12700),indications,42c33e9f-eb66-30dd-e063-6294a90a16b1.json
+DOID:5223,infertility,infertility (DOID:5223),indications,42c33e9f-eb66-30dd-e063-6294a90a16b1.json
+DOID:12336,male infertility,male infertility (DOID:12336),indications,42c33e9f-eb66-30dd-e063-6294a90a16b1.json
+DOID:12698,gynecomastia,gynecomastia (DOID:12698),indications,42c33e9f-eb66-30dd-e063-6294a90a16b1.json
+DOID:5119,ovarian cyst,ovarian cyst (DOID:5119),contraindications,42c33e9f-eb66-30dd-e063-6294a90a16b1.json
+DOID:0050746,mantle cell lymphoma,mantle cell lymphoma (DOID:0050746),indications,cb583177-746c-4525-8089-9cf42b33483c.json
+DOID:9952,acute lymphoblastic leukemia,acute lymphoblastic leukemia (DOID:9952),indications,1fa3495c-6d28-4da7-b071-4acb22b22c33.json
+DOID:1037,lymphoblastic leukemia,lymphoblastic leukemia (DOID:1037),indications,1fa3495c-6d28-4da7-b071-4acb22b22c33.json
+DOID:12849,autistic disorder,autistic disorder (DOID:12849),indications,2af53e64-46a6-4b12-9ac8-8f8031a8bd97.json
+DOID:14038,precocious puberty,precocious puberty (DOID:14038),indications,24e33d5f-c64b-4d45-a5ae-e18a1f696cfa.json
+DOID:0112308,cpp,cpp (DOID:0112308),indications,24e33d5f-c64b-4d45-a5ae-e18a1f696cfa.json
+DOID:2998,testicular cancer,testicular cancer (DOID:2998),indications,fdee89dd-171b-4c31-9651-919cd8aaff39.json
+DOID:0050859,hemorrhagic cystitis,hemorrhagic cystitis (DOID:0050859),contraindications,fdee89dd-171b-4c31-9651-919cd8aaff39.json
+DOID:0081445,sickle cell disease,sickle cell disease (DOID:0081445),indications,0635706e-180e-435e-92cf-c85e0ca4f7e0.json
+DOID:1749,squamous cell carcinoma,squamous cell carcinoma (DOID:1749),indications,1e241c47-2ccb-434e-95f5-d45aa9e1ecf3.json
+DOID:2513,basal cell carcinoma,basal cell carcinoma (DOID:2513),indications,1e241c47-2ccb-434e-95f5-d45aa9e1ecf3.json
+DOID:0080367,chronic eosinophilic leukemia,chronic eosinophilic leukemia (DOID:0080367),indications,38a9944b-db90-72f2-3f0b-7767da490ae2.json
+DOID:3507,dermatofibrosarcoma protuberans,dermatofibrosarcoma protuberans (DOID:3507),indications,38a9944b-db90-72f2-3f0b-7767da490ae2.json
+DOID:2991,stromal tumors,stromal tumors (DOID:2991),indications,38a9944b-db90-72f2-3f0b-7767da490ae2.json
+DOID:326,ischemia,ischemia (DOID:326),indications,0d404b23-eb94-419a-9d37-10d139dfc593.json
+DOID:0050744,anaplastic large cell lymphoma,anaplastic large cell lymphoma (DOID:0050744),indications,f5e01d3a-43fc-4fa6-b5dd-a07330b49328.json
+DOID:0050905,inflammatory myofibroblastic tumor,inflammatory myofibroblastic tumor (DOID:0050905),indications,f5e01d3a-43fc-4fa6-b5dd-a07330b49328.json
+DOID:14330,paralysis agitans,paralysis agitans (DOID:14330),indications,372af940-7fe9-4525-e063-6294a90ab417.json
+DOID:14332,postencephalitic parkinsonism,postencephalitic parkinsonism (DOID:14332),indications,372af940-7fe9-4525-e063-6294a90ab417.json
+DOID:2349,arteriosclerosis,arteriosclerosis (DOID:2349),indications,372af940-7fe9-4525-e063-6294a90ab417.json
+DOID:11256,typhus,typhus (DOID:11256),indications,3ac1aaae-d186-cf72-e063-6394a90a1dbe.json
+DOID:11100,q fever,q fever (DOID:11100),indications,3ac1aaae-d186-cf72-e063-6394a90a1dbe.json
+DOID:11103,rickettsialpox,rickettsialpox (DOID:11103),indications,3ac1aaae-d186-cf72-e063-6394a90a1dbe.json
+DOID:13819,lymphogranuloma venereum,lymphogranuloma venereum (DOID:13819),indications,3ac1aaae-d186-cf72-e063-6394a90a1dbe.json
+DOID:11262,psittacosis,psittacosis (DOID:11262),indications,3ac1aaae-d186-cf72-e063-6394a90a1dbe.json
+DOID:11265,trachoma,trachoma (DOID:11265),indications,3ac1aaae-d186-cf72-e063-6394a90a1dbe.json
+DOID:13034,relapsing fever,relapsing fever (DOID:13034),indications,3ac1aaae-d186-cf72-e063-6394a90a1dbe.json
+DOID:2123,tularemia,tularemia (DOID:2123),indications,3ac1aaae-d186-cf72-e063-6394a90a1dbe.json
+DOID:1498,cholera,cholera (DOID:1498),indications,3ac1aaae-d186-cf72-e063-6394a90a1dbe.json
+DOID:11102,bartonellosis,bartonellosis (DOID:11102),indications,3ac1aaae-d186-cf72-e063-6394a90a1dbe.json
+DOID:9113,granuloma inguinale,granuloma inguinale (DOID:9113),indications,3ac1aaae-d186-cf72-e063-6394a90a1dbe.json
+DOID:10371,yaws,yaws (DOID:10371),indications,3ac1aaae-d186-cf72-e063-6394a90a1dbe.json
+DOID:4157,secondary syphilis,secondary syphilis (DOID:4157),contraindications,3ac1aaae-d186-cf72-e063-6394a90a1dbe.json
+DOID:9080,macroglobulinemia,macroglobulinemia (DOID:9080),indications,2339daa7-cae4-4e46-aba6-5cd2a5ea0a68.json
+DOID:643,pml,pml (DOID:643),indications,4ae13352-da98-4df4-be70-eef532ea3511.json
+DOID:529,blepharospasm,blepharospasm (DOID:529),contraindications,4eb11ea5-7eed-98ca-f51b-bec2b5989dd1.json
+DOID:2921,glomerulonephritis,glomerulonephritis (DOID:2921),contraindications,4131081c-b618-0dba-e063-6294a90af249.json
+DOID:0111595,cca,cca (DOID:0111595),contraindications,0bc105d8-d6f2-4632-8b97-70fecc2783d1.json
+DOID:0061214,biliary obstruction,biliary obstruction (DOID:0061214),indications,a955bb47-533a-4c76-a2c4-7c2053401e55.json
+DOID:2755,mycobacterium avium complex,mycobacterium avium complex (DOID:2755),indications,25e74b16-cdf0-4959-be62-1745c4e4cf0a.json
+DOID:2385,thiamine deficiency,thiamine deficiency (DOID:2385),indications,3972cf2f-88ce-e507-e063-6394a90a8da5.json
+DOID:13725,beriberi,beriberi (DOID:13725),indications,3972cf2f-88ce-e507-e063-6394a90a8da5.json
+DOID:936,encephalopathy,encephalopathy (DOID:936),indications,3972cf2f-88ce-e507-e063-6394a90a8da5.json
+DOID:10915,korsakoff syndrome,korsakoff syndrome (DOID:10915),contraindications,3972cf2f-88ce-e507-e063-6394a90a8da5.json
+DOID:10554,meningoencephalitis,meningoencephalitis (DOID:10554),indications,94972438-1ece-f99c-c2a5-e29821e7e9d4.json
+DOID:636,osmotic demyelination syndrome,osmotic demyelination syndrome (DOID:636),contraindications,0770d1c7-920a-4569-9e1d-de264bea58b1.json
+DOID:0080161,cutaneous candidiasis,cutaneous candidiasis (DOID:0080161),indications,2bd2a48e-cbef-4b14-a02f-9aa693cc4b47.json
+DOID:1024,leprosy,leprosy (DOID:1024),indications,133a7b8c-5bf0-41f7-84e1-7dac278986d7.json
+DOID:722,miscarriage,miscarriage (DOID:722),contraindications,c21ed625-a726-4100-b6e9-c4d4727cbbbf.json
+DOID:0080422,dravet syndrome,dravet syndrome (DOID:0080422),indications,3d0d64c8-00d5-4cd5-9a98-d0c9c648ea43.json
+DOID:13515,tuberous sclerosis,tuberous sclerosis (DOID:13515),indications,3d0d64c8-00d5-4cd5-9a98-d0c9c648ea43.json
+DOID:0070080,schizophrenia 4,schizophrenia 4 (DOID:0070080),contraindications,3a38572a-6805-90f5-e063-6394a90a9b93.json
+DOID:0070084,schizophrenia 8,schizophrenia 8 (DOID:0070084),contraindications,3a38572a-6805-90f5-e063-6394a90a9b93.json
+DOID:0061030,hemophilia,hemophilia (DOID:0061030),indications,1b44b4bb-22db-4dcb-b0e2-70c9657d3542.json
+DOID:2316,cerebral ischemia,cerebral ischemia (DOID:2316),contraindications,3855c3da-ff24-8301-e063-6294a90a22b3.json
+DOID:13270,erythropoietic protoporphyria,erythropoietic protoporphyria (DOID:13270),indications,4370e5cf-443b-ea3b-e063-6294a90a16f3.json
+DOID:12197,punctate keratitis,punctate keratitis (DOID:12197),indications,4e52b9da-99d5-49b3-9e5a-09e689f623b4.json
+DOID:8839,herpes zoster keratitis,herpes zoster keratitis (DOID:8839),indications,4e52b9da-99d5-49b3-9e5a-09e689f623b4.json
+DOID:13316,exocrine pancreatic insufficiency,exocrine pancreatic insufficiency (DOID:13316),indications,6b24ef38-2c65-4b1d-804a-a8301db084e6.json
+DOID:0112339,dos,dos (DOID:0112339),contraindications,416dbd88-4408-43c2-b47d-c14911c050d0.json
+DOID:12385,shigellosis,shigellosis (DOID:12385),indications,012dfac7-9b72-48a5-a364-e62bbe150cfe.json
+DOID:4752,multiple system atrophy,multiple system atrophy (DOID:4752),indications,15a3d787-2fea-4455-9932-dd2eae43ac5f.json
+DOID:11503,diabetic autonomic neuropathy,diabetic autonomic neuropathy (DOID:11503),indications,15a3d787-2fea-4455-9932-dd2eae43ac5f.json
+DOID:11504,autonomic neuropathy,autonomic neuropathy (DOID:11504),indications,15a3d787-2fea-4455-9932-dd2eae43ac5f.json
+DOID:11371,functional diarrhea,functional diarrhea (DOID:11371),indications,43144b43-adf2-3d58-e063-6394a90a2b81.json
+DOID:0050120,hemophagocytic lymphohistiocytosis,hemophagocytic lymphohistiocytosis (DOID:0050120),indications,8ad514da-e74a-48bb-bcd1-6c8b39cb89f9.json
+DOID:3382,liposarcoma,liposarcoma (DOID:3382),indications,a5a1fb2a-5371-4fb3-86e6-37481b8be25a.json
+DOID:711,refractory hairy cell leukemia,refractory hairy cell leukemia (DOID:711),indications,e2a13722-66e8-48df-bf6a-65eca64068e6.json
+DOID:285,hairy cell leukemia,hairy cell leukemia (DOID:285),indications,e2a13722-66e8-48df-bf6a-65eca64068e6.json
+DOID:0060185,pseudomembranous colitis,pseudomembranous colitis (DOID:0060185),indications,387e305a-ef60-0aa2-e063-6294a90a3cfb.json
+DOID:14365,primary carnitine deficiency,primary carnitine deficiency (DOID:14365),indications,3beded34-64c8-4a1d-80d4-02b3007233b9.json
+DOID:0060284,paroxysmal nocturnal hemoglobinuria,paroxysmal nocturnal hemoglobinuria (DOID:0060284),indications,41262953-a849-4095-b9c2-5a1d8b0238cc.json
+DOID:12554,hemolytic uremic syndrome,hemolytic uremic syndrome (DOID:12554),indications,41262953-a849-4095-b9c2-5a1d8b0238cc.json
+DOID:8869,neuromyelitis optica,neuromyelitis optica (DOID:8869),indications,41262953-a849-4095-b9c2-5a1d8b0238cc.json
+DOID:0080147,lymphoblastic lymphoma,lymphoblastic lymphoma (DOID:0080147),indications,cca29ff5-d000-43da-b64a-c65816a8a9c4.json
+DOID:11247,disseminated intravascular coagulation,disseminated intravascular coagulation (DOID:11247),indications,0b8c048e-43c6-4996-b2be-2e9c1339e386.json
+DOID:559,acute pyelonephritis,acute pyelonephritis (DOID:559),indications,ab03fd88-8988-4165-ab2a-48a5da12c7ba.json
+DOID:3078,anaplastic astrocytoma,anaplastic astrocytoma (DOID:3078),indications,39a0cb7d-c7e0-45d1-8761-ada92a2a15d7.json
+DOID:9368,keratoconjunctivitis,keratoconjunctivitis (DOID:9368),indications,873de1bc-b4f1-44b7-ba28-01406c298b22.json
+DOID:9938,dacryocystitis,dacryocystitis (DOID:9938),indications,873de1bc-b4f1-44b7-ba28-01406c298b22.json
+DOID:4912,disseminated adenocarcinoma,disseminated adenocarcinoma (DOID:4912),indications,fbb00883-4ca9-4396-bf6d-f5f1a136c08f.json
+DOID:1468,labyrinthitis,labyrinthitis (DOID:1468),indications,131b9f89-35ac-4e38-b2c1-0180c0fbdf0b.json
+DOID:3602,neurotoxicity,neurotoxicity (DOID:3602),contraindications,4072f3df-e754-4c2e-be0c-af3c8edb9211.json
+DOID:446,primary hyperaldosteronism,primary hyperaldosteronism (DOID:446),contraindications,365cda17-71dc-3115-e063-6394a90a3f2a.json
+DOID:0090061,familial cold autoinflammatory syndrome,familial cold autoinflammatory syndrome (DOID:0090061),indications,cd22e234-8fe3-4a3c-9cef-1f75d0bce97c.json
+DOID:0050854,mws,mws (DOID:0050854),indications,cd22e234-8fe3-4a3c-9cef-1f75d0bce97c.json
+DOID:1787,pericarditis,pericarditis (DOID:1787),indications,cd22e234-8fe3-4a3c-9cef-1f75d0bce97c.json
+DOID:0080217,lal deficiency,lal deficiency (DOID:0080217),contraindications,341de317-904b-4933-88da-b239c5989871.json
+DOID:12404,ringworm,ringworm (DOID:12404),indications,6d66c19d-0069-4a47-a45c-567aa0398135.json
+DOID:13906,malignant pleural effusion,malignant pleural effusion (DOID:13906),indications,386130d4-1b0d-5e87-e063-6394a90aefa7.json
+DOID:1673,pneumothorax,pneumothorax (DOID:1673),indications,386130d4-1b0d-5e87-e063-6394a90aefa7.json
+DOID:1967,leiomyosarcoma,leiomyosarcoma (DOID:1967),indications,419ad993-edf5-f3b9-e063-6294a90a1962.json
+DOID:13382,megaloblastic anemia,megaloblastic anemia (DOID:13382),contraindications,0ac32e99-c204-4104-8d83-4a24c0baccf1.json
+DOID:4099,metastatic squamous cell carcinoma,metastatic squamous cell carcinoma (DOID:4099),contraindications,2b93c1ef-2564-4502-bf1c-45b27159abc4.json
+DOID:0080374,gastroesophageal cancer,gastroesophageal cancer (DOID:0080374),contraindications,2b93c1ef-2564-4502-bf1c-45b27159abc4.json
+DOID:1926,gaucher disease,gaucher disease (DOID:1926),indications,589c114d-45f1-423a-8064-846060d968ce.json
+DOID:1064,cystinosis,cystinosis (DOID:1064),indications,34dba967-28b4-4fc8-876d-2e30d32a0f95.json
+DOID:418,systemic sclerosis,systemic sclerosis (DOID:418),indications,5c860918-0d7e-4aaf-b103-85f66e9dcdbe.json
+DOID:762,bacterial endocarditis,bacterial endocarditis (DOID:762),indications,129ba067-a214-45c6-8c39-cafc82a32546.json
+DOID:988,mitral valve prolapse,mitral valve prolapse (DOID:988),indications,129ba067-a214-45c6-8c39-cafc82a32546.json
+DOID:0060042,pdd,pdd (DOID:0060042),contraindications,4352c1c1-8fb2-d457-e063-6294a90ab64b.json
+DOID:13581,magnesium deficiency,magnesium deficiency (DOID:13581),indications,82c807c8-da31-4166-803f-a194b26dd1dc.json
+DOID:0050476,barth syndrome,barth syndrome (DOID:0050476),indications,41c197ca-7d69-d807-e063-6294a90ae017.json
+DOID:8941,seborrhea sicca,seborrhea sicca (DOID:8941),indications,390ab477-4120-9fd3-e063-6294a90aa010.json
+DOID:1272,telangiectasia,telangiectasia (DOID:1272),indications,396bb675-13eb-724b-e063-6294a90ab1d4.json
+DOID:8866,actinic keratosis,actinic keratosis (DOID:8866),indications,396bb675-13eb-724b-e063-6294a90ab1d4.json
+DOID:0070663,soft tissue sarcoma,soft tissue sarcoma (DOID:0070663),indications,f57f2d5c-15b9-443a-a6d3-d09287296ab2.json
+DOID:0080188,chronic myelomonocytic leukemia,chronic myelomonocytic leukemia (DOID:0080188),indications,2e50eb33-f576-404d-8ef5-402f1d95acc0.json
+DOID:10718,giardiasis,giardiasis (DOID:10718),indications,36d804aa-0040-15a6-e063-6294a90abc0f.json
+DOID:0080176,meningococcal meningitis,meningococcal meningitis (DOID:0080176),indications,38b73048-9d52-416c-a03b-87ea29384df3.json
+DOID:799,varicose veins,varicose veins (DOID:799),indications,f443bbaf-ef8e-4f9e-ba4c-6f87dc58a671.json
+DOID:4947,cholangiocarcinoma,cholangiocarcinoma (DOID:4947),indications,a91a6853-fd49-4b68-8d0d-5c1f09695c83.json
+DOID:13378,mlns,mlns (DOID:13378),indications,a91a6853-fd49-4b68-8d0d-5c1f09695c83.json
+DOID:12919,ovale malaria,ovale malaria (DOID:12919),indications,129278f0-8928-4330-899a-b1602818700d.json
+DOID:1398,parasitemia,parasitemia (DOID:1398),indications,129278f0-8928-4330-899a-b1602818700d.json
+DOID:14069,cerebral malaria,cerebral malaria (DOID:14069),indications,129278f0-8928-4330-899a-b1602818700d.json
+DOID:8596,scarlet fever,scarlet fever (DOID:8596),indications,06e8e958-641f-4573-9907-15590e0625a0.json
+DOID:11330,erysipelas,erysipelas (DOID:11330),indications,06e8e958-641f-4573-9907-15590e0625a0.json
+DOID:4079,valvular heart disease,valvular heart disease (DOID:4079),indications,06e8e958-641f-4573-9907-15590e0625a0.json
+DOID:0040085,bacterial sepsis,bacterial sepsis (DOID:0040085),indications,65ca54d7-de8c-4c5f-b47e-393f24de2af9.json
+DOID:9675,pulmonary emphysema,pulmonary emphysema (DOID:9675),indications,6a232f5f-b029-4908-98b1-eda6ab98f451.json
+DOID:0080809,chronic asthma,chronic asthma (DOID:0080809),contraindications,37ece9da-94d1-ebda-e063-6294a90a2c44.json
+DOID:1206,rett syndrome,rett syndrome (DOID:1206),indications,76660c23-59c4-4b51-8e5d-60d3b77ec146.json
+DOID:0050748,marginal zone lymphoma,marginal zone lymphoma (DOID:0050748),indications,a70f85e0-c22b-419a-9be2-51f575932633.json
+DOID:10603,glucose intolerance,glucose intolerance (DOID:10603),contraindications,4083b5c8-ad5f-43f6-ab19-3c87acb2883f.json
+DOID:0050771,pheochromocytoma,pheochromocytoma (DOID:0050771),indications,cd87ec4e-09e2-40d7-831b-0b2e5205dafa.json
+DOID:0080347,malignant pheochromocytoma,malignant pheochromocytoma (DOID:0080347),indications,cd87ec4e-09e2-40d7-831b-0b2e5205dafa.json
+DOID:2352,hemochromatosis,hemochromatosis (DOID:2352),indications,ba0ac56a-a16e-4e41-ad3d-623cbd5f2c73.json
+DOID:2351,iron disorder,iron disorder (DOID:2351),indications,ba0ac56a-a16e-4e41-ad3d-623cbd5f2c73.json
+DOID:11678,onchocerciasis,onchocerciasis (DOID:11678),indications,410f2173-90f1-2f73-e063-6394a90a0aa9.json
+DOID:8445,volvulus,volvulus (DOID:8445),indications,410f2173-90f1-2f73-e063-6394a90a0aa9.json
+DOID:0060260,blepharoptosis,blepharoptosis (DOID:0060260),indications,29070ca5-a098-4227-9710-b4a8d1587370.json
+DOID:3948,adrenocortical carcinoma,adrenocortical carcinoma (DOID:3948),indications,40a4cc96-c834-c03b-e063-6394a90a01d1.json
+DOID:3298,vaccinia,vaccinia (DOID:3298),indications,d2318235-6bd3-496a-873e-91d993fdfad8.json
+DOID:9588,encephalitis,encephalitis (DOID:9588),indications,d2318235-6bd3-496a-873e-91d993fdfad8.json
 DOID:0090018,traps,traps (DOID:0090018),indications,45376297-5629-4f69-a583-48a97e905a82.json
 DOID:2959,hyperimmunoglobulin syndrome,hyperimmunoglobulin syndrome (DOID:2959),indications,45376297-5629-4f69-a583-48a97e905a82.json
 DOID:0050452,mevalonate kinase deficiency,mevalonate kinase deficiency (DOID:0050452),indications,45376297-5629-4f69-a583-48a97e905a82.json
-DOID:3669,intermittent claudication,intermittent claudication (DOID:3669),indications,487b6848-958f-43a0-9c81-2594eebd168b.json
-DOID:643,pml,pml (DOID:643),indications,4ae13352-da98-4df4-be70-eef532ea3511.json
-DOID:12550,hepatic coma,hepatic coma (DOID:12550),contraindications,4b33337a-4e4b-42f3-923f-5b61f02fc463.json
-DOID:0080547,mash,mash (DOID:0080547),indications,4b92e0b3-da0b-4c1a-a926-295b389a1a57.json
-DOID:12197,punctate keratitis,punctate keratitis (DOID:12197),indications,4e52b9da-99d5-49b3-9e5a-09e689f623b4.json
-DOID:8839,herpes zoster keratitis,herpes zoster keratitis (DOID:8839),indications,4e52b9da-99d5-49b3-9e5a-09e689f623b4.json
-DOID:529,blepharospasm,blepharospasm (DOID:529),contraindications,4eb11ea5-7eed-98ca-f51b-bec2b5989dd1.json
-DOID:9119,acute myeloid leukemia,acute myeloid leukemia (DOID:9119),indications,5047f866-a689-466d-9808-52138bd638c4.json
-DOID:9620,vesicoureteral reflux,vesicoureteral reflux (DOID:9620),indications,5407234f-5a9d-9a66-2e42-6629c0c74aec.json
-DOID:1926,gaucher disease,gaucher disease (DOID:1926),indications,589c114d-45f1-423a-8064-846060d968ce.json
-DOID:10075,fish tapeworm,fish tapeworm (DOID:10075),indications,5a299d3b-fc7a-44a0-a9bc-fbcd7eb83e19.json
-DOID:10607,tropical sprue,tropical sprue (DOID:10607),indications,5a299d3b-fc7a-44a0-a9bc-fbcd7eb83e19.json
-DOID:13381,pernicious anemia,pernicious anemia (DOID:13381),contraindications,5a299d3b-fc7a-44a0-a9bc-fbcd7eb83e19.json
-DOID:418,systemic sclerosis,systemic sclerosis (DOID:418),indications,5c860918-0d7e-4aaf-b103-85f66e9dcdbe.json
-DOID:3082,interstitial lung disease,interstitial lung disease (DOID:3082),indications,5c860918-0d7e-4aaf-b103-85f66e9dcdbe.json
-DOID:14566,neoplasm,neoplasm (DOID:14566),indications,5cf92ebf-46ff-4b14-becc-848ef1a79282.json
-DOID:4660,indolent systemic mastocytosis,indolent systemic mastocytosis (DOID:4660),indications,5cf92ebf-46ff-4b14-becc-848ef1a79282.json
-DOID:65,connective tissue disease,connective tissue disease (DOID:65),indications,5e5649be-a5bb-4f39-9b52-c5e0bad4dc01.json
-DOID:872,tissue disease,tissue disease (DOID:872),indications,5e5649be-a5bb-4f39-9b52-c5e0bad4dc01.json
-DOID:12449,aplastic anemia,aplastic anemia (DOID:12449),indications,62e82905-3810-472f-b7fd-ba45f1b2b443.json
-DOID:9667,abruptio placentae,abruptio placentae (DOID:9667),indications,62e82905-3810-472f-b7fd-ba45f1b2b443.json
-DOID:12556,acute tubular necrosis,acute tubular necrosis (DOID:12556),contraindications,62ff03a3-fb25-41d8-9c6c-d1ad61ea3d31.json
-DOID:1116,pertussis,pertussis (DOID:1116),indications,63d64de0-c590-4542-b3f3-92600d7dca18.json
-DOID:4156,primary syphilis,primary syphilis (DOID:4156),indications,63d64de0-c590-4542-b3f3-92600d7dca18.json
-DOID:0080322,polycystic kidney disease,polycystic kidney disease (DOID:0080322),indications,6424b47e-d581-4a0f-8baa-e66eee8d5902.json
-DOID:0040085,bacterial sepsis,bacterial sepsis (DOID:0040085),indications,65ca54d7-de8c-4c5f-b47e-393f24de2af9.json
-DOID:0080178,mucositis,mucositis (DOID:0080178),contraindications,677002b4-7b30-4d32-ae99-5ee630c5b5fb.json
-DOID:9675,pulmonary emphysema,pulmonary emphysema (DOID:9675),indications,6a232f5f-b029-4908-98b1-eda6ab98f451.json
-DOID:5214,demyelinating polyneuropathy,demyelinating polyneuropathy (DOID:5214),indications,6a4d5d91-cc5e-4b6f-86c2-47e5498faa53.json
-DOID:12404,ringworm,ringworm (DOID:12404),indications,6d66c19d-0069-4a47-a45c-567aa0398135.json
-DOID:0050096,tinea barbae,tinea barbae (DOID:0050096),indications,6d66c19d-0069-4a47-a45c-567aa0398135.json
-DOID:4337,tinea capitis,tinea capitis (DOID:4337),indications,6d66c19d-0069-4a47-a45c-567aa0398135.json
-DOID:14484,sporotrichosis,sporotrichosis (DOID:14484),indications,6d66c19d-0069-4a47-a45c-567aa0398135.json
-DOID:1562,chromoblastomycosis,chromoblastomycosis (DOID:1562),indications,6d66c19d-0069-4a47-a45c-567aa0398135.json
-DOID:13450,coccidioidomycosis,coccidioidomycosis (DOID:13450),indications,6d66c19d-0069-4a47-a45c-567aa0398135.json
-DOID:2312,nocardiosis,nocardiosis (DOID:2312),indications,6d66c19d-0069-4a47-a45c-567aa0398135.json
-DOID:3401,siadh,siadh (DOID:3401),indications,701668e3-9542-46eb-b6c9-f7553d33385d.json
-DOID:9362,status asthmaticus,status asthmaticus (DOID:9362),indications,738e942d-ce15-46ae-8220-70275cc2daa1.json
-DOID:1206,rett syndrome,rett syndrome (DOID:1206),indications,76660c23-59c4-4b51-8e5d-60d3b77ec146.json
-DOID:13922,eosinophilic esophagitis,eosinophilic esophagitis (DOID:13922),indications,77e41a00-cced-47fd-b14f-3b010f75ae8c.json
-DOID:8506,bullous pemphigoid,bullous pemphigoid (DOID:8506),indications,77e41a00-cced-47fd-b14f-3b010f75ae8c.json
-DOID:0080841,pemphigoid,pemphigoid (DOID:0080841),indications,77e41a00-cced-47fd-b14f-3b010f75ae8c.json
-DOID:722,miscarriage,miscarriage (DOID:722),contraindications,7aa20241-2aba-4a44-a5b1-a89e87e3f4a9.json
-DOID:0111275,cas,cas (DOID:0111275),indications,7c1db393-3664-425f-af20-8d2175fb634e.json
-DOID:9938,dacryocystitis,dacryocystitis (DOID:9938),indications,873de1bc-b4f1-44b7-ba28-01406c298b22.json
-DOID:12930,dilated cardiomyopathy,dilated cardiomyopathy (DOID:12930),indications,8ab000cd-0258-489a-b1bb-4cc1ca359d6c.json
-DOID:0050120,hemophagocytic lymphohistiocytosis,hemophagocytic lymphohistiocytosis (DOID:0050120),indications,8ad514da-e74a-48bb-bcd1-6c8b39cb89f9.json
-DOID:4607,biliary tract cancer,biliary tract cancer (DOID:4607),indications,8da60248-1456-4fa3-80d2-9c75ce77a1cf.json
-DOID:12134,factor viii deficiency,factor viii deficiency (DOID:12134),indications,8f25ff10-e9d1-46a1-9889-e2c3f6e0d432.json
-DOID:9563,bronchiectasis,bronchiectasis (DOID:9563),indications,91dd7927-d619-479a-821f-a6b233469e1e.json
-DOID:10554,meningoencephalitis,meningoencephalitis (DOID:10554),indications,94972438-1ece-f99c-c2a5-e29821e7e9d4.json
-DOID:2583,agammaglobulinemia,agammaglobulinemia (DOID:2583),indications,9af28485-0480-441a-9e20-414a611a9e6c.json
-DOID:12306,vitiligo,vitiligo (DOID:12306),indications,a32bcaac-6cd8-41be-8686-3e10268e0539.json
-DOID:12798,mucopolysaccharidosis,mucopolysaccharidosis (DOID:12798),indications,a6819483-3275-4b44-8e87-f6246503af43.json
-DOID:0050744,anaplastic large cell lymphoma,anaplastic large cell lymphoma (DOID:0050744),indications,a695c1a2-3acc-468b-a829-c8761dc041f6.json
-DOID:0050748,marginal zone lymphoma,marginal zone lymphoma (DOID:0050748),indications,a70f85e0-c22b-419a-9be2-51f575932633.json
-DOID:2222,factor x deficiency,factor x deficiency (DOID:2222),indications,a8c682be-f448-46a8-965c-798c831772de.json
-DOID:4947,cholangiocarcinoma,cholangiocarcinoma (DOID:4947),indications,a91a6853-fd49-4b68-8d0d-5c1f09695c83.json
-DOID:13378,mlns,mlns (DOID:13378),indications,a91a6853-fd49-4b68-8d0d-5c1f09695c83.json
-DOID:9743,diabetic neuropathy,diabetic neuropathy (DOID:9743),indications,aa26cf31-7dfe-4454-9d18-53ecd28dbc15.json
-DOID:12377,spinal muscular atrophy,spinal muscular atrophy (DOID:12377),indications,ab2e1c6c-4f95-4243-9296-1734e0a30591.json
-DOID:0111936,apds,apds (DOID:0111936),indications,ad61f987-e1eb-4da6-9060-cb1915d3636f.json
-DOID:4731,atrophic rhinitis,atrophic rhinitis (DOID:4731),indications,b3758a34-6d45-473a-acf6-f149c11454bf.json
-DOID:3490,noonan syndrome,noonan syndrome (DOID:3490),indications,b67c2419-4feb-4ce1-b97e-88760a8e1aee.json
-DOID:2018,hyperinsulinemia,hyperinsulinemia (DOID:2018),indications,b6d9ad95-3f05-403d-a0c1-a7ff81d9351b.json
-DOID:2352,hemochromatosis,hemochromatosis (DOID:2352),indications,ba0ac56a-a16e-4e41-ad3d-623cbd5f2c73.json
-DOID:2351,iron disorder,iron disorder (DOID:2351),indications,ba0ac56a-a16e-4e41-ad3d-623cbd5f2c73.json
-DOID:4977,lymphedema,lymphedema (DOID:4977),indications,c8158f85-c286-402d-9cca-85bcfe4e4085.json
-DOID:11396,pulmonary edema,pulmonary edema (DOID:11396),indications,c8158f85-c286-402d-9cca-85bcfe4e4085.json
-DOID:0050771,pheochromocytoma,pheochromocytoma (DOID:0050771),indications,cd87ec4e-09e2-40d7-831b-0b2e5205dafa.json
-DOID:0080347,malignant pheochromocytoma,malignant pheochromocytoma (DOID:0080347),indications,cd87ec4e-09e2-40d7-831b-0b2e5205dafa.json
-DOID:14227,azoospermia,azoospermia (DOID:14227),contraindications,cf526da9-3b55-4383-89d0-87bf22eea963.json
-DOID:3298,vaccinia,vaccinia (DOID:3298),indications,d2318235-6bd3-496a-873e-91d993fdfad8.json
-DOID:9588,encephalitis,encephalitis (DOID:9588),indications,d2318235-6bd3-496a-873e-91d993fdfad8.json
-DOID:0111391,mps iva,mps iva (DOID:0111391),indications,d3f50b07-ab7c-4922-83b5-6441be0c3c11.json
-DOID:440,neuromuscular disease,neuromuscular disease (DOID:440),contraindications,d40d8c7d-32a9-4518-9043-766790c1037c.json
-DOID:3463,breast disease,breast disease (DOID:3463),indications,d546f4fe-ebb3-47cf-9222-563d15caa8b1.json
-DOID:2388,renal artery disease,renal artery disease (DOID:2388),indications,d546f4fe-ebb3-47cf-9222-563d15caa8b1.json
-DOID:711,refractory hairy cell leukemia,refractory hairy cell leukemia (DOID:711),indications,e2a13722-66e8-48df-bf6a-65eca64068e6.json
-DOID:285,hairy cell leukemia,hairy cell leukemia (DOID:285),indications,e2a13722-66e8-48df-bf6a-65eca64068e6.json
-DOID:11650,bronchopulmonary dysplasia,bronchopulmonary dysplasia (DOID:11650),indications,e49058c9-f9f1-4636-a19f-2fc6d2a37979.json
-DOID:8923,cutaneous melanoma,cutaneous melanoma (DOID:8923),indications,ecc3bf01-2632-4c2e-85aa-e34da43d25f2.json
-DOID:799,varicose veins,varicose veins (DOID:799),indications,f443bbaf-ef8e-4f9e-ba4c-6f87dc58a671.json
-DOID:0070663,soft tissue sarcoma,soft tissue sarcoma (DOID:0070663),indications,f57f2d5c-15b9-443a-a6d3-d09287296ab2.json
-DOID:0050905,inflammatory myofibroblastic tumor,inflammatory myofibroblastic tumor (DOID:0050905),indications,f5e01d3a-43fc-4fa6-b5dd-a07330b49328.json
-DOID:10126,keratoconus,keratoconus (DOID:10126),indications,f63ef247-b3d5-4962-a80d-4e24d2f0d725.json
+DOID:8515,cor pulmonale,cor pulmonale (DOID:8515),contraindications,13bc9538-700e-4405-bf4e-802b1450ca7b.json
+DOID:8867,molluscum contagiosum,molluscum contagiosum (DOID:8867),indications,0af12ae7-bb37-4319-94d1-8074b39d4e1b.json
+DOID:1949,acute cholecystitis,acute cholecystitis (DOID:1949),indications,5c5cb92a-87b7-42e7-999c-d09323bfa0c3.json
 DOID:3911,progeria,progeria (DOID:3911),indications,f9866ec6-3efb-4cee-88bc-4fa608ef542c.json
-DOID:4912,disseminated adenocarcinoma,disseminated adenocarcinoma (DOID:4912),indications,fbb00883-4ca9-4396-bf6d-f5f1a136c08f.json
+DOID:3965,merkel cell carcinoma,merkel cell carcinoma (DOID:3965),indications,8e1f3b1c-5aab-408c-930e-619daa6afa8a.json
+DOID:0050731,vitamin b12 deficiency,vitamin b12 deficiency (DOID:0050731),contraindications,3b113cb9-5e61-10da-e063-6394a90a84a7.json
+DOID:13832,patent ductus arteriosus,patent ductus arteriosus (DOID:13832),contraindications,2d8f2280-bc20-45ba-bdf3-12c055684017.json
+DOID:440,neuromuscular disease,neuromuscular disease (DOID:440),contraindications,d40d8c7d-32a9-4518-9043-766790c1037c.json
+DOID:749,gi bleeding,gi bleeding (DOID:749),indications,0b1ec3e1-8489-4738-b5c8-9dfa5d8ebb95.json
+DOID:1540,parathyroid carcinoma,parathyroid carcinoma (DOID:1540),indications,40aa0834-3fd8-c230-e063-6294a90a800d.json
+DOID:13419,neurogenic bowel,neurogenic bowel (DOID:13419),indications,1c473f01-dccd-4be7-bb0b-9a028f90fd22.json
+DOID:9563,bronchiectasis,bronchiectasis (DOID:9563),indications,91dd7927-d619-479a-821f-a6b233469e1e.json
+DOID:2222,factor x deficiency,factor x deficiency (DOID:2222),indications,a8c682be-f448-46a8-965c-798c831772de.json
+DOID:11840,coronary artery spasm,coronary artery spasm (DOID:11840),contraindications,2180c38c-9155-4c89-83c0-ea9e0bb568fb.json
+DOID:9275,tyrosinemia,tyrosinemia (DOID:9275),indications,42c7c79b-1aa1-12bc-e063-6394a90a5ff8.json
+DOID:9478,postpartum depression,postpartum depression (DOID:9478),indications,01239ea3-4398-481d-82b8-5577f56169b9.json
+DOID:12895,keratoconjunctivitis sicca,keratoconjunctivitis sicca (DOID:12895),indications,0dc3c832-fe01-4913-ba52-47cca4c890b4.json
+DOID:8923,cutaneous melanoma,cutaneous melanoma (DOID:8923),indications,ecc3bf01-2632-4c2e-85aa-e34da43d25f2.json
+DOID:11054,bladder cancer,bladder cancer (DOID:11054),indications,a47aadc2-f4fa-4ac5-b5de-7d9d707b381b.json
+DOID:2018,hyperinsulinemia,hyperinsulinemia (DOID:2018),indications,b6d9ad95-3f05-403d-a0c1-a7ff81d9351b.json
+DOID:5003,eunuchism,eunuchism (DOID:5003),contraindications,07c89b2d-5710-46ca-b642-a0fbd51026af.json

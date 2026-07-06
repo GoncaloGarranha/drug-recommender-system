@@ -1,3 +1,6 @@
+from __future__ import annotations
+
+from kg_constructor.src.utils.paths import build_output_paths
 """
 Step 02: Parse input JSON files and generate clean, normalized CSV tables
 for drugs, ingredients, diseases, and edges.
@@ -6,7 +9,6 @@ All names and identifiers are normalized at this stage to ensure consistency
 and simplify canonical mapping in the following steps.
 """
 
-from __future__ import annotations
 
 import json
 from pathlib import Path
@@ -19,7 +21,6 @@ from kg_constructor.src.utils.io import (
     write_csv,
 )
 from kg_constructor.src.utils.log import get_logger
-from kg_constructor.src.utils.paths import build_output_paths
 from kg_constructor.src.utils.text import (
     clean_disease_label,
     clean_whitespace,

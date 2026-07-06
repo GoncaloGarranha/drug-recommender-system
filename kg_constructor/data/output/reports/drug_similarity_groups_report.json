@@ -1,0 +1,10 @@
+{
+  "num_groups": 1317,
+  "non_singleton_groups": 497,
+  "min_group_size": 1,
+  "max_group_size": 33,
+  "mean_group_size": 2.421412300683371,
+  "output_path": "/Users/garranha/workspace/ISEL/Mestrado/Tese/tese/kg_constructor/data/processed/drug_similarity_groups.json",
+  "source_triples": "/Users/garranha/workspace/ISEL/Mestrado/Tese/tese/kg_constructor/data/output/triples/triples.filtered.csv",
+  "source_relation": "HAS_INGREDIENT"
+}

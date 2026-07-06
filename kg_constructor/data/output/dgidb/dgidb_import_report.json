@@ -1,0 +1,48 @@
+{
+  "input_triples": "kg_constructor/data/output/triples/triples_with_genes.csv",
+  "dgidb_interactions": "kg_constructor/data/external/dgidb/interactions.tsv",
+  "output_triples": "kg_constructor/data/output/triples/triples_with_dgidb.csv",
+  "relation": "INTERACTS_WITH_GENE",
+  "dgidb_rows": 98920,
+  "mapped_unique_interactions": 4495,
+  "unmapped_unique_drugs": 19329,
+  "unmapped_unique_genes": 3200,
+  "original_kg_triples": 36251,
+  "new_kg_triples": 40746,
+  "drug_mapping_methods": {
+    "name": 4486,
+    "drugbank": 9
+  },
+  "gene_mapping_methods": {
+    "symbol": 4495
+  },
+  "relation_distribution": {
+    "HAS_INGREDIENT": 18349,
+    "ASSOCIATED_WITH_GENE": 9943,
+    "INDICATION": 5739,
+    "INTERACTS_WITH_GENE": 4495,
+    "CONTRAINDICATION": 2220
+  },
+  "top_dgidb_sources": {
+    "ChEMBL": 1039,
+    "PharmGKB": 914,
+    "DTC": 730,
+    "NCI": 653,
+    "TdgClinicalTrial": 335,
+    "GuideToPharmacology": 185,
+    "TEND": 168,
+    "CKB-CORE": 145,
+    "TTD": 106,
+    "CIViC": 99,
+    "CGI": 50,
+    "FDA": 18,
+    "MyCancerGenomeClinicalTrial": 15,
+    "ClearityFoundationClinicalTrial": 10,
+    "MyCancerGenome": 9,
+    "TALC": 8,
+    "ClearityFoundationBiomarkers": 5,
+    "OncoKB": 3,
+    "DoCM": 2,
+    "COSMIC": 1
+  }
+}

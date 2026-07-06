@@ -1,8 +1,8 @@
 seed: 42
 
 data:
-  triples_path: "kg_constructor/data/output/triples/triples_with_targets.csv"
-  processed_dir: "models/rgcn/data/processed/disease_to_drug_with_targets"
+  triples_path: "kg_constructor/data/output/triples/triples_with_dgidb.csv"
+  processed_dir: "models/rgcn/data/processed/disease_to_drug_with_dgidb"
 
 model:
   add_inverse_edges: true
@@ -17,7 +17,7 @@ task:
     - "CONTRAINDICATION"
     - "HAS_INGREDIENT"
     - "ASSOCIATED_WITH_GENE"
-    - "TARGETS_GENE"
+    - "INTERACTS_WITH_GENE"
 
 split:
   mode: random
@@ -65,4 +65,4 @@ metapath_baseline:
 
 runs:
   out_dir: "results/runs/rgcn"
-  experiment_name: "with_targets"
+  experiment_name: "with_dgidb"

@@ -46,6 +46,7 @@ pipeline:
     - "08_build_active_ingredients"
     - "09_build_active_substance_groups"
     - "10_build_pharmacological_groups"
+    - "11_build_drug_gene_targets"
 # ---------------------------------------------------------
 # Filtering rules (used in 05_filter_graph)
 # ---------------------------------------------------------
@@ -116,3 +117,10 @@ pharmacological_groups:
   input_csv: "interim/drug_active_substance_groups.csv"
   output_csv: "interim/drug_pharmacological_groups.csv"
   summary_json: "interim/drug_pharmacological_groups_summary.json"
+
+dgidb_interactions:
+  enabled: true
+  input_triples_path: "kg_constructor/data/output/triples/triples_with_genes.csv"
+  interactions_path: "kg_constructor/data/external/dgidb/interactions.tsv"
+  output_dir: "kg_constructor/data/output/dgidb"
+  output_triples_path: "kg_constructor/data/output/triples/triples_with_dgidb.csv"

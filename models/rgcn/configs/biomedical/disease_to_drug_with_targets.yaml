@@ -65,6 +65,12 @@ metapath_baseline:
   aggregation: "topk_mean"
   top_k: 3
 
+model:
+  add_inverse_edges: true
+  use_layer_norm: true
+  use_residual: true
+  use_relation_gates: true
+
 runs:
   out_dir: "results/runs/rgcn"
   experiment_name: "with_dgidb"

@@ -416,6 +416,9 @@ def main() -> None:
         cfg["training"]["num_bases"],
         cfg["training"]["num_layers"],
         cfg["training"]["dropout"],
+        use_layer_norm=cfg.get("model", {}).get("use_layer_norm", True),
+        use_residual=cfg.get("model", {}).get("use_residual", True),
+        use_relation_gates=cfg.get("model", {}).get("use_relation_gates", False),
     ).to(device)
 
     decoder = DistMultDecoder(

@@ -4,6 +4,9 @@ data:
   processed_dir: models/rgcn/data/processed/disease_to_drug_with_dgidb
 model:
   add_inverse_edges: true
+  use_layer_norm: true
+  use_residual: true
+  use_relation_gates: true
 task:
   name: disease_to_drug
   target_relation: INDICATION

@@ -1,0 +1,43 @@
+seed: 42
+data:
+  triples_path: kg_constructor/data/output/triples/triples_with_dgidb.csv
+  processed_dir: models/rgcn/data/processed/disease_to_drug_with_dgidb
+model:
+  add_inverse_edges: true
+task:
+  name: disease_to_drug
+  target_relation: INDICATION
+  query_entity_type: DISEASE
+  candidate_entity_type: DRUG
+  context_relations:
+  - INDICATION
+  - CONTRAINDICATION
+  - HAS_INGREDIENT
+  - ASSOCIATED_WITH_GENE
+  - INTERACTS_WITH_GENE
+split:
+  mode: random
+  train_ratio: 0.8
+  val_ratio: 0.1
+  test_ratio: 0.1
+baseline:
+  use_ingredients: true
+  feature_relations:
+  - CONTRAINDICATION
+  - HAS_INGREDIENT
+  - INTERACTS_WITH_GENE
+  use_train_indication_genes: true
+  gene_relation: ASSOCIATED_WITH_GENE
+  gene_feature_prefix: TRAIN_INDICATION_GENE
+metapath_baseline:
+  use_ingredients: true
+  use_contraindications: true
+  use_train_indication_genes: true
+  w_ingredients: 0.8
+  w_contraindications: 0.2
+  w_genes: 1.2
+  aggregation: topk_mean
+  top_k: 3
+runs:
+  out_dir: results/runs/content-based
+  experiment_name: with_dgidb

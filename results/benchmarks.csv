@@ -24,3 +24,7 @@ timestamp,dataset,model_name,hits@1,hits@3,hits@10,mrr,notes
 2026-07-03T16:08:06.592851,disease_to_drug_with_genes,Metapath kNN Content-Based,0.316522,0.413913,0.553043,0.392234,Structure-aware kNN content baseline | Config: disease_to_drug_with_genes.yaml | Split: test | aggregation=topk_mean
 2026-07-06T22:16:42.699698,disease_to_drug_with_dgidb,R-GCN (disease_to_drug),0.714783,0.742609,0.789565,0.738067,Run: seed_42 | Split: test
 2026-07-07T15:54:32.503031,disease_to_drug_with_dgidb_no_ingredients,R-GCN (disease_to_drug),0.655652,0.700870,0.744348,0.687742,Run: seed_42 | Split: test
+2026-07-08T09:54:04.328530,disease_to_drug_with_dgidb_no_contraindications,R-GCN (disease_to_drug),0.685217,0.723478,0.763478,0.710776,Run: seed_42 | Split: test
+2026-07-08T10:32:25.404170,disease_to_drug_with_dgidb,R-GCN (disease_to_drug),0.714783,0.742609,0.789565,0.738067,Run: seed_42 | Split: test
+2026-07-08T11:41:01.119722,disease_to_drug_with_dgidb,Content-Based (TF-IDF baseline),0.193043,0.236522,0.295652,0.230636,Aligned with R-GCN protocol | Config: disease_to_drug_with_dgidb.yaml | Split: test | use_train_indication_genes=True
+2026-07-08T11:45:49.937877,disease_to_drug_with_dgidb,Metapath kNN Content-Based,0.316522,0.413913,0.553043,0.392234,Structure-aware kNN content baseline | Config: disease_to_drug_with_dgidb.yaml | Split: test | aggregation=topk_mean

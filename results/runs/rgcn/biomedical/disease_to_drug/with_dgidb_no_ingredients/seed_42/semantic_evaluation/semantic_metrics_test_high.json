@@ -1,0 +1,26 @@
+{
+  "split": "test",
+  "detail_topk": 10,
+  "confidence_mode": "high",
+  "total_examples": 575,
+  "mapped_gold_examples": 358,
+  "semantic_coverage": 0.6226086956521739,
+  "metrics": {
+    "raw_mrr": 0.6877417596271427,
+    "semantic_mrr": 0.7030163296406335,
+    "semantic_mrr_excluding_exact": 0.014679898310773704,
+    "mean_best_jaccard": 1.0,
+    "exact_hits@1": 0.6556521739130434,
+    "semantic_hits@1": 0.6731843575418994,
+    "semantic_hits_excluding_exact@1": 0.0,
+    "exact_hits@3": 0.7008695652173913,
+    "semantic_hits@3": 0.7122905027932961,
+    "semantic_hits_excluding_exact@3": 0.01675977653631285,
+    "exact_hits@10": 0.7443478260869565,
+    "semantic_hits@10": 0.7569832402234636,
+    "semantic_hits_excluding_exact@10": 0.04189944134078212
+  },
+  "outputs": {
+    "detailed_csv": "results/runs/rgcn/biomedical/disease_to_drug/with_dgidb_no_ingredients/seed_42/semantic_evaluation/semantic_predictions_test_high.csv"
+  }
+}

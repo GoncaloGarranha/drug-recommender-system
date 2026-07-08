@@ -23,3 +23,4 @@ timestamp,dataset,model_name,hits@1,hits@3,hits@10,mrr,notes
 2026-07-03T16:00:47.141207,disease_to_drug_with_genes,Metapath kNN Content-Based,0.139130,0.203478,0.323478,0.202325,Structure-aware kNN content baseline | Config: disease_to_drug_with_genes.yaml | Split: test | similarity=overlap | aggregation=topk_mean
 2026-07-03T16:08:06.592851,disease_to_drug_with_genes,Metapath kNN Content-Based,0.316522,0.413913,0.553043,0.392234,Structure-aware kNN content baseline | Config: disease_to_drug_with_genes.yaml | Split: test | aggregation=topk_mean
 2026-07-06T22:16:42.699698,disease_to_drug_with_dgidb,R-GCN (disease_to_drug),0.714783,0.742609,0.789565,0.738067,Run: seed_42 | Split: test
+2026-07-07T15:54:32.503031,disease_to_drug_with_dgidb_no_ingredients,R-GCN (disease_to_drug),0.655652,0.700870,0.744348,0.687742,Run: seed_42 | Split: test

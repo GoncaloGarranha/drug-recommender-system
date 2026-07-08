@@ -1,0 +1,16 @@
+{
+  "split": "test",
+  "task": "disease_to_drug",
+  "target_relation": "INDICATION",
+  "negative_mode": "mixed",
+  "num_negatives": 50,
+  "hard_negative_ratio": 0.5,
+  "num_positives": 575,
+  "num_scored_pairs": 29325,
+  "auc_roc": 0.9308217164461248,
+  "average_precision": 0.4625006743766542,
+  "mrr": 0.7900278497737457,
+  "hits@1": 0.7043478260869566,
+  "hits@10": 0.9165217391304348,
+  "hits@50": 0.9982608695652174
+}

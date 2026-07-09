@@ -4,24 +4,31 @@ from typing import Any, Dict, List, Set
 
 
 def infer_entity_type(entity_id: str) -> str:
-	"""
-	Infer the entity type from its canonical prefix.
-	
-	Supports:
-		- DRUGBANK:*, DRUG:* → "DRUG"
-		- DOID:* → "DISEASE"
-		- UNII:*, ING:* → "INGREDIENT"
-		- Otherwise → "UNKNOWN"
-	"""
-	if entity_id.startswith("DRUGBANK:") or entity_id.startswith("DRUG:"):
-		return "DRUG"
-	if entity_id.startswith("DOID:"):
-		return "DISEASE"
-	if entity_id.startswith("UNII:") or entity_id.startswith("ING:"):
-		return "INGREDIENT"
-	if entity_id.startswith("GENE:"):
-		return "GENE"
-	return "UNKNOWN"
+    """
+    Infer the entity type from its canonical biomedical prefix.
+
+    Supports:
+        - DRUGBANK:*, DRUG:*, CHEBI:* -> "DRUG"
+        - DOID:* -> "DISEASE"
+        - GENE:* -> "GENE"
+        - UNII:*, ING:* -> "INGREDIENT"
+        - Otherwise -> "UNKNOWN"
+    """
+    entity_id = str(entity_id).strip()
+
+    if entity_id.startswith(("DRUGBANK:", "DRUG:", "CHEBI:")):
+        return "DRUG"
+
+    if entity_id.startswith("DOID:"):
+        return "DISEASE"
+
+    if entity_id.startswith("GENE:"):
+        return "GENE"
+
+    if entity_id.startswith(("UNII:", "ING:")):
+        return "INGREDIENT"
+
+    return "UNKNOWN"
 
 
 def validate_triples_schema(rows: List[Dict[str, str]]) -> None:

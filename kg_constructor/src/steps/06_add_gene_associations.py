@@ -31,8 +31,37 @@ def add_gene_associations(cfg: Dict[str, Any], paths, force: bool = False) -> No
     """Step 06: add disease-gene associations from Open Targets to KG triples."""
     gene_cfg = cfg.get("gene_associations", {})
 
+    triples_path = _resolve_path(
+        gene_cfg.get("input_triples_path"),
+        DEFAULT_TRIPLES_PATH,
+    )
+    out_triples = _resolve_path(
+        gene_cfg.get("output_triples_path"),
+        OUT_TRIPLES,
+    )
+
     if not bool(gene_cfg.get("enabled", False)):
-        print("Gene association step disabled by config. Skipping step.")
+        import shutil
+
+        if not triples_path.exists():
+            raise FileNotFoundError(
+                f"Gene association pass-through input not found: {triples_path}"
+            )
+
+        out_triples.parent.mkdir(parents=True, exist_ok=True)
+
+        if force or not out_triples.exists():
+            shutil.copyfile(triples_path, out_triples)
+            print(
+                "Gene association step disabled by config. "
+                f"Pass-through copied {triples_path} -> {out_triples}"
+            )
+        else:
+            print(
+                "Gene association step disabled by config. "
+                f"Pass-through output already exists: {out_triples}"
+            )
+
         return
 
     import pandas as pd

@@ -47,6 +47,7 @@ pipeline:
     - "09_build_active_substance_groups"
     - "10_build_pharmacological_groups"
     - "11_build_drug_gene_targets"
+    - "12_quality_gate"
 # ---------------------------------------------------------
 # Filtering rules (used in 05_filter_graph)
 # ---------------------------------------------------------
@@ -55,6 +56,7 @@ filters:
   # Keep HAS_INGREDIENT relations in the full biomedical graph.
   # Use false when the downstream model should learn from structural drug information too.
   remove_has_ingredient: false
+  contraindication_policy: "drop_conflicting_contraindications"
 
   # Generic disease blacklist is loaded from:
   # kg_constructor/configs/blacklist.txt
@@ -76,7 +78,7 @@ entity_resolution:
 gene_associations:
   enabled: false
   diseases_for_genes_path: "diseases_for_genes.csv"
-  input_triples_path: "kg_constructor/data/output/triples/triples.csv"
+  input_triples_path: "kg_constructor/data/output/triples/triples.filtered.csv"
   open_targets_disease_path: "kg_constructor/data/external/open_targets/disease/disease.parquet"
   open_targets_association_path: "kg_constructor/data/external/open_targets/association_overall_direct"
   open_targets_target_path: "kg_constructor/data/external/open_targets/target"
@@ -124,3 +126,21 @@ dgidb_interactions:
   interactions_path: "kg_constructor/data/external/dgidb/interactions.tsv"
   output_dir: "kg_constructor/data/output/dgidb"
   output_triples_path: "kg_constructor/data/output/triples/triples_with_dgidb.csv"
+  require_existing_gene: false
+
+# ---------------------------------------------------------
+# Final KG quality gate
+# ---------------------------------------------------------
+quality_gate:
+  enabled: true
+  input_triples_path: "kg_constructor/data/output/triples/triples_with_dgidb.csv"
+  blacklist_path: "kg_constructor/configs/blacklist.txt"
+  report_path: "kg_constructor/data/output/reports/quality_gate_report.json"
+
+  fail_on_duplicate_triples: true
+  fail_on_self_loops: true
+  fail_on_blacklisted_entities: true
+  fail_on_empty_fields: true
+  fail_on_contraindication_conflicts: true
+  fail_on_bad_drugbank_urls: true
+  fail_on_schema_errors: true

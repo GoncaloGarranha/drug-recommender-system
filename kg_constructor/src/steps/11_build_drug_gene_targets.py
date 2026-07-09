@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 from typing import Any, Dict, Tuple
 
@@ -9,12 +10,15 @@ import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[3]
 
-DEFAULT_INPUT_TRIPLES = ROOT / "kg_constructor/data/output/triples/triples_with_genes.csv"
+DEFAULT_INPUT_TRIPLES = ROOT / "kg_constructor/data/output/triples/triples.filtered.csv"
 DEFAULT_DGIDB_INTERACTIONS = ROOT / "kg_constructor/data/external/dgidb/interactions.tsv"
 DEFAULT_OUTPUT_DIR = ROOT / "kg_constructor/data/output/dgidb"
 DEFAULT_OUTPUT_TRIPLES = ROOT / "kg_constructor/data/output/triples/triples_with_dgidb.csv"
+DEFAULT_ALIASES = ROOT / "kg_constructor/data/output/mappings/aliases.csv"
+DEFAULT_DRUG_NAME_MAP = ROOT / "kg_constructor/data/output/mappings/drug_name_to_entity.json"
 
 RELATION = "INTERACTS_WITH_GENE"
+DRUGBANK_RE = re.compile(r"DB\d{5}", re.IGNORECASE)
 
 
 def _resolve_path(value: str | Path | None, default: Path) -> Path:
@@ -24,30 +28,165 @@ def _resolve_path(value: str | Path | None, default: Path) -> Path:
     return path if path.is_absolute() else ROOT / path
 
 
-def _map_drug(row: pd.Series, kg_entities: set[str]) -> Tuple[str | None, str | None]:
-    concept_id = str(row.get("drug_concept_id", "")).strip()
-    drug_name = str(row.get("drug_name", "")).strip().upper()
+def _safe_text(value: Any) -> str:
+    if value is None or pd.isna(value):
+        return ""
+    return str(value).strip()
 
-    if concept_id.startswith("drugbank:"):
-        dbid = concept_id.split(":", 1)[1].upper()
-        candidate = f"DRUGBANK:https://go.drugbank.com/drugs/{dbid}"
-        if candidate in kg_entities:
-            return candidate, "drugbank"
+
+def _norm_key(value: Any) -> str:
+    return " ".join(_safe_text(value).split()).upper()
+
+
+def _drugbank_keys(value: Any) -> set[str]:
+    text = _safe_text(value)
+    if not text:
+        return set()
+
+    keys = {_norm_key(text)}
+
+    if text.lower().startswith("http"):
+        last = text.rstrip("/").rsplit("/", 1)[-1]
+        keys.add(_norm_key(last))
+        keys.add(_norm_key(f"DRUGBANK:{last}"))
+        keys.add(_norm_key(f"https://go.drugbank.com/drugs/{last}"))
+
+    if text.lower().startswith("drugbank:"):
+        dbid = text.split(":", 1)[1].strip()
+        if dbid.lower().startswith("http"):
+            dbid = dbid.rstrip("/").rsplit("/", 1)[-1]
+        keys.add(_norm_key(dbid))
+        keys.add(_norm_key(f"DRUGBANK:{dbid}"))
+        keys.add(_norm_key(f"https://go.drugbank.com/drugs/{dbid}"))
+
+    for match in DRUGBANK_RE.findall(text):
+        dbid = match.upper()
+        keys.add(dbid)
+        keys.add(f"DRUGBANK:{dbid}")
+        keys.add(f"HTTPS://GO.DRUGBANK.COM/DRUGS/{dbid}")
+
+    return {key for key in keys if key}
+
+
+def _build_drug_alias_index(
+    kg_entities: set[str],
+    aliases_path: Path,
+    drug_name_map_path: Path,
+) -> dict[str, str]:
+    """
+    Build a robust index from drug aliases / external IDs to canonical KG drug entities.
+
+    This fixes the old DGIdb behaviour where drugs were only matched as:
+        DRUG:<NAME>
+        DRUGBANK:https://go.drugbank.com/drugs/<DBID>
+
+    The new resolver can map DGIdb names or DrugBank IDs to canonical entities such as:
+        DRUGBANK:DB00002
+        CHEBI:...
+        DRUG:...
+    """
+    kg_drug_entities = {
+        entity
+        for entity in kg_entities
+        if entity.startswith(("DRUG:", "DRUGBANK:", "CHEBI:"))
+    }
+
+    index: dict[str, str] = {}
+
+    def add(key: Any, entity_id: str) -> None:
+        norm = _norm_key(key)
+        if norm and entity_id in kg_drug_entities:
+            index.setdefault(norm, entity_id)
+
+    for entity_id in kg_drug_entities:
+        add(entity_id, entity_id)
+
+        if entity_id.startswith("DRUG:"):
+            add(entity_id.replace("DRUG:", "", 1), entity_id)
+
+        if entity_id.startswith("DRUGBANK:"):
+            dbid = entity_id.replace("DRUGBANK:", "", 1)
+            for key in _drugbank_keys(dbid) | _drugbank_keys(entity_id):
+                add(key, entity_id)
+
+        if entity_id.startswith("CHEBI:"):
+            add(entity_id.replace("CHEBI:", "", 1), entity_id)
+
+    if drug_name_map_path.exists():
+        name_map = json.loads(drug_name_map_path.read_text(encoding="utf-8"))
+        for name_norm, entity_id in name_map.items():
+            if entity_id in kg_drug_entities:
+                add(name_norm, entity_id)
+                add(f"DRUG:{name_norm}", entity_id)
+
+    if aliases_path.exists():
+        aliases = pd.read_csv(aliases_path, dtype=str).fillna("")
+
+        for _, row in aliases.iterrows():
+            alias = _safe_text(row.get("alias"))
+            entity_id = _safe_text(row.get("entity_id"))
+            alias_type = _safe_text(row.get("alias_type")).upper()
+
+            if entity_id not in kg_drug_entities:
+                continue
+
+            if not (
+                alias_type.startswith("DRUG")
+                or alias_type.startswith("CHEBI")
+                or alias_type.startswith("DRUGBANK")
+            ):
+                continue
+
+            add(alias, entity_id)
+
+            if "DRUGBANK" in alias_type or "DRUGBANK" in alias.upper() or "DB" in alias.upper():
+                for key in _drugbank_keys(alias):
+                    add(key, entity_id)
+
+    return index
+
+
+def _map_drug(
+    row: pd.Series,
+    kg_entities: set[str],
+    drug_alias_index: dict[str, str],
+) -> Tuple[str | None, str | None]:
+    concept_id = _safe_text(row.get("drug_concept_id"))
+    drug_name = _safe_text(row.get("drug_name"))
+
+    if concept_id:
+        for key in _drugbank_keys(concept_id):
+            mapped = drug_alias_index.get(_norm_key(key))
+            if mapped:
+                return mapped, "drugbank"
+
+        mapped = drug_alias_index.get(_norm_key(concept_id))
+        if mapped:
+            return mapped, "concept_id"
 
     if drug_name:
-        candidate = f"DRUG:{drug_name}"
-        if candidate in kg_entities:
-            return candidate, "name"
+        mapped = drug_alias_index.get(_norm_key(drug_name))
+        if mapped:
+            return mapped, "alias"
+
+        direct_name_candidate = f"DRUG:{_norm_key(drug_name)}"
+        if direct_name_candidate in kg_entities:
+            return direct_name_candidate, "name"
 
     return None, None
 
 
-def _map_gene(row: pd.Series, kg_entities: set[str]) -> Tuple[str | None, str | None]:
-    gene_name = str(row.get("gene_name", "")).strip().upper()
+def _map_gene(
+    row: pd.Series,
+    kg_entities: set[str],
+    require_existing_gene: bool = False,
+) -> Tuple[str | None, str | None]:
+    gene_name = _safe_text(row.get("gene_name")).upper()
 
     if gene_name:
         candidate = f"GENE:{gene_name}"
-        if candidate in kg_entities:
+
+        if not require_existing_gene or candidate in kg_entities:
             return candidate, "symbol"
 
     return None, None
@@ -60,6 +199,8 @@ def add_dgidb_interactions(cfg: Dict[str, Any], paths, force: bool = False) -> N
         print("DGIdb interaction step disabled by config. Skipping step.")
         return
 
+    require_existing_gene = bool(dgidb_cfg.get("require_existing_gene", False))
+
     input_triples = _resolve_path(dgidb_cfg.get("input_triples_path"), DEFAULT_INPUT_TRIPLES)
     dgidb_interactions = _resolve_path(
         dgidb_cfg.get("interactions_path"),
@@ -69,6 +210,11 @@ def add_dgidb_interactions(cfg: Dict[str, Any], paths, force: bool = False) -> N
     output_triples = _resolve_path(
         dgidb_cfg.get("output_triples_path"),
         DEFAULT_OUTPUT_TRIPLES,
+    )
+    aliases_path = _resolve_path(dgidb_cfg.get("aliases_path"), DEFAULT_ALIASES)
+    drug_name_map_path = _resolve_path(
+        dgidb_cfg.get("drug_name_map_path"),
+        DEFAULT_DRUG_NAME_MAP,
     )
 
     mapped_path = output_dir / "drug_gene_interactions_mapped.csv"
@@ -92,17 +238,26 @@ def add_dgidb_interactions(cfg: Dict[str, Any], paths, force: bool = False) -> N
     output_triples.parent.mkdir(parents=True, exist_ok=True)
 
     triples = pd.read_csv(input_triples, dtype=str)
-    dgidb = pd.read_csv(dgidb_interactions, sep="\t", dtype=str, comment="#")
+    dgidb = pd.read_csv(dgidb_interactions, sep="\t", dtype=str, comment="#").fillna("")
 
     kg_entities = set(triples["src"]) | set(triples["dst"])
+    drug_alias_index = _build_drug_alias_index(
+        kg_entities=kg_entities,
+        aliases_path=aliases_path,
+        drug_name_map_path=drug_name_map_path,
+    )
 
     mapped_rows = []
     unmapped_drugs = []
     unmapped_genes = []
 
     for _, row in dgidb.iterrows():
-        drug, drug_mapping = _map_drug(row, kg_entities)
-        gene, gene_mapping = _map_gene(row, kg_entities)
+        drug, drug_mapping = _map_drug(row, kg_entities, drug_alias_index)
+        gene, gene_mapping = _map_gene(
+            row,
+            kg_entities,
+            require_existing_gene=require_existing_gene,
+        )
 
         if drug is None:
             unmapped_drugs.append(
@@ -184,6 +339,8 @@ def add_dgidb_interactions(cfg: Dict[str, Any], paths, force: bool = False) -> N
         "unmapped_unique_genes": int(len(unmapped_genes_df)),
         "original_kg_triples": int(len(triples)),
         "new_kg_triples": int(len(triples_with_dgidb)),
+        "drug_alias_index_size": int(len(drug_alias_index)),
+        "require_existing_gene": require_existing_gene,
         "drug_mapping_methods": mapped_df["drug_mapping"].value_counts().to_dict(),
         "gene_mapping_methods": mapped_df["gene_mapping"].value_counts().to_dict(),
         "relation_distribution": triples_with_dgidb["rel"].value_counts().to_dict(),

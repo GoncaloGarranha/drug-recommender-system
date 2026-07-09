@@ -110,6 +110,22 @@ def filter_graph(cfg: Dict[str, Any], paths, force: bool = False) -> None:
         remove_has_ingredient = bool(remove_has_ingredient_raw)
         logger.info("Filter 'remove_has_ingredient' set from config: %s", remove_has_ingredient)
 
+    contraindication_policy = filters_cfg.get("contraindication_policy", "keep_all")
+    allowed_contraindication_policies = {
+        "keep_all",
+        "drop_all",
+        "drop_conflicting_contraindications",
+    }
+
+    if contraindication_policy not in allowed_contraindication_policies:
+        raise ValueError(
+            "Invalid contraindication_policy: "
+            f"{contraindication_policy}. "
+            f"Allowed values: {sorted(allowed_contraindication_policies)}"
+        )
+
+    logger.info("Contraindication policy: %s", contraindication_policy)
+
     skip_reasons = Counter()
     filtered_rows: List[List[str]] = []
 
@@ -130,8 +146,8 @@ def filter_graph(cfg: Dict[str, Any], paths, force: bool = False) -> None:
             skip_reasons["has_ingredient_removed"] += 1
             continue
 
-        if dst in blacklist:
-            skip_reasons["blacklisted_disease"] += 1
+        if src in blacklist or dst in blacklist:
+            skip_reasons["blacklisted_entity"] += 1
             continue
 
         if remove_obsolete_doid and dst.upper().endswith("OBSOLETE"):
@@ -139,6 +155,32 @@ def filter_graph(cfg: Dict[str, Any], paths, force: bool = False) -> None:
             continue
 
         filtered_rows.append([src, rel, dst])
+
+    if contraindication_policy == "drop_all":
+        before_count = len(filtered_rows)
+        filtered_rows = [
+            [src, rel, dst]
+            for src, rel, dst in filtered_rows
+            if rel != "CONTRAINDICATION"
+        ]
+        skip_reasons["contraindications_removed"] += before_count - len(filtered_rows)
+
+    elif contraindication_policy == "drop_conflicting_contraindications":
+        indication_pairs = {
+            (src, dst)
+            for src, rel, dst in filtered_rows
+            if rel == "INDICATION"
+        }
+
+        cleaned_rows = []
+        for src, rel, dst in filtered_rows:
+            if rel == "CONTRAINDICATION" and (src, dst) in indication_pairs:
+                skip_reasons["conflicting_contraindications_removed"] += 1
+                continue
+
+            cleaned_rows.append([src, rel, dst])
+
+        filtered_rows = cleaned_rows
 
     filtered_dict_rows = [
         {"src": src, "rel": rel, "dst": dst}
@@ -167,6 +209,7 @@ def filter_graph(cfg: Dict[str, Any], paths, force: bool = False) -> None:
         "filters": {
             "remove_obsolete_doid_labels": remove_obsolete_doid,
             "remove_has_ingredient": remove_has_ingredient,
+            "contraindication_policy": contraindication_policy,
         },
         "input_relation_distribution": dict(input_relation_counts),
         "filtered_relation_distribution": dict(filtered_relation_counts),

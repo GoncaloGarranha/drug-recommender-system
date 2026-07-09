@@ -24,18 +24,26 @@ def format_prefixed_identifier(raw_identifier: str, prefix: str) -> str:
         CHEBI_31672 -> CHEBI:31672
         CHEBI:31672 -> CHEBI:31672
         31672 -> CHEBI:31672
+        DRUGBANK:https://go.drugbank.com/drugs/DB00051 -> DRUGBANK:DB00051
+        drugbank:db00051 -> DRUGBANK:DB00051
     """
-    identifier = raw_identifier.strip()
+    identifier = str(raw_identifier).strip()
     normalized_prefix = prefix.upper()
     expected_prefix = f"{normalized_prefix}:"
 
+    if identifier.upper().startswith(expected_prefix):
+        identifier = identifier.split(":", 1)[1].strip()
+
     if identifier.lower().startswith("http"):
-        identifier = identifier.rsplit("/", 1)[-1]
+        identifier = identifier.rstrip("/").rsplit("/", 1)[-1].strip()
 
     identifier = identifier.replace("_", ":")
 
     if identifier.upper().startswith(expected_prefix):
         identifier = identifier.split(":", 1)[1].strip()
+
+    if normalized_prefix == "DRUGBANK":
+        identifier = identifier.upper()
 
     return f"{expected_prefix}{identifier}"
 

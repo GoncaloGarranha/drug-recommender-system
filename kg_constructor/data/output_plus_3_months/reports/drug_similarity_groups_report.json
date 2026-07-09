@@ -1,0 +1,10 @@
+{
+  "num_groups": 1554,
+  "non_singleton_groups": 620,
+  "min_group_size": 1,
+  "max_group_size": 36,
+  "mean_group_size": 2.6241956241956244,
+  "output_path": "D:\\FacudadeGoncalo\\Mestrado\\Tese\\drug-recommender-system\\kg_constructor\\data\\processed_plus_3_months\\drug_similarity_groups.json",
+  "source_triples": "D:\\FacudadeGoncalo\\Mestrado\\Tese\\drug-recommender-system\\kg_constructor\\data\\output_plus_3_months\\triples\\triples.filtered.csv",
+  "source_relation": "HAS_INGREDIENT"
+}

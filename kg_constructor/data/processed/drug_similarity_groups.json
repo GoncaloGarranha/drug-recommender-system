@@ -1,14 +1,14 @@
 {
   "metadata": {
-    "source_triples": "/Users/garranha/workspace/ISEL/Mestrado/Tese/tese/kg_constructor/data/output/triples/triples.filtered.csv",
+    "source_triples": "D:\\FacudadeGoncalo\\Mestrado\\Tese\\drug-recommender-system\\kg_constructor\\data\\output\\triples\\triples.filtered.csv",
     "source_relation": "HAS_INGREDIENT",
     "jaccard_threshold": 0.5,
     "min_shared_features": 1,
-    "num_groups": 1317,
-    "non_singleton_groups": 497,
+    "num_groups": 1318,
+    "non_singleton_groups": 499,
     "min_group_size": 1,
     "max_group_size": 33,
-    "mean_group_size": 2.421412300683371
+    "mean_group_size": 2.4218512898330804
   },
   "groups": {
     "CHEBI:10023": [
@@ -118,10 +118,6 @@
     ],
     "CHEBI:132950": [
       "CHEBI:132950"
-    ],
-    "CHEBI:132954": [
-      "CHEBI:132954",
-      "CHEBI:64323"
     ],
     "CHEBI:132973": [
       "CHEBI:132973"
@@ -2415,6 +2411,10 @@
       "CHEBI:7731",
       "DRUGBANK:DB04726"
     ],
+    "CHEBI:53188": [
+      "CHEBI:53188",
+      "CHEBI:64323"
+    ],
     "CHEBI:53258": [
       "CHEBI:53258"
     ],
@@ -2886,8 +2886,8 @@
       "CHEBI:64321"
     ],
     "CHEBI:64323": [
-      "CHEBI:132954",
       "CHEBI:36796",
+      "CHEBI:53188",
       "CHEBI:64312",
       "CHEBI:64323"
     ],
@@ -3405,6 +3405,10 @@
       "CHEBI:3306",
       "CHEBI:7514",
       "DRUGBANK:DB16694"
+    ],
+    "CHEBI:75228": [
+      "CHEBI:75228",
+      "DRUGBANK:DB09111"
     ],
     "CHEBI:7550": [
       "CHEBI:7550"
@@ -4956,6 +4960,7 @@
       "DRUGBANK:DB09100"
     ],
     "DRUGBANK:DB09111": [
+      "CHEBI:75228",
       "DRUGBANK:DB09111"
     ],
     "DRUGBANK:DB09122": [

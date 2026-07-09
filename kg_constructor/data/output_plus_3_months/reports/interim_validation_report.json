@@ -1,0 +1,28 @@
+{
+  "drugs_raw": {
+    "total_rows": 3721,
+    "rows_without_drugbank_id": 2762,
+    "rows_without_chebi_id": 1211,
+    "rows_without_external_id": 252,
+    "duplicate_rows_by_name_and_ids": 0
+  },
+  "ingredients_raw": {
+    "total_rows": 2417,
+    "rows_without_unii_code": 0,
+    "duplicate_rows_by_name_and_unii": 0
+  },
+  "diseases_raw": {
+    "total_rows": 797,
+    "invalid_doids": 0,
+    "duplicate_doids": 0
+  },
+  "edges_raw": {
+    "total_rows": 34737,
+    "duplicate_edges_by_src_rel_dst": 0,
+    "relation_counts": {
+      "INDICATION": 7339,
+      "CONTRAINDICATION": 2918,
+      "HAS_INGREDIENT": 24480
+    }
+  }
+}

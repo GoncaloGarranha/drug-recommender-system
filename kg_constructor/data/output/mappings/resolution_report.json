@@ -4,7 +4,7 @@
     "resolved_by_drugbank": 868,
     "resolved_by_name": 218
   },
-  "unique_drug_entities": 1795,
+  "unique_drug_entities": 1796,
   "unique_disease_entities": 753,
   "unique_ingredient_entities": 2021,
   "entity_resolution_config": {
@@ -18,16 +18,16 @@
   },
   "validation": {
     "entity_table": {
-      "total_entities": 4569,
+      "total_entities": 4570,
       "entity_type_counts": {
-        "DRUG": 1795,
+        "DRUG": 1796,
         "DISEASE": 753,
         "INGREDIENT": 2021
       }
     },
     "aliases": {
       "total_aliases": 16726,
-      "duplicate_alias_rows": 1084,
+      "duplicate_alias_rows": 1081,
       "alias_type_counts": {
         "DRUG_NAME_ORIGINAL": 2774,
         "DRUG_NAME_NORM": 2774,

@@ -1,0 +1,31 @@
+{
+  "status": "passed",
+  "input_triples_path": "kg_constructor\\data\\output\\triples\\triples_with_dgidb.csv",
+  "rows": 29213,
+  "relation_distribution": {
+    "INDICATION": 4105,
+    "HAS_INGREDIENT": 15502,
+    "CONTRAINDICATION": 538,
+    "INTERACTS_WITH_GENE": 9068
+  },
+  "checks": {
+    "duplicate_triples": 0,
+    "self_loops": 0,
+    "blacklisted_rows": 0,
+    "empty_field_rows": 0,
+    "indication_contraindication_conflicts": 0,
+    "bad_drugbank_entities": 0,
+    "schema_errors": 0
+  },
+  "schema_error_types": {},
+  "failures": [],
+  "examples": {
+    "duplicate_triple": [],
+    "self_loop": [],
+    "blacklisted_row": [],
+    "empty_field_row": [],
+    "indication_contraindication_conflict": [],
+    "bad_drugbank_entity": [],
+    "schema_error": []
+  }
+}

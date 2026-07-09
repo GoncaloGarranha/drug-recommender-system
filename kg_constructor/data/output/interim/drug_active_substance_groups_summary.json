@@ -1,6 +1,6 @@
 {
-  "input_csv": "/Users/garranha/workspace/ISEL/Mestrado/Tese/tese/kg_constructor/data/output/interim/active_ingredients_raw.csv",
-  "output_csv": "/Users/garranha/workspace/ISEL/Mestrado/Tese/tese/kg_constructor/data/output/interim/drug_active_substance_groups.csv",
+  "input_csv": "D:\\FacudadeGoncalo\\Mestrado\\Tese\\drug-recommender-system\\kg_constructor\\data\\output\\interim\\active_ingredients_raw.csv",
+  "output_csv": "D:\\FacudadeGoncalo\\Mestrado\\Tese\\drug-recommender-system\\kg_constructor\\data\\output\\interim\\drug_active_substance_groups.csv",
   "rows_input": 2551,
   "rows_output": 2528,
   "unique_drugs": 2317,

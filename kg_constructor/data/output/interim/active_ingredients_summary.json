@@ -1,6 +1,6 @@
 {
-  "input_dir": "/Users/garranha/workspace/ISEL/Mestrado/Tese/tese/kg_constructor/data/input/xml_files",
-  "output_csv": "/Users/garranha/workspace/ISEL/Mestrado/Tese/tese/kg_constructor/data/output/interim/active_ingredients_raw.csv",
+  "input_dir": "D:\\FacudadeGoncalo\\Mestrado\\Tese\\drug-recommender-system\\kg_constructor\\data\\input\\xml_files",
+  "output_csv": "D:\\FacudadeGoncalo\\Mestrado\\Tese\\drug-recommender-system\\kg_constructor\\data\\output\\interim\\active_ingredients_raw.csv",
   "files_total": 2650,
   "files_with_active_ingredient": 2317,
   "rows_total": 2551,

@@ -1,0 +1,158 @@
+2026-07-09 18:56:29 | INFO | __main__ | Run ID: 20260709_185627
+2026-07-09 18:56:29 | INFO | __main__ | Run ID: 20260709_185627
+2026-07-09 18:56:29 | INFO | __main__ | Run log: D:\FacudadeGoncalo\Mestrado\Tese\drug-recommender-system\kg_constructor\data\output\reports\runs\run_20260709_185627.log
+2026-07-09 18:56:29 | INFO | __main__ | Run log: D:\FacudadeGoncalo\Mestrado\Tese\drug-recommender-system\kg_constructor\data\output\reports\runs\run_20260709_185627.log
+2026-07-09 18:56:29 | INFO | __main__ | Run summary: D:\FacudadeGoncalo\Mestrado\Tese\drug-recommender-system\kg_constructor\data\output\reports\runs\run_20260709_185627_summary.json
+2026-07-09 18:56:29 | INFO | __main__ | Run summary: D:\FacudadeGoncalo\Mestrado\Tese\drug-recommender-system\kg_constructor\data\output\reports\runs\run_20260709_185627_summary.json
+2026-07-09 18:56:29 | INFO | kg_constructor.src.pipeline | Starting KG pipeline
+2026-07-09 18:56:29 | INFO | kg_constructor.src.pipeline | Starting KG pipeline
+2026-07-09 18:56:29 | INFO | kg_constructor.src.pipeline | Starting KG pipeline
+2026-07-09 18:56:29 | INFO | kg_constructor.src.pipeline | Starting KG pipeline
+2026-07-09 18:56:29 | INFO | kg_constructor.src.pipeline | Selected steps: ['00_import_data', '01_stats', '02_parse_sources', '03_resolve_entities', '04_build_triples', '05_filter_graph', '06_add_gene_associations', '07_build_drug_similarity_groups', '08_build_active_ingredients', '09_build_active_substance_groups', '10_build_pharmacological_groups', '11_build_drug_gene_targets', '12_quality_gate']
+2026-07-09 18:56:29 | INFO | kg_constructor.src.pipeline | Selected steps: ['00_import_data', '01_stats', '02_parse_sources', '03_resolve_entities', '04_build_triples', '05_filter_graph', '06_add_gene_associations', '07_build_drug_similarity_groups', '08_build_active_ingredients', '09_build_active_substance_groups', '10_build_pharmacological_groups', '11_build_drug_gene_targets', '12_quality_gate']
+2026-07-09 18:56:29 | INFO | kg_constructor.src.pipeline | Selected steps: ['00_import_data', '01_stats', '02_parse_sources', '03_resolve_entities', '04_build_triples', '05_filter_graph', '06_add_gene_associations', '07_build_drug_similarity_groups', '08_build_active_ingredients', '09_build_active_substance_groups', '10_build_pharmacological_groups', '11_build_drug_gene_targets', '12_quality_gate']
+2026-07-09 18:56:29 | INFO | kg_constructor.src.pipeline | Selected steps: ['00_import_data', '01_stats', '02_parse_sources', '03_resolve_entities', '04_build_triples', '05_filter_graph', '06_add_gene_associations', '07_build_drug_similarity_groups', '08_build_active_ingredients', '09_build_active_substance_groups', '10_build_pharmacological_groups', '11_build_drug_gene_targets', '12_quality_gate']
+2026-07-09 18:56:29 | INFO | kg_constructor.src.pipeline | Force execution: True
+2026-07-09 18:56:29 | INFO | kg_constructor.src.pipeline | Force execution: True
+2026-07-09 18:56:29 | INFO | kg_constructor.src.pipeline | Force execution: True
+2026-07-09 18:56:29 | INFO | kg_constructor.src.pipeline | Force execution: True
+2026-07-09 18:56:29 | INFO | kg_constructor.src.pipeline | --> Running step: 00_import_data
+2026-07-09 18:56:29 | INFO | kg_constructor.src.pipeline | --> Running step: 00_import_data
+2026-07-09 18:56:29 | INFO | kg_constructor.src.pipeline | --> Running step: 00_import_data
+2026-07-09 18:56:29 | INFO | kg_constructor.src.pipeline | --> Running step: 00_import_data
+2026-07-09 18:56:29 | WARNING | kg_step_00_import_data | Source folder not found: external\medjsonify\NER\data\entities\xml_files
+2026-07-09 18:56:29 | WARNING | kg_step_00_import_data | Source folder not found: external\medjsonify\NER\data\entities\csv_files
+2026-07-09 18:56:29 | WARNING | kg_step_00_import_data | Source folder not found: external\medjsonify\NER\data\entities\txt_files
+2026-07-09 18:56:29 | INFO | kg_step_00_import_data | Step 00 completed: entity files imported successfully.
+2026-07-09 18:56:29 | INFO | kg_constructor.src.pipeline | <-- Finished step: 00_import_data
+2026-07-09 18:56:29 | INFO | kg_constructor.src.pipeline | <-- Finished step: 00_import_data
+2026-07-09 18:56:29 | INFO | kg_constructor.src.pipeline | <-- Finished step: 00_import_data
+2026-07-09 18:56:29 | INFO | kg_constructor.src.pipeline | <-- Finished step: 00_import_data
+2026-07-09 18:56:29 | INFO | kg_constructor.src.pipeline | --> Running step: 01_stats
+2026-07-09 18:56:29 | INFO | kg_constructor.src.pipeline | --> Running step: 01_stats
+2026-07-09 18:56:29 | INFO | kg_constructor.src.pipeline | --> Running step: 01_stats
+2026-07-09 18:56:29 | INFO | kg_constructor.src.pipeline | --> Running step: 01_stats
+2026-07-09 18:56:30 | INFO | kg_step_01_stats | Saved audit report: D:\FacudadeGoncalo\Mestrado\Tese\drug-recommender-system\kg_constructor\data\output\reports\audit_report.json
+2026-07-09 18:56:30 | INFO | kg_step_01_stats | Saved top DOIDs CSV: D:\FacudadeGoncalo\Mestrado\Tese\drug-recommender-system\kg_constructor\data\output\reports\top_doids.csv
+2026-07-09 18:56:30 | INFO | kg_constructor.src.pipeline | <-- Finished step: 01_stats
+2026-07-09 18:56:30 | INFO | kg_constructor.src.pipeline | <-- Finished step: 01_stats
+2026-07-09 18:56:30 | INFO | kg_constructor.src.pipeline | <-- Finished step: 01_stats
+2026-07-09 18:56:30 | INFO | kg_constructor.src.pipeline | <-- Finished step: 01_stats
+2026-07-09 18:56:30 | INFO | kg_constructor.src.pipeline | --> Running step: 02_parse_sources
+2026-07-09 18:56:30 | INFO | kg_constructor.src.pipeline | --> Running step: 02_parse_sources
+2026-07-09 18:56:30 | INFO | kg_constructor.src.pipeline | --> Running step: 02_parse_sources
+2026-07-09 18:56:30 | INFO | kg_constructor.src.pipeline | --> Running step: 02_parse_sources
+2026-07-09 18:56:31 | INFO | kg_step_02_parse_sources | Saved: D:\FacudadeGoncalo\Mestrado\Tese\drug-recommender-system\kg_constructor\data\output\interim\drugs_raw.csv
+2026-07-09 18:56:31 | INFO | kg_step_02_parse_sources | Saved: D:\FacudadeGoncalo\Mestrado\Tese\drug-recommender-system\kg_constructor\data\output\interim\ingredients_raw.csv
+2026-07-09 18:56:31 | INFO | kg_step_02_parse_sources | Saved: D:\FacudadeGoncalo\Mestrado\Tese\drug-recommender-system\kg_constructor\data\output\interim\diseases_raw.csv
+2026-07-09 18:56:31 | INFO | kg_step_02_parse_sources | Saved: D:\FacudadeGoncalo\Mestrado\Tese\drug-recommender-system\kg_constructor\data\output\interim\edges_raw.csv
+2026-07-09 18:56:31 | INFO | kg_step_02_parse_sources | Saved: D:\FacudadeGoncalo\Mestrado\Tese\drug-recommender-system\kg_constructor\data\output\reports\interim_validation_report.json
+2026-07-09 18:56:31 | INFO | kg_constructor.src.pipeline | <-- Finished step: 02_parse_sources
+2026-07-09 18:56:31 | INFO | kg_constructor.src.pipeline | <-- Finished step: 02_parse_sources
+2026-07-09 18:56:31 | INFO | kg_constructor.src.pipeline | <-- Finished step: 02_parse_sources
+2026-07-09 18:56:31 | INFO | kg_constructor.src.pipeline | <-- Finished step: 02_parse_sources
+2026-07-09 18:56:31 | INFO | kg_constructor.src.pipeline | --> Running step: 03_resolve_entities
+2026-07-09 18:56:31 | INFO | kg_constructor.src.pipeline | --> Running step: 03_resolve_entities
+2026-07-09 18:56:31 | INFO | kg_constructor.src.pipeline | --> Running step: 03_resolve_entities
+2026-07-09 18:56:31 | INFO | kg_constructor.src.pipeline | --> Running step: 03_resolve_entities
+2026-07-09 18:56:31 | INFO | kg_step_03_resolve_entities | Drug entity resolution config | prefer_drugbank_id=True | prefer_chebi_id=True
+2026-07-09 18:56:31 | INFO | kg_step_03_resolve_entities | Saved: D:\FacudadeGoncalo\Mestrado\Tese\drug-recommender-system\kg_constructor\data\output\mappings\entity_table.csv
+2026-07-09 18:56:31 | INFO | kg_step_03_resolve_entities | Saved: D:\FacudadeGoncalo\Mestrado\Tese\drug-recommender-system\kg_constructor\data\output\mappings\aliases.csv
+2026-07-09 18:56:31 | INFO | kg_step_03_resolve_entities | Saved: D:\FacudadeGoncalo\Mestrado\Tese\drug-recommender-system\kg_constructor\data\output\mappings\drug_name_to_entity.json
+2026-07-09 18:56:31 | INFO | kg_step_03_resolve_entities | Saved: D:\FacudadeGoncalo\Mestrado\Tese\drug-recommender-system\kg_constructor\data\output\mappings\resolution_report.json
+2026-07-09 18:56:31 | INFO | kg_constructor.src.pipeline | <-- Finished step: 03_resolve_entities
+2026-07-09 18:56:31 | INFO | kg_constructor.src.pipeline | <-- Finished step: 03_resolve_entities
+2026-07-09 18:56:31 | INFO | kg_constructor.src.pipeline | <-- Finished step: 03_resolve_entities
+2026-07-09 18:56:31 | INFO | kg_constructor.src.pipeline | <-- Finished step: 03_resolve_entities
+2026-07-09 18:56:31 | INFO | kg_constructor.src.pipeline | --> Running step: 04_build_triples
+2026-07-09 18:56:31 | INFO | kg_constructor.src.pipeline | --> Running step: 04_build_triples
+2026-07-09 18:56:31 | INFO | kg_constructor.src.pipeline | --> Running step: 04_build_triples
+2026-07-09 18:56:31 | INFO | kg_constructor.src.pipeline | --> Running step: 04_build_triples
+2026-07-09 18:56:32 | INFO | kg_step_04_build_triples | Saved: D:\FacudadeGoncalo\Mestrado\Tese\drug-recommender-system\kg_constructor\data\output\triples\triples.csv
+2026-07-09 18:56:32 | INFO | kg_step_04_build_triples | Saved: D:\FacudadeGoncalo\Mestrado\Tese\drug-recommender-system\kg_constructor\data\output\triples\triples_with_provenance.csv
+2026-07-09 18:56:32 | INFO | kg_step_04_build_triples | Saved: D:\FacudadeGoncalo\Mestrado\Tese\drug-recommender-system\kg_constructor\data\output\reports\build_triples_report.json
+2026-07-09 18:56:32 | INFO | kg_step_04_build_triples | Triples: 22188 | Provenance rows: 27086 | Skipped (missing drug mapping): 0 | Skipped (invalid row): 0 | Skipped (canonical duplicates): 4898
+2026-07-09 18:56:32 | INFO | kg_step_04_build_triples | Relation distribution: {'INDICATION': 4753, 'CONTRAINDICATION': 1933, 'HAS_INGREDIENT': 15502}
+2026-07-09 18:56:32 | INFO | kg_constructor.src.pipeline | <-- Finished step: 04_build_triples
+2026-07-09 18:56:32 | INFO | kg_constructor.src.pipeline | <-- Finished step: 04_build_triples
+2026-07-09 18:56:32 | INFO | kg_constructor.src.pipeline | <-- Finished step: 04_build_triples
+2026-07-09 18:56:32 | INFO | kg_constructor.src.pipeline | <-- Finished step: 04_build_triples
+2026-07-09 18:56:32 | INFO | kg_constructor.src.pipeline | --> Running step: 05_filter_graph
+2026-07-09 18:56:32 | INFO | kg_constructor.src.pipeline | --> Running step: 05_filter_graph
+2026-07-09 18:56:32 | INFO | kg_constructor.src.pipeline | --> Running step: 05_filter_graph
+2026-07-09 18:56:32 | INFO | kg_constructor.src.pipeline | --> Running step: 05_filter_graph
+2026-07-09 18:56:32 | INFO | kg_step_05_filter_graph | Loaded 4 entries from blacklist: D:\FacudadeGoncalo\Mestrado\Tese\drug-recommender-system\kg_constructor\configs\blacklist.txt
+2026-07-09 18:56:32 | INFO | kg_step_05_filter_graph | Filter 'remove_obsolete_doid_labels' set from config: True
+2026-07-09 18:56:32 | INFO | kg_step_05_filter_graph | Filter 'remove_has_ingredient' set from config: False
+2026-07-09 18:56:32 | INFO | kg_step_05_filter_graph | Contraindication policy: drop_conflicting_contraindications
+2026-07-09 18:56:32 | INFO | kg_step_05_filter_graph | Saved: D:\FacudadeGoncalo\Mestrado\Tese\drug-recommender-system\kg_constructor\data\output\triples\triples.filtered.csv
+2026-07-09 18:56:32 | INFO | kg_step_05_filter_graph | Kept triples: 20145 | Removed triples: 2043
+2026-07-09 18:56:32 | INFO | kg_step_05_filter_graph | Input relation distribution: {'INDICATION': 4753, 'CONTRAINDICATION': 1933, 'HAS_INGREDIENT': 15502}
+2026-07-09 18:56:32 | INFO | kg_step_05_filter_graph | Filtered relation distribution: {'INDICATION': 4105, 'HAS_INGREDIENT': 15502, 'CONTRAINDICATION': 538}
+2026-07-09 18:56:32 | INFO | kg_step_05_filter_graph | Saved: D:\FacudadeGoncalo\Mestrado\Tese\drug-recommender-system\kg_constructor\data\output\reports\filter_report.json
+2026-07-09 18:56:32 | INFO | kg_constructor.src.pipeline | <-- Finished step: 05_filter_graph
+2026-07-09 18:56:32 | INFO | kg_constructor.src.pipeline | <-- Finished step: 05_filter_graph
+2026-07-09 18:56:32 | INFO | kg_constructor.src.pipeline | <-- Finished step: 05_filter_graph
+2026-07-09 18:56:32 | INFO | kg_constructor.src.pipeline | <-- Finished step: 05_filter_graph
+2026-07-09 18:56:32 | INFO | kg_constructor.src.pipeline | --> Running step: 06_add_gene_associations
+2026-07-09 18:56:32 | INFO | kg_constructor.src.pipeline | --> Running step: 06_add_gene_associations
+2026-07-09 18:56:32 | INFO | kg_constructor.src.pipeline | --> Running step: 06_add_gene_associations
+2026-07-09 18:56:32 | INFO | kg_constructor.src.pipeline | --> Running step: 06_add_gene_associations
+2026-07-09 18:56:32 | INFO | kg_constructor.src.pipeline | <-- Finished step: 06_add_gene_associations
+2026-07-09 18:56:32 | INFO | kg_constructor.src.pipeline | <-- Finished step: 06_add_gene_associations
+2026-07-09 18:56:32 | INFO | kg_constructor.src.pipeline | <-- Finished step: 06_add_gene_associations
+2026-07-09 18:56:32 | INFO | kg_constructor.src.pipeline | <-- Finished step: 06_add_gene_associations
+2026-07-09 18:56:32 | INFO | kg_constructor.src.pipeline | --> Running step: 07_build_drug_similarity_groups
+2026-07-09 18:56:32 | INFO | kg_constructor.src.pipeline | --> Running step: 07_build_drug_similarity_groups
+2026-07-09 18:56:32 | INFO | kg_constructor.src.pipeline | --> Running step: 07_build_drug_similarity_groups
+2026-07-09 18:56:32 | INFO | kg_constructor.src.pipeline | --> Running step: 07_build_drug_similarity_groups
+2026-07-09 18:56:33 | INFO | kg_step_07_build_drug_similarity_groups | Saved drug similarity groups: D:\FacudadeGoncalo\Mestrado\Tese\drug-recommender-system\kg_constructor\data\processed\drug_similarity_groups.json
+2026-07-09 18:56:33 | INFO | kg_step_07_build_drug_similarity_groups | Saved drug similarity group report: D:\FacudadeGoncalo\Mestrado\Tese\drug-recommender-system\kg_constructor\data\output\reports\drug_similarity_groups_report.json
+2026-07-09 18:56:33 | INFO | kg_constructor.src.pipeline | <-- Finished step: 07_build_drug_similarity_groups
+2026-07-09 18:56:33 | INFO | kg_constructor.src.pipeline | <-- Finished step: 07_build_drug_similarity_groups
+2026-07-09 18:56:33 | INFO | kg_constructor.src.pipeline | <-- Finished step: 07_build_drug_similarity_groups
+2026-07-09 18:56:33 | INFO | kg_constructor.src.pipeline | <-- Finished step: 07_build_drug_similarity_groups
+2026-07-09 18:56:33 | INFO | kg_constructor.src.pipeline | --> Running step: 08_build_active_ingredients
+2026-07-09 18:56:33 | INFO | kg_constructor.src.pipeline | --> Running step: 08_build_active_ingredients
+2026-07-09 18:56:33 | INFO | kg_constructor.src.pipeline | --> Running step: 08_build_active_ingredients
+2026-07-09 18:56:33 | INFO | kg_constructor.src.pipeline | --> Running step: 08_build_active_ingredients
+2026-07-09 18:56:33 | INFO | kg_constructor.src.pipeline | <-- Finished step: 08_build_active_ingredients
+2026-07-09 18:56:33 | INFO | kg_constructor.src.pipeline | <-- Finished step: 08_build_active_ingredients
+2026-07-09 18:56:33 | INFO | kg_constructor.src.pipeline | <-- Finished step: 08_build_active_ingredients
+2026-07-09 18:56:33 | INFO | kg_constructor.src.pipeline | <-- Finished step: 08_build_active_ingredients
+2026-07-09 18:56:33 | INFO | kg_constructor.src.pipeline | --> Running step: 09_build_active_substance_groups
+2026-07-09 18:56:33 | INFO | kg_constructor.src.pipeline | --> Running step: 09_build_active_substance_groups
+2026-07-09 18:56:33 | INFO | kg_constructor.src.pipeline | --> Running step: 09_build_active_substance_groups
+2026-07-09 18:56:33 | INFO | kg_constructor.src.pipeline | --> Running step: 09_build_active_substance_groups
+2026-07-09 18:56:33 | INFO | kg_constructor.src.pipeline | <-- Finished step: 09_build_active_substance_groups
+2026-07-09 18:56:33 | INFO | kg_constructor.src.pipeline | <-- Finished step: 09_build_active_substance_groups
+2026-07-09 18:56:33 | INFO | kg_constructor.src.pipeline | <-- Finished step: 09_build_active_substance_groups
+2026-07-09 18:56:33 | INFO | kg_constructor.src.pipeline | <-- Finished step: 09_build_active_substance_groups
+2026-07-09 18:56:33 | INFO | kg_constructor.src.pipeline | --> Running step: 10_build_pharmacological_groups
+2026-07-09 18:56:33 | INFO | kg_constructor.src.pipeline | --> Running step: 10_build_pharmacological_groups
+2026-07-09 18:56:33 | INFO | kg_constructor.src.pipeline | --> Running step: 10_build_pharmacological_groups
+2026-07-09 18:56:33 | INFO | kg_constructor.src.pipeline | --> Running step: 10_build_pharmacological_groups
+2026-07-09 18:56:33 | INFO | kg_constructor.src.pipeline | <-- Finished step: 10_build_pharmacological_groups
+2026-07-09 18:56:33 | INFO | kg_constructor.src.pipeline | <-- Finished step: 10_build_pharmacological_groups
+2026-07-09 18:56:33 | INFO | kg_constructor.src.pipeline | <-- Finished step: 10_build_pharmacological_groups
+2026-07-09 18:56:33 | INFO | kg_constructor.src.pipeline | <-- Finished step: 10_build_pharmacological_groups
+2026-07-09 18:56:33 | INFO | kg_constructor.src.pipeline | --> Running step: 11_build_drug_gene_targets
+2026-07-09 18:56:33 | INFO | kg_constructor.src.pipeline | --> Running step: 11_build_drug_gene_targets
+2026-07-09 18:56:33 | INFO | kg_constructor.src.pipeline | --> Running step: 11_build_drug_gene_targets
+2026-07-09 18:56:33 | INFO | kg_constructor.src.pipeline | --> Running step: 11_build_drug_gene_targets
+2026-07-09 18:56:42 | INFO | kg_constructor.src.pipeline | <-- Finished step: 11_build_drug_gene_targets
+2026-07-09 18:56:42 | INFO | kg_constructor.src.pipeline | <-- Finished step: 11_build_drug_gene_targets
+2026-07-09 18:56:42 | INFO | kg_constructor.src.pipeline | <-- Finished step: 11_build_drug_gene_targets
+2026-07-09 18:56:42 | INFO | kg_constructor.src.pipeline | <-- Finished step: 11_build_drug_gene_targets
+2026-07-09 18:56:42 | INFO | kg_constructor.src.pipeline | --> Running step: 12_quality_gate
+2026-07-09 18:56:42 | INFO | kg_constructor.src.pipeline | --> Running step: 12_quality_gate
+2026-07-09 18:56:42 | INFO | kg_constructor.src.pipeline | --> Running step: 12_quality_gate
+2026-07-09 18:56:42 | INFO | kg_constructor.src.pipeline | --> Running step: 12_quality_gate
+2026-07-09 18:56:42 | INFO | kg_constructor.src.pipeline | <-- Finished step: 12_quality_gate
+2026-07-09 18:56:42 | INFO | kg_constructor.src.pipeline | <-- Finished step: 12_quality_gate
+2026-07-09 18:56:42 | INFO | kg_constructor.src.pipeline | <-- Finished step: 12_quality_gate
+2026-07-09 18:56:42 | INFO | kg_constructor.src.pipeline | <-- Finished step: 12_quality_gate
+2026-07-09 18:56:42 | INFO | kg_constructor.src.pipeline | KG pipeline completed successfully
+2026-07-09 18:56:42 | INFO | kg_constructor.src.pipeline | KG pipeline completed successfully
+2026-07-09 18:56:42 | INFO | kg_constructor.src.pipeline | KG pipeline completed successfully
+2026-07-09 18:56:42 | INFO | kg_constructor.src.pipeline | KG pipeline completed successfully

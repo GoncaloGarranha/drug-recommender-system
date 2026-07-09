@@ -1,22 +1,24 @@
 {
-  "input_triples": 22136,
-  "output_triples": 21145,
+  "input_triples": 22188,
+  "output_triples": 20145,
   "removed": {
-    "blacklisted_disease": 991
+    "blacklisted_entity": 995,
+    "conflicting_contraindications_removed": 1048
   },
   "blacklist_size": 4,
   "filters": {
     "remove_obsolete_doid_labels": true,
-    "remove_has_ingredient": false
+    "remove_has_ingredient": false,
+    "contraindication_policy": "drop_conflicting_contraindications"
   },
   "input_relation_distribution": {
-    "INDICATION": 4705,
-    "CONTRAINDICATION": 1936,
-    "HAS_INGREDIENT": 15495
+    "INDICATION": 4753,
+    "CONTRAINDICATION": 1933,
+    "HAS_INGREDIENT": 15502
   },
   "filtered_relation_distribution": {
-    "INDICATION": 4061,
-    "CONTRAINDICATION": 1589,
-    "HAS_INGREDIENT": 15495
+    "INDICATION": 4105,
+    "HAS_INGREDIENT": 15502,
+    "CONTRAINDICATION": 538
   }
 }

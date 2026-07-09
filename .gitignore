@@ -30,3 +30,5 @@ Thumbs.db
 .vscode/
 .idea/
 
+/kg_constructor/data/input_plus_3_months/csv_files
+/kg_constructor/data/input_plus_3_months

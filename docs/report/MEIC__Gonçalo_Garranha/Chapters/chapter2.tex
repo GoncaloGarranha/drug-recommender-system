@@ -16,56 +16,55 @@ Nesta secção, detalham-se os conceitos que suportam a solução proposta, come
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \paragraph{Ontologias}
 \label{subsec:ontologias}
-Este trabalho baseia-se em informação clínica e regulatória associada a medicamentos, recolhida a partir de diversas fontes públicas, nomeadamente o \emph{DailyMed} \cite{dailymed}, o \emph{Orange Book} \cite{orangebook} e o \emph{Purple Book} \cite{purplebook}. Estes dados são, por natureza, díspares e redundantes. Por exemplo, um fármaco como a \enquote{Aspirina} pode ser referido pelo nome que é comercializado, ou pelo nome químico \enquote{Ácido Acetilsalicílico}.
+Este trabalho baseia-se em informação clínica, farmacológica, regulatória e genética recolhida a partir de diversas fontes públicas, nomeadamente o \emph{DailyMed} \cite{dailymed}, o \emph{Orange Book} \cite{orangebook}, o Purple Book \cite{purplebook} e a plataforma Open Targets, utilizada para obter associações entre patologias e genes. Estes dados apresentam diferentes formatos, e terminologias, sendo comum a existência de redundâncias e de diferentes designações para a mesma entidade. Por exemplo, um fármaco como a \enquote{Aspirina} pode ser referido pelo seu nome comercial ou pelo nome químico \enquote{Ácido Acetilsalicílico}.
 
-Para resolver este desafio, utiliza-se o conceito de Ontologia. Uma ontologia é uma representação formada a partir de regras lógicas que permitem a identificação unívoca de entidades independentemente da sua fonte de origem \cite{guarino2009ontology}. Trata-se de uma representação estruturada, composta por um conjunto de conceitos (classes) e pelas relações que os unem.
+Para resolver este desafio, utiliza-se o conceito de Ontologia. Uma ontologia é uma representação formada a partir de regras lógicas que permitem a identificação unívoca de entidades independentemente da sua fonte de origem \cite{guarino2009ontology}. Trata-se de uma estrutura composta por um conjunto de conceitos, propriedades e relações, que permite descrever as entidades de forma consistente e independente da sua fonte de origem.
 
 Neste contexto, destacam-se e são adotadas as seguintes ontologias:
 
 \begin{itemize}
 \item \acrfull{do}: ontologia estruturada para classificação de doenças humanas, que permite a integração de patologias provenientes de diferentes fontes de dados clínicos \cite{schriml2022doid}. A DOID fornece identificadores únicos para doenças, facilitando a normalização de termos como, por exemplo, \enquote{cancro do pulmão}.
 
-\item \acrfull{chebi}: ontologia focada nas substâncias ativas, atribuindo nomes padronizados e identificadores únicos para compostos químicos e ingredientes farmacêuticos \cite{hastings2016chebi}.
-
-
-\item \acrfull{hpo}: fornece um vocabulário adequado para a descrição de manifestações clínicas, permitindo associar patologias a sinais e sintomas que se manifestam no paciente \cite{Khler2020}.
+\item \acrfull{chebi}: ontologia focada em compostos químicos e entidades moleculares, utilizada como uma das referências para a normalização de entidades químicas quando disponível. \cite{hastings2016chebi}.
 
 \item \acrfull{ordo}: fornece uma nomenclatura especializada para doenças raras e condições médicas específicas, servindo de complemento à classificação oferecida pela DOID \cite{ordo2017}.
 \end{itemize}
-Ao mapear os dados para as respetivas ontologias, é possível atribuir um identificador único (como o DOID para patologias ou o ChEBI ID para substâncias ativas) a cada entidade, permitindo ao sistema reconhecer diferentes termos como representações do mesmo conceito.
+Ao mapear os dados para as respetivas ontologias, é possível atribuir um identificador único (como o DOID para patologias ou o identificador ChEBI para ingredientes) a cada entidade, permitindo ao sistema reconhecer diferentes termos como representações do mesmo conceito. Este processo reduz a heterogeneidade entre as diferentes fontes de informação e constitui a base para a construção de um Grafo de Conhecimento consistente, no qual entidades como fármacos, ingredientes, patologias e genes podem ser integradas e representadas de forma uniforme.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \paragraph{Tripletos e Grafos de Conhecimento}
 \label{subsec:triplets e grafos de conhecimento}
-Para que os dados provenientes das ontologias possam ser processados por modelos de aprendizagem, não podem ser apresentados como uma \enquote{simples} lista de termos. Pelo contrário, devem ser organizados numa estrutura onde há uma transformação da informação em tríplets, onde cada facto é decomposto numa relação bem definida entre duas entidades (por exemplo: Fármaco A \enquote{trata} Doença B). Esta organização permite que o sistema seja capaz de interpretar a natureza de cada interação, distinguindo, por exemplo, entre uma indicação e um efeito secundário. Ao adotar esta estrutura, a informação deixa de estar fragmentada em tabelas e passa a formar um Grafo de Conhecimento, onde a proximidade e o tipo de ligação entre os nós permitem a inferência de novas descobertas \cite{ghazvinian2019knowledgegraphs}.
+Após a normalização das diferentes entidades através das ontologias, torna-se necessário representar o conhecimento de forma a preservar as relações existentes entre essas entidades. Para esse efeito, a informação é organizada em tripletos, onde cada triplo representa uma relação entre uma entidade de origem e uma entidade de destino. Por exemplo, um fármaco pode estar associado a uma patologia através de uma indicação terapêutica, ou uma patologia pode estar relacionada com um determinado gene. Esta representação permite integrar e relacionar as diferentes entidades de forma estruturada e consistente \cite{ghazvinian2019knowledgegraphs}.
 
-Esta forma de organização é essencial para descrever o domínio farmacêutico, onde as relações entre fármacos e patologias variam (por exemplo: \enquote{trata}, \enquote{previne} ou \enquote{causa}). Assim, a utilização de tripletos permite preservar estes tipos diferentes de relação, fornecendo a base necessária para a aplicação de \acrshort{gnn}.
+A organização da informação na forma de tripletos permite construir um Grafo de Conhecimento, onde cada entidade corresponde a um nó e cada relação a uma aresta direcionada. Ao contrário de uma representação tabular tradicional, esta abordagem mantém as diferentes relações entre as entidades, permitindo uma descrição mais completa e adequada ao domínio biomédico. Esta característica é particularmente importante neste contexto, uma vez que permite a aplicação de modelos de aprendizagem automática baseados em grafos.
 
 A \figurename~\ref{fig:tabular_to_graph} ilustra este processo de transição, evidenciando como dados em datasets podem passar a ser representados na forma de grafos.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.95\textwidth]{Chapters/img/exemplo-transformacao-dataset-grafo-background.pdf}
-    \caption{Ilustração da transformação de uma representação tabular fragmentada num Grafo de Conhecimento, onde entidades como medicamentos, substâncias ativas e patologias passam a estar interligadas.}
+    \includegraphics[width=0.95\textwidth]{Chapters/img/tripletos-grafos.pdf}
+    \caption{Ilustração do processo de integração das diferentes fontes de dados, da normalização das entidades e da sua representação em tripletos até à construção de um Grafo de Conhecimento.}
     \label{fig:tabular_to_graph}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \paragraph{Redes Neuronais Gráficas (GNN)}
 \label{subsec:gnn}
-As Redes Neuronais Gráficas (\acrshort{gnn}) são modelos de \textit{Deep Learning} desenvolvidos para processar dados estruturados em grafos. Ao contrário das redes neuronais tradicionais, que trabalham com dados tabulares, as GNNs utilizam o estudo das propriedades do grafo para aprender relações entre os nós.
+Uma vez representada a informação num Grafo de Conhecimento, torna-se necessário recorrer a modelos capazes de explorar a estrutura relacional existente entre as entidades. As Redes Neuronais Gráficas (\acrshort{gnn}) são modelos de \textit{Deep Learning} desenvolvidos para aprender diretamente a partir de dados estruturados em grafos, utilizando simultaneamente a informação das entidades e das relações que as ligam \cite{Wu2021}.
 
-As \acrshort{gnn} baseiam-se no conceito de \textit{message passing} (passagem de mensagens). Cada nó do grafo reúne informação dos seus vizinhos para atualizar a sua própria representação. Este processo permite que a informação se propague pela estrutura do grafo, capturando tanto características locais como padrões mais globais da rede \cite{Wu2021}.
+As \acrshort{gnn} baseiam-se no conceito de \textit{message passing} (passagem de mensagens), no qual cada nó atualiza a sua representação através da agregação da informação proveniente dos nós vizinhos. Desta forma, a informação propaga-se ao longo do grafo, permitindo aprender representações que capturam tanto as características de cada entidade como a informação estrutural do grafo \cite{Wu2021}.
 
-No contexto de grafos de conhecimento biomédicos, as GNNs oferecem várias vantagens. Conseguem capturar a complexidade das relações entre entidades biomédicas (fármacos, doenças, proteínas) de forma natural, preservando a informação estrutural do grafo. As representações aprendidas pelas GNNs podem ser utilizadas para diversas tarefas, sendo a predição de ligações a mais relevante para este trabalho.
+Neste contexto, estas representações permitem explorar as relações existentes entre entidades como fármacos, ingredientes, patologias e genes, sendo posteriormente utilizadas em tarefas como classificação de nós, classificação de relações e predição de ligações. Existem várias arquiteturas de GNN que se diferenciam principalmente pela forma como processam a informação estrutural do grafo e as relações entre as entidades.
 
-
+Neste tipo de grafos, é frequente coexistirem diferentes tipos de relações entre as entidades, cada uma com um significado distinto. Assim, torna-se necessário recorrer a arquiteturas capazes de considerar essa diversidade relacional durante o processo de aprendizagem. Entre estas destacam-se as Redes Neuronais Convolucionais Relacionais (R-GCN), concebidas especificamente para processar Grafos de Conhecimento multi-relacionais.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \paragraph{Predição de Ligações (Link Prediction)}
 \label{subsec:predicao de ligacoes}
-A predição de ligações consiste na tarefa de estimar a probabilidade de existência de uma aresta (relação) entre dois nós (entidades) que não se encontram conectados no grafo original \cite{Wu2021}. Nas \acrshort{gnn}, esta tarefa é realizada através da comparação das representações latentes aprendidas para cada nó durante o processo de \textit{message passing}. Estas representações, frequentemente designadas por \textit{embeddings}, são vetores numéricos que funcionam como um identificador detalhado de cada entidade. Cada nó passa a conter informação sobre a sua vizinhança, permitindo ao nó integrar informação estrutural e relacional do grafo com base nos seus vizinhos e nas relações que os ligam. Por outras palavras, a \enquote{identidade} de um nó passa a descrever não apenas o que ele é, mas também com quem se relaciona.
+Entre as diferentes tarefas que podem ser realizadas sobre Grafos de Conhecimento, a predição de ligações (\textit{Link Prediction}) consiste em estimar a probabilidade de existência de uma relação entre duas entidades que não se encontram diretamente ligadas no grafo original \cite{Wu2021}. Esta tarefa permite inferir novas associações com base na estrutura do grafo e na informação aprendida pelo modelo durante o processo de treino.
 
-Assim, o modelo infere novas ligações comparando os perfis criados para cada nó. Se o perfil de um fármaco for semelhante com o de uma doença, o sistema sugere que esse medicamento pode tratar essa doença, mesmo que isso ainda não seja conhecido.
+Nas \acrshort{gnn}, esta tarefa baseia-se nas representações vetoriais (\textit{embeddings}) aprendidas para cada entidade durante o processo de \textit{message passing}. Estas representações sintetizam a informação estrutural e relacional de cada nó, permitindo representar tanto as características da entidade como as relações estabelecidas no grafo.
+
+Com base nestas representações, o modelo estima a probabilidade de existência de novas associações entre entidades. No contexto desta dissertação, esta capacidade é utilizada para prever potenciais ligações entre fármacos e patologias, contribuindo para a identificação de novas hipóteses terapêuticas.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Trabalho Relacionado e Estado da Arte}

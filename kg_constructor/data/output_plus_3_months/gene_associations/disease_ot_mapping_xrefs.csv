@@ -1,0 +1,789 @@
+doid,kg_disease_name,ot_disease_id,ot_disease_name
+DOID:0040085,bacterial sepsis,EFO_0003033,bacteriemia
+DOID:0050052,Rocky Mountain spotted fever,,
+DOID:0050073,invasive aspergillosis,,
+DOID:0050096,tinea barbae,,
+DOID:0050120,hemophagocytic lymphohistiocytosis,MONDO_0015540,hemophagocytic syndrome
+DOID:0050127,sinusitis,EFO_0007486,sinusitis
+DOID:0050140,acute diarrhea,MONDO_0000257,acute diarrhea
+DOID:0050156,idiopathic pulmonary fibrosis,EFO_0000768,idiopathic pulmonary fibrosis
+DOID:0050157,cryptogenic organizing pneumonia,EFO_1001300,Cryptogenic Organizing Pneumonia
+DOID:0050161,lower respiratory tract disease,EFO_0009433,lower respiratory tract disease
+DOID:0050185,erythema multiforme,EFO_1000694,erythema multiforme
+DOID:0050228,obsolete amebic dysentery,,
+DOID:0050289,fusariosis,EFO_1001795,fusariosis
+DOID:0050328,congenital hypothyroidism,MONDO_0018612,congenital hypothyroidism
+DOID:0050336,hypophosphatemia,MONDO_0000313,hypophosphatemia
+DOID:0050425,restless legs syndrome,EFO_0004270,restless legs syndrome
+DOID:0050452,mevalonic aciduria,MONDO_0012481,mevalonic aciduria
+DOID:0050476,Barth syndrome,MONDO_0010543,Barth syndrome
+DOID:0050489,multinodular goiter,MONDO_0000334,multinodular goiter
+DOID:0050589,inflammatory bowel disease,EFO_0003767,inflammatory bowel disease
+DOID:0050693,Brooke-Spiegler syndrome,MONDO_0011512,Brooke-Spiegler syndrome
+DOID:0050700,cardiomyopathy,EFO_0000318,cardiomyopathy
+DOID:0050731,vitamin B12 deficiency,MONDO_0019220,inborn disorder of cobalamin metabolism and transport
+DOID:0050731,vitamin B12 deficiency,EFO_0000734,vitamin B12 deficiency
+DOID:0050741,alcohol dependence,MONDO_0007079,alcohol dependence
+DOID:0050744,anaplastic large cell lymphoma,EFO_0003032,anaplastic large cell lymphoma
+DOID:0050745,diffuse large B-cell lymphoma,EFO_0000403,diffuse large B-cell lymphoma
+DOID:0050746,mantle cell lymphoma,EFO_1001469,Mantle cell lymphoma
+DOID:0050748,marginal zone lymphoma,EFO_1000630,marginal zone B-cell lymphoma
+DOID:0050758,metabolic acidosis,MONDO_0000440,metabolic acidosis
+DOID:0050771,pheochromocytoma,MONDO_0008233,pheochromocytoma
+DOID:0050784,primary progressive multiple sclerosis,EFO_0003840,chronic progressive multiple sclerosis
+DOID:0050784,primary progressive multiple sclerosis,EFO_0008520,primary progressive multiple sclerosis
+DOID:0050811,congenital adrenal hyperplasia,MONDO_0018479,congenital adrenal hyperplasia
+DOID:0050820,atrioventricular block,MONDO_0000465,atrioventricular block
+DOID:0050827,rheumatic heart disease,EFO_1001161,rheumatic heart disease
+DOID:0050828,artery disease,MONDO_0000473,arterial disorder
+DOID:0050830,peripheral artery disease,EFO_0004265,peripheral arterial disease
+DOID:0050840,cervical dystonia,MONDO_0000481,cervical dystonia
+DOID:0050847,sleep apnea,EFO_0003877,sleep apnea
+DOID:0050848,obstructive sleep apnea,EFO_0003918,obstructive sleep apnea
+DOID:0050854,Muckle-Wells syndrome,MONDO_0008633,Muckle-Wells syndrome
+DOID:0050859,hemorrhagic cystitis,MONDO_0000496,hemorrhagic cystitis
+DOID:0050873,follicular lymphoma,MONDO_0018906,follicular lymphoma
+DOID:0050902,medulloblastoma,EFO_0002939,medulloblastoma
+DOID:0050905,inflammatory myofibroblastic tumor,MONDO_0015798,inflammatory myofibroblastic tumor
+DOID:0050908,myelodysplastic syndrome,EFO_0000198,myelodysplastic syndrome
+DOID:0051061,stroke,,
+DOID:0051062,ischemic stroke,,
+DOID:0051064,left ventricular failure,,
+DOID:0060000,infective endocarditis,MONDO_0000565,infective endocarditis
+DOID:0060042,atypical autism,MONDO_0016052,atypical autism
+DOID:0060042,atypical autism,EFO_0003759,pervasive developmental disorder - not otherwise specified
+DOID:0060058,lymphoma,EFO_0000574,lymphoma
+DOID:0060145,pain agnosia,EFO_1001484,pain agnosia
+DOID:0060167,seasonal affective disorder,,
+DOID:0060180,colitis,EFO_0003872,colitis
+DOID:0060185,Clostridium difficile colitis,,
+DOID:0060224,atrial fibrillation,EFO_0000275,atrial fibrillation
+DOID:0060260,ptosis,MONDO_0000728,ptosis
+DOID:0060262,gallbladder disease,EFO_0003832,gallbladder disease
+DOID:0060284,paroxysmal nocturnal hemoglobinuria,MONDO_0100244,paroxysmal nocturnal hemoglobinuria
+DOID:0060317,lung abscess,EFO_1001362,Lung Abscess
+DOID:0060318,acute promyelocytic leukemia,EFO_0000224,acute promyelocytic leukemia
+DOID:0060319,cardiac arrest,,
+DOID:0060469,Miller-Dieker lissencephaly syndrome,MONDO_0009532,Miller-Dieker lissencephaly syndrome
+DOID:0060851,pemphigus vulgaris,EFO_0004719,pemphigus vulgaris
+DOID:0060903,thrombosis,MONDO_0000831,thrombotic disease
+DOID:0061030,hemophilia,MONDO_0018660,hemophilia
+DOID:0061139,coronary atherosclerosis,,
+DOID:0061214,biliary obstruction,,
+DOID:0070080,schizophrenia 4,,
+DOID:0070084,schizophrenia 8,,
+DOID:0070314,obstructive nephropathy,,
+DOID:0070355,overactive bladder syndrome,EFO_1000781,overactive bladder
+DOID:0070663,soft tissue sarcoma,,
+DOID:0080147,lymphoblastic lymphoma,MONDO_0000873,lymphoblastic lymphoma
+DOID:0080159,Cryptococcal meningitis,EFO_0007228,cryptococcal meningitis
+DOID:0080160,Cytomegalovirus retinitis,EFO_1001302,Cytomegalovirus Retinitis
+DOID:0080161,cutaneous candidiasis,MONDO_0000879,cutaneous candidiasis
+DOID:0080162,lupus nephritis,EFO_0005761,lupus nephritis
+DOID:0080176,meningococcal meningitis,EFO_1001040,meningococcal meningitis
+DOID:0080178,mucositis,,
+DOID:0080188,chronic myelomonocytic leukemia,EFO_1001779,chronic myelomonocytic leukemia
+DOID:0080217,lysosomal acid lipase deficiency,EFO_0700022,lysosomal acid lipase deficiency
+DOID:0080322,polycystic kidney disease,EFO_0008620,Polycystic Kidney Disease
+DOID:0080347,malignant pheochromocytoma,EFO_1000348,Malignant Adrenal Gland Pheochromocytoma
+DOID:0080365,endometrial hyperplasia,,
+DOID:0080367,chronic eosinophilic leukemia,,
+DOID:0080374,gastroesophageal cancer,,
+DOID:0080422,Dravet syndrome,MONDO_0100135,Dravet syndrome
+DOID:0080547,metabolic dysfunction-associated steatohepatitis,EFO_1001249,non-alcoholic steatohepatitis
+DOID:0080605,ankylosing spondylitis 3,,
+DOID:0080652,calcium oxalate nephrolithiasis,MONDO_0020722,nephrolithiasis susceptibility caused by SLC26A1
+DOID:0080745,polymyositis,EFO_0003063,polymyositis
+DOID:0080747,chronic urticaria,,
+DOID:0080749,chronic spontaneous urticaria,MONDO_0044212,chronic idiopathic urticaria
+DOID:0080784,urinary tract infection,EFO_0003103,urinary tract infection
+DOID:0080809,chronic asthma,MONDO_0850282,chronic asthma
+DOID:0080810,acute asthma,,
+DOID:0080832,mild cognitive impairment,,
+DOID:0080841,pemphigoid,,
+DOID:0080855,Parkinsonism,MONDO_0021095,parkinsonian disorder
+DOID:0081055,central diabetes insipidus,,
+DOID:0081120,Graves ophthalmopathy,,
+DOID:0081267,graft-versus-host disease,MONDO_0013730,graft versus host disease
+DOID:0081292,traumatic brain injury,,
+DOID:0081445,sickle cell disease,MONDO_0011382,sickle cell disease
+DOID:0090018,TNF receptor–associated periodic syndrome,MONDO_0007727,TNF receptor 1-associated periodic fever syndrome
+DOID:0090019,sitosterolemia,MONDO_0008863,sitosterolemia
+DOID:0090061,familial cold autoinflammatory syndrome,MONDO_0018768,familial cold autoinflammatory syndrome
+DOID:0090070,hypogonadotropic hypogonadism,MONDO_0018555,hypogonadotropic hypogonadism
+DOID:0110102,atopic dermatitis 6,,
+DOID:0110698,hypotrichosis 1,MONDO_0011549,hypotrichosis 1
+DOID:0111084,Fanconi anemia complementation group E,MONDO_0010953,Fanconi anemia complementation group E
+DOID:0111151,Prinzmetal angina,EFO_1000013,Prinzmetal's angina
+DOID:0111275,speech-language disorder-1,MONDO_0011184,childhood apraxia of speech
+DOID:0111282,psoriasis 5,,
+DOID:0111391,mucopolysaccharidosis IVA,MONDO_0009659,mucopolysaccharidosis type 4A
+DOID:0111595,congenital contractural arachnodactyly,MONDO_0007363,congenital contractural arachnodactyly
+DOID:0111773,"46,XY sex reversal 8",,
+DOID:0111936,immunodeficiency 14,,
+DOID:0111962,combined immunodeficiency,MONDO_0015131,combined immunodeficiency
+DOID:0112308,central precocious puberty,EFO_0009029,Central precocious puberty
+DOID:0112339,Tatton-Brown-Rahman syndrome,MONDO_0014382,Tatton-Brown-Rahman overgrowth syndrome
+DOID:1002,endometritis,EFO_1001312,Endometritis
+DOID:1003,pelvic inflammatory disease,EFO_1001388,Pelvic Inflammatory Disease
+DOID:10075,diphyllobothriasis,EFO_0007238,diphyllobothriasis
+DOID:10126,keratoconus,MONDO_0015486,keratoconus
+DOID:1019,osteomyelitis,EFO_0003102,osteomyelitis
+DOID:10223,dermatomyositis,EFO_0000398,dermatomyositis
+DOID:1024,leprosy,EFO_0001054,leprosy
+DOID:10241,thalassemia,EFO_1001996,Thalassemia
+DOID:10283,prostate cancer,MONDO_0008315,prostate cancer
+DOID:1029,familial periodic paralysis,MONDO_0000995,familial periodic paralysis
+DOID:1029,familial periodic paralysis,Orphanet_371433,Genetic periodic paralysis
+DOID:10314,endocarditis,EFO_0000465,endocarditis
+DOID:10322,berylliosis,EFO_0007168,berylliosis
+DOID:10325,silicosis,EFO_0007485,silicosis
+DOID:1036,chronic leukemia,MONDO_0001014,chronic leukemia
+DOID:1037,lymphoid leukemia,EFO_0000220,acute lymphoblastic leukemia
+DOID:1037,lymphoid leukemia,EFO_0004289,lymphoid leukemia
+DOID:10371,yaws,EFO_0007548,yaws
+DOID:1040,chronic lymphocytic leukemia,EFO_0000095,chronic lymphocytic leukemia
+DOID:10456,tonsillitis,MONDO_0001039,tonsillitis
+DOID:10457,Legionnaires' disease,EFO_0007343,Legionnaires' disease
+DOID:10459,common cold,EFO_0007214,common cold
+DOID:10534,stomach cancer,MONDO_0001056,gastric cancer
+DOID:10534,stomach cancer,EFO_0003897,stomach neoplasm
+DOID:10554,meningoencephalitis,EFO_0007364,meningoencephalitis
+DOID:1059,intellectual disability,,
+DOID:10591,pre-eclampsia,EFO_0000668,preeclampsia
+DOID:10603,glucose intolerance,,
+DOID:10607,tropical sprue,MONDO_0001078,tropical sprue
+DOID:10608,celiac disease,EFO_0001060,celiac disease
+DOID:10609,rickets,EFO_0005583,rickets
+DOID:1064,cystinosis,MONDO_0016239,cystinosis
+DOID:1067,open-angle glaucoma,EFO_0004190,open-angle glaucoma
+DOID:10689,obsolete galactorrhea not associated with childbirth,,
+DOID:10718,giardiasis,DOID_10718,giardiasis
+DOID:1074,kidney failure,EFO_1002048,kidney failure
+DOID:10754,otitis media,EFO_0004992,Otitis media
+DOID:10763,hypertension,EFO_0000537,hypertension
+DOID:10783,methemoglobinemia,MONDO_0001117,methemoglobinemia
+DOID:10787,premature menopause,EFO_0009005,premature menopause
+DOID:10808,gastric ulcer,EFO_0009454,gastric ulcer
+DOID:10825,essential hypertension,MONDO_0001134,essential hypertension
+DOID:10915,Wernicke-Korsakoff syndrome,EFO_1001242,Wernicke-Korsakoff syndrome
+DOID:10933,obsessive-compulsive disorder,EFO_0004242,obsessive-compulsive disorder
+DOID:1094,attention deficit hyperactivity disorder,EFO_0003888,attention deficit hyperactivity disorder
+DOID:10952,nephritis,EFO_1002050,nephritis
+DOID:11054,urinary bladder cancer,MONDO_0001187,urinary bladder cancer
+DOID:11077,brucellosis,EFO_0007185,brucellosis
+DOID:11100,Q fever,EFO_0005224,Q fever
+DOID:11102,bartonellosis,EFO_0007166,bartonellosis
+DOID:11103,rickettsialpox,,
+DOID:11104,spotted fever,EFO_1002047,spotted fever
+DOID:11126,acquired thrombocytopenia,MONDO_0001198,acquired thrombocytopenia
+DOID:1115,sarcoma,EFO_0000691,sarcoma
+DOID:1116,pertussis,EFO_0000650,whooping cough
+DOID:11162,respiratory failure,EFO_0009686,respiratory failure
+DOID:11198,DiGeorge syndrome,,
+DOID:11199,hypoparathyroidism,EFO_0009451,hypoparathyroidism
+DOID:11204,allergic conjunctivitis,EFO_0007141,allergic conjunctivitis
+DOID:11247,disseminated intravascular coagulation,,
+DOID:11249,vitamin K deficiency bleeding,,
+DOID:11256,typhus,EFO_0009117,typhus
+DOID:11262,ornithosis,EFO_0007410,ornithosis
+DOID:11263,chlamydia,EFO_0007205,Chlamydia trachomatis infectious disease
+DOID:11265,trachoma,,
+DOID:11330,erysipelas,EFO_1001462,erysipelas
+DOID:11335,sarcoidosis,MONDO_0019338,sarcoidosis
+DOID:11338,tetanus,EFO_0005593,tetanus
+DOID:11339,pneumocystosis,EFO_0007448,pneumocystosis
+DOID:11371,functional diarrhea,,
+DOID:11383,cryptorchidism,EFO_0004562,cryptorchidism
+DOID:11396,pulmonary edema,EFO_1001134,pulmonary edema
+DOID:114,heart disease,EFO_0003777,heart disease
+DOID:11400,pyelonephritis,EFO_1001141,pyelonephritis
+DOID:11405,diphtheria,EFO_0005549,diphtheria
+DOID:11406,choroiditis,MONDO_0001280,choroiditis
+DOID:11476,osteoporosis,EFO_0003882,osteoporosis
+DOID:11503,diabetic autonomic neuropathy,MONDO_0001299,diabetic autonomic neuropathy
+DOID:11503,diabetic autonomic neuropathy,EFO_1000783,diabetic neuropathy
+DOID:11504,autonomic neuropathy,MONDO_0001300,autonomic neuropathy
+DOID:11506,suppurative otitis media,EFO_0007503,suppurative otitis media
+DOID:11573,listeriosis,EFO_0007347,listeriosis
+DOID:11612,polycystic ovary syndrome,EFO_0000660,polycystic ovary syndrome
+DOID:11634,myxedema,EFO_1001055,myxedema
+DOID:11638,presbyopia,MONDO_0001330,presbyopia
+DOID:11650,bronchopulmonary dysplasia,MONDO_0019091,bronchopulmonary dysplasia
+DOID:11678,onchocerciasis,EFO_0007402,onchocerciasis
+DOID:1172,hyperlipoproteinemia type IV,Orphanet_413,Hyperlipoproteinemia type 4
+DOID:11723,Duchenne muscular dystrophy,MONDO_0010679,Duchenne muscular dystrophy
+DOID:11729,Lyme disease,EFO_0008510,Lyme disease
+DOID:11758,iron deficiency anemia,HP_0001891,Iron deficiency anemia
+DOID:118,pericardial effusion,MONDO_0001370,pericardial effusion
+DOID:11823,hepatorenal syndrome,MONDO_0001382,hepatorenal syndrome
+DOID:1184,nephrotic syndrome,EFO_0004255,nephrotic syndrome
+DOID:11840,coronary artery vasospasm,EFO_0004225,Coronary Vasospasm
+DOID:11914,gastroparesis,EFO_1000948,gastroparesis
+DOID:11917,tinea cruris,,
+DOID:11963,esophagitis,MONDO_0001409,esophagitis
+DOID:11968,postmenopausal atrophic vaginitis,MONDO_0001410,postmenopausal atrophic vaginitis
+DOID:11984,hypertrophic cardiomyopathy,EFO_0000538,hypertrophic cardiomyopathy
+DOID:12017,obsolete group B streptococcal pneumonia,,
+DOID:12029,sympathetic ophthalmia,EFO_1001205,sympathetic ophthalmia
+DOID:12030,panuveitis,EFO_1001082,panuveitis
+DOID:1205,allergic disease,MONDO_0005271,allergic disease
+DOID:12053,cryptococcosis,EFO_0007229,cryptococcosis
+DOID:1206,Rett syndrome,MONDO_0010726,Rett syndrome
+DOID:12072,pylorospasm,,
+DOID:12098,trigeminal neuralgia,EFO_1001219,trigeminal neuralgia
+DOID:1210,optic neuritis,EFO_0007405,optic neuritis
+DOID:12129,bulimia nervosa,EFO_0005204,bulimia nervosa
+DOID:12134,factor VIII deficiency,MONDO_0010602,hemophilia A
+DOID:12143,neurogenic bladder,HP_0000011,Neurogenic bladder
+DOID:12176,goiter,EFO_0004283,goiter
+DOID:12177,common variable immunodeficiency,MONDO_0015517,common variable immunodeficiency
+DOID:12179,tinea corporis,,
+DOID:12197,punctate epithelial keratoconjunctivitis,,
+DOID:12236,primary biliary cholangitis,EFO_1001486,primary biliary cirrhosis
+DOID:12259,hemophilia B,MONDO_0010604,hemophilia B
+DOID:1227,neutropenia,MONDO_0001475,neutropenia
+DOID:12306,vitiligo,EFO_0004208,Vitiligo
+DOID:12336,male infertility,EFO_0004248,male infertility
+DOID:12365,malaria,EFO_0001068,malaria
+DOID:12377,spinal muscular atrophy,EFO_0008525,spinal muscular atrophy
+DOID:12384,dysentery,EFO_1001869,dysentery
+DOID:12385,shigellosis,EFO_0005585,shigellosis
+DOID:12387,nephrogenic diabetes insipidus,MONDO_0016383,nephrogenic diabetes insipidus
+DOID:1240,leukemia,EFO_0000565,leukemia
+DOID:12403,tinea pedis,EFO_0007512,tinea pedis
+DOID:12404,obsolete tinea,EFO_0007510,tinea
+DOID:12449,aplastic anemia,MONDO_0015909,aplastic anemia
+DOID:12466,secondary hyperparathyroidism,EFO_1001173,secondary hyperparathyroidism
+DOID:12550,hepatic coma,,
+DOID:12554,hemolytic-uremic syndrome,MONDO_0001549,hemolytic-uremic syndrome
+DOID:12556,acute kidney tubular necrosis,EFO_1000794,acute kidney tubular necrosis
+DOID:12574,posterior uveitis,EFO_1001119,posterior uveitis
+DOID:1260,parametritis,EFO_1001084,parametritis
+DOID:12603,acute leukemia,EFO_1000068,Acute Leukemia
+DOID:12663,blastomycosis,EFO_0007174,blastomycosis
+DOID:12678,hypercalcemia,HP_0003072,Hypercalcemia
+DOID:12678,hypercalcemia,MONDO_0001566,hypercalcemia disease
+DOID:12698,gynecomastia,,
+DOID:12700,hyperprolactinemia,MONDO_0024305,acquired hyperprolactinemia
+DOID:12700,hyperprolactinemia,EFO_0007319,hyperprolactinemia
+DOID:1272,telangiectasis,MONDO_0001576,telangiectasis
+DOID:1273,respiratory syncytial virus infectious disease,EFO_1001413,Respiratory Syncytial Virus Infection
+DOID:12783,migraine without aura,MONDO_0100431,migraine without aura
+DOID:12798,mucopolysaccharidosis,MONDO_0019249,mucopolysaccharidosis
+DOID:12849,autistic disorder,EFO_0003758,autism
+DOID:12859,choreatic disease,EFO_0004152,chorea
+DOID:12895,keratoconjunctivitis sicca,EFO_1000906,dry eye syndrome
+DOID:12919,Plasmodium ovale malaria,,
+DOID:12930,dilated cardiomyopathy,EFO_0000407,dilated cardiomyopathy
+DOID:12978,Plasmodium vivax malaria,EFO_0007445,Plasmodium vivax malaria
+DOID:12987,agranulocytosis,HP_0012234,Absence of circulating granulocytes
+DOID:13034,relapsing fever,MONDO_0019633,relapsing fever
+DOID:1307,dementia,MONDO_0001627,dementia
+DOID:13074,tinea unguium,MONDO_0001628,tinea unguium
+DOID:13141,uveitis,EFO_1001231,uveitis
+DOID:13146,esophageal candidiasis,,
+DOID:13148,acute cystitis,MONDO_0001650,acute cystitis
+DOID:13166,allergic bronchopulmonary aspergillosis,EFO_0007140,allergic bronchopulmonary aspergillosis
+DOID:13189,gout,EFO_0004274,gout
+DOID:1324,lung cancer,MONDO_0008903,lung cancer
+DOID:13250,diarrhea,HP_0002014,Diarrhea
+DOID:13250,diarrhea,MONDO_0001673,diarrheal disease
+DOID:13258,typhoid fever,EFO_0006789,typhoid fever
+DOID:13268,porphyria,MONDO_0019142,inherited porphyria
+DOID:13270,erythropoietic protoporphyria,MONDO_0001676,erythropoietic protoporphyria
+DOID:13316,exocrine pancreatic insufficiency,MONDO_0001684,exocrine pancreatic insufficiency
+DOID:13375,temporal arteritis,EFO_1001209,temporal arteritis
+DOID:13378,Kawasaki disease,EFO_0004246,mucocutaneous lymph node syndrome
+DOID:13381,pernicious anemia,EFO_0005576,pernicious anemia
+DOID:13382,megaloblastic anemia,MONDO_0001700,megaloblastic anemia
+DOID:1340,pure red-cell aplasia,MONDO_0001705,pure red-cell aplasia
+DOID:13419,neurogenic bowel,EFO_1001061,neurogenic bowel
+DOID:1343,urethritis,EFO_0003878,urethritis
+DOID:13450,coccidioidomycosis,EFO_0007211,coccidioidomycosis
+DOID:13515,tuberous sclerosis,MONDO_0001734,tuberous sclerosis
+DOID:13543,hyperparathyroidism,EFO_0008506,hyperparathyroidism
+DOID:13548,secondary Parkinson disease,EFO_1001175,secondary Parkinson disease
+DOID:13558,obsolete gonococcal urethritis,,
+DOID:13564,aspergillosis,EFO_0007157,aspergillosis
+DOID:13581,obsolete magnesium deficiency,EFO_1001029,magnesium deficiency
+DOID:13582,obsolete potassium deficiency,EFO_1001120,potassium deficiency
+DOID:13593,eclampsia,,
+DOID:13603,obstructive jaundice,EFO_1001068,obstructive jaundice
+DOID:13725,beriberi,EFO_1000837,beriberi
+DOID:13778,chancroid,,
+DOID:1380,endometrial cancer,MONDO_0011962,endometrial cancer
+DOID:1380,endometrial cancer,EFO_0004230,endometrial neoplasm
+DOID:13800,inclusion conjunctivitis,EFO_0007324,inclusion conjunctivitis
+DOID:13810,familial hypercholesterolemia,EFO_0004911,familial hypercholesterolemia
+DOID:13819,lymphogranuloma venereum,EFO_0007353,lymphogranuloma venereum
+DOID:13832,patent ductus arteriosus,,
+DOID:13868,hypoactive sexual desire disorder,,
+DOID:1389,polyneuropathy,EFO_0009562,polyneuropathy
+DOID:13906,obsolete malignant pleural effusion,,
+DOID:13922,eosinophilic esophagitis,EFO_0004232,eosinophilic esophagitis
+DOID:13924,necrotizing ulcerative gingivitis,EFO_1001058,necrotizing ulcerative gingivitis
+DOID:13938,amenorrhea,MONDO_0001836,amenorrhea
+DOID:1398,parasitic infectious disease,EFO_0001067,parasitic infection
+DOID:14038,obsolete precocious puberty,,
+DOID:1406,iritis,EFO_1000997,iritis
+DOID:14067,Plasmodium falciparum malaria,EFO_0007444,Plasmodium falciparum malaria
+DOID:14069,cerebral malaria,EFO_0006857,cerebral malaria
+DOID:1407,anterior uveitis,EFO_1000811,anterior uveitis
+DOID:14087,epicondylitis,EFO_1001887,epicondylitis
+DOID:1412,bacteriuria,,
+DOID:14219,renal tubular acidosis,MONDO_0001909,renal tubular acidosis
+DOID:14227,azoospermia,EFO_0000279,azoospermia
+DOID:14247,chronic purulent otitis media,MONDO_0001920,chronic purulent otitis media
+DOID:1432,blindness,MONDO_0001941,blindness (disorder)
+DOID:14320,generalized anxiety disorder,EFO_1001892,generalized anxiety disorder
+DOID:14330,Parkinson's disease,MONDO_0005180,Parkinson disease
+DOID:14332,postencephalitic Parkinson disease,EFO_1001402,postencephalitic Parkinson disease
+DOID:14365,systemic primary carnitine deficiency disease,MONDO_0008919,systemic primary carnitine deficiency disease
+DOID:14451,hyperkalemic periodic paralysis,MONDO_0008224,hyperkalemic periodic paralysis
+DOID:14452,hypokalemic periodic paralysis,MONDO_0008223,hypokalemic periodic paralysis
+DOID:14484,sporotrichosis,EFO_0007494,sporotrichosis
+DOID:14566,disease of cellular proliferation,EFO_0000616,neoplasm
+DOID:1459,hypothyroidism,EFO_0004705,hypothyroidism
+DOID:14654,prostatitis,EFO_0003830,prostatitis
+DOID:1468,labyrinthitis,EFO_0009604,labyrinthitis
+DOID:1470,major depressive disorder,MONDO_0002009,major depressive disorder
+DOID:14735,hereditary angioedema,MONDO_0019623,hereditary angioedema
+DOID:1485,cystic fibrosis,MONDO_0009061,cystic fibrosis
+DOID:1498,cholera,,
+DOID:1508,candidiasis,MONDO_0002026,candidiasis
+DOID:1540,parathyroid carcinoma,EFO_1000456,Parathyroid Gland Carcinoma
+DOID:1555,urticaria,EFO_0005531,urticaria
+DOID:1558,angioedema,EFO_0005532,angioedema
+DOID:1562,chromoblastomycosis,EFO_0007207,chromoblastomycosis
+DOID:1564,fungal infectious disease,MONDO_0002041,fungal infectious disease
+DOID:1586,rheumatic fever,EFO_1001160,rheumatic fever
+DOID:1587,thrombocytopenia due to platelet alloimmunization,,
+DOID:1588,thrombocytopenia,,
+DOID:1595,melancholic depression,,
+DOID:1596,depressive disorder,MONDO_0002050,depressive disorder
+DOID:161,keratosis,EFO_1000720,keratosis
+DOID:1612,breast cancer,MONDO_0007254,breast cancer
+DOID:162,cancer,MONDO_0004992,cancer
+DOID:1673,pneumothorax,MONDO_0002076,pneumothorax
+DOID:1679,cystitis,EFO_1000025,cystitis
+DOID:1682,congenital heart disease,EFO_0005207,congenital heart disease
+DOID:1686,glaucoma,MONDO_0005041,glaucoma
+DOID:1697,ichthyosis,MONDO_0019269,ichthyosis
+DOID:1702,ichthyosis vulgaris,MONDO_0007810,autosomal dominant ichthyosis vulgaris
+DOID:1724,duodenal ulcer,EFO_0004607,duodenal ulcer
+DOID:1727,retinal vein occlusion,EFO_1001157,retinal vein occlusion
+DOID:1731,histoplasmosis,EFO_0007310,histoplasmosis
+DOID:1749,squamous cell carcinoma,EFO_0000707,squamous cell carcinoma
+DOID:178,vascular disease,EFO_0004264,vascular disease
+DOID:1781,thyroid cancer,MONDO_0002108,thyroid cancer
+DOID:1787,pericarditis,EFO_0007427,pericarditis
+DOID:1793,pancreatic cancer,EFO_0003860,pancreatic neoplasm
+DOID:1793,pancreatic cancer,EFO_1000359,Malignant Pancreatic Neoplasm
+DOID:1803,neuritis,MONDO_0002122,neuritis
+DOID:1824,status epilepticus,EFO_0008526,status epilepticus
+DOID:1826,epilepsy,EFO_0000474,epilepsy
+DOID:1827,generalized epilepsy,EFO_0005917,generalised epilepsy
+DOID:1837,diabetic ketoacidosis,EFO_1000897,diabetic ketoacidosis
+DOID:1875,impotence,EFO_0004234,erectile dysfunction
+DOID:1883,hepatitis C,EFO_0003047,hepatitis C virus infection
+DOID:1884,viral hepatitis,EFO_0004196,viral human hepatitis infection
+DOID:1884,viral hepatitis,EFO_0007540,animal viral hepatitis
+DOID:1909,melanoma,EFO_0000756,melanoma
+DOID:1920,hyperuricemia,,
+DOID:1921,Klinefelter syndrome,EFO_1001006,Klinefelter's syndrome
+DOID:1924,hypogonadism,MONDO_0002146,hypogonadism
+DOID:1926,Gaucher's disease,MONDO_0018150,Gaucher disease
+DOID:1936,atherosclerosis,EFO_0003914,atherosclerosis
+DOID:1947,trichomoniasis,DOID_1947,trichomoniasis
+DOID:1949,cholecystitis,,
+DOID:1967,leiomyosarcoma,EFO_0000564,leiomyosarcoma
+DOID:1969,cerebral palsy,EFO_1000632,cerebral palsy
+DOID:1993,rectum cancer,EFO_1000657,rectum cancer
+DOID:2018,hyperinsulinism,MONDO_0002177,hyperinsulinism
+DOID:2030,anxiety disorder,EFO_0006788,anxiety disorder
+DOID:2043,hepatitis B,EFO_0004197,hepatitis B virus infection
+DOID:205,hyperostosis,MONDO_0002185,hyperostosis
+DOID:2050,acute maxillary sinusitis,MONDO_0002186,acute maxillary sinusitis
+DOID:2051,maxillary sinusitis,EFO_0007361,maxillary sinusitis
+DOID:2055,post-traumatic stress disorder,EFO_0001358,post-traumatic stress disorder
+DOID:2123,tularemia,EFO_1001444,Tularemia
+DOID:216,dental caries,EFO_0003819,dental caries
+DOID:2170,vaginitis,MONDO_0002234,vaginitis
+DOID:2170,vaginitis,EFO_0005757,vaginal inflammation
+DOID:219,colon cancer,MONDO_0021063,malignant colon neoplasm
+DOID:2213,hemorrhagic disease,MONDO_0002243,hemorrhagic disease
+DOID:2222,factor X deficiency,MONDO_0009212,congenital factor X deficiency
+DOID:2224,essential thrombocythemia,EFO_0000479,essential thrombocythemia
+DOID:2235,prothrombin deficiency,MONDO_0013361,congenital prothrombin deficiency
+DOID:2237,hepatitis,HP_0012115,Hepatitis
+DOID:224,transient cerebral ischemia,EFO_0003764,transient ischemic attack
+DOID:225,syndrome,,
+DOID:2271,obsolete oropharyngeal candidiasis,,
+DOID:2272,vulvovaginal candidiasis,EFO_0007543,vulvovaginal candidiasis
+DOID:2273,vulvovaginitis,EFO_1001240,vulvovaginitis
+DOID:2275,pharyngitis,MONDO_0002258,pharyngitis
+DOID:2280,hidradenitis suppurativa,EFO_1000710,hidradenitis suppurativa
+DOID:2282,hidradenitis,MONDO_0002260,hidradenitis
+DOID:2282,hidradenitis,EFO_1000710,hidradenitis suppurativa
+DOID:230,lateral sclerosis,MONDO_0018155,lateral sclerosis
+DOID:2312,nocardiosis,EFO_0007397,nocardiosis
+DOID:2316,brain ischemia,MONDO_0005299,brain ischemia
+DOID:2326,gastroenteritis,EFO_1001463,gastroenteritis
+DOID:2334,obsolete metastatic carcinoma,,
+DOID:2349,arteriosclerosis,MONDO_0002277,arteriosclerosis disorder
+DOID:2349,arteriosclerosis,EFO_0009086,arteriosclerosis
+DOID:2351,iron metabolism disease,MONDO_0002279,iron metabolism disease
+DOID:2352,hemochromatosis,MONDO_0006507,hereditary hemochromatosis
+DOID:2352,hemochromatosis,EFO_1000642,hemochromatosis
+DOID:2355,anemia,MONDO_0002280,anemia
+DOID:2355,anemia,EFO_0004272,anemia (phenotype)
+DOID:2377,multiple sclerosis,MONDO_0005301,multiple sclerosis
+DOID:2382,kernicterus,MONDO_0018477,bilirubin encephalopathy
+DOID:2382,kernicterus,EFO_1001002,kernicterus
+DOID:2385,obsolete thiamine deficiency,,
+DOID:2388,renal artery disease,MONDO_0002286,renal artery disease
+DOID:2394,ovarian cancer,MONDO_0008170,ovarian cancer
+DOID:2449,acromegaly,EFO_1001485,acromegaly
+DOID:2456,blepharoconjunctivitis,MONDO_0002307,blepharoconjunctivitis
+DOID:2513,basal cell carcinoma,MONDO_0005341,skin basal cell carcinoma
+DOID:2518,orchitis,EFO_1001078,orchitis
+DOID:2556,relapsing polychondritis,EFO_1001148,relapsing polychondritis
+DOID:2568,cervicitis,MONDO_0002345,cervicitis
+DOID:2583,agammaglobulinemia,MONDO_0015977,agammaglobulinemia
+DOID:2703,synovitis,EFO_0008997,synovitis
+DOID:2723,dermatitis,MONDO_0002406,dermatitis
+DOID:2733,skin atrophy,EFO_1000766,skin atrophy
+DOID:2755,Mycobacterium avium complex disease,EFO_0007386,Mycobacterium avium complex disease
+DOID:2773,contact dermatitis,EFO_0005319,contact dermatitis
+DOID:2797,idiopathic interstitial pneumonia,MONDO_0002429,idiopathic interstitial pneumonia
+DOID:2799,bronchiolitis obliterans,EFO_0007183,bronchiolitis obliterans
+DOID:2841,asthma,MONDO_0004979,asthma
+DOID:285,hairy cell leukemia,EFO_1000956,hairy cell leukemia
+DOID:2871,endometrial carcinoma,EFO_0004230,endometrial neoplasm
+DOID:2871,endometrial carcinoma,EFO_1001512,endometrial carcinoma
+DOID:289,endometriosis,EFO_0001065,endometriosis
+DOID:2921,glomerulonephritis,MONDO_0002462,glomerulonephritis
+DOID:2942,bronchiolitis,MONDO_0002465,bronchiolitis
+DOID:2945,severe acute respiratory syndrome,EFO_0000694,severe acute respiratory syndrome
+DOID:2951,motion sickness,,
+DOID:2957,pulmonary tuberculosis,EFO_1000049,pulmonary tuberculosis
+DOID:2959,hyperimmunoglobulin syndrome,MONDO_0002468,hyperimmunoglobulin syndrome
+DOID:2965,bursitis,MONDO_0002471,bursitis
+DOID:2987,familial Mediterranean fever,MONDO_0018088,familial Mediterranean fever
+DOID:299,adenocarcinoma,EFO_0000228,adenocarcinoma
+DOID:2991,obsolete stromal neoplasm,,
+DOID:2998,testicular cancer,EFO_0004281,testicular neoplasm
+DOID:2998,testicular cancer,EFO_0005088,testicular carcinoma
+DOID:305,carcinoma,EFO_0000313,carcinoma
+DOID:306,obsolete dyskinetic syndrome,,
+DOID:3068,glioblastoma,EFO_0000519,glioblastoma multiforme
+DOID:3078,anaplastic astrocytoma,EFO_0002499,anaplastic astrocytoma
+DOID:308,early myoclonic encephalopathy,MONDO_0800491,early-infantile DEE
+DOID:3082,interstitial lung disease,EFO_0004244,interstitial lung disease
+DOID:3083,chronic obstructive pulmonary disease,EFO_0000341,chronic obstructive pulmonary disease
+DOID:3087,gingivitis,MONDO_0002508,gingivitis
+DOID:3113,papillary carcinoma,EFO_1000646,papillary carcinoma
+DOID:3127,proctitis,EFO_0005628,proctitis
+DOID:3146,lipid metabolism disorder,MONDO_0002525,inherited lipid metabolism disorder
+DOID:319,spinal cord disease,EFO_0009488,spinal cord disease
+DOID:3240,aspiration pneumonitis,EFO_1001399,"Pneumonia, Aspiration"
+DOID:326,ischemia,MONDO_0005053,ischemic disease
+DOID:326,ischemia,EFO_0000556,ischemia
+DOID:3298,vaccinia,,
+DOID:3309,neurodermatitis,EFO_1000740,neurodermatitis
+DOID:3310,atopic dermatitis,EFO_0000274,atopic eczema
+DOID:3312,bipolar disorder,MONDO_0004985,bipolar disorder
+DOID:3314,angiomyolipoma,MONDO_0002603,angiomyolipoma
+DOID:3319,lymphangioleiomyomatosis,EFO_1000334,Lung Lymphangioleiomyomatosis
+DOID:332,amyotrophic lateral sclerosis,MONDO_0004976,amyotrophic lateral sclerosis
+DOID:3326,purpura,MONDO_0002610,purpura
+DOID:3347,osteosarcoma,EFO_0000637,osteosarcoma
+DOID:3382,liposarcoma,EFO_0000569,liposarcoma
+DOID:3385,bacterial vaginosis,EFO_0003932,bacterial vaginosis
+DOID:3393,coronary artery disease,EFO_0001645,coronary artery disease
+DOID:3401,inappropriate ADH syndrome,EFO_1000982,inappropriate ADH syndrome
+DOID:3407,carotid artery disease,EFO_0003781,carotid artery disease
+DOID:341,peripheral vascular disease,EFO_0003875,peripheral vascular disease
+DOID:3459,breast carcinoma,EFO_0000305,breast carcinoma
+DOID:3463,breast disease,EFO_0009483,breast disease
+DOID:3482,plague,EFO_0009425,Yersinia pestis infectious disease
+DOID:3486,necrobiosis lipoidica,EFO_1000738,necrobiosis lipoidica
+DOID:3488,cellulitis,EFO_0003035,cellulitis
+DOID:349,systemic mastocytosis,MONDO_0016586,systemic mastocytosis
+DOID:3490,Noonan syndrome,MONDO_0018997,Noonan syndrome
+DOID:3491,Turner syndrome,MONDO_0019499,Turner syndrome
+DOID:350,mastocytosis,EFO_0009001,Mastocytosis
+DOID:3507,dermatofibrosarcoma protuberans,MONDO_0011934,dermatofibrosarcoma protuberans
+DOID:3602,toxic encephalopathy,EFO_0005595,toxic encephalopathy
+DOID:3612,retinitis,MONDO_0002708,retinitis
+DOID:363,uterine cancer,MONDO_0002715,uterine cancer
+DOID:363,uterine cancer,EFO_0003859,uterine neoplasm
+DOID:3650,lactic acidosis,MONDO_0024306,acquired lactic acidosis
+DOID:3650,lactic acidosis,EFO_1000036,lactic acidosis
+DOID:3669,intermittent claudication,EFO_0003876,intermittent vascular claudication
+DOID:3686,obsolete Helicobacter pylori infectious disease,EFO_1000961,Helicobacter pylori infectious disease
+DOID:3717,gastric adenocarcinoma,EFO_0000503,gastric adenocarcinoma
+DOID:3767,vaginal discharge,,
+DOID:3770,pulmonary fibrosis,EFO_0009448,pulmonary fibrosis
+DOID:3777,granuloma annulare,EFO_1000704,granuloma annulare
+DOID:3798,pleural empyema,EFO_0009680,pleural empyema
+DOID:3875,thrombophlebitis,,
+DOID:3890,acute intermittent porphyria,MONDO_0008294,acute intermittent porphyria
+DOID:3908,lung non-small cell carcinoma,EFO_0003060,non-small cell lung carcinoma
+DOID:3911,progeria,MONDO_0008310,Hutchinson-Gilford progeria syndrome
+DOID:3947,adrenal gland hyperfunction,EFO_1000797,adrenal gland hyperfunction
+DOID:3948,adrenocortical carcinoma,EFO_1000796,adrenal cortex carcinoma
+DOID:3963,thyroid gland carcinoma,EFO_0002892,thyroid carcinoma
+DOID:3965,Merkel cell carcinoma,MONDO_0002822,trabecular adenocarcinoma
+DOID:3974,obsolete medullary carcinoma,,
+DOID:399,tuberculosis,MONDO_0018076,tuberculosis
+DOID:4,disease,,
+DOID:4074,pancreatic adenocarcinoma,EFO_1000044,pancreatic adenocarcinoma
+DOID:4079,heart valve disease,EFO_0009551,heart valve disease
+DOID:409,liver disease,EFO_0001421,liver disease
+DOID:4099,obsolete metastatic squamous cell carcinoma,,
+DOID:4131,erythrasma,EFO_1000696,erythrasma
+DOID:4156,primary syphilis,,
+DOID:4157,secondary syphilis,,
+DOID:4159,skin cancer,MONDO_0002898,skin cancer
+DOID:4159,skin cancer,EFO_0004198,skin neoplasm
+DOID:4166,syphilis,EFO_0007504,syphilis
+DOID:418,systemic scleroderma,EFO_0000717,systemic scleroderma
+DOID:4195,hyperglycemia,HP_0003074,Hyperglycemia
+DOID:4239,alveolar soft part sarcoma,EFO_0007143,alveolar soft part sarcoma
+DOID:4337,tinea capitis,MONDO_0002967,dermatophytosis of scalp or beard
+DOID:4362,cervical cancer,MONDO_0002974,cervical cancer
+DOID:437,myasthenia gravis,EFO_0004991,Myasthenia gravis
+DOID:440,neuromuscular disease,EFO_1001902,neuromuscular disease
+DOID:4448,macular degeneration,EFO_0001365,age-related macular degeneration
+DOID:4448,macular degeneration,EFO_0009606,macular degeneration
+DOID:4449,macular retinal edema,MONDO_0003005,macular retinal edema
+DOID:4450,renal cell carcinoma,EFO_0000681,renal cell carcinoma
+DOID:446,primary hyperaldosteronism,EFO_0009452,hyperaldosteronism
+DOID:4481,allergic rhinitis,EFO_0005854,allergic rhinitis
+DOID:4483,rhinitis,EFO_0008521,rhinitis
+DOID:4500,hypokalemia,HP_0002900,Hypokalemia
+DOID:4500,hypokalemia,MONDO_0003019,potassium deficiency disease
+DOID:4531,mucoepidermoid carcinoma,MONDO_0003036,mucoepidermoid carcinoma
+DOID:4607,biliary tract cancer,MONDO_0003060,biliary tract cancer
+DOID:4660,indolent systemic mastocytosis,,
+DOID:4676,uremia,EFO_1001226,uremia
+DOID:4677,keratitis,EFO_0009449,keratitis
+DOID:4692,endophthalmitis,MONDO_0016047,endophthalmitis
+DOID:4730,vasomotor rhinitis,EFO_0007533,vasomotor rhinitis
+DOID:4731,atrophic rhinitis,EFO_0007159,atrophic rhinitis
+DOID:4752,multiple system atrophy,EFO_1001050,multiple system atrophy
+DOID:4798,aggressive systemic mastocytosis,MONDO_0020333,aggressive systemic mastocytosis
+DOID:4890,juvenile myoclonic epilepsy,MONDO_0009696,juvenile myoclonic epilepsy
+DOID:4912,obsolete disseminated adenocarcinoma,,
+DOID:4944,gastroesophageal junction adenocarcinoma,MONDO_0003219,gastroesophageal junction adenocarcinoma
+DOID:4947,cholangiocarcinoma,EFO_0005221,cholangiocarcinoma
+DOID:4964,neurotic disorder,EFO_0004257,neurotic disorder
+DOID:4971,myelofibrosis,EFO_0002430,primary myelofibrosis
+DOID:4977,lymphedema,MONDO_0019297,lymphedema
+DOID:4989,pancreatitis,EFO_0000278,pancreatitis
+DOID:5003,eunuchism,EFO_0007266,eunuchism
+DOID:5041,esophageal cancer,MONDO_0007576,esophageal cancer
+DOID:5077,subependymal giant cell astrocytoma,MONDO_0016693,subependymal giant cell astrocytoma
+DOID:5082,liver cirrhosis,EFO_0001422,cirrhosis of liver
+DOID:5119,ovarian cyst,,
+DOID:5200,urinary tract obstruction,EFO_0009571,urinary tract obstruction
+DOID:5214,demyelinating polyneuropathy,MONDO_0003334,demyelinating polyneuropathy
+DOID:5223,infertility,EFO_0000545,infertility
+DOID:526,human immunodeficiency virus infectious disease,EFO_0000764,HIV infection
+DOID:529,blepharospasm,MONDO_0011728,benign essential blepharospasm
+DOID:5327,retinal detachment,EFO_0005773,retinal detachment
+DOID:5418,schizoaffective disorder,EFO_0005411,schizoaffective disorder
+DOID:5419,schizophrenia,MONDO_0005090,schizophrenia
+DOID:5425,ovarian hyperstimulation syndrome,MONDO_0011972,ovarian hyperstimulation syndrome
+DOID:543,dystonia,MONDO_0003441,dystonic disorder
+DOID:552,pneumonia,EFO_0003106,pneumonia
+DOID:557,kidney disease,EFO_0003086,kidney disease
+DOID:5575,obsolete delayed puberty,,
+DOID:559,acute pyelonephritis,MONDO_0003529,acute pyelonephritis
+DOID:5614,eye disease,EFO_0003966,eye disease
+DOID:574,peripheral nervous system disease,EFO_0009387,peripheral nervous system disease
+DOID:5757,endocervicitis,MONDO_0003632,endocervicitis
+DOID:576,proteinuria,,
+DOID:582,hemoglobinuria,MONDO_0003656,hemoglobinuria
+DOID:583,hemolytic anemia,EFO_0005558,hemolytic anemia
+DOID:5844,myocardial infarction,EFO_0000612,myocardial infarction
+DOID:585,nephrolithiasis,EFO_0004253,nephrolithiasis
+DOID:593,agoraphobia,EFO_1001872,agoraphobia
+DOID:594,panic disorder,EFO_0004262,panic disorder
+DOID:6000,congestive heart failure,EFO_0000373,congestive heart failure
+DOID:607,paraplegia,EFO_0009679,paraplegia
+DOID:612,primary immunodeficiency disease,MONDO_0003778,inborn error of immunity
+DOID:6132,bronchitis,EFO_0009661,bronchitis
+DOID:614,lymphopenia,MONDO_0003783,lymphopenia
+DOID:615,leukopenia,,
+DOID:6195,conjunctivitis,EFO_0009450,conjunctivitis
+DOID:627,severe combined immunodeficiency,MONDO_0015974,severe combined immunodeficiency
+DOID:631,fibromyalgia,EFO_0005687,fibromyalgia
+DOID:635,acquired immunodeficiency syndrome,EFO_0000765,AIDS
+DOID:636,central pontine myelinolysis,EFO_1000857,central pontine myelinolysis
+DOID:6364,migraine,MONDO_0005277,migraine disorder
+DOID:643,progressive multifocal leukoencephalopathy,EFO_0007455,progressive multifocal leukoencephalopathy
+DOID:6432,pulmonary hypertension,MONDO_0005149,pulmonary hypertension
+DOID:6432,pulmonary hypertension,EFO_0001361,pulmonary arterial hypertension
+DOID:65,connective tissue disease,EFO_1001986,connective tissue disease
+DOID:6543,acne,EFO_0003894,acne
+DOID:657,adenoma,EFO_0000232,adenoma
+DOID:6590,spondylitis,MONDO_0003937,spondylitis
+DOID:6713,cerebrovascular disease,EFO_0003763,cerebrovascular disorder
+DOID:676,systemic juvenile rheumatoid arthritis,EFO_0002609,juvenile idiopathic arthritis
+DOID:684,hepatocellular carcinoma,EFO_0000182,hepatocellular carcinoma
+DOID:711,refractory hairy cell leukemia,MONDO_0004110,refractory hairy cell leukemia
+DOID:7147,ankylosing spondylitis,EFO_0003898,ankylosing spondylitis
+DOID:7148,rheumatoid arthritis,EFO_0000685,rheumatoid arthritis
+DOID:7165,subacute thyroiditis,EFO_1001194,subacute thyroiditis
+DOID:7166,thyroiditis,MONDO_0004126,thyroiditis
+DOID:7188,autoimmune thyroiditis,EFO_0003779,Hashimoto's thyroiditis
+DOID:7188,autoimmune thyroiditis,EFO_0006812,autoimmune thyroid disease
+DOID:722,obsolete spontaneous abortion,EFO_1001255,spontaneous abortion
+DOID:743,dermatographia,EFO_1000685,dermatographia
+DOID:7474,malignant pleural mesothelioma,EFO_0000770,malignant pleural mesothelioma
+DOID:7475,diverticulitis,MONDO_0004235,diverticulitis
+DOID:749,active peptic ulcer disease,,
+DOID:750,peptic ulcer disease,MONDO_0004247,peptic ulcer disease
+DOID:7551,gonorrhea,DOID_7551,gonorrhea
+DOID:762,obsolete bacterial endocarditis,EFO_1000830,bacterial endocarditis
+DOID:767,muscular atrophy,MONDO_0004323,muscular atrophy
+DOID:768,retinoblastoma,MONDO_0008380,retinoblastoma
+DOID:769,neuroblastoma,EFO_0000621,neuroblastoma
+DOID:783,end stage renal disease,,
+DOID:784,chronic kidney disease,EFO_0003884,chronic kidney disease
+DOID:799,varicose veins,HP_0002619,Varicose veins
+DOID:799,varicose veins,MONDO_0008638,varicose disease
+DOID:7997,thyrotoxicosis,EFO_0009190,Thyrotoxicosis
+DOID:7998,hyperthyroidism,EFO_0009189,hyperthyroidism
+DOID:811,lipodystrophy,EFO_1000727,lipodystrophy
+DOID:824,periodontitis,EFO_0000649,periodontitis
+DOID:8283,peritonitis,MONDO_0004522,infectious peritonitis
+DOID:8295,scabies,,
+DOID:83,cataract,MONDO_0005129,cataract
+DOID:8337,appendicitis,EFO_0007149,appendicitis
+DOID:8398,osteoarthritis,MONDO_0005178,osteoarthritis
+DOID:84,osteochondritis dissecans,MONDO_0017178,osteochondritis dissecans
+DOID:841,extrinsic allergic alveolitis,MONDO_0017853,hypersensitivity pneumonitis
+DOID:841,extrinsic allergic alveolitis,EFO_1001321,extrinsic allergic alveolitis
+DOID:8411,kidney angiomyolipoma,MONDO_0004555,kidney angiomyolipoma
+DOID:8432,polycythemia,EFO_0005804,polycythemia
+DOID:8445,intestinal volvulus,EFO_1000989,intestinal volvulus
+DOID:8453,obsolete folic acid deficiency,,
+DOID:8469,influenza,EFO_0007328,influenza
+DOID:8478,actinomycosis,EFO_0007128,actinomycosis
+DOID:848,arthritis,EFO_0005856,arthritis
+DOID:8481,rheumatic myocarditis,MONDO_0004582,rheumatic myocarditis
+DOID:850,lung disease,EFO_0003818,lung disease
+DOID:850,lung disease,EFO_1001362,Lung Abscess
+DOID:8504,impetigo,EFO_1000714,impetigo
+DOID:8505,dermatitis herpetiformis,EFO_1000684,dermatitis herpetiformis
+DOID:8506,bullous pemphigoid,EFO_0007187,bullous pemphigoid
+DOID:8515,Cor pulmonale,MONDO_0004596,cor pulmonale
+DOID:853,polymyalgia rheumatica,EFO_0008518,polymyalgia rheumatica
+DOID:8534,gastroesophageal reflux disease,EFO_0003948,gastroesophageal reflux disease
+DOID:8535,obsolete ophthalmic herpes zoster,EFO_0007403,ophthalmic herpes zoster
+DOID:8536,herpes zoster,EFO_0006510,Herpes Zoster
+DOID:8538,reticulosarcoma,EFO_0005287,reticulum cell sarcoma
+DOID:8552,chronic myeloid leukemia,EFO_0000339,chronic myelogenous leukemia
+DOID:8566,herpes simplex,EFO_1002022,Herpes simplex infection
+DOID:8567,Hodgkin's lymphoma,EFO_0000183,Hodgkins lymphoma
+DOID:8577,ulcerative colitis,EFO_0000729,ulcerative colitis
+DOID:8596,scarlet fever,EFO_0007477,scarlet fever
+DOID:8632,Kaposi's sarcoma,EFO_0000558,Kaposi's sarcoma
+DOID:8639,obsolete alcohol withdrawal delirium,EFO_1000800,alcohol withdrawal delirium
+DOID:864,phlebitis,EFO_1001395,Phlebitis
+DOID:865,vasculitis,EFO_0006803,vasculitis
+DOID:8659,chickenpox,EFO_0007204,chickenpox
+DOID:8670,eating disorder,EFO_0005203,eating disorder
+DOID:8691,mycosis fungoides,EFO_1001051,mycosis fungoides
+DOID:8692,myeloid leukemia,MONDO_0004643,myeloid leukemia
+DOID:870,neuropathy,EFO_0003100,peripheral neuropathy
+DOID:870,neuropathy,EFO_0004149,neuropathy
+DOID:8704,genital herpes,EFO_0007282,genital herpes
+DOID:8712,neurofibromatosis,EFO_0008514,neurofibromatosis
+DOID:872,obsolete soft tissue disease,,
+DOID:874,bacterial pneumonia,EFO_1001272,bacterial pneumonia
+DOID:8741,seborrheic dermatitis,EFO_1000764,seborrheic dermatitis
+DOID:8805,intermediate coronary syndrome,EFO_1000985,intermediate coronary syndrome
+DOID:8839,obsolete herpes zoster keratoconjunctivitis,,
+DOID:8857,lupus erythematosus,MONDO_0004670,lupus erythematosus
+DOID:8866,actinic keratosis,EFO_0002496,actinic keratosis
+DOID:8867,molluscum contagiosum,EFO_0007375,molluscum contagiosum
+DOID:8869,neuromyelitis optica,EFO_0004256,neuromyelitis optica
+DOID:8881,rosacea,EFO_1000760,rosacea
+DOID:8886,chorioretinitis,MONDO_0004674,chorioretinitis
+DOID:8893,psoriasis,EFO_0000676,psoriasis
+DOID:8923,skin melanoma,EFO_0000389,cutaneous melanoma
+DOID:8924,autoimmune thrombocytopenic purpura,EFO_0007160,autoimmune thrombocytopenic purpura
+DOID:8927,learning disability,MONDO_0004681,learning disability
+DOID:8941,seborrheic infantile dermatitis,EFO_1000765,seborrheic infantile dermatitis
+DOID:8947,diabetic retinopathy,EFO_0003770,diabetic retinopathy
+DOID:8986,narcolepsy,MONDO_0021107,narcolepsy
+DOID:8997,polycythemia vera,EFO_0002429,polycythemia vera
+DOID:9008,psoriatic arthritis,EFO_0003778,psoriatic arthritis
+DOID:9065,leishmaniasis,EFO_0005044,Leishmaniasis
+DOID:9074,systemic lupus erythematosus,MONDO_0007915,systemic lupus erythematosus
+DOID:9080,macroglobulinemia,EFO_0002616,macroglobulinemia
+DOID:9113,granuloma inguinale,EFO_0007291,granuloma inguinale
+DOID:9119,acute myeloid leukemia,EFO_0000222,acute myeloid leukemia
+DOID:9120,amyloidosis,EFO_1001875,amyloidosis
+DOID:9146,visceral leishmaniasis,EFO_0005045,visceral Leishmaniasis
+DOID:9181,amebiasis,EFO_0007144,amebiasis
+DOID:9182,pemphigus,EFO_1000749,pemphigus
+DOID:9191,diabetic macular edema,EFO_0009321,diabetic macular edema
+DOID:9201,lichen planus,EFO_1000726,lichen planus
+DOID:9253,gastrointestinal stromal tumor,MONDO_0011719,gastrointestinal stromal tumor
+DOID:9256,colorectal cancer,MONDO_0005575,colorectal cancer
+DOID:9263,homocystinuria,MONDO_0004737,homocystinuria
+DOID:9266,cystinuria,MONDO_0009067,cystinuria
+DOID:9270,alkaptonuria,MONDO_0008753,alkaptonuria
+DOID:9275,tyrosinemia,MONDO_0004741,tyrosinemia
+DOID:9281,phenylketonuria,MONDO_0009861,phenylketonuria
+DOID:9282,ocular hypertension,EFO_1001069,ocular hypertension
+DOID:934,viral infectious disease,EFO_0000763,viral disease
+DOID:934,viral infectious disease,EFO_1001269,Arbovirus Infections
+DOID:9351,diabetes mellitus,EFO_0000400,diabetes mellitus
+DOID:9352,type 2 diabetes mellitus,MONDO_0005148,type 2 diabetes mellitus
+DOID:936,brain disease,EFO_0005774,brain disease
+DOID:9362,status asthmaticus,EFO_0008590,Status Asthmaticus
+DOID:9368,keratoconjunctivitis,MONDO_0004768,keratoconjunctivitis
+DOID:9383,iridocyclitis,MONDO_0004773,iridocyclitis
+DOID:9402,epididymitis,MONDO_0004779,epididymitis
+DOID:9408,acute myocardial infarction,EFO_0008583,acute myocardial infarction
+DOID:9409,diabetes insipidus,MONDO_0004782,diabetes insipidus
+DOID:9415,allergic asthma,MONDO_0004784,allergic asthma
+DOID:9423,blepharitis,EFO_0009536,blepharitis
+DOID:9446,cholangitis,MONDO_0004789,cholangitis
+DOID:9463,otitis externa,EFO_0009560,otitis externa
+DOID:9470,bacterial meningitis,EFO_1000831,bacterial meningitis
+DOID:9471,meningitis,EFO_0000584,infectious meningitis
+DOID:9477,pulmonary embolism,EFO_0003827,pulmonary embolism
+DOID:9478,postpartum depression,EFO_0007453,postpartum depression
+DOID:9538,multiple myeloma,EFO_0001378,multiple myeloma
+DOID:9563,bronchiectasis,MONDO_0004822,bronchiectasis
+DOID:9588,encephalitis,MONDO_0019956,encephalitis
+DOID:9620,vesicoureteral reflux,EFO_0007536,vesicoureteral reflux
+DOID:9637,stomatitis,EFO_0009688,stomatitis
+DOID:9667,placental abruption,EFO_1001754,Abruptio Placentae
+DOID:9675,pulmonary emphysema,EFO_0000464,emphysema
+DOID:9699,ophthalmia neonatorum,,
+DOID:970,tenosynovitis,EFO_1001435,tenosynovitis
+DOID:9700,bacterial conjunctivitis,EFO_1000829,bacterial conjunctivitis
+DOID:971,tendinitis,MONDO_0004857,tendinitis
+DOID:971,tendinitis,EFO_1001434,Tendinopathy
+DOID:9743,diabetic neuropathy,EFO_1000783,diabetic neuropathy
+DOID:9744,type 1 diabetes mellitus,MONDO_0005147,type 1 diabetes mellitus
+DOID:9778,irritable bowel syndrome,EFO_0000555,irritable bowel syndrome
+DOID:9784,trichinosis,EFO_0007520,trichinosis
+DOID:986,alopecia areata,EFO_0004192,alopecia areata
+DOID:987,alopecia,MONDO_0004907,alopecia
+DOID:988,mitral valve prolapse,MONDO_0004910,mitral valve prolapse
+DOID:9884,muscular dystrophy,MONDO_0020121,muscular dystrophy
+DOID:9938,dacryocystitis,,
+DOID:9952,acute lymphoblastic leukemia,EFO_0000220,acute lymphoblastic leukemia
+DOID:9970,obesity,EFO_0001073,obesity
+DOID:999,hypereosinophilic syndrome,EFO_1001467,Hypereosinophilic syndrome
+DOID:9993,hypoglycemia,HP_0001943,Hypoglycemia

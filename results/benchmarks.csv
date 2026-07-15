@@ -29,3 +29,15 @@ timestamp,dataset,model_name,hits@1,hits@3,hits@10,mrr,notes
 2026-07-08T11:41:01.119722,disease_to_drug_with_dgidb,Content-Based (TF-IDF baseline),0.193043,0.236522,0.295652,0.230636,Aligned with R-GCN protocol | Config: disease_to_drug_with_dgidb.yaml | Split: test | use_train_indication_genes=True
 2026-07-08T11:45:49.937877,disease_to_drug_with_dgidb,Metapath kNN Content-Based,0.316522,0.413913,0.553043,0.392234,Structure-aware kNN content baseline | Config: disease_to_drug_with_dgidb.yaml | Split: test | aggregation=topk_mean
 2026-07-10T10:04:11.819357,disease_to_drug_with_dgidb_plus_3_months,R-GCN (disease_to_drug),0.600000,0.642424,0.684848,0.631843,Run: seed_42 | Split: test
+2026-07-10T22:03:20.614192,disease_to_drug_with_dgidb_plus_3_months_disease_genes,R-GCN (disease_to_drug),0.626263,0.670707,0.719192,0.657182,Run: seed_42 | Split: test
+2026-07-13T13:47:56.882050,disease_to_drug_with_dgidb_plus_3_months_disease_genes_best_no_ingredients,R-GCN (disease_to_drug),0.651116,0.699797,0.740365,0.685232,Run: seed_42 | Split: valid
+2026-07-13T13:48:01.051618,disease_to_drug_with_dgidb_plus_3_months_disease_genes_best_no_ingredients,R-GCN (disease_to_drug),0.591919,0.638384,0.658586,0.622800,Run: seed_42 | Split: test
+2026-07-13T13:48:13.323946,disease_to_drug_with_dgidb_plus_3_months_disease_genes_best_no_ingredients,R-GCN (disease_to_drug),0.591919,0.638384,0.658586,0.622800,Run: seed_42 | Split: test
+2026-07-13T16:01:39.268430,disease_to_drug_with_dgidb_plus_3_months_disease_genes_best_control,R-GCN (disease_to_drug),0.687627,0.736308,0.776876,0.718379,Run: seed_42 | Split: valid
+2026-07-13T16:01:46.989563,disease_to_drug_with_dgidb_plus_3_months_disease_genes_best_control,R-GCN (disease_to_drug),0.622222,0.654545,0.690909,0.649788,Run: seed_42 | Split: test
+2026-07-13T16:13:54.932785,disease_to_drug_with_dgidb_plus_3_months_disease_genes_best_control,R-GCN (disease_to_drug),0.622222,0.654545,0.690909,0.649788,Run: seed_42 | Split: test
+2026-07-14T13:32:55.267430,disease_to_drug_with_dgidb_plus_3_months_disease_genes_best_control,R-GCN (disease_to_drug),0.640404,0.656566,0.692929,0.656688,Run: seed_42 | Split: test
+2026-07-14T16:40:25.035174,no_blacklist_matched,R-GCN (disease_to_drug),0.610820,0.670157,0.703316,0.649083,Run: seed_42 | Split: test
+2026-07-14T17:29:43.498403,disease_to_drug_with_dgidb,R-GCN (disease_to_drug),0.714783,0.742609,0.789565,0.738067,Run: seed_42 | Split: test
+2026-07-14T17:36:32.068796,disease_to_drug_with_dgidb_plus_3_months_disease_genes_best_control,R-GCN (disease_to_drug),0.622222,0.654545,0.690909,0.649788,Run: seed_42 | Split: test
+2026-07-14T17:36:47.697692,disease_to_drug_with_dgidb_plus_3_months_disease_genes_best_control,R-GCN (disease_to_drug),0.622222,0.654545,0.690909,0.649788,Run: seed_42 | Split: test

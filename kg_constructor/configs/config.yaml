@@ -76,8 +76,8 @@ entity_resolution:
 # Optional disease-gene associations (used by with_genes datasets)
 # ---------------------------------------------------------
 gene_associations:
-  enabled: false
-  diseases_for_genes_path: "diseases_for_genes.csv"
+  enabled: true
+  diseases_for_genes_path: "kg_constructor/data/external/diseases_for_genes.csv"
   input_triples_path: "kg_constructor/data/output/triples/triples.filtered.csv"
   open_targets_disease_path: "kg_constructor/data/external/open_targets/disease/disease.parquet"
   open_targets_association_path: "kg_constructor/data/external/open_targets/association_overall_direct"

@@ -122,6 +122,7 @@ def negative_sampling(
     strategy: str = "random",
     hard_negative_ratio: float = 0.0,
     hard_negative_index: Dict[int, List[int]] | None = None,
+    rng: np.random.Generator | None = None,
 ) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
     """
     Generate negative samples by corrupting the candidate entity.
@@ -141,7 +142,8 @@ def negative_sampling(
     neg_relations: List[int] = []
     neg_candidates: List[int] = []
 
-    rng = np.random.default_rng()
+    if rng is None:
+        rng = np.random.default_rng(0)
 
     hard_negative_ratio = max(0.0, min(1.0, float(hard_negative_ratio)))
 
@@ -261,6 +263,7 @@ def main() -> None:
 
     seed = int(cfg.get("seed", 42))
     set_seed(seed)
+    negative_rng = np.random.default_rng(seed)
 
     device = torch.device(cfg["training"].get("device", "cpu"))
 
@@ -588,6 +591,7 @@ def main() -> None:
             strategy=negative_sampling_strategy,
             hard_negative_ratio=hard_negative_ratio,
             hard_negative_index=hard_negative_index,
+            rng=negative_rng,
         )
 
         negative_scores = score_training_batch(

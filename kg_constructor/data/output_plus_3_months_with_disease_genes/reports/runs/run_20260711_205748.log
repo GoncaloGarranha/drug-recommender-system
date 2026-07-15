@@ -1,0 +1,39 @@
+2026-07-11 20:57:48 | INFO | __main__ | Run ID: 20260711_205748
+2026-07-11 20:57:48 | INFO | __main__ | Run ID: 20260711_205748
+2026-07-11 20:57:48 | INFO | __main__ | Run log: /Users/garranha/workspace/ISEL/Mestrado/Tese/tese/kg_constructor/data/output_plus_3_months_with_disease_genes/reports/runs/run_20260711_205748.log
+2026-07-11 20:57:48 | INFO | __main__ | Run log: /Users/garranha/workspace/ISEL/Mestrado/Tese/tese/kg_constructor/data/output_plus_3_months_with_disease_genes/reports/runs/run_20260711_205748.log
+2026-07-11 20:57:48 | INFO | __main__ | Run summary: /Users/garranha/workspace/ISEL/Mestrado/Tese/tese/kg_constructor/data/output_plus_3_months_with_disease_genes/reports/runs/run_20260711_205748_summary.json
+2026-07-11 20:57:48 | INFO | __main__ | Run summary: /Users/garranha/workspace/ISEL/Mestrado/Tese/tese/kg_constructor/data/output_plus_3_months_with_disease_genes/reports/runs/run_20260711_205748_summary.json
+2026-07-11 20:57:48 | INFO | kg_constructor.src.pipeline | Starting KG pipeline
+2026-07-11 20:57:48 | INFO | kg_constructor.src.pipeline | Starting KG pipeline
+2026-07-11 20:57:48 | INFO | kg_constructor.src.pipeline | Starting KG pipeline
+2026-07-11 20:57:48 | INFO | kg_constructor.src.pipeline | Starting KG pipeline
+2026-07-11 20:57:48 | INFO | kg_constructor.src.pipeline | Selected steps: ['05_filter_graph']
+2026-07-11 20:57:48 | INFO | kg_constructor.src.pipeline | Selected steps: ['05_filter_graph']
+2026-07-11 20:57:48 | INFO | kg_constructor.src.pipeline | Selected steps: ['05_filter_graph']
+2026-07-11 20:57:48 | INFO | kg_constructor.src.pipeline | Selected steps: ['05_filter_graph']
+2026-07-11 20:57:48 | INFO | kg_constructor.src.pipeline | Force execution: True
+2026-07-11 20:57:48 | INFO | kg_constructor.src.pipeline | Force execution: True
+2026-07-11 20:57:48 | INFO | kg_constructor.src.pipeline | Force execution: True
+2026-07-11 20:57:48 | INFO | kg_constructor.src.pipeline | Force execution: True
+2026-07-11 20:57:48 | INFO | kg_constructor.src.pipeline | --> Running step: 05_filter_graph
+2026-07-11 20:57:48 | INFO | kg_constructor.src.pipeline | --> Running step: 05_filter_graph
+2026-07-11 20:57:48 | INFO | kg_constructor.src.pipeline | --> Running step: 05_filter_graph
+2026-07-11 20:57:48 | INFO | kg_constructor.src.pipeline | --> Running step: 05_filter_graph
+2026-07-11 20:57:48 | INFO | kg_step_05_filter_graph | Loaded 5 entries from blacklist: /Users/garranha/workspace/ISEL/Mestrado/Tese/tese/kg_constructor/configs/blacklist.txt
+2026-07-11 20:57:48 | INFO | kg_step_05_filter_graph | Filter 'remove_obsolete_doid_labels' set from config: True
+2026-07-11 20:57:48 | INFO | kg_step_05_filter_graph | Filter 'remove_has_ingredient' set from config: False
+2026-07-11 20:57:48 | INFO | kg_step_05_filter_graph | Contraindication policy: drop_conflicting_contraindications
+2026-07-11 20:57:48 | INFO | kg_step_05_filter_graph | Saved: /Users/garranha/workspace/ISEL/Mestrado/Tese/tese/kg_constructor/data/output_plus_3_months_with_disease_genes/triples/triples.filtered.csv
+2026-07-11 20:57:48 | INFO | kg_step_05_filter_graph | Kept triples: 25495 | Removed triples: 2446
+2026-07-11 20:57:48 | INFO | kg_step_05_filter_graph | Input relation distribution: {'INDICATION': 5720, 'CONTRAINDICATION': 2302, 'HAS_INGREDIENT': 19919}
+2026-07-11 20:57:48 | INFO | kg_step_05_filter_graph | Filtered relation distribution: {'INDICATION': 4938, 'HAS_INGREDIENT': 19919, 'CONTRAINDICATION': 638}
+2026-07-11 20:57:48 | INFO | kg_step_05_filter_graph | Saved: /Users/garranha/workspace/ISEL/Mestrado/Tese/tese/kg_constructor/data/output_plus_3_months_with_disease_genes/reports/filter_report.json
+2026-07-11 20:57:48 | INFO | kg_constructor.src.pipeline | <-- Finished step: 05_filter_graph
+2026-07-11 20:57:48 | INFO | kg_constructor.src.pipeline | <-- Finished step: 05_filter_graph
+2026-07-11 20:57:48 | INFO | kg_constructor.src.pipeline | <-- Finished step: 05_filter_graph
+2026-07-11 20:57:48 | INFO | kg_constructor.src.pipeline | <-- Finished step: 05_filter_graph
+2026-07-11 20:57:48 | INFO | kg_constructor.src.pipeline | KG pipeline completed successfully
+2026-07-11 20:57:48 | INFO | kg_constructor.src.pipeline | KG pipeline completed successfully
+2026-07-11 20:57:48 | INFO | kg_constructor.src.pipeline | KG pipeline completed successfully
+2026-07-11 20:57:48 | INFO | kg_constructor.src.pipeline | KG pipeline completed successfully

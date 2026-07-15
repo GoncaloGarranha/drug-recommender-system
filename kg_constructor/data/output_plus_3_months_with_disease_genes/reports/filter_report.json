@@ -1,0 +1,24 @@
+{
+  "input_triples": 27941,
+  "output_triples": 25495,
+  "removed": {
+    "blacklisted_entity": 1207,
+    "conflicting_contraindications_removed": 1239
+  },
+  "blacklist_size": 5,
+  "filters": {
+    "remove_obsolete_doid_labels": true,
+    "remove_has_ingredient": false,
+    "contraindication_policy": "drop_conflicting_contraindications"
+  },
+  "input_relation_distribution": {
+    "INDICATION": 5720,
+    "CONTRAINDICATION": 2302,
+    "HAS_INGREDIENT": 19919
+  },
+  "filtered_relation_distribution": {
+    "INDICATION": 4938,
+    "HAS_INGREDIENT": 19919,
+    "CONTRAINDICATION": 638
+  }
+}

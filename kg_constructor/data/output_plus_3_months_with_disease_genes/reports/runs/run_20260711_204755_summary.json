@@ -1,0 +1,113 @@
+{
+  "run_id": "20260711_204755",
+  "started_at": "2026-07-11T20:47:55",
+  "config_path": "kg_constructor/configs/config_plus_3_months_with_disease_genes.yaml",
+  "config": {
+    "project": {
+      "name": "drug-recommender-kg",
+      "seed": 42
+    },
+    "paths": {
+      "kg_root": "kg_constructor",
+      "input_dir": "kg_constructor/data/input_plus_3_months",
+      "output_dir": "kg_constructor/data/output_plus_3_months_with_disease_genes",
+      "processed_dir": "kg_constructor/data/processed_plus_3_months_with_disease_genes"
+    },
+    "inputs": {
+      "zip_path": "data-input.zip",
+      "medjsonify_entities_dir": "external/medjsonify/NER/data/entities"
+    },
+    "pipeline": {
+      "steps": [
+        "00_import_data",
+        "01_stats",
+        "02_parse_sources",
+        "03_resolve_entities",
+        "04_build_triples",
+        "05_filter_graph",
+        "06_add_gene_associations",
+        "07_build_drug_similarity_groups",
+        "08_build_active_ingredients",
+        "09_build_active_substance_groups",
+        "10_build_pharmacological_groups",
+        "11_build_drug_gene_targets",
+        "12_quality_gate"
+      ]
+    },
+    "filters": {
+      "remove_obsolete_doid_labels": true,
+      "remove_has_ingredient": false,
+      "contraindication_policy": "drop_conflicting_contraindications"
+    },
+    "entity_resolution": {
+      "prefer_drugbank_id": true,
+      "prefer_chebi_id": true
+    },
+    "gene_associations": {
+      "enabled": true,
+      "diseases_for_genes_path": "kg_constructor/data/external/diseases_for_genes.csv",
+      "input_triples_path": "kg_constructor/data/output_plus_3_months/triples/triples.filtered.csv",
+      "open_targets_disease_path": "kg_constructor/data/external/open_targets/disease/disease.parquet",
+      "open_targets_association_path": "kg_constructor/data/external/open_targets/association_overall_direct",
+      "open_targets_target_path": "kg_constructor/data/external/open_targets/target",
+      "output_dir": "kg_constructor/data/output_plus_3_months_with_disease_genes/gene_associations",
+      "output_triples_path": "kg_constructor/data/output_plus_3_months_with_disease_genes/triples/triples_with_genes.csv",
+      "top_k_genes_per_disease": 25,
+      "min_score": 0.1
+    },
+    "drug_similarity": {
+      "enabled": true,
+      "input_path": "kg_constructor/data/output_plus_3_months/triples/triples.filtered.csv",
+      "source_relation": "HAS_INGREDIENT",
+      "jaccard_threshold": 0.5,
+      "min_shared_features": 1,
+      "output_path": "kg_constructor/data/processed_plus_3_months/drug_similarity_groups.json",
+      "report_path": "kg_constructor/data/output_plus_3_months/reports/drug_similarity_groups_report.json"
+    },
+    "active_ingredients": {
+      "enabled": true,
+      "input_subdir": "xml_files",
+      "output_csv": "interim/active_ingredients_raw.csv",
+      "summary_json": "interim/active_ingredients_summary.json"
+    },
+    "active_substance_groups": {
+      "enabled": true,
+      "input_csv": "interim/active_ingredients_raw.csv",
+      "output_csv": "interim/drug_active_substance_groups.csv",
+      "summary_json": "interim/drug_active_substance_groups_summary.json"
+    },
+    "pharmacological_groups": {
+      "enabled": true,
+      "input_csv": "interim/drug_active_substance_groups.csv",
+      "output_csv": "interim/drug_pharmacological_groups.csv",
+      "summary_json": "interim/drug_pharmacological_groups_summary.json"
+    },
+    "dgidb_interactions": {
+      "enabled": true,
+      "input_triples_path": "kg_constructor/data/output_plus_3_months_with_disease_genes/triples/triples_with_genes.csv",
+      "interactions_path": "kg_constructor/data/external/dgidb/interactions.tsv",
+      "output_dir": "kg_constructor/data/output_plus_3_months_with_disease_genes/dgidb",
+      "output_triples_path": "kg_constructor/data/output_plus_3_months_with_disease_genes/triples/triples_with_dgidb.csv",
+      "require_existing_gene": false
+    },
+    "quality_gate": {
+      "enabled": true,
+      "input_triples_path": "kg_constructor/data/output_plus_3_months_with_disease_genes/triples/triples_with_dgidb.csv",
+      "blacklist_path": "kg_constructor/configs/blacklist.txt",
+      "report_path": "kg_constructor/data/output_plus_3_months_with_disease_genes/reports/quality_gate_report.json",
+      "fail_on_duplicate_triples": true,
+      "fail_on_self_loops": true,
+      "fail_on_blacklisted_entities": true,
+      "fail_on_empty_fields": true,
+      "fail_on_contraindication_conflicts": true,
+      "fail_on_bad_drugbank_urls": true,
+      "fail_on_schema_errors": true
+    }
+  },
+  "git_commit": "c9749d998d5a6ba2130a04e05c07af2dd5fe5393",
+  "input_hashes": {},
+  "selected_steps": [
+    "05_filter_graph"
+  ],
+  "force": true
+}

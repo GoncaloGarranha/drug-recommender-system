@@ -123,3 +123,35 @@ Métricas de overlap test/train:
 **Resultado:** Grafo final com 8.951 triplas preditivas de alta qualidade, focado exclusivamente em relações fármaco-doença.
 
 ******************************************************
+
+
+
+Resumo — problema encontrado em HAS_INGREDIENT
+O KG tem 19 919 arestas HAS_INGREDIENT, cerca de 44,7% do grafo.
+A relação não contém apenas princípios ativos; inclui muitos excipientes comuns, como:
+magnesium stearate;
+água;
+microcrystalline cellulose;
+silica;
+lactose;
+talc.
+Alguns desses ingredientes estão ligados a centenas de fármacos:
+magnesium stearate → 667;
+água → 646;
+CI 77891 → 574;
+microcrystalline cellulose → 550.
+Isto cria hubs artificiais e pode aproximar embeddings de fármacos sem verdadeira semelhança terapêutica.
+O problema afeta:
+a propagação da R-GCN;
+o hard-negative sampling baseado em ingredientes;
+a avaliação de similaridade por Jaccard de ingredientes.
+A existência de CHEBI, DRUGBANK e DRUG confirma heterogeneidade de namespaces, mas a fragmentação real ainda não foi provada.
+A próxima experiência importante deve comparar:
+modelo atual;
+modelo sem HAS_INGREDIENT no message passing;
+e sem hard negatives baseados em ingredientes.
+Também foi identificada uma doença demasiado genérica:
+DOID:14566 — neoplasm;
+4 INDICATION;
+25 ASSOCIATED_WITH_GENE;
+deve ser removida globalmente através da blacklist.

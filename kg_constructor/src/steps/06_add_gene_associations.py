@@ -81,8 +81,51 @@ def add_gene_associations(cfg: Dict[str, Any], paths, force: bool = False) -> No
     out_dir.mkdir(parents=True, exist_ok=True)
     out_triples.parent.mkdir(parents=True, exist_ok=True)
 
+    # Load the input KG once. Disease-gene enrichment must not introduce
+    # diseases that are absent from the graph being enriched.
+    triples = pd.read_csv(triples_path)
+
+    required_columns = {"src", "rel", "dst"}
+    missing_columns = required_columns - set(triples.columns)
+    if missing_columns:
+        raise ValueError(
+            "Input triples file is missing required columns: "
+            f"{sorted(missing_columns)}"
+        )
+
+    graph_entities = (
+        set(triples["src"].dropna().astype(str))
+        | set(triples["dst"].dropna().astype(str))
+    )
+    existing_diseases = {
+        entity
+        for entity in graph_entities
+        if entity.startswith("DOID:")
+    }
+
     diseases = pd.read_csv(diseases_for_genes)
-    diseases = diseases.rename(columns={"id": "doid", "name": "kg_disease_name"})
+    diseases = diseases.rename(
+        columns={
+            "id": "doid",
+            "name": "kg_disease_name",
+        }
+    )
+
+    diseases["doid"] = diseases["doid"].astype(str)
+
+    diseases_before_filter = len(diseases)
+    diseases = (
+        diseases[
+            diseases["doid"].isin(existing_diseases)
+        ]
+        .drop_duplicates(subset=["doid"])
+        .copy()
+    )
+
+    print(
+        "Disease candidates restricted to input KG: "
+        f"{diseases_before_filter} -> {len(diseases)}"
+    )
 
     ot_diseases = pd.read_parquet(ot_disease_path)
 
@@ -156,8 +199,34 @@ def add_gene_associations(cfg: Dict[str, Any], paths, force: bool = False) -> No
     top_k_genes_per_disease = int(gene_cfg.get("top_k_genes_per_disease", 25))
     min_score = float(gene_cfg.get("min_score", 0.1))
 
-    filtered = associations[associations["associationScore"] >= min_score].copy()
-    filtered = filtered.groupby("doid").head(top_k_genes_per_disease)
+    # A single DOID can map to more than one Open Targets disease.
+    # This may produce repeated Disease-Gene pairs with different scores.
+    # Keep only the strongest association before applying the top-k limit.
+    unique_associations = (
+        associations
+        .sort_values(
+            ["doid", "associationScore"],
+            ascending=[True, False],
+        )
+        .drop_duplicates(
+            subset=["doid", "gene_id"],
+            keep="first",
+        )
+    )
+
+    filtered = unique_associations[
+        unique_associations["associationScore"] >= min_score
+    ].copy()
+
+    filtered = (
+        filtered
+        .sort_values(
+            ["doid", "associationScore"],
+            ascending=[True, False],
+        )
+        .groupby("doid", group_keys=False)
+        .head(top_k_genes_per_disease)
+    )
 
     gene_edges = filtered[["doid", "gene_id", "associationScore"]].copy()
     gene_edges = gene_edges.rename(
@@ -178,8 +247,6 @@ def add_gene_associations(cfg: Dict[str, Any], paths, force: bool = False) -> No
     print(f"Filtered gene edges: {len(gene_edges)}")
     print(f"Diseases with gene edges: {gene_edges['src'].nunique()}")
     print(f"Unique genes: {gene_edges['dst'].nunique()}")
-
-    triples = pd.read_csv(triples_path)
 
     triples_with_genes = pd.concat(
         [

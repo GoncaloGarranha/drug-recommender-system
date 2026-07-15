@@ -1,0 +1,13 @@
+Using splits saved in run: results/runs/rgcn/biomedical/disease_to_drug/with_dgidb_plus_3_months_disease_genes_best_no_ingredients/seed_42/splits
+------------------------------------------------------------
+RUN: results/runs/rgcn/biomedical/disease_to_drug/with_dgidb_plus_3_months_disease_genes_best_no_ingredients/seed_42
+TASK: disease_to_drug
+SPLIT: valid
+------------------------------------------------------------
+MRR: 0.6852
+Hits@1: 0.6511
+Hits@3: 0.6998
+Hits@10: 0.7404
+------------------------------------------------------------
+Logged benchmark to /Users/garranha/workspace/ISEL/Mestrado/Tese/tese/results/benchmarks.csv
+Saved evaluation metrics to: results/runs/rgcn/biomedical/disease_to_drug/with_dgidb_plus_3_months_disease_genes_best_no_ingredients/seed_42/final_metrics_disease_to_drug_valid.json

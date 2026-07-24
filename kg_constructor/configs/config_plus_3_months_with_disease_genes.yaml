@@ -11,7 +11,6 @@ inputs:
   medjsonify_entities_dir: external/medjsonify/NER/data/entities
 pipeline:
   steps:
-  - 00_import_data
   - 01_stats
   - 02_parse_sources
   - 03_resolve_entities

@@ -176,6 +176,46 @@ def _map_drug(
     return None, None
 
 
+
+def _map_drug_historical_exact(
+    row: pd.Series,
+    kg_entities: set[str],
+) -> Tuple[str | None, str | None]:
+    """
+    Reproduce the historical DGIdb drug mapping.
+
+    Historical mapping rules:
+      1. DrugBank concept IDs are matched against the old URL-style entity.
+      2. Otherwise, the upper-cased drug name is matched as DRUG:<NAME>.
+      3. No canonical alias expansion is applied.
+    """
+    concept_id = _safe_text(
+        row.get("drug_concept_id")
+    )
+    drug_name = _safe_text(
+        row.get("drug_name")
+    ).upper()
+
+    if concept_id.startswith("drugbank:"):
+        dbid = concept_id.split(":", 1)[1].upper()
+
+        candidate = (
+            "DRUGBANK:"
+            f"https://go.drugbank.com/drugs/{dbid}"
+        )
+
+        if candidate in kg_entities:
+            return candidate, "drugbank"
+
+    if drug_name:
+        candidate = f"DRUG:{drug_name}"
+
+        if candidate in kg_entities:
+            return candidate, "name"
+
+    return None, None
+
+
 def _map_gene(
     row: pd.Series,
     kg_entities: set[str],
@@ -199,7 +239,37 @@ def add_dgidb_interactions(cfg: Dict[str, Any], paths, force: bool = False) -> N
         print("DGIdb interaction step disabled by config. Skipping step.")
         return
 
-    require_existing_gene = bool(dgidb_cfg.get("require_existing_gene", False))
+    require_existing_gene = bool(
+        dgidb_cfg.get(
+            "require_existing_gene",
+            False,
+        )
+    )
+
+    mapping_mode = str(
+        dgidb_cfg.get(
+            "mapping_mode",
+            "canonical_alias",
+        )
+    )
+
+    allowed_mapping_modes = {
+        "canonical_alias",
+        "historical_exact",
+    }
+
+    if mapping_mode not in allowed_mapping_modes:
+        raise ValueError(
+            "Invalid DGIdb mapping_mode: "
+            f"{mapping_mode}. "
+            "Allowed values: "
+            f"{sorted(allowed_mapping_modes)}"
+        )
+
+    print(
+        "DGIdb drug mapping mode:",
+        mapping_mode,
+    )
 
     input_triples = _resolve_path(dgidb_cfg.get("input_triples_path"), DEFAULT_INPUT_TRIPLES)
     dgidb_interactions = _resolve_path(
@@ -240,19 +310,39 @@ def add_dgidb_interactions(cfg: Dict[str, Any], paths, force: bool = False) -> N
     triples = pd.read_csv(input_triples, dtype=str)
     dgidb = pd.read_csv(dgidb_interactions, sep="\t", dtype=str, comment="#").fillna("")
 
-    kg_entities = set(triples["src"]) | set(triples["dst"])
-    drug_alias_index = _build_drug_alias_index(
-        kg_entities=kg_entities,
-        aliases_path=aliases_path,
-        drug_name_map_path=drug_name_map_path,
+    kg_entities = (
+        set(triples["src"])
+        | set(triples["dst"])
     )
+
+    if mapping_mode == "canonical_alias":
+        drug_alias_index = _build_drug_alias_index(
+            kg_entities=kg_entities,
+            aliases_path=aliases_path,
+            drug_name_map_path=drug_name_map_path,
+        )
+    else:
+        drug_alias_index = {}
 
     mapped_rows = []
     unmapped_drugs = []
     unmapped_genes = []
 
     for _, row in dgidb.iterrows():
-        drug, drug_mapping = _map_drug(row, kg_entities, drug_alias_index)
+        if mapping_mode == "historical_exact":
+            drug, drug_mapping = (
+                _map_drug_historical_exact(
+                    row,
+                    kg_entities,
+                )
+            )
+        else:
+            drug, drug_mapping = _map_drug(
+                row,
+                kg_entities,
+                drug_alias_index,
+            )
+
         gene, gene_mapping = _map_gene(
             row,
             kg_entities,
@@ -339,7 +429,10 @@ def add_dgidb_interactions(cfg: Dict[str, Any], paths, force: bool = False) -> N
         "unmapped_unique_genes": int(len(unmapped_genes_df)),
         "original_kg_triples": int(len(triples)),
         "new_kg_triples": int(len(triples_with_dgidb)),
-        "drug_alias_index_size": int(len(drug_alias_index)),
+        "mapping_mode": mapping_mode,
+        "drug_alias_index_size": int(
+            len(drug_alias_index)
+        ),
         "require_existing_gene": require_existing_gene,
         "drug_mapping_methods": mapped_df["drug_mapping"].value_counts().to_dict(),
         "gene_mapping_methods": mapped_df["gene_mapping"].value_counts().to_dict(),

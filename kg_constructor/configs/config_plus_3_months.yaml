@@ -35,7 +35,6 @@ inputs:
 # ---------------------------------------------------------
 pipeline:
   steps:
-    - "00_import_data"
     - "01_stats"
     - "02_parse_sources"
     - "03_resolve_entities"

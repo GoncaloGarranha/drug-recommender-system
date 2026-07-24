@@ -1,0 +1,8 @@
+# Generic Disease DOID Blacklist
+# One DOID per line. Lines starting with # are ignored.
+# These diseases are too generic and will be filtered out during graph construction.
+
+DOID:4        # disease
+DOID:225      # syndrome
+DOID:162      # cancer
+DOID:848      # arthritis

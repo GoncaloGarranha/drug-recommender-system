@@ -31,6 +31,27 @@ def add_gene_associations(cfg: Dict[str, Any], paths, force: bool = False) -> No
     """Step 06: add disease-gene associations from Open Targets to KG triples."""
     gene_cfg = cfg.get("gene_associations", {})
 
+    mode = str(
+        gene_cfg.get(
+            "mode",
+            "current_deduplicated",
+        )
+    )
+
+    allowed_modes = {
+        "current_deduplicated",
+        "historical_exact",
+    }
+
+    if mode not in allowed_modes:
+        raise ValueError(
+            "Invalid gene association mode: "
+            f"{mode}. Allowed values: "
+            f"{sorted(allowed_modes)}"
+        )
+
+    print("Gene association mode:", mode)
+
     triples_path = _resolve_path(
         gene_cfg.get("input_triples_path"),
         DEFAULT_TRIPLES_PATH,
@@ -111,21 +132,27 @@ def add_gene_associations(cfg: Dict[str, Any], paths, force: bool = False) -> No
         }
     )
 
-    diseases["doid"] = diseases["doid"].astype(str)
+    if mode == "historical_exact":
+        print(
+            "Historical disease candidates retained: "
+            f"{len(diseases)}"
+        )
+    else:
+        diseases["doid"] = diseases["doid"].astype(str)
 
-    diseases_before_filter = len(diseases)
-    diseases = (
-        diseases[
-            diseases["doid"].isin(existing_diseases)
-        ]
-        .drop_duplicates(subset=["doid"])
-        .copy()
-    )
+        diseases_before_filter = len(diseases)
+        diseases = (
+            diseases[
+                diseases["doid"].isin(existing_diseases)
+            ]
+            .drop_duplicates(subset=["doid"])
+            .copy()
+        )
 
-    print(
-        "Disease candidates restricted to input KG: "
-        f"{diseases_before_filter} -> {len(diseases)}"
-    )
+        print(
+            "Disease candidates restricted to input KG: "
+            f"{diseases_before_filter} -> {len(diseases)}"
+        )
 
     ot_diseases = pd.read_parquet(ot_disease_path)
 
@@ -199,34 +226,48 @@ def add_gene_associations(cfg: Dict[str, Any], paths, force: bool = False) -> No
     top_k_genes_per_disease = int(gene_cfg.get("top_k_genes_per_disease", 25))
     min_score = float(gene_cfg.get("min_score", 0.1))
 
-    # A single DOID can map to more than one Open Targets disease.
-    # This may produce repeated Disease-Gene pairs with different scores.
-    # Keep only the strongest association before applying the top-k limit.
-    unique_associations = (
-        associations
-        .sort_values(
-            ["doid", "associationScore"],
-            ascending=[True, False],
-        )
-        .drop_duplicates(
-            subset=["doid", "gene_id"],
-            keep="first",
-        )
-    )
+    if mode == "historical_exact":
+        # Historical behaviour:
+        # - no Disease-Gene deduplication before top-k;
+        # - associations were already sorted above;
+        # - top-k was applied directly per DOID.
+        filtered = associations[
+            associations["associationScore"] >= min_score
+        ].copy()
 
-    filtered = unique_associations[
-        unique_associations["associationScore"] >= min_score
-    ].copy()
-
-    filtered = (
-        filtered
-        .sort_values(
-            ["doid", "associationScore"],
-            ascending=[True, False],
+        filtered = (
+            filtered
+            .groupby("doid")
+            .head(top_k_genes_per_disease)
         )
-        .groupby("doid", group_keys=False)
-        .head(top_k_genes_per_disease)
-    )
+    else:
+        # A single DOID can map to more than one Open Targets disease.
+        # Keep only the strongest Disease-Gene association before top-k.
+        unique_associations = (
+            associations
+            .sort_values(
+                ["doid", "associationScore"],
+                ascending=[True, False],
+            )
+            .drop_duplicates(
+                subset=["doid", "gene_id"],
+                keep="first",
+            )
+        )
+
+        filtered = unique_associations[
+            unique_associations["associationScore"] >= min_score
+        ].copy()
+
+        filtered = (
+            filtered
+            .sort_values(
+                ["doid", "associationScore"],
+                ascending=[True, False],
+            )
+            .groupby("doid", group_keys=False)
+            .head(top_k_genes_per_disease)
+        )
 
     gene_edges = filtered[["doid", "gene_id", "associationScore"]].copy()
     gene_edges = gene_edges.rename(

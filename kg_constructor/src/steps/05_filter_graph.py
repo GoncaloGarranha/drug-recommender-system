@@ -16,6 +16,8 @@ from kg_constructor.src.utils.validate import (
 
 logger = get_logger(__name__)
 
+ROOT = Path(__file__).resolve().parents[3]
+
 
 def load_blacklist(blacklist_path: Path) -> Set[str]:
     """
@@ -84,11 +86,47 @@ def filter_graph(cfg: Dict[str, Any], paths, force: bool = False) -> None:
     validate_no_empty_values(triple_rows, ["src", "rel", "dst"])
     input_relation_counts = validate_relation_counts(triple_rows)
 
-    config_dir = Path(__file__).parent.parent.parent / "configs"
-    blacklist_path = config_dir / "blacklist.txt"
-    blacklist = load_blacklist(blacklist_path)
-
     filters_cfg = cfg.get("filters", {})
+
+    blacklist_path_raw = filters_cfg.get(
+        "blacklist_path",
+        "kg_constructor/configs/blacklist.txt",
+    )
+
+    blacklist_path = Path(blacklist_path_raw)
+
+    if not blacklist_path.is_absolute():
+        blacklist_path = ROOT / blacklist_path
+
+    blacklist_scope = filters_cfg.get(
+        "blacklist_scope",
+        "both",
+    )
+
+    allowed_blacklist_scopes = {
+        "both",
+        "destination_only",
+        "disabled",
+    }
+
+    if blacklist_scope not in allowed_blacklist_scopes:
+        raise ValueError(
+            "Invalid blacklist_scope: "
+            f"{blacklist_scope}. "
+            f"Allowed values: "
+            f"{sorted(allowed_blacklist_scopes)}"
+        )
+
+    blacklist = (
+        set()
+        if blacklist_scope == "disabled"
+        else load_blacklist(blacklist_path)
+    )
+
+    logger.info(
+        "Blacklist scope: %s",
+        blacklist_scope,
+    )
 
     remove_obsolete_doid_raw = filters_cfg.get("remove_obsolete_doid_labels")
     if remove_obsolete_doid_raw is None:
@@ -146,9 +184,15 @@ def filter_graph(cfg: Dict[str, Any], paths, force: bool = False) -> None:
             skip_reasons["has_ingredient_removed"] += 1
             continue
 
-        if src in blacklist or dst in blacklist:
-            skip_reasons["blacklisted_entity"] += 1
-            continue
+        if blacklist_scope == "both":
+            if src in blacklist or dst in blacklist:
+                skip_reasons["blacklisted_entity"] += 1
+                continue
+
+        elif blacklist_scope == "destination_only":
+            if dst in blacklist:
+                skip_reasons["blacklisted_destination"] += 1
+                continue
 
         if remove_obsolete_doid and dst.upper().endswith("OBSOLETE"):
             skip_reasons["obsolete_doid"] += 1
@@ -209,6 +253,8 @@ def filter_graph(cfg: Dict[str, Any], paths, force: bool = False) -> None:
         "filters": {
             "remove_obsolete_doid_labels": remove_obsolete_doid,
             "remove_has_ingredient": remove_has_ingredient,
+            "blacklist_scope": blacklist_scope,
+            "blacklist_path": str(blacklist_path),
             "contraindication_policy": contraindication_policy,
         },
         "input_relation_distribution": dict(input_relation_counts),

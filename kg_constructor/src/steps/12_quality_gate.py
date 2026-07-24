@@ -23,11 +23,17 @@ def _load_blacklist(path: Path) -> set[str]:
     if not path.exists():
         return set()
 
-    return {
-        line.strip()
-        for line in path.read_text(encoding="utf-8").splitlines()
-        if line.strip() and not line.strip().startswith("#")
-    }
+    blacklist = set()
+
+    for line in path.read_text(
+        encoding="utf-8"
+    ).splitlines():
+        cleaned = line.split("#", 1)[0].strip()
+
+        if cleaned:
+            blacklist.add(cleaned)
+
+    return blacklist
 
 
 def _detect_columns(rows):
@@ -156,7 +162,43 @@ def run(cfg: dict[str, Any], paths, force: bool = False) -> None:
         "schema_errors": len(schema_errors),
     }
 
-    failures = [name for name, value in checks.items() if value > 0]
+    failure_options = {
+        "duplicate_triples": bool(
+            gate_cfg.get("fail_on_duplicate_triples", True)
+        ),
+        "self_loops": bool(
+            gate_cfg.get("fail_on_self_loops", True)
+        ),
+        "blacklisted_rows": bool(
+            gate_cfg.get("fail_on_blacklisted_entities", True)
+        ),
+        "empty_field_rows": bool(
+            gate_cfg.get("fail_on_empty_fields", True)
+        ),
+        "indication_contraindication_conflicts": bool(
+            gate_cfg.get("fail_on_contraindication_conflicts", True)
+        ),
+        "bad_drugbank_entities": bool(
+            gate_cfg.get("fail_on_bad_drugbank_urls", True)
+        ),
+        "schema_errors": bool(
+            gate_cfg.get("fail_on_schema_errors", True)
+        ),
+    }
+
+    failures = [
+        name
+        for name, value in checks.items()
+        if value > 0
+        and failure_options.get(name, True)
+    ]
+
+    warnings = [
+        name
+        for name, value in checks.items()
+        if value > 0
+        and not failure_options.get(name, True)
+    ]
 
     report = {
         "status": "failed" if failures else "passed",
@@ -164,7 +206,9 @@ def run(cfg: dict[str, Any], paths, force: bool = False) -> None:
         "rows": len(rows),
         "relation_distribution": dict(Counter(rel for _, rel, _ in triples)),
         "checks": checks,
+        "failure_options": failure_options,
         "schema_error_types": dict(schema_error_types),
+        "warnings": warnings,
         "failures": failures,
         "examples": {
             "duplicate_triple": duplicates[:1],

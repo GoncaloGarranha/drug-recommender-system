@@ -1,0 +1,22 @@
+{
+  "task_name": "disease_to_drug",
+  "target_relation": "INDICATION",
+  "train_size": 5772,
+  "valid_size": 721,
+  "test_size": 723,
+  "num_nodes": 9373,
+  "num_relations_decoder": 5,
+  "num_relations_encoder": 10,
+  "add_inverse_edges": true,
+  "num_graph_edges": 96918,
+  "training_candidate_pool_size": 2472,
+  "evaluation_candidate_pool_size": 2472,
+  "context_relations": [
+    "INDICATION",
+    "CONTRAINDICATION",
+    "HAS_INGREDIENT",
+    "ASSOCIATED_WITH_GENE",
+    "INTERACTS_WITH_GENE"
+  ],
+  "split_integrity_report": "models/rgcn/data/processed/disease_to_drug/six_months_main_random_split/splits/split_integrity_report.json"
+}

@@ -1,0 +1,179 @@
+{
+  "status": "official_current",
+  "experiment": "six_months_main_random_split",
+  "model": "R-GCN",
+  "task": "disease_to_drug",
+  "seed": 42,
+  "created_at_utc": "2026-07-24T09:31:48.940453+00:00",
+  "dataset_period": "six_months",
+  "split_strategy": "random_80_10_10",
+  "split_sizes": {
+    "train": 5772,
+    "valid": 721,
+    "test": 723
+  },
+  "candidate_entity_type": "DRUG",
+  "candidate_pool_size": 2472,
+  "entity_counts": {
+    "DRUG": 2472,
+    "INGREDIENT": 2278,
+    "DISEASE": 797,
+    "GENE": 3826,
+    "TOTAL": 9373
+  },
+  "best_checkpoint": {
+    "best_epoch": 7690,
+    "best_valid_mrr": 0.7283990219898,
+    "best_valid_hits@1": 0.6976421636615812,
+    "best_valid_hits@3": 0.7420249653259362,
+    "best_valid_hits@10": 0.7961165048543689
+  },
+  "validation_metrics": {
+    "mrr": 0.7283990219898,
+    "hits@1": 0.6976421636615812,
+    "hits@3": 0.7420249653259362,
+    "hits@10": 0.7961165048543689
+  },
+  "test_metrics": {
+    "mrr": 0.7595566330699344,
+    "hits@1": 0.7330567081604425,
+    "hits@3": 0.7690179806362379,
+    "hits@10": 0.8132780082987552
+  },
+  "notes": [
+    "Validation and test use the same base candidate pool.",
+    "No explicit historical candidate list is used.",
+    "The checkpoint was selected exclusively from validation metrics.",
+    "Known positives are masked only during filtered evaluation."
+  ],
+  "files": {
+    "dataset/entity2id.json": {
+      "size_bytes": 250452,
+      "sha256": "447a029814843b83db6d53b8532e7f075bac5201407ab8e09d6b87e24497958e"
+    },
+    "dataset/entity_types.json": {
+      "size_bytes": 286367,
+      "sha256": "1c19e757f0089f0fd25f12fdf9ead3607318cdc094db705c126ac133b6c985df"
+    },
+    "dataset/graph_metadata.json": {
+      "size_bytes": 372,
+      "sha256": "668ac9a439a3113a2d6c668368355af044293b1fa4a361da750c341fcca8dab4"
+    },
+    "dataset/id2entity.json": {
+      "size_bytes": 269198,
+      "sha256": "ea53fa6c1047c82172937fc92db04be176d8988630eca80b1e33173ca2cb59be"
+    },
+    "dataset/id2rel.json": {
+      "size_bytes": 136,
+      "sha256": "b320caedbe4295bff0bbb61e821e9c25318b512e1ae393b5c343b7c0ea0fed8c"
+    },
+    "dataset/rel2id.json": {
+      "size_bytes": 126,
+      "sha256": "de5100bbb596d082b9d35328b07dbd6a0441f2903268ae91425486eca7e3a917"
+    },
+    "dataset/splits/split_integrity_report.json": {
+      "size_bytes": 3134,
+      "sha256": "1b48a4e0fb72b83247137461cb388e2b195d00e7013bf19b97b0831267e7029b"
+    },
+    "dataset/splits/split_metadata.json": {
+      "size_bytes": 194,
+      "sha256": "64e59aca8c967e7d3489538bbed1562f1371ba7cc6b0d3f6477d473fab802e26"
+    },
+    "dataset/splits/test_triples.json": {
+      "size_bytes": 114053,
+      "sha256": "2d4eb652a951bec31a7a1373fc01b041e21eea30a8071e323d8ef482666bbfea"
+    },
+    "dataset/splits/train_triples.json": {
+      "size_bytes": 915721,
+      "sha256": "4651988ed3b06a690e1f7ba759d9e36838c76d225627a96e034224233f0a3044"
+    },
+    "dataset/splits/valid_triples.json": {
+      "size_bytes": 114423,
+      "sha256": "2034cbfe5945e0fde0f439dd54d241628db3da164c77403b9577df993cdc168c"
+    },
+    "dataset/triples_indexed.csv": {
+      "size_bytes": 3178508,
+      "sha256": "6e7f59558eaa7257dfae7a5648234f05490e8334ef1c26b482375c880eedfdc3"
+    },
+    "logs/six_months_main_random_split_test.log": {
+      "size_bytes": 716,
+      "sha256": "7d55abe9242121f6b9fb6602e94fc76356e6777bfb04ab85c1ceb5f7a00d07cb"
+    },
+    "logs/six_months_main_random_split_valid.log": {
+      "size_bytes": 718,
+      "sha256": "41314dd539f916141b7ea4083311fb088def969c32d8618ed6ffe0f2113b68e3"
+    },
+    "run/best_metrics.json": {
+      "size_bytes": 191,
+      "sha256": "43db7dc2835dd310db6faa69331f1bf4b65f04394ec943da71497da70412af67"
+    },
+    "run/checkpoints/best.pt": {
+      "size_bytes": 5598327,
+      "sha256": "c274f7313fc9c9fb119fbb9c2b70fd5d910738238b53e6a32df509c36c2ad7d7"
+    },
+    "run/checkpoints/last.pt": {
+      "size_bytes": 5598327,
+      "sha256": "1b2232a5ceaebcc11c72b091bce9b20875eac83d1d6c91e8542ebf78e1bbd7c6"
+    },
+    "run/config.yaml": {
+      "size_bytes": 1490,
+      "sha256": "e51b7247e5470edb2c513a915f893189dec940b024a0ae249bce32ee46ffbff9"
+    },
+    "run/environment.json": {
+      "size_bytes": 360,
+      "sha256": "bb522742438168488e9e0a5c739d6267128d929808e062789e21c955efa4e252"
+    },
+    "run/final_metrics_disease_to_drug_test.json": {
+      "size_bytes": 128,
+      "sha256": "624d71e676a4624ad8b438eee04d2dafc0627e5175727d3e367ce1cd7a4576d9"
+    },
+    "run/final_metrics_disease_to_drug_valid.json": {
+      "size_bytes": 125,
+      "sha256": "8b5bcabb582794bc451e8a4ecc721b0ff18ed198ef1e6e9abdd7d7ba50ebcb35"
+    },
+    "run/git_commit.txt": {
+      "size_bytes": 41,
+      "sha256": "059bbeb13edcd149447cb5738343988e36a5b0d7536b5a70bfbdfbe0b263ecc0"
+    },
+    "run/metrics_test.json": {
+      "size_bytes": 128,
+      "sha256": "624d71e676a4624ad8b438eee04d2dafc0627e5175727d3e367ce1cd7a4576d9"
+    },
+    "run/metrics_valid.json": {
+      "size_bytes": 125,
+      "sha256": "8b5bcabb582794bc451e8a4ecc721b0ff18ed198ef1e6e9abdd7d7ba50ebcb35"
+    },
+    "run/model_summary.json": {
+      "size_bytes": 379,
+      "sha256": "b19f18bfbc012daef8456b16a9d35618aa9f57ddbdd4295a5f295b94ee6f331e"
+    },
+    "run/split_summary.json": {
+      "size_bytes": 641,
+      "sha256": "c1b0c93845620b1813ec361ed3b858267f6319227be69318353bf366608bd2b4"
+    },
+    "run/splits/split_metadata.json": {
+      "size_bytes": 194,
+      "sha256": "64e59aca8c967e7d3489538bbed1562f1371ba7cc6b0d3f6477d473fab802e26"
+    },
+    "run/splits/test_triples.json": {
+      "size_bytes": 114053,
+      "sha256": "2d4eb652a951bec31a7a1373fc01b041e21eea30a8071e323d8ef482666bbfea"
+    },
+    "run/splits/train_triples.json": {
+      "size_bytes": 915721,
+      "sha256": "4651988ed3b06a690e1f7ba759d9e36838c76d225627a96e034224233f0a3044"
+    },
+    "run/splits/valid_triples.json": {
+      "size_bytes": 114423,
+      "sha256": "2034cbfe5945e0fde0f439dd54d241628db3da164c77403b9577df993cdc168c"
+    },
+    "run/train_log.json": {
+      "size_bytes": 973416,
+      "sha256": "e621c20e978af768a323f327c8cdf9585e03b1600872cdbeb12410df47d04640"
+    },
+    "source_graph/triples_with_dgidb.csv": {
+      "size_bytes": 2551718,
+      "sha256": "713df059da00efa45479aa4179fea533211c2ed0571abf128470caaee10126bb"
+    }
+  }
+}

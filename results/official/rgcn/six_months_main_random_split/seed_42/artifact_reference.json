@@ -1,0 +1,7 @@
+{
+  "artifact_storage": "external_not_versioned_in_git",
+  "archive_filename": "rgcn_official_six_months_seed42.tar.gz",
+  "archive_sha256": "987be68836ac74fa0cc7f4c2a02f69ae51aa18980fc19db35cfa163157bfb961",
+  "checkpoint_path_inside_archive": "results/official/rgcn/six_months_main_random_split/seed_42/run/checkpoints/best.pt",
+  "official_checkpoint_epoch": 7690
+}

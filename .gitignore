@@ -34,3 +34,40 @@ Thumbs.db
 /kg_constructor/data/input_plus_3_months
 /docs/report/MEIC__Gonçalo_Garranha
 /docs/report
+
+# === Generated thesis experiment artifacts ===
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Model checkpoints and temporary backups
+*.pt
+*.pth
+*.ckpt
+*.before_*
+*.bak
+*.tmp
+
+# Generated R-GCN outputs
+results/runs/
+results/logs/
+results/exports/
+
+# Heavy contents of official experiment snapshots.
+# Small metrics, manifests and documentation at the root remain trackable.
+results/official/**/run/
+results/official/**/dataset/
+results/official/**/source_graph/
+results/official/**/logs/
+
+# Generated processed datasets
+models/rgcn/data/processed/
+
+# Generated knowledge-graph artefacts
+kg_constructor/data/graph_builds/
+kg_constructor/data/snapshots/
+kg_constructor/data/ablation_generic_indications/
+
+# Generated input inventories
+kg_constructor/configs/input_manifests/

@@ -25,6 +25,7 @@ import torch
 
 from models.shared.benchmark_tracker import log_experiment
 from models.shared.graph_artifacts import load_prepared_graph, resolve_processed_dir
+from models.shared.io import read_json
 from models.shared.ranking import build_candidate_pool, build_training_graph, evaluate_ranking
 from models.shared.runs import find_latest_run, save_metrics
 from models.shared.splits import build_known_positives, get_or_create_splits, load_splits
@@ -122,10 +123,45 @@ def main() -> None:
         add_inverse_edges=add_inverse_edges,
     )
 
-    required_candidate_ids = {
-        int(row["src_id"]) if task_name == "disease_to_drug" else int(row["dst_id"])
-        for row in train_target + valid_target + test_target
-    }
+    explicit_candidate_path = task_cfg.get(
+        "candidate_entities_path"
+    )
+
+    explicit_candidate_entities = (
+        read_json(explicit_candidate_path)
+        if explicit_candidate_path
+        else None
+    )
+
+    # Em disease_to_drug, os triples estão representados como:
+    # DRUG --INDICATION--> DISEASE.
+    # A entidade candidata é, portanto, o src.
+    # Determinar o lado candidato através do tipo real das entidades.
+    # Isto evita depender da orientação assumida pelo nome da tarefa.
+    required_candidate_ids = set()
+
+    for row in valid_target + test_target:
+        src_entity = str(row.get("src", ""))
+        dst_entity = str(row.get("dst", ""))
+
+        matching_ids = []
+
+        if entity_types.get(src_entity) == candidate_entity_type:
+            matching_ids.append(int(row["src_id"]))
+
+        if entity_types.get(dst_entity) == candidate_entity_type:
+            matching_ids.append(int(row["dst_id"]))
+
+        if len(matching_ids) != 1:
+            raise ValueError(
+                "Could not determine exactly one candidate entity for "
+                f"triple {src_entity} --{row.get('rel')}--> {dst_entity}. "
+                f"candidate_entity_type={candidate_entity_type!r}, "
+                f"src_type={entity_types.get(src_entity)!r}, "
+                f"dst_type={entity_types.get(dst_entity)!r}"
+            )
+
+        required_candidate_ids.add(matching_ids[0])
 
     candidate_pool = build_candidate_pool(
         entity_types=entity_types,
@@ -133,6 +169,7 @@ def main() -> None:
         candidate_entity_type=candidate_entity_type,
         device=device,
         required_entity_ids=required_candidate_ids,
+        explicit_entity_ids=explicit_candidate_entities,
     )
 
     known_positives = build_known_positives(

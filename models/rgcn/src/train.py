@@ -30,7 +30,7 @@ import torch.nn.functional as F
 from models.shared.config import load_config
 from models.shared.experiment_integrity import validate_experiment_integrity
 from models.shared.graph_artifacts import load_prepared_graph
-from models.shared.io import ensure_dir, save_json
+from models.shared.io import ensure_dir, read_json, save_json
 from models.shared.ranking import build_candidate_pool, build_training_graph, evaluate_ranking
 from models.shared.runs import (
     capture_environment,
@@ -326,8 +326,23 @@ def main() -> None:
         add_inverse_edges=add_inverse_edges,
     )
 
-    required_candidate_ids = {
-        int(row["src_id"]) if task_name == "disease_to_drug" else int(row["dst_id"])
+    explicit_candidate_path = task_cfg.get(
+        "candidate_entities_path"
+    )
+
+    explicit_candidate_entities = (
+        read_json(explicit_candidate_path)
+        if explicit_candidate_path
+        else None
+    )
+
+    # O treino utiliza todos os candidatos do novo grafo. Assim, os
+    # fármacos acrescentados podem ser usados tanto como positivos como
+    # negativos durante a aprendizagem.
+    training_required_candidate_ids = {
+        int(row["src_id"])
+        if task_name == "disease_to_drug"
+        else int(row["dst_id"])
         for row in train_target + valid_target + test_target
     }
 
@@ -336,7 +351,26 @@ def main() -> None:
         entity2id=entity2id,
         candidate_entity_type=candidate_entity_type,
         device=device,
-        required_entity_ids=required_candidate_ids,
+        required_entity_ids=training_required_candidate_ids,
+    )
+
+    # A avaliação usa todos os candidatos do tipo configurado.
+    # Quando candidate_entities_path é definido, o conjunto fica
+    # explicitamente restringido às entidades desse ficheiro.
+    evaluation_required_candidate_ids = {
+        int(row["src_id"])
+        if task_name == "disease_to_drug"
+        else int(row["dst_id"])
+        for row in valid_target + test_target
+    }
+
+    evaluation_candidate_pool = build_candidate_pool(
+        entity_types=entity_types,
+        entity2id=entity2id,
+        candidate_entity_type=candidate_entity_type,
+        device=device,
+        required_entity_ids=evaluation_required_candidate_ids,
+        explicit_entity_ids=explicit_candidate_entities,
     )
 
     corrupt_mode = str(cfg["training"].get("corrupt_mode", "tail"))
@@ -489,7 +523,10 @@ def main() -> None:
             "num_relations_encoder": encoder_num_relations,
             "add_inverse_edges": add_inverse_edges,
             "num_graph_edges": int(graph.num_edges()),
-            "candidate_pool_size": int(len(candidate_pool)),
+            "training_candidate_pool_size": int(len(candidate_pool)),
+            "evaluation_candidate_pool_size": int(
+                len(evaluation_candidate_pool)
+            ),
             "context_relations": context_relations,
             "split_integrity_report": split_integrity_report["report_path"],
         },
@@ -634,7 +671,7 @@ def main() -> None:
                 relation_id=relation_id,
                 task_name=task_name,
                 known_positives=known_positives,
-                candidate_ids=candidate_pool,
+                candidate_ids=evaluation_candidate_pool,
                 device=device,
                 hits_k=tuple(cfg["training"]["hits_k"]),
             )

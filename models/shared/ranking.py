@@ -61,28 +61,93 @@ def build_candidate_pool(
     candidate_entity_type: str,
     device: torch.device,
     required_entity_ids: Iterable[int] | None = None,
+    explicit_entity_ids: Iterable[str] | None = None,
 ) -> torch.Tensor:
-    """Build the candidate entity pool for ranking.
+    """Build the candidate entity pool used for ranking.
 
-    The pool starts with the configured entity type and is expanded with any
-    required ground-truth ids so evaluation never drops the correct answer.
+    When ``explicit_entity_ids`` is provided, the pool is restricted to
+    exactly those entities. Required ground-truth entities must already be
+    present in that explicit pool; otherwise an error is raised.
+
+    Without an explicit pool, candidates are selected from the configured
+    entity type and expanded with any required ground-truth entities.
     """
-    if candidate_entity_type == "ALL":
-        candidate_ids = set(entity2id.values())
+    explicit_pool = explicit_entity_ids is not None
+
+    if explicit_pool:
+        explicit_entities = {
+            str(entity_id)
+            for entity_id in explicit_entity_ids
+        }
+
+        missing_entities = sorted(
+            entity_id
+            for entity_id in explicit_entities
+            if entity_id not in entity2id
+        )
+
+        if missing_entities:
+            examples = missing_entities[:10]
+
+            raise ValueError(
+                "Explicit candidate entities are missing from the graph: "
+                f"{examples}"
+                + (
+                    f" (+{len(missing_entities) - len(examples)} more)"
+                    if len(missing_entities) > len(examples)
+                    else ""
+                )
+            )
+
+        candidate_ids = {
+            int(entity2id[entity_id])
+            for entity_id in explicit_entities
+        }
+
+    elif candidate_entity_type == "ALL":
+        candidate_ids = {
+            int(entity_id)
+            for entity_id in entity2id.values()
+        }
+
     else:
         candidate_ids = {
-            entity2id[entity_id]
+            int(entity2id[entity_id])
             for entity_id, entity_type in entity_types.items()
             if entity_type == candidate_entity_type
         }
 
     if required_entity_ids is not None:
-        candidate_ids.update(int(entity_id) for entity_id in required_entity_ids)
+        required_ids = {
+            int(entity_id)
+            for entity_id in required_entity_ids
+        }
+
+        if explicit_pool:
+            missing_required = sorted(
+                required_ids - candidate_ids
+            )
+
+            if missing_required:
+                raise ValueError(
+                    "Ground-truth candidates are missing from the "
+                    "explicit candidate pool: "
+                    f"{missing_required[:10]}"
+                )
+        else:
+            candidate_ids.update(required_ids)
 
     if not candidate_ids:
-        raise ValueError(f"No candidate entities found for type: {candidate_entity_type}")
+        raise ValueError(
+            "No candidate entities found for type: "
+            f"{candidate_entity_type}"
+        )
 
-    return torch.tensor(sorted(candidate_ids), dtype=torch.long, device=device)
+    return torch.tensor(
+        sorted(candidate_ids),
+        dtype=torch.long,
+        device=device,
+    )
 
 
 def score_candidates(

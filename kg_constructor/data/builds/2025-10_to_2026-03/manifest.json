@@ -55,5 +55,48 @@
       "triples/",
       "reports/"
     ]
+  },
+  "build_provenance": {
+    "strategy": "identifier_preserving_incremental",
+    "historical_base": {
+      "path": "kg_constructor/data/snapshots/commit_72df15d/triples_with_dgidb.csv",
+      "sha256": "77603322dc1777c4fa231338af58a82734844fec86cfaa70d650ae386fb7b71d",
+      "triple_count": 40746
+    },
+    "historical_triples_missing": 0,
+    "new_triples": 9157,
+    "final_triples": 49903,
+    "source_commits": {
+      "additional_period_data": "b89ead9596d21a1832680f78d2c99247666d8ecf",
+      "identifier_preserving_support": "73c0abf35cdef04c8b7cc3721bb4c24bc6bf0655"
+    }
+  },
+  "validation_reports": {
+    "historical_containment": {
+      "relative_path": "reports/historical_containment_report.json",
+      "sha256": "74b9b2418e52138fbeeabac5936ac39640aaee3642e4f258622d8f0760bb671a",
+      "size_bytes": 1062,
+      "status": "passed"
+    },
+    "quality_gate_final": {
+      "relative_path": "reports/quality_gate_report_final.json",
+      "sha256": "8e983ef696d9463324b73aac1a0b7d96510d85edff16e22f861f77dcefaec511",
+      "size_bytes": 1457,
+      "status": "passed",
+      "checks": {
+        "duplicate_triples": 0,
+        "self_loops": 0,
+        "blacklisted_rows": 1204,
+        "empty_field_rows": 0,
+        "indication_contraindication_conflicts": 1748,
+        "bad_drugbank_entities": 360,
+        "schema_errors": 0
+      },
+      "warnings": [
+        "blacklisted_rows",
+        "indication_contraindication_conflicts",
+        "bad_drugbank_entities"
+      ]
+    }
   }
 }

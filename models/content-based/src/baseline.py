@@ -238,7 +238,7 @@ class ContentBasedBaseline:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--config", default="models/rgcn/configs/disease_to_drug.yaml")
+    parser.add_argument("--config", required=True, help="Path to the experiment YAML configuration.")
     parser.add_argument("--split", default="test", choices=["valid", "test"])
     parser.add_argument("--force", action="store_true", help="Recreate splits even if existing metadata mismatches.")
     args = parser.parse_args()
@@ -247,7 +247,7 @@ def main() -> None:
         config_path = resolve_existing_path(args.config)
         cfg = load_config(config_path)
 
-        triples_cfg = cfg["data"].get("triples_path", "kg_constructor/data/output/triples/triples.csv")
+        triples_cfg = cfg["data"]["triples_path"]
         triples_full_path = resolve_existing_path(triples_cfg)
 
         processed_dir_cfg = cfg["data"]["processed_dir"]

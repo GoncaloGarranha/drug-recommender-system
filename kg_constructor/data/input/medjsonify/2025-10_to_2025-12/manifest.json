@@ -1,0 +1,60 @@
+{
+  "manifest_version": 1,
+  "dataset_id": "2025-10_to_2025-12",
+  "status": "canonical_input",
+  "description": "MedJsonify entity files grouped by the format of their original source documents.",
+  "period": {
+    "start": "2025-10",
+    "end": "2025-12",
+    "label": "2025-10_to_2025-12"
+  },
+  "producer": {
+    "name": "MedJsonify",
+    "output_format": "JSON"
+  },
+  "groups": {
+    "csv_files": {
+      "origin_document_type": "csv",
+      "stored_format": "MedJsonify JSON entities",
+      "file_count": 631,
+      "size_bytes": 671736,
+      "tree_sha256": "a798ca786782f67bdc806409fe7ee1024a707bd8dccef85c72ffe5f8db142505",
+      "extensions": {
+        ".json": 631
+      }
+    },
+    "txt_files": {
+      "origin_document_type": "txt",
+      "stored_format": "MedJsonify JSON entities",
+      "file_count": 114,
+      "size_bytes": 66198,
+      "tree_sha256": "04b41ca16c7301e2b6f698413653bab57e88d82409f56895bc70470a70cb6ba9",
+      "extensions": {
+        ".json": 114
+      }
+    },
+    "xml_files": {
+      "origin_document_type": "xml",
+      "stored_format": "MedJsonify JSON entities",
+      "file_count": 2650,
+      "size_bytes": 22693374,
+      "tree_sha256": "b90b1f630fb06a61cfca5ef2abd25fea1f4742912d0940161f2bc1b6a34ff8a7",
+      "extensions": {
+        ".json": 2650
+      }
+    }
+  },
+  "totals": {
+    "file_count": 3395,
+    "size_bytes": 23431308
+  },
+  "provenance": {
+    "legacy_source_root": "kg_constructor/data/input",
+    "migration_method": "rsync -a",
+    "copy_validation": "tree path and content SHA-256"
+  },
+  "storage": {
+    "entity_files_tracked_by_git": false,
+    "manifest_tracked_by_git": true
+  }
+}

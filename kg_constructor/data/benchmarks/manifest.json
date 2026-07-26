@@ -1,0 +1,154 @@
+{
+  "schema_version": 1,
+  "description": "Static knowledge-graph benchmark datasets used by the R-GCN experiments.",
+  "datasets": [
+    {
+      "name": "fb15k",
+      "triples_path": "kg_constructor/data/benchmarks/fb15k/triples.csv",
+      "sha256": "a11cdf70d5d8432a834af392a796f27739cd2d35a9172b5df6723792fd9c18b0",
+      "num_triples": 592213,
+      "num_entities": 14951,
+      "num_relations": 1345,
+      "split_counts": {
+        "train": 483142,
+        "test": 59071,
+        "valid": 50000
+      },
+      "raw_files_present": {
+        "train": "kg_constructor/data/benchmarks/fb15k/raw/train.txt",
+        "valid": "kg_constructor/data/benchmarks/fb15k/raw/valid.txt",
+        "test": "kg_constructor/data/benchmarks/fb15k/raw/test.txt"
+      },
+      "configs": [
+        "models/rgcn/configs/benchmarks/fb15k.yaml"
+      ]
+    },
+    {
+      "name": "fb15k237",
+      "triples_path": "kg_constructor/data/benchmarks/fb15k237/triples.csv",
+      "sha256": "8bae0b52cd4d57230b7ee902e5bf946da8d6bca6320c10d394313193b7c50454",
+      "num_triples": 310116,
+      "num_entities": 14541,
+      "num_relations": 237,
+      "split_counts": {
+        "train": 272115,
+        "test": 20466,
+        "valid": 17535
+      },
+      "raw_files_present": {
+        "train": "kg_constructor/data/benchmarks/fb15k237/raw/train.txt",
+        "valid": "kg_constructor/data/benchmarks/fb15k237/raw/valid.txt",
+        "test": "kg_constructor/data/benchmarks/fb15k237/raw/test.txt"
+      },
+      "configs": [
+        "models/rgcn/configs/benchmarks/fb15k237.yaml"
+      ]
+    },
+    {
+      "name": "fb15k237_sampled",
+      "triples_path": "kg_constructor/data/benchmarks/fb15k237_sampled/triples.csv",
+      "sha256": "1e7336bd8c71b39faa68bcf62e73212068fa92d7c605a753d8d40498ad079fab",
+      "num_triples": 36251,
+      "num_entities": 12250,
+      "num_relations": 237,
+      "split_counts": {
+        "train": 35103,
+        "test": 575,
+        "valid": 573
+      },
+      "raw_files_present": {},
+      "configs": [
+        "models/rgcn/configs/benchmarks/fb15k237_sampled.yaml"
+      ]
+    },
+    {
+      "name": "hetionet_biomedical",
+      "triples_path": "kg_constructor/data/benchmarks/hetionet_biomedical/triples.csv",
+      "sha256": "52ed659792fb6a74ee7f22113642ff4380791f24d94f8f7bbe031c2e26a7c806",
+      "num_triples": 14117,
+      "num_entities": 1462,
+      "num_relations": 3,
+      "split_counts": {
+        "train": 11293,
+        "test": 1413,
+        "valid": 1411
+      },
+      "raw_files_present": {},
+      "configs": []
+    },
+    {
+      "name": "hetionet_enriched",
+      "triples_path": "kg_constructor/data/benchmarks/hetionet_enriched/triples.csv",
+      "sha256": "75c37d45b7c07dd8f9d8711ec7974183c542e2be9a7e38867d12ed188fa00c0e",
+      "num_triples": 31825,
+      "num_entities": 7758,
+      "num_relations": 4,
+      "split_counts": {
+        "train": 25460,
+        "test": 3183,
+        "valid": 3182
+      },
+      "raw_files_present": {},
+      "configs": []
+    },
+    {
+      "name": "wn18",
+      "triples_path": "kg_constructor/data/benchmarks/wn18/triples.csv",
+      "sha256": "ee5e05b4f7842ae31134151d1e73a13ae7f565399e88bf1764abbd886bc40eef",
+      "num_triples": 151442,
+      "num_entities": 40943,
+      "num_relations": 18,
+      "split_counts": {
+        "train": 141442,
+        "valid": 5000,
+        "test": 5000
+      },
+      "raw_files_present": {
+        "train": "kg_constructor/data/benchmarks/wn18/raw/train.txt",
+        "valid": "kg_constructor/data/benchmarks/wn18/raw/valid.txt",
+        "test": "kg_constructor/data/benchmarks/wn18/raw/test.txt"
+      },
+      "configs": [
+        "models/rgcn/configs/benchmarks/wn18.yaml"
+      ]
+    },
+    {
+      "name": "wn18rr",
+      "triples_path": "kg_constructor/data/benchmarks/wn18rr/triples.csv",
+      "sha256": "237ffa24857a069b3223454fa470e33cf3b3933f71075a20cd9aecbfd0827f04",
+      "num_triples": 93003,
+      "num_entities": 40943,
+      "num_relations": 11,
+      "split_counts": {
+        "train": 86835,
+        "test": 3134,
+        "valid": 3034
+      },
+      "raw_files_present": {
+        "train": "kg_constructor/data/benchmarks/wn18rr/raw/train.txt",
+        "valid": "kg_constructor/data/benchmarks/wn18rr/raw/valid.txt",
+        "test": "kg_constructor/data/benchmarks/wn18rr/raw/test.txt"
+      },
+      "configs": [
+        "models/rgcn/configs/benchmarks/wn18rr.yaml"
+      ]
+    },
+    {
+      "name": "wn18rr_sampled",
+      "triples_path": "kg_constructor/data/benchmarks/wn18rr_sampled/triples.csv",
+      "sha256": "3647e59e33928d43d52ba6edb295f5fcc567f867835871f53144cbb13a29257a",
+      "num_triples": 36251,
+      "num_entities": 29656,
+      "num_relations": 11,
+      "split_counts": {
+        "train": 33847,
+        "test": 1221,
+        "valid": 1183
+      },
+      "raw_files_present": {},
+      "configs": [
+        "models/rgcn/configs/benchmarks/wn18rr_sampled.yaml"
+      ]
+    }
+  ]
+}

@@ -89,3 +89,5 @@ kg_constructor/configs/input_manifests/
 /kg_constructor/data/input/medjsonify/*/csv_files/
 /kg_constructor/data/input/medjsonify/*/txt_files/
 /kg_constructor/data/input/medjsonify/*/xml_files/
+
+/kg_constructor/data/benchmarks/*/raw/

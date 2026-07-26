@@ -354,7 +354,7 @@ The module supports benchmark datasets converted by the `kg_constructor`.
 Input to R-GCN:
 
 ```text
-kg_constructor/data/output/benchmarks/wn18rr/triples.csv
+kg_constructor/data/benchmarks/wn18rr/triples.csv
 ```
 
 ### FB15k-237
@@ -362,7 +362,7 @@ kg_constructor/data/output/benchmarks/wn18rr/triples.csv
 Input to R-GCN:
 
 ```text
-kg_constructor/data/output/benchmarks/fb15k237/triples.csv
+kg_constructor/data/benchmarks/fb15k237/triples.csv
 ```
 
 Both files are expected to contain:
@@ -441,7 +441,7 @@ runs:
 seed: 42
 
 data:
-  triples_path: "kg_constructor/data/output/benchmarks/wn18rr/triples.csv"
+  triples_path: "kg_constructor/data/benchmarks/wn18rr/triples.csv"
   processed_dir: "models/rgcn/data/processed/wn18rr"
 
 task:
@@ -481,7 +481,7 @@ For FB15k-237, change:
 
 ```yaml
 data:
-  triples_path: "kg_constructor/data/output/benchmarks/fb15k237/triples.csv"
+  triples_path: "kg_constructor/data/benchmarks/fb15k237/triples.csv"
   processed_dir: "models/rgcn/data/processed/fb15k237"
 
 runs:

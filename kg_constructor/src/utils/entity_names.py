@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import argparse
 import csv
 import os
 import urllib.request
@@ -119,13 +120,19 @@ def build_entity_names(
 
 
 def main() -> None:
-    repo_root = Path(__file__).resolve().parents[3]
-    entity_table_csv = repo_root / "kg_constructor" / "data" / "output" / "mappings" / "entity_table.csv"
-    out_csv = repo_root / "kg_constructor" / "data" / "output" / "entity_names.csv"
-    obo_path = repo_root / "kg_constructor" / "data" / "input" / "ontologies" / "doid.obo"
+    parser = argparse.ArgumentParser(
+        description="Build human-readable labels for KG entities."
+    )
+    parser.add_argument("--entity_table_csv", required=True)
+    parser.add_argument("--out_csv", required=True)
+    parser.add_argument("--obo_path", required=True)
+    args = parser.parse_args()
 
-    build_entity_names(entity_table_csv, out_csv, obo_path)
-
+    build_entity_names(
+        entity_table_csv=args.entity_table_csv,
+        out_csv=args.out_csv,
+        obo_path=args.obo_path,
+    )
 
 if __name__ == "__main__":
     main()

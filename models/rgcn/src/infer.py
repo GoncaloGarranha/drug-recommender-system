@@ -40,7 +40,7 @@ from models.shared.splits import build_known_positives, get_or_create_splits
 from .components import DistMultDecoder, RGCNEncoder
 
 
-def load_entity_labels(csv_path: str) -> Dict[str, str]:
+def load_entity_labels(csv_path: str | None) -> Dict[str, str]:
     """
     Load optional human-readable labels from a CSV file.
 
@@ -49,7 +49,7 @@ def load_entity_labels(csv_path: str) -> Dict[str, str]:
     """
     mapping: Dict[str, str] = {}
 
-    if not os.path.exists(csv_path):
+    if not csv_path or not os.path.exists(csv_path):
         return mapping
 
     with open(csv_path, "r", encoding="utf-8") as file_obj:
@@ -166,7 +166,7 @@ def main() -> None:
     parser.add_argument("--json_out", default=None, help="Optional JSON output path.")
     parser.add_argument(
         "--entity_labels_csv",
-        default="kg_constructor/data/output/entity_names.csv",
+        default=None,
         help="Optional CSV file mapping entity IDs to human-readable labels.",
     )
     args = parser.parse_args()

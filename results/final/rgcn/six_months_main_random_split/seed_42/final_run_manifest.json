@@ -1,5 +1,5 @@
 {
-  "status": "official_current",
+  "status": "final_current",
   "experiment": "six_months_main_random_split",
   "model": "R-GCN",
   "task": "disease_to_drug",

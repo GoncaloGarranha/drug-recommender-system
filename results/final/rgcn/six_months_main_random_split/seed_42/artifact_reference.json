@@ -1,0 +1,10 @@
+{
+  "artifact_storage": "external_archive_unavailable",
+  "archive_available_locally": false,
+  "legacy_archive_filename": "rgcn_official_six_months_seed42.tar.gz",
+  "legacy_archive_sha256": "987be68836ac74fa0cc7f4c2a02f69ae51aa18980fc19db35cfa163157bfb961",
+  "legacy_checkpoint_path_inside_archive": "results/official/rgcn/six_months_main_random_split/seed_42/run/checkpoints/best.pt",
+  "expected_checkpoint_path": "results/final/rgcn/six_months_main_random_split/seed_42/run/checkpoints/best.pt",
+  "checkpoint_available_locally": false,
+  "final_checkpoint_epoch": 7690
+}

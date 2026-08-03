@@ -58,12 +58,12 @@ results/runs/
 results/logs/
 results/exports/
 
-# Heavy contents of official experiment snapshots.
+# Heavy contents of final experiment snapshots.
 # Small metrics, manifests and documentation at the root remain trackable.
-results/official/**/run/
-results/official/**/dataset/
-results/official/**/source_graph/
-results/official/**/logs/
+results/final/**/run/
+results/final/**/dataset/
+results/final/**/source_graph/
+results/final/**/logs/
 
 # Generated processed datasets
 models/rgcn/data/processed/

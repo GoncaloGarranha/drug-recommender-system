@@ -159,7 +159,10 @@ def add_gene_associations(cfg: Dict[str, Any], paths, force: bool = False) -> No
             f"{diseases_before_filter} -> {len(diseases)}"
         )
 
-    ot_diseases = pd.read_parquet(ot_disease_path)
+    ot_diseases = pd.read_parquet(
+        ot_disease_path,
+        columns=["id", "name", "dbXRefs"],
+    )
 
     rows = []
 
@@ -191,13 +194,65 @@ def add_gene_associations(cfg: Dict[str, Any], paths, force: bool = False) -> No
     print(f"KG diseases: {len(diseases)}")
     print(f"Matched diseases: {matched_diseases['doid'].nunique()}")
 
-    associations = pd.read_parquet(ot_assoc_path)
-    associations = associations[
-        ["diseaseId", "targetId", "associationScore", "evidenceCount"]
+    association_columns = [
+        "diseaseId",
+        "targetId",
+        "associationScore",
+        "evidenceCount",
     ]
 
+    matched_ot_ids = set(
+        matched_diseases["ot_disease_id"].dropna()
+    )
+
+    association_source = Path(ot_assoc_path)
+    association_files = (
+        [association_source]
+        if association_source.is_file()
+        else sorted(association_source.rglob("*.parquet"))
+    )
+
+    if not association_files:
+        raise FileNotFoundError(
+            f"No Parquet files found at: {association_source}"
+        )
+
+    association_parts = []
+
+    for index, parquet_file in enumerate(association_files, start=1):
+        part = pd.read_parquet(
+            parquet_file,
+            columns=association_columns,
+        )
+
+        part = part[
+            part["diseaseId"].isin(matched_ot_ids)
+        ]
+
+        if not part.empty:
+            association_parts.append(part)
+
+        if index % 5 == 0 or index == len(association_files):
+            print(
+                "Association Parquet progress: "
+                f"{index}/{len(association_files)}"
+            )
+
+    associations = (
+        pd.concat(association_parts, ignore_index=True)
+        if association_parts
+        else pd.DataFrame(columns=association_columns)
+    )
+
     associations = associations.merge(
-        matched_diseases[["doid", "kg_disease_name", "ot_disease_id", "ot_disease_name"]],
+        matched_diseases[
+            [
+                "doid",
+                "kg_disease_name",
+                "ot_disease_id",
+                "ot_disease_name",
+            ]
+        ],
         left_on="diseaseId",
         right_on="ot_disease_id",
         how="inner",
@@ -205,8 +260,50 @@ def add_gene_associations(cfg: Dict[str, Any], paths, force: bool = False) -> No
 
     print(f"Raw matched disease-gene associations: {len(associations)}")
 
-    targets = pd.read_parquet(ot_target_path)
-    targets = targets[["id", "approvedSymbol", "approvedName"]].rename(
+    target_columns = [
+        "id",
+        "approvedSymbol",
+        "approvedName",
+    ]
+
+    required_target_ids = set(
+        associations["targetId"].dropna()
+    )
+
+    target_source = Path(ot_target_path)
+    target_files = (
+        [target_source]
+        if target_source.is_file()
+        else sorted(target_source.rglob("*.parquet"))
+    )
+
+    if not target_files:
+        raise FileNotFoundError(
+            f"No Parquet files found at: {target_source}"
+        )
+
+    target_parts = []
+
+    for parquet_file in target_files:
+        part = pd.read_parquet(
+            parquet_file,
+            columns=target_columns,
+        )
+
+        part = part[
+            part["id"].isin(required_target_ids)
+        ]
+
+        if not part.empty:
+            target_parts.append(part)
+
+    targets = (
+        pd.concat(target_parts, ignore_index=True)
+        if target_parts
+        else pd.DataFrame(columns=target_columns)
+    )
+
+    targets = targets.rename(
         columns={
             "id": "targetId",
             "approvedSymbol": "gene_symbol",
@@ -214,7 +311,11 @@ def add_gene_associations(cfg: Dict[str, Any], paths, force: bool = False) -> No
         }
     )
 
-    associations = associations.merge(targets, on="targetId", how="left")
+    associations = associations.merge(
+        targets,
+        on="targetId",
+        how="left",
+    )
     associations = associations.dropna(subset=["gene_symbol"])
 
     associations["gene_id"] = "GENE:" + associations["gene_symbol"].astype(str)

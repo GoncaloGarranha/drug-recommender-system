@@ -6,15 +6,13 @@ from typing import Any, Dict
 
 ROOT = Path(__file__).resolve().parents[3]
 
-DISEASES_FOR_GENES = ROOT / "diseases_for_genes.csv"
-DEFAULT_TRIPLES_PATH = ROOT / "kg_constructor/data/output/triples/triples.csv"
+DISEASES_FOR_GENES = (
+    ROOT / "kg_constructor/data/external/diseases_for_genes.csv"
+)
 
 OT_DISEASE_PATH = ROOT / "kg_constructor/data/external/open_targets/disease/disease.parquet"
 OT_ASSOC_PATH = ROOT / "kg_constructor/data/external/open_targets/association_overall_direct"
 OT_TARGET_PATH = ROOT / "kg_constructor/data/external/open_targets/target"
-
-OUT_DIR = ROOT / "kg_constructor/data/output/gene_associations"
-OUT_TRIPLES = ROOT / "kg_constructor/data/output/triples/triples_with_genes.csv"
 
 
 def _resolve_path(value: str | Path | None, default: Path) -> Path:
@@ -30,6 +28,13 @@ def _resolve_path(value: str | Path | None, default: Path) -> Path:
 def add_gene_associations(cfg: Dict[str, Any], paths, force: bool = False) -> None:
     """Step 06: add disease-gene associations from Open Targets to KG triples."""
     gene_cfg = cfg.get("gene_associations", {})
+
+    output_dir = Path(paths.output_dir)
+    default_triples_path = output_dir / "triples" / "triples.csv"
+    default_output_dir = output_dir / "gene_associations"
+    default_output_triples = (
+        output_dir / "triples" / "triples_with_genes.csv"
+    )
 
     mode = str(
         gene_cfg.get(
@@ -54,11 +59,11 @@ def add_gene_associations(cfg: Dict[str, Any], paths, force: bool = False) -> No
 
     triples_path = _resolve_path(
         gene_cfg.get("input_triples_path"),
-        DEFAULT_TRIPLES_PATH,
+        default_triples_path,
     )
     out_triples = _resolve_path(
         gene_cfg.get("output_triples_path"),
-        OUT_TRIPLES,
+        default_output_triples,
     )
 
     if not bool(gene_cfg.get("enabled", False)):
@@ -88,12 +93,12 @@ def add_gene_associations(cfg: Dict[str, Any], paths, force: bool = False) -> No
     import pandas as pd
 
     diseases_for_genes = _resolve_path(gene_cfg.get("diseases_for_genes_path"), DISEASES_FOR_GENES)
-    triples_path = _resolve_path(gene_cfg.get("input_triples_path"), DEFAULT_TRIPLES_PATH)
+    triples_path = _resolve_path(gene_cfg.get("input_triples_path"), default_triples_path)
     ot_disease_path = _resolve_path(gene_cfg.get("open_targets_disease_path"), OT_DISEASE_PATH)
     ot_assoc_path = _resolve_path(gene_cfg.get("open_targets_association_path"), OT_ASSOC_PATH)
     ot_target_path = _resolve_path(gene_cfg.get("open_targets_target_path"), OT_TARGET_PATH)
-    out_dir = _resolve_path(gene_cfg.get("output_dir"), OUT_DIR)
-    out_triples = _resolve_path(gene_cfg.get("output_triples_path"), OUT_TRIPLES)
+    out_dir = _resolve_path(gene_cfg.get("output_dir"), default_output_dir)
+    out_triples = _resolve_path(gene_cfg.get("output_triples_path"), default_output_triples)
 
     if not force and out_triples.exists():
         print(f"Gene association output already exists. Skipping step (use --force to re-run): {out_triples}")
@@ -302,16 +307,6 @@ def add_gene_associations(cfg: Dict[str, Any], paths, force: bool = False) -> No
     print(f"Original triples: {len(triples)}")
     print(f"Triples with genes: {len(triples_with_genes)}")
     print(f"Saved: {out_triples}")
-
-
-def main() -> None:
-    cfg = {"gene_associations": {"enabled": True}}
-
-    class Paths:
-        output_dir = ROOT / "kg_constructor/data/output"
-        processed_dir = ROOT / "kg_constructor/data/processed"
-
-    add_gene_associations(cfg, Paths(), force=True)
 
 
 run = add_gene_associations

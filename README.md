@@ -155,7 +155,7 @@ kg_constructor/data/input/benchmarks/wn18rr/raw/
 After conversion, the output is:
 
 ```text
-kg_constructor/data/output/benchmarks/wn18rr/triples.csv
+kg_constructor/data/benchmarks/wn18rr/triples.csv
 ```
 
 with format:
@@ -182,7 +182,7 @@ kg_constructor/data/input/benchmarks/fb15k237/raw/
 After conversion, the output is:
 
 ```text
-kg_constructor/data/output/benchmarks/fb15k237/triples.csv
+kg_constructor/data/benchmarks/fb15k237/triples.csv
 ```
 
 with format:
@@ -391,7 +391,7 @@ python -m kg_constructor.src.benchmarks.convert_benchmark --config kg_constructo
 Expected output:
 
 ```text
-kg_constructor/data/output/benchmarks/wn18rr/triples.csv
+kg_constructor/data/benchmarks/wn18rr/triples.csv
 ```
 
 #### 2. Prepare graph artefacts
@@ -431,7 +431,7 @@ python -m kg_constructor.src.benchmarks.convert_benchmark --config kg_constructo
 Expected output:
 
 ```text
-kg_constructor/data/output/benchmarks/fb15k237/triples.csv
+kg_constructor/data/benchmarks/fb15k237/triples.csv
 ```
 
 #### 2. Prepare graph artefacts

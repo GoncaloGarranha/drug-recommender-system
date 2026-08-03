@@ -21,7 +21,6 @@ from models.shared.splits import build_known_positives, get_or_create_splits, lo
 from .components import DistMultDecoder, RGCNEncoder
 
 
-DEFAULT_GROUPS_CSV = Path("kg_constructor/data/output/interim/drug_pharmacological_groups.csv")
 
 
 def read_csv(path: Path) -> List[Dict[str, str]]:
@@ -37,10 +36,10 @@ def write_csv(path: Path, rows: List[Dict[str, str]], fieldnames: List[str]) -> 
         writer.writerows(rows)
 
 
-def load_entity_labels(csv_path: str) -> Dict[str, str]:
+def load_entity_labels(csv_path: str | None) -> Dict[str, str]:
     mapping: Dict[str, str] = {}
 
-    if not os.path.exists(csv_path):
+    if not csv_path or not os.path.exists(csv_path):
         return mapping
 
     with open(csv_path, "r", encoding="utf-8") as file_obj:
@@ -130,7 +129,12 @@ def main() -> None:
     parser.add_argument("--run_dir", required=True)
     parser.add_argument("--split", choices=["valid", "test"], default="test")
     parser.add_argument("--topk", type=int, default=10)
-    parser.add_argument("--groups_csv", type=Path, default=DEFAULT_GROUPS_CSV)
+    parser.add_argument(
+        "--groups_csv",
+        type=Path,
+        required=True,
+        help="Pharmacological groups CSV matching the evaluated KG period.",
+    )
     parser.add_argument(
         "--confidence_mode",
         choices=["high", "high_medium"],
@@ -138,7 +142,7 @@ def main() -> None:
     )
     parser.add_argument(
         "--entity_labels_csv",
-        default="kg_constructor/data/output/entity_names.csv",
+        default=None,
     )
     parser.add_argument("--output_dir", default=None)
 

@@ -1,6 +1,6 @@
 seed: 42
 data:
-  triples_path: kg_constructor/data/graph_builds/identifier_preserving_plus_3_months/triples/triples_with_dgidb.csv
+  triples_path: kg_constructor/data/builds/2025-10_to_2026-03/triples/triples_with_dgidb.csv
   processed_dir: models/rgcn/data/processed/disease_to_drug/identifier_preserving_plus_3_months_controlled
 model:
   add_inverse_edges: true

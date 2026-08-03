@@ -14,7 +14,11 @@ MedJsonify-main/jsonify/output/
 /MedJsonify-main/NER/ontologies/data
 
 # KG constructor input/generated data
-kg_constructor/data/input/
+# Legacy KG input payloads remain local.
+/kg_constructor/data/input/csv_files/
+/kg_constructor/data/input/txt_files/
+/kg_constructor/data/input/xml_files/
+/kg_constructor/data/input/benchmarks/
 # kg_constructor/data/output/
 
 # R-GCN generated artifacts
@@ -54,12 +58,12 @@ results/runs/
 results/logs/
 results/exports/
 
-# Heavy contents of official experiment snapshots.
+# Heavy contents of final experiment snapshots.
 # Small metrics, manifests and documentation at the root remain trackable.
-results/official/**/run/
-results/official/**/dataset/
-results/official/**/source_graph/
-results/official/**/logs/
+results/final/**/run/
+results/final/**/dataset/
+results/final/**/source_graph/
+results/final/**/logs/
 
 # Generated processed datasets
 models/rgcn/data/processed/
@@ -71,3 +75,19 @@ kg_constructor/data/ablation_generic_indications/
 
 # Generated input inventories
 kg_constructor/configs/input_manifests/
+
+# === Period-based Knowledge Graph builds ===
+# Generated/heavy build contents remain local or on the execution VM.
+/kg_constructor/data/builds/*/interim/
+/kg_constructor/data/builds/*/mappings/
+/kg_constructor/data/builds/*/processed/
+/kg_constructor/data/builds/*/triples/
+/kg_constructor/data/builds/*/reports/
+
+# === Period-based MedJsonify inputs ===
+# Entity JSON files remain local or on the execution VM.
+/kg_constructor/data/input/medjsonify/*/csv_files/
+/kg_constructor/data/input/medjsonify/*/txt_files/
+/kg_constructor/data/input/medjsonify/*/xml_files/
+
+/kg_constructor/data/benchmarks/*/raw/

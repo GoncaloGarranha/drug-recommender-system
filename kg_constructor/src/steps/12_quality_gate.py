@@ -19,6 +19,15 @@ def _resolve_path(value, default):
     return path if path.is_absolute() else ROOT / path
 
 
+def _display_path(path: Path) -> str:
+    resolved = path.resolve()
+
+    try:
+        return str(resolved.relative_to(ROOT))
+    except ValueError:
+        return str(resolved)
+
+
 def _load_blacklist(path: Path) -> set[str]:
     if not path.exists():
         return set()
@@ -79,9 +88,11 @@ def run(cfg: dict[str, Any], paths, force: bool = False) -> None:
         print("Quality gate disabled by config. Skipping step.")
         return
 
+    output_dir = Path(paths.output_dir)
+
     input_path = _resolve_path(
         gate_cfg.get("input_triples_path"),
-        ROOT / "kg_constructor/data/output/triples/triples_with_dgidb.csv",
+        output_dir / "triples" / "triples_with_dgidb.csv",
     )
     blacklist_path = _resolve_path(
         gate_cfg.get("blacklist_path"),
@@ -89,7 +100,7 @@ def run(cfg: dict[str, Any], paths, force: bool = False) -> None:
     )
     report_path = _resolve_path(
         gate_cfg.get("report_path"),
-        ROOT / "kg_constructor/data/output/reports/quality_gate_report.json",
+        output_dir / "reports" / "quality_gate_report.json",
     )
 
     if not input_path.exists():
@@ -202,7 +213,7 @@ def run(cfg: dict[str, Any], paths, force: bool = False) -> None:
 
     report = {
         "status": "failed" if failures else "passed",
-        "input_triples_path": str(input_path.relative_to(ROOT)),
+        "input_triples_path": _display_path(input_path),
         "rows": len(rows),
         "relation_distribution": dict(Counter(rel for _, rel, _ in triples)),
         "checks": checks,

@@ -4,7 +4,7 @@ model:
   add_inverse_edges: true
 
 data:
-  triples_path: "kg_constructor/data/output/benchmarks/wn18/triples.csv"
+  triples_path: "kg_constructor/data/benchmarks/wn18/triples.csv"
   processed_dir: "models/rgcn/data/processed/wn18"
 
 task:

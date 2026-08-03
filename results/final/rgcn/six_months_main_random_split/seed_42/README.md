@@ -1,6 +1,6 @@
-# Official R-GCN run: six-month graph
+# Final R-GCN run: six-month graph
 
-Current official experiment for the consolidated six-month graph.
+Selected final experiment for the consolidated six-month graph.
 
 ## Experimental setup
 
@@ -33,6 +33,6 @@ evaluation.
 | Validation | 0.7284 | 0.6976 | 0.7420 | 0.7961 |
 | Test | 0.7596 | 0.7331 | 0.7690 | 0.8133 |
 
-The model checkpoint, complete processed dataset, source graph and
-training logs are stored outside Git. Their archive hash is recorded
-in `artifact_reference.json`.
+The original external archive and model checkpoints are not currently
+available locally. Their recorded names and hashes are preserved in
+`artifact_reference.json` for provenance.

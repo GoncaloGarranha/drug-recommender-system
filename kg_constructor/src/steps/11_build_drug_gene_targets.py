@@ -10,12 +10,9 @@ import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[3]
 
-DEFAULT_INPUT_TRIPLES = ROOT / "kg_constructor/data/output/triples/triples.filtered.csv"
-DEFAULT_DGIDB_INTERACTIONS = ROOT / "kg_constructor/data/external/dgidb/interactions.tsv"
-DEFAULT_OUTPUT_DIR = ROOT / "kg_constructor/data/output/dgidb"
-DEFAULT_OUTPUT_TRIPLES = ROOT / "kg_constructor/data/output/triples/triples_with_dgidb.csv"
-DEFAULT_ALIASES = ROOT / "kg_constructor/data/output/mappings/aliases.csv"
-DEFAULT_DRUG_NAME_MAP = ROOT / "kg_constructor/data/output/mappings/drug_name_to_entity.json"
+DEFAULT_DGIDB_INTERACTIONS = (
+    ROOT / "kg_constructor/data/external/dgidb/interactions.tsv"
+)
 
 RELATION = "INTERACTS_WITH_GENE"
 DRUGBANK_RE = re.compile(r"DB\d{5}", re.IGNORECASE)
@@ -26,6 +23,15 @@ def _resolve_path(value: str | Path | None, default: Path) -> Path:
         return default
     path = Path(value)
     return path if path.is_absolute() else ROOT / path
+
+
+def _display_path(path: Path) -> str:
+    resolved = path.resolve()
+
+    try:
+        return str(resolved.relative_to(ROOT))
+    except ValueError:
+        return str(resolved)
 
 
 def _safe_text(value: Any) -> str:
@@ -235,6 +241,19 @@ def _map_gene(
 def add_dgidb_interactions(cfg: Dict[str, Any], paths, force: bool = False) -> None:
     dgidb_cfg = cfg.get("dgidb_interactions", {})
 
+    output_root = Path(paths.output_dir)
+    default_input_triples = (
+        output_root / "triples" / "triples.filtered.csv"
+    )
+    default_output_dir = output_root / "dgidb"
+    default_output_triples = (
+        output_root / "triples" / "triples_with_dgidb.csv"
+    )
+    default_aliases = output_root / "mappings" / "aliases.csv"
+    default_drug_name_map = (
+        output_root / "mappings" / "drug_name_to_entity.json"
+    )
+
     if not bool(dgidb_cfg.get("enabled", False)):
         print("DGIdb interaction step disabled by config. Skipping step.")
         return
@@ -271,20 +290,20 @@ def add_dgidb_interactions(cfg: Dict[str, Any], paths, force: bool = False) -> N
         mapping_mode,
     )
 
-    input_triples = _resolve_path(dgidb_cfg.get("input_triples_path"), DEFAULT_INPUT_TRIPLES)
+    input_triples = _resolve_path(dgidb_cfg.get("input_triples_path"), default_input_triples)
     dgidb_interactions = _resolve_path(
         dgidb_cfg.get("interactions_path"),
         DEFAULT_DGIDB_INTERACTIONS,
     )
-    output_dir = _resolve_path(dgidb_cfg.get("output_dir"), DEFAULT_OUTPUT_DIR)
+    output_dir = _resolve_path(dgidb_cfg.get("output_dir"), default_output_dir)
     output_triples = _resolve_path(
         dgidb_cfg.get("output_triples_path"),
-        DEFAULT_OUTPUT_TRIPLES,
+        default_output_triples,
     )
-    aliases_path = _resolve_path(dgidb_cfg.get("aliases_path"), DEFAULT_ALIASES)
+    aliases_path = _resolve_path(dgidb_cfg.get("aliases_path"), default_aliases)
     drug_name_map_path = _resolve_path(
         dgidb_cfg.get("drug_name_map_path"),
-        DEFAULT_DRUG_NAME_MAP,
+        default_drug_name_map,
     )
 
     mapped_path = output_dir / "drug_gene_interactions_mapped.csv"
@@ -419,9 +438,9 @@ def add_dgidb_interactions(cfg: Dict[str, Any], paths, force: bool = False) -> N
     triples_with_dgidb.to_csv(output_triples, index=False)
 
     report = {
-        "input_triples": str(input_triples.relative_to(ROOT)),
-        "dgidb_interactions": str(dgidb_interactions.relative_to(ROOT)),
-        "output_triples": str(output_triples.relative_to(ROOT)),
+        "input_triples": _display_path(input_triples),
+        "dgidb_interactions": _display_path(dgidb_interactions),
+        "output_triples": _display_path(output_triples),
         "relation": RELATION,
         "dgidb_rows": int(len(dgidb)),
         "mapped_unique_interactions": int(len(mapped_df)),

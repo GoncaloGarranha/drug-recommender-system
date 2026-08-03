@@ -86,15 +86,15 @@ The baseline uses the same YAML config as the R-GCN model.
 Example:
 
 ```text
-models/rgcn/configs/disease_to_drug.yaml
+models/rgcn/configs/biomedical/main/six_months_main_random_split.yaml
 ```
 
 Important fields:
 
 ```yaml
 data:
-  triples_path: "kg_constructor/data/output/triples/triples.csv"
-  processed_dir: "models/rgcn/data/processed/disease_to_drug_full"
+  triples_path: kg_constructor/data/builds/2025-10_to_2026-03/triples/triples_with_dgidb.csv
+  processed_dir: models/rgcn/data/processed/disease_to_drug/six_months_main_random_split
 
 task:
   name: "disease_to_drug"
@@ -123,7 +123,7 @@ baseline:
 Before running the baseline, prepare and validate the graph artifacts using the same config:
 
 ```bash
-python -m models.rgcn.src.prepare_graph --config models/rgcn/configs/disease_to_drug.yaml --force
+python -m models.rgcn.src.prepare_graph --config models/rgcn/configs/biomedical/main/six_months_main_random_split.yaml
 ```
 
 ```bash
@@ -146,19 +146,19 @@ splits/
 From the repository root:
 
 ```bash
-python -m models.content-based.src.baseline --config models/rgcn/configs/disease_to_drug.yaml --split test
+python -m models.content-based.src.baseline --config models/rgcn/configs/biomedical/main/six_months_main_random_split.yaml --split test
 ```
 
 Evaluate on validation split:
 
 ```bash
-python -m models.content-based.src.baseline --config models/rgcn/configs/disease_to_drug.yaml --split valid
+python -m models.content-based.src.baseline --config models/rgcn/configs/biomedical/main/six_months_main_random_split.yaml --split valid
 ```
 
 Force split regeneration if metadata mismatches or if you intentionally want to recreate splits:
 
 ```bash
-python -m models.content-based.src.baseline --config models/rgcn/configs/disease_to_drug.yaml --split test --force
+python -m models.content-based.src.baseline --config models/rgcn/configs/biomedical/main/six_months_main_random_split.yaml --split test --force
 ```
 
 ---

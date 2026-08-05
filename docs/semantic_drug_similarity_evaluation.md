@@ -247,7 +247,7 @@ For each biomedical evaluation config where semantic metrics should be enabled, 
 
 ```yaml
 evaluation:
-  similarity_groups_path: kg_constructor/data/processed/drug_similarity_groups.json
+  similarity_groups_path: kg_constructor/data/builds/2025-10_to_2026-03/processed/drug_similarity_groups.json
   semantic_metrics: true
 ```
 

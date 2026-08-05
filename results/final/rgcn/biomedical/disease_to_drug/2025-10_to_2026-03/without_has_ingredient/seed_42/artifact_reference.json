@@ -1,0 +1,9 @@
+{
+  "artifact_type": "rgcn_checkpoint",
+  "status": "available_in_run_directory",
+  "checkpoint_path": "results/runs/rgcn/biomedical/disease_to_drug/six_months_without_has_ingredient/seed_42/checkpoints/best.pt",
+  "sha256": "7dd9022517d01500d095757b17dea079b63a5827fafc32c24aeb6d3224c02bda",
+  "size_bytes": 5598263,
+  "source_run": "results/runs/rgcn/biomedical/disease_to_drug/six_months_without_has_ingredient/seed_42",
+  "copied_to_final": false
+}

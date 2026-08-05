@@ -102,152 +102,201 @@ models/shared/
 
 ### Biomedical Knowledge Graph
 
-The biomedical dataset is represented through triples in the format:
+The biomedical dataset is represented as triples in the following format:
 
 ```csv
 src,rel,dst
 ```
 
-There are currently two main versions:
+The project preserves two canonical graph builds with different temporal
+coverage.
 
-#### Full graph
+| Build | Months included | Coverage | Purpose | Triples |
+|---|---|---:|---|---:|
+| `2025-10_to_2025-12` | October, November and December 2025 | 3 months | Historical reference build | 40746 |
+| `2025-10_to_2026-03` | October 2025 to March 2026 | 6 months | Main build used in the final experiments | 49903 |
 
-```text
-kg_constructor/data/output/triples/triples.csv
-```
+The six-month build is cumulative. It contains the data from October,
+November and December 2025, extended with January, February and March 2026.
 
-Contains:
-
-- `INDICATION`
-- `CONTRAINDICATION`
-- `HAS_INGREDIENT`
-
-This is the complete biomedical graph and is the main version when ingredient information is required.
-
-#### Filtered graph
+#### Historical reference build
 
 ```text
-kg_constructor/data/output/triples/triples.filtered.csv
+kg_constructor/data/builds/2025-10_to_2025-12/triples/triples_with_dgidb.csv
 ```
 
-Contains:
+#### Main biomedical build
 
-- `INDICATION`
-- `CONTRAINDICATION`
+```text
+kg_constructor/data/builds/2025-10_to_2026-03/triples/triples_with_dgidb.csv
+```
 
-This version excludes `HAS_INGREDIENT` and is useful for ablation studies or experiments focused only on therapeutic relations.
+The main graph contains the following relations:
+
+| Relation | Triples |
+|---|---:|
+| `INDICATION` | 7216 |
+| `CONTRAINDICATION` | 2752 |
+| `HAS_INGREDIENT` | 24978 |
+| `ASSOCIATED_WITH_GENE` | 10423 |
+| `INTERACTS_WITH_GENE` | 4534 |
+
+`INDICATION` is the target relation for disease-to-drug recommendation.
+The remaining relations provide contextual information during message
+passing.
+
+The main graph is also used in the relation studies. These experiments do not
+create separate filtered triple files. Instead, they reuse the same canonical
+graph and data splits while excluding one relation at a time through the
+`context_relations` field of the corresponding configuration.
+
+The active biomedical configurations are located in:
+
+```text
+models/rgcn/configs/biomedical/disease_to_drug/2025-10_to_2026-03/
+├── main/
+│   └── all_supported_relations.yaml
+└── relation_studies/
+    ├── without_associated_with_gene.yaml
+    ├── without_contraindication.yaml
+    ├── without_has_ingredient.yaml
+    └── without_interacts_with_gene.yaml
+```
+
+Further details about the datasets, manifests and graph provenance are
+available in:
+
+```text
+kg_constructor/data/README.md
+```
 
 ---
 
 ### WN18RR
 
-WN18RR is supported as an external benchmark dataset.
+WN18RR is supported as a standard link-prediction benchmark.
 
 Expected raw structure:
 
 ```text
-kg_constructor/data/input/benchmarks/wn18rr/raw/
+kg_constructor/data/benchmarks/wn18rr/raw/
 ├── train.txt
 ├── valid.txt
 └── test.txt
 ```
 
-After conversion, the output is:
+Converted triples are stored in:
 
 ```text
 kg_constructor/data/benchmarks/wn18rr/triples.csv
 ```
 
-with format:
+with the following format:
 
 ```csv
 src,rel,dst,split
 ```
+
+The `split` column preserves the original training, validation and test
+partitions.
 
 ---
 
 ### FB15k-237
 
-FB15k-237 is also supported as an external benchmark dataset.
+FB15k-237 is also supported as a standard link-prediction benchmark.
 
 Expected raw structure:
 
 ```text
-kg_constructor/data/input/benchmarks/fb15k237/raw/
+kg_constructor/data/benchmarks/fb15k237/raw/
 ├── train.txt
 ├── valid.txt
 └── test.txt
 ```
 
-After conversion, the output is:
+Converted triples are stored in:
 
 ```text
 kg_constructor/data/benchmarks/fb15k237/triples.csv
 ```
 
-with format:
+with the following format:
 
 ```csv
 src,rel,dst,split
 ```
 
+The `split` column preserves the original training, validation and test
+partitions.
+
 ---
 
 ## Tasks Supported
 
-### `disease_to_drug_full`
+### `disease_to_drug`
 
-Biomedical disease-to-drug recommendation over the full graph.
-
-Task name:
-
-```text
-disease_to_drug
-```
-
-Given a disease, recommend candidate drugs.
+Given a disease, rank candidate drugs according to their predicted
+`INDICATION` score.
 
 ```text
 Disease → Drug
 ```
 
-Used for the biomedical recommendation task.
-
-Target relation:
+Task definition:
 
 ```text
-INDICATION
+Target relation:       INDICATION
+Query entity type:     DISEASE
+Candidate entity type: DRUG
 ```
+
+The main configuration is:
+
+```text
+models/rgcn/configs/biomedical/disease_to_drug/2025-10_to_2026-03/main/all_supported_relations.yaml
+```
+
+The processed graph artefacts and data splits are stored in:
+
+```text
+models/rgcn/data/processed/disease_to_drug/six_months_main_random_split/
+```
+
+The main experiment and all relation studies reuse these same processed
+artefacts and splits, ensuring that their results are directly comparable.
 
 ---
 
-### `drug_to_disease`
+### Relation studies
 
-Given a drug, predict associated diseases.
+The relation studies evaluate the contribution of individual contextual
+relations by removing one relation at a time:
 
-```text
-Drug → Disease
-```
+- `without_contraindication`;
+- `without_has_ingredient`;
+- `without_associated_with_gene`;
+- `without_interacts_with_gene`.
 
-Target relation:
-
-```text
-INDICATION
-```
+Only the relation used during message passing changes. The target relation,
+candidate set and training, validation and test splits remain unchanged.
 
 ---
 
 ### `tail_prediction`
 
-Generic benchmark link prediction task.
+Generic tail-prediction task used for benchmark datasets:
 
 ```text
 (head, relation, ?) → tail
 ```
 
-Used for WN18RR and FB15k-237.
+This task is used for datasets such as WN18RR and FB15k-237.
 
-Note: this currently evaluates tail prediction only. For direct comparison with most published benchmark results, head prediction should also be implemented and combined with tail prediction.
+The current benchmark evaluation focuses on tail prediction. A direct
+comparison with benchmark results that report the average of head and tail
+prediction would also require implementing the corresponding head-prediction
+evaluation.
 
 ---
 

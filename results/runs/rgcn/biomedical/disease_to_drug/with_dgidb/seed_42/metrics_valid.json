@@ -1,7 +1,0 @@
-{
-  "best_epoch": 9420,
-  "best_valid_mrr": 0.733889623664402,
-  "best_valid_hits@1": 0.7033158813263525,
-  "best_valid_hits@3": 0.7539267015706806,
-  "best_valid_hits@10": 0.7835951134380453
-}

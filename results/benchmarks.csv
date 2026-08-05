@@ -44,3 +44,7 @@ timestamp,dataset,model_name,hits@1,hits@3,hits@10,mrr,notes
 2026-07-14T17:36:47.697692,disease_to_drug_with_dgidb_plus_3_months_disease_genes_best_control,R-GCN (disease_to_drug),0.622222,0.654545,0.690909,0.649788,Run: seed_42 | Split: test
 2026-07-24T09:23:01.053126,six_months_main_random_split,R-GCN (disease_to_drug),0.697642,0.742025,0.796117,0.728399,Run: seed_42 | Split: valid
 2026-07-24T09:23:07.146349,six_months_main_random_split,R-GCN (disease_to_drug),0.733057,0.769018,0.813278,0.759557,Run: seed_42 | Split: test
+2026-08-05T13:43:30.439097,disease_to_drug_with_dgidb_plus_3_months_disease_genes_best_no_ingredients,R-GCN (disease_to_drug),0.591919,0.638384,0.658586,0.622800,Run: seed_42 | Split: test
+2026-08-05T13:49:43.530553,disease_to_drug_with_dgidb_plus_3_months_disease_genes_best_no_ingredients,R-GCN (disease_to_drug),0.591919,0.638384,0.658586,0.622800,Run: seed_42 | Split: test
+2026-08-05T13:58:03.185123,six_months_main_random_split,R-GCN (disease_to_drug),0.671290,0.708738,0.751734,0.700597,Run: seed_42 | Split: valid
+2026-08-05T13:58:04.921268,six_months_main_random_split,R-GCN (disease_to_drug),0.695712,0.735823,0.781466,0.723993,Run: seed_42 | Split: test

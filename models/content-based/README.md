@@ -1,270 +1,121 @@
-# Content-Based Baseline (TF-IDF)
+# Hybrid Content-Based Baseline
 
-A lightweight content-based baseline for the biomedical `disease_to_drug_full` recommendation task.
+This directory contains a single, interpretable baseline for the biomedical
+`disease_to_drug` task. It is designed for a fair comparison with the R-GCN:
 
-The baseline ranks candidate drugs for a given disease using TF-IDF representations of drug profiles built from selected Knowledge Graph relations, such as `HAS_INGREDIENT` and `CONTRAINDICATION`.
+- same canonical graph;
+- same train, validation and test splits;
+- same drug candidate pool;
+- same filtered-ranking protocol;
+- same MRR and Hits@K metrics;
+- no target information from validation or test is used to build profiles.
 
-This baseline is intentionally aligned with the R-GCN evaluation protocol for the biomedical dataset, so results can be compared under the same splits, candidate pool and filtered ranking setting.
+## Score components
 
----
+The final score keeps each source of evidence separate:
 
-## Supported Task
+1. `ingredient_knn`: similarity to training drugs for the query disease using
+   `HAS_INGREDIENT` profiles;
+2. `direct_gene_knn`: similarity to training drugs using
+   `INTERACTS_WITH_GENE` profiles;
+3. `train_indication_gene_knn`: similarity using genes reached through
+   `Drug -> INDICATION(train only) -> Disease -> ASSOCIATED_WITH_GENE -> Gene`;
+4. `disease_gene_overlap`: direct compatibility between
+   `Disease -> ASSOCIATED_WITH_GENE -> Gene` and
+   `Drug -> INTERACTS_WITH_GENE -> Gene`;
+5. `contraindication_knn`: similarity to training drugs using their broader
+   contraindication profiles;
+6. `direct_contraindication`: explicit penalty when a candidate drug is
+   contraindicated for the query disease;
+7. `popularity`: a small train-only fallback signal.
 
-This baseline currently supports only the biomedical `disease_to_drug` task, used here in the `disease_to_drug_full` graph setting:
+TF-IDF spaces are fitted independently for each profile type. This prevents a
+relation with many attributes from dominating the others merely because of its
+scale. Similarity to known training drugs is calculated against their normalized
+centroid.
 
-```text
-disease_to_drug
-Disease → Drug recommendation
-```
+## Leakage policy
 
-It is not intended for:
+`HAS_INGREDIENT`, `INTERACTS_WITH_GENE`, `ASSOCIATED_WITH_GENE` and
+`CONTRAINDICATION` are treated as contextual graph relations. The only feature
+that traverses `INDICATION` is `train_indication_gene_knn`, and that traversal
+uses the training split exclusively.
 
-- `drug_to_disease`;
-- `tail_prediction`;
-- WN18RR;
-- FB15k-237.
+Validation may be used to select component weights. Test must only be evaluated
+after the selected validation weights have been frozen.
 
-For generic benchmark datasets such as WN18RR and FB15k-237, use Knowledge Graph Embedding baselines such as DistMult, ComplEx or TransE.
+## Preparation
 
----
-
-## Overview
-
-The implementation lives in:
-
-```text
-models/content-based/src/baseline.py
-```
-
-The baseline follows these steps:
-
-1. Load canonical triples from the path defined in the R-GCN config (`data.triples_path`).
-2. Load processed graph artifacts from `data.processed_dir`.
-3. Select candidate entities of type `DRUG`.
-4. Build one textual profile per candidate drug using the configured feature relations.
-5. Vectorize drug profiles with TF-IDF.
-6. Compute cosine similarity between candidate drugs.
-7. Load or create the same train/valid/test splits used by R-GCN.
-8. Compute filtered ranking metrics on the selected split (`valid` or `test`).
-9. Log results to `results/benchmarks.csv` and save a full structured run under `results/runs/content-based/`.
-
----
-
-## How It Works
-
-Each candidate drug is represented as a bag of relation-level tokens.
-
-For the main biomedical full-graph setting, the profile is built from:
-
-```text
-CONTRAINDICATION
-HAS_INGREDIENT
-```
-
-The target relation is:
-
-```text
-INDICATION
-```
-
-For each disease in the evaluation split, the baseline:
-
-1. identifies drugs associated with that disease in the training set;
-2. scores all candidate drugs by maximum cosine similarity to the training drugs;
-3. removes other known positives from the ranking using the filtered protocol;
-4. computes tie-aware ranks;
-5. aggregates metrics: `MRR`, `Hits@1`, `Hits@3`, `Hits@10`.
-
-This provides an interpretable reference point for assessing how much predictive signal is captured by immediate drug-profile similarity compared with learned relational embeddings.
-
----
-
-## Configuration
-
-The baseline uses the same YAML config as the R-GCN model.
-
-Example:
-
-```text
-models/rgcn/configs/biomedical/main/six_months_main_random_split.yaml
-```
-
-Important fields:
-
-```yaml
-data:
-  triples_path: kg_constructor/data/builds/2025-10_to_2026-03/triples/triples_with_dgidb.csv
-  processed_dir: models/rgcn/data/processed/disease_to_drug/six_months_main_random_split
-
-task:
-  name: "disease_to_drug"
-  target_relation: "INDICATION"
-  query_entity_type: "DISEASE"
-  candidate_entity_type: "DRUG"
-
-baseline:
-  use_ingredients: true
-  feature_relations:
-    - "CONTRAINDICATION"
-    - "HAS_INGREDIENT"
-```
-
-### Notes
-
-- `baseline.use_ingredients: true` ensures that `HAS_INGREDIENT` is used.
-- `baseline.feature_relations` defines the additional relations used to build drug profiles.
-- The target relation (`INDICATION`) is removed from the feature set to avoid direct leakage.
-- If `baseline.use_ingredients: false`, then `baseline.feature_relations` must still define the relations used as features.
-
----
-
-## Required Preparation
-
-Before running the baseline, prepare and validate the graph artifacts using the same config:
+Prepare the graph using the same processed directory used by the R-GCN:
 
 ```bash
-python -m models.rgcn.src.prepare_graph --config models/rgcn/configs/biomedical/main/six_months_main_random_split.yaml
+python -m models.rgcn.src.prepare_graph \
+  --config models/content-based/config/disease_to_drug_with_dgidb.yaml
 ```
+
+The required processed artefacts are:
+
+```text
+models/rgcn/data/processed/disease_to_drug/six_months_main_random_split/
+├── entity2id.json
+├── entity_types.json
+├── triples_indexed.csv
+└── splits/
+```
+
+## 1. Select weights on validation
 
 ```bash
-python -m models.rgcn.src.load_data --processed_dir models/rgcn/data/processed/disease_to_drug_full
+python -m models.content-based.src.baseline \
+  --config models/content-based/config/disease_to_drug_with_dgidb.yaml \
+  --split valid \
+  --tune
 ```
 
-The baseline expects the processed directory to contain:
+The run directory will contain:
 
 ```text
-triples_indexed.csv
-entity2id.json
-entity_types.json
-splits/
+selected_weights.json
+weight_search_results.json
+coverage_report.json
+diagnostics_valid.json
+metrics_valid.json
 ```
 
----
+## 2. Evaluate test with frozen weights
 
-## Run
-
-From the repository root:
+Use the `selected_weights.json` created by the validation run:
 
 ```bash
-python -m models.content-based.src.baseline --config models/rgcn/configs/biomedical/main/six_months_main_random_split.yaml --split test
+python -m models.content-based.src.baseline \
+  --config models/content-based/config/disease_to_drug_with_dgidb.yaml \
+  --split test \
+  --weights-file results/runs/content-based/<run>/selected_weights.json
 ```
 
-Evaluate on validation split:
+Do not use `--tune` with the test split.
 
-```bash
-python -m models.content-based.src.baseline --config models/rgcn/configs/biomedical/main/six_months_main_random_split.yaml --split valid
-```
+## Fixed-weight smoke test
 
-Force split regeneration if metadata mismatches or if you intentionally want to recreate splits:
+Without `--tune` or `--weights-file`, the script uses the fixed weights in the
+YAML. This mode is useful to check that the pipeline runs, but it should not be
+reported as the final baseline unless those weights were fixed independently of
+test performance.
 
-```bash
-python -m models.content-based.src.baseline --config models/rgcn/configs/biomedical/main/six_months_main_random_split.yaml --split test --force
-```
+## Reports
 
----
+Each run records:
 
-## Output
+- profile coverage per relation;
+- candidates with no usable profile;
+- diseases without training drugs;
+- diseases without associated genes;
+- zero-signal evaluation cases;
+- selected weights and validation search results;
+- standard ranking metrics and reproducibility artefacts.
 
-The script prints:
+## Removed implementation
 
-```text
-Hits@1
-Hits@3
-Hits@10
-MRR
-```
-
-The results are appended to:
-
-```text
-results/benchmarks.csv
-```
-
-at the repository root.
-
-The structured run directory contains:
-
-```text
-config.yaml
-metrics_valid.json or metrics_test.json
-train_log.json
-split_summary.json
-model_summary.json
-environment.json
-git_commit.txt
-```
-
----
-
-## Fair Comparison with R-GCN
-
-For a valid comparison with R-GCN, both models must use:
-
-- the same `data.triples_path`;
-- the same `data.processed_dir`;
-- the same train/valid/test splits;
-- the same target relation;
-- the same candidate entity type (`DRUG`);
-- the same filtered ranking protocol;
-- the same evaluation metrics.
-
-### `disease_to_drug_full`
-
-```text
-R-GCN context:
-INDICATION + CONTRAINDICATION + HAS_INGREDIENT
-
-Content-Based features:
-CONTRAINDICATION + HAS_INGREDIENT
-```
-
-The baseline does not use `INDICATION` as a feature because it is the target relation.
-
-### `disease_to_drug_filtered`
-
-```text
-R-GCN context:
-INDICATION + CONTRAINDICATION
-
-Content-Based features:
-CONTRAINDICATION
-```
-
-The full graph and filtered graph should be reported as separate experimental settings.
-
----
-
-## Dependencies
-
-Project environment plus:
-
-- `pandas`
-- `numpy`
-- `scikit-learn`
-- `tqdm`
-
----
-
-## Limitations
-
-- Only supports the biomedical `disease_to_drug_full` setting.
-- Does not support WN18RR or FB15k-237.
-- Does not support `drug_to_disease` or generic `tail_prediction`.
-- Does not learn graph embeddings.
-- Relies on the quality and coverage of the selected feature relations.
-- It is intended as a reproducible baseline, not as a production recommender.
-
----
-
-## Example Output
-
-Example output format:
-
-```text
---- [3/3] Final metrics (aligned with R-GCN protocol) ---
-Hits@1:  0.4620
-Hits@3:  0.5258
-Hits@10: 0.5805
-MRR:     0.5066
-Logged benchmark to results/benchmarks.csv
-```
+The previous `metapath_baseline.py` was removed because it overlapped with the
+TF-IDF baseline while omitting direct drug-gene compatibility. The final model
+now exposes all evidence sources within one configurable implementation.

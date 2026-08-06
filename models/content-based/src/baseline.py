@@ -535,7 +535,13 @@ class HybridContentBasedBaseline:
         evaluation_payload: Mapping[str, object],
         weights: Mapping[str, float],
         show_progress: bool = True,
-    ) -> tuple[List[float], dict, List[dict]]:
+    ) -> tuple[
+        List[float],
+        dict,
+        List[dict],
+        np.ndarray,
+        np.ndarray,
+    ]:
         """Evaluate fixed 1-vs-N candidate sets shared across models."""
 
         examples = evaluation_payload.get("examples")
@@ -547,6 +553,8 @@ class HybridContentBasedBaseline:
 
         ranks: List[float] = []
         detailed_rows: List[dict] = []
+        positive_scores: List[float] = []
+        negative_score_rows: List[np.ndarray] = []
 
         zero_signal_examples = 0
         no_train_drug_queries = 0
@@ -650,6 +658,16 @@ class HybridContentBasedBaseline:
 
             negative_scores = sampled_scores[1:]
 
+            positive_scores.append(
+                float(sampled_scores[0])
+            )
+            negative_score_rows.append(
+                np.asarray(
+                    negative_scores,
+                    dtype=np.float64,
+                )
+            )
+
             detailed_rows.append(
                 {
                     "example_index": int(
@@ -697,7 +715,25 @@ class HybridContentBasedBaseline:
             ),
         }
 
-        return ranks, diagnostics, detailed_rows
+        positive_scores_array = np.asarray(
+            positive_scores,
+            dtype=np.float64,
+        )
+
+        negative_scores_array = np.vstack(
+            negative_score_rows
+        ) if negative_score_rows else np.empty(
+            (0, 0),
+            dtype=np.float64,
+        )
+
+        return (
+            ranks,
+            diagnostics,
+            detailed_rows,
+            positive_scores_array,
+            negative_scores_array,
+        )
 
 
 def load_fixed_weights(config: Mapping[str, object]) -> Dict[str, float]:

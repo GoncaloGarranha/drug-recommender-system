@@ -7,12 +7,16 @@ import json
 from pathlib import Path
 from typing import Mapping
 
+import numpy as np
 import pandas as pd
 
 from models.shared.benchmark_tracker import log_experiment
 from models.shared.config import load_config
 from models.shared.io import read_json
-from models.shared.metrics import compute_ranking_metrics
+from models.shared.evaluate_negative_set import (
+    build_metrics_payload,
+    evaluate_score_sets,
+)
 from models.shared.runs import resolve_run_dir
 
 from .baseline import (
@@ -217,19 +221,35 @@ def main() -> None:
         f"1 positive vs {metadata['num_negatives']} negatives ---"
     )
 
-    ranks, diagnostics, detailed_rows = (
-        model.evaluate_negative_set(
-            evaluation_payload=evaluation_payload,
-            weights=weights,
-        )
+    (
+        legacy_ranks,
+        diagnostics,
+        detailed_rows,
+        positive_scores,
+        negative_scores,
+    ) = model.evaluate_negative_set(
+        evaluation_payload=evaluation_payload,
+        weights=weights,
     )
 
-    if not ranks:
+    if positive_scores.size == 0:
         raise SystemExit(
-            "No sampled-evaluation ranks were computed."
+            "No sampled-evaluation scores were computed."
         )
 
-    metrics = compute_ranking_metrics(ranks)
+    metrics, shared_ranks = evaluate_score_sets(
+        positive_scores=positive_scores,
+        negative_scores=negative_scores,
+    )
+
+    if not np.allclose(
+        np.asarray(legacy_ranks, dtype=np.float64),
+        np.asarray(shared_ranks, dtype=np.float64),
+    ):
+        raise RuntimeError(
+            "Shared sampled ranks differ from the existing "
+            "content-based ranks."
+        )
 
     run_dir = resolve_run_dir(
         config["runs"]["out_dir"],
@@ -255,22 +275,15 @@ def main() -> None:
         f"neg{num_negatives}"
     )
 
-    metrics_payload = {
-        **metrics,
-        "protocol": (
-            f"1_positive_vs_{num_negatives}_negatives"
-        ),
-        "negative_mode": negative_mode,
-        "num_negatives": num_negatives,
-        "candidate_count_per_example": (
-            num_negatives + 1
-        ),
-        "seed": int(metadata["seed"]),
-        "evaluation_set": str(
-            evaluation_set_path
-        ),
-        "selected_weights": weights,
-    }
+    metrics_payload = build_metrics_payload(
+        metrics=metrics,
+        metadata=metadata,
+        split=args.split,
+        evaluation_set_path=evaluation_set_path,
+        example_count=len(shared_ranks),
+    )
+
+    metrics_payload["selected_weights"] = weights
 
     write_json(
         run_dir / f"metrics_{suffix}.json",

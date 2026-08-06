@@ -64,4 +64,4 @@ metapath_baseline:
   top_k: 3
 runs:
   out_dir: results/runs/rgcn
-  experiment_name: six_months_main_random_split
+  experiment_name: six_months_all_supported_relations

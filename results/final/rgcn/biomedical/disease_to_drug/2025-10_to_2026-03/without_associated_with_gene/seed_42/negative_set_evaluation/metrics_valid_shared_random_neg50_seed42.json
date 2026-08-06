@@ -1,0 +1,22 @@
+{
+  "mrr": 0.8425201207698627,
+  "hits@1": 0.8002773925104022,
+  "hits@3": 0.8640776699029126,
+  "hits@10": 0.9112343966712899,
+  "auc_roc": 0.9535690720816558,
+  "average_precision": 0.8159109818992989,
+  "split": "valid",
+  "protocol": "1_positive_vs_50_negatives",
+  "negative_mode": "random",
+  "num_negatives": 50,
+  "candidate_count_per_example": 51,
+  "num_positives": 721,
+  "num_scored_pairs": 36771,
+  "seed": 42,
+  "evaluation_set": "models/rgcn/data/processed/disease_to_drug/six_months_main_random_split/evaluation_sets/valid_random_neg50_seed42.json",
+  "tie_handling": "average_rank",
+  "model": "R-GCN",
+  "task": "disease_to_drug",
+  "target_relation": "INDICATION",
+  "checkpoint": "results/runs/rgcn/biomedical/disease_to_drug/six_months_without_associated_with_gene/seed_42/checkpoints/best.pt"
+}

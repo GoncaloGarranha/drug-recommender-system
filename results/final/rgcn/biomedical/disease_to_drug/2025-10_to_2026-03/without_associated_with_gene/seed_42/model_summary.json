@@ -1,0 +1,21 @@
+{
+  "model_name": "rgcn",
+  "task_name": "disease_to_drug",
+  "seed": 42,
+  "architecture": {
+    "embedding_dim": 128,
+    "num_layers": 2,
+    "num_bases": 5,
+    "dropout": 0.2,
+    "decoder": "DistMult",
+    "add_inverse_edges": true
+  },
+  "relation_counts": {
+    "decoder": 5,
+    "encoder": 10
+  },
+  "parameter_counts": {
+    "encoder": 1397230,
+    "decoder": 640
+  }
+}

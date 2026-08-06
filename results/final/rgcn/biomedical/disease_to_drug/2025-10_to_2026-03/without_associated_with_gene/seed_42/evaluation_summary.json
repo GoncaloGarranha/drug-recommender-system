@@ -1,0 +1,66 @@
+{
+  "experiment": "without_associated_with_gene",
+  "period": "2025-10_to_2026-03",
+  "seed": 42,
+  "best_epoch": 8040,
+  "full_candidate_ranking": {
+    "valid": {
+      "mrr": 0.7213251219274107,
+      "hits@1": 0.6920943134535368,
+      "hits@3": 0.7323162274618585,
+      "hits@10": 0.7753120665742025
+    },
+    "test": {
+      "mrr": 0.7541044073381421,
+      "hits@1": 0.7247579529737206,
+      "hits@3": 0.7690179806362379,
+      "hits@10": 0.8063623789764869
+    }
+  },
+  "sampled_1v50": {
+    "valid": {
+      "mrr": 0.8425201207698627,
+      "hits@1": 0.8002773925104022,
+      "hits@3": 0.8640776699029126,
+      "hits@10": 0.9112343966712899,
+      "auc_roc": 0.9535690720816558,
+      "average_precision": 0.8159109818992989,
+      "split": "valid",
+      "protocol": "1_positive_vs_50_negatives",
+      "negative_mode": "random",
+      "num_negatives": 50,
+      "candidate_count_per_example": 51,
+      "num_positives": 721,
+      "num_scored_pairs": 36771,
+      "seed": 42,
+      "evaluation_set": "models/rgcn/data/processed/disease_to_drug/six_months_main_random_split/evaluation_sets/valid_random_neg50_seed42.json",
+      "tie_handling": "average_rank",
+      "model": "R-GCN",
+      "task": "disease_to_drug",
+      "target_relation": "INDICATION",
+      "checkpoint": "results/runs/rgcn/biomedical/disease_to_drug/six_months_without_associated_with_gene/seed_42/checkpoints/best.pt"
+    },
+    "test": {
+      "mrr": 0.863480968033459,
+      "hits@1": 0.8340248962655602,
+      "hits@3": 0.8769017980636238,
+      "hits@10": 0.9142461964038727,
+      "auc_roc": 0.9581094410296731,
+      "average_precision": 0.8380769235147463,
+      "split": "test",
+      "protocol": "1_positive_vs_50_negatives",
+      "negative_mode": "random",
+      "num_negatives": 50,
+      "candidate_count_per_example": 51,
+      "num_positives": 723,
+      "num_scored_pairs": 36873,
+      "seed": 42,
+      "evaluation_set": "models/rgcn/data/processed/disease_to_drug/six_months_main_random_split/evaluation_sets/test_random_neg50_seed42.json",
+      "tie_handling": "average_rank",
+      "model": "R-GCN",
+      "task": "disease_to_drug",
+      "target_relation": "INDICATION",
+      "checkpoint": "results/runs/rgcn/biomedical/disease_to_drug/six_months_without_associated_with_gene/seed_42/checkpoints/best.pt"
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "mrr": 0.6863331784247417,
+  "hits@1": 0.6061026352288488,
+  "hits@3": 0.7323162274618585,
+  "hits@10": 0.8196948682385575,
+  "protocol": "1_positive_vs_50_negatives",
+  "negative_mode": "random",
+  "num_negatives": 50,
+  "candidate_count_per_example": 51,
+  "seed": 42,
+  "evaluation_set": "/Users/garranha/workspace/ISEL/Mestrado/Tese/tese/models/rgcn/data/processed/disease_to_drug/six_months_main_random_split/evaluation_sets/valid_random_neg50_seed42.json",
+  "selected_weights": {
+    "ingredient_knn": 0.5,
+    "direct_gene_knn": 0.0,
+    "train_indication_gene_knn": 0.5,
+    "disease_gene_overlap": 0.0,
+    "contraindication_knn": 0.0,
+    "popularity": 0.0,
+    "direct_contraindication": 0.0
+  }
+}

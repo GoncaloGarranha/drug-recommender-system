@@ -1,5 +1,0 @@
-relations,raw_mrr,raw_hits@1,raw_hits@3,raw_hits@10,semantic_mrr,semantic_hits@1,semantic_hits@3,semantic_hits@10
-All relations,0.7381,0.7148,0.7426,0.7896,0.7457,0.7263,0.7486,0.7905
-Without HAS_INGREDIENT,0.6877,0.6557,0.7009,0.7443,0.703,0.6732,0.7123,0.757
-Without CONTRAINDICATION,0.7108,0.6852,0.7235,0.7635,0.7231,0.6955,0.7374,0.7821
-Without gene relations,0.7228,0.6904,0.7409,0.7791,0.7269,0.7011,0.7402,0.7737

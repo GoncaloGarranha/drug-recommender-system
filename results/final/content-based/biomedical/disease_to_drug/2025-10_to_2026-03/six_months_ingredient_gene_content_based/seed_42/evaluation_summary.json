@@ -1,0 +1,69 @@
+{
+  "experiment": "six_months_ingredient_gene_content_based",
+  "period": "2025-10_to_2026-03",
+  "seed": 42,
+  "full_candidate_ranking": {
+    "valid": {
+      "mrr": 0.3983822304825367,
+      "hits@1": 0.33703190013869627,
+      "hits@3": 0.4119278779472954,
+      "hits@10": 0.5201109570041609
+    },
+    "test": {
+      "mrr": 0.3944654879412652,
+      "hits@1": 0.3278008298755187,
+      "hits@3": 0.4094052558782849,
+      "hits@10": 0.5325034578146611
+    }
+  },
+  "sampled_1v50": {
+    "valid": {
+      "mrr": 0.6863331784247417,
+      "hits@1": 0.6061026352288488,
+      "hits@3": 0.7323162274618585,
+      "hits@10": 0.8196948682385575,
+      "protocol": "1_positive_vs_50_negatives",
+      "negative_mode": "random",
+      "num_negatives": 50,
+      "candidate_count_per_example": 51,
+      "seed": 42,
+      "evaluation_set": "/Users/garranha/workspace/ISEL/Mestrado/Tese/tese/models/rgcn/data/processed/disease_to_drug/six_months_main_random_split/evaluation_sets/valid_random_neg50_seed42.json",
+      "selected_weights": {
+        "ingredient_knn": 0.5,
+        "direct_gene_knn": 0.0,
+        "train_indication_gene_knn": 0.5,
+        "disease_gene_overlap": 0.0,
+        "contraindication_knn": 0.0,
+        "popularity": 0.0,
+        "direct_contraindication": 0.0
+      }
+    },
+    "test": {
+      "mrr": 0.7150479931409593,
+      "hits@1": 0.6334716459197787,
+      "hits@3": 0.7704011065006916,
+      "hits@10": 0.8520055325034578,
+      "auc_roc": 0.9082387049503663,
+      "average_precision": 0.5629216970546527,
+      "split": "test",
+      "protocol": "1_positive_vs_50_negatives",
+      "negative_mode": "random",
+      "num_negatives": 50,
+      "candidate_count_per_example": 51,
+      "num_positives": 723,
+      "num_scored_pairs": 36873,
+      "seed": 42,
+      "evaluation_set": "/Users/garranha/workspace/ISEL/Mestrado/Tese/tese/models/rgcn/data/processed/disease_to_drug/six_months_main_random_split/evaluation_sets/test_random_neg50_seed42.json",
+      "tie_handling": "average_rank",
+      "selected_weights": {
+        "ingredient_knn": 0.5,
+        "direct_gene_knn": 0.0,
+        "train_indication_gene_knn": 0.5,
+        "disease_gene_overlap": 0.0,
+        "contraindication_knn": 0.0,
+        "popularity": 0.0,
+        "direct_contraindication": 0.0
+      }
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "model_name": "hybrid_content_based",
+  "task_name": "disease_to_drug",
+  "seed": 42,
+  "selected_weights": {
+    "ingredient_knn": 0.5,
+    "direct_gene_knn": 0.0,
+    "train_indication_gene_knn": 0.5,
+    "disease_gene_overlap": 0.0,
+    "contraindication_knn": 0.0,
+    "popularity": 0.0,
+    "direct_contraindication": 0.0
+  },
+  "tuning": null,
+  "enabled_components": {
+    "ingredient_knn": true,
+    "direct_gene_knn": false,
+    "train_indication_gene_knn": true,
+    "disease_gene_overlap": false,
+    "contraindication_knn": false,
+    "popularity": false,
+    "direct_contraindication": false
+  },
+  "relations": {
+    "ingredient": "HAS_INGREDIENT",
+    "drug_gene": "INTERACTS_WITH_GENE",
+    "disease_gene": "ASSOCIATED_WITH_GENE",
+    "contraindication": "CONTRAINDICATION"
+  },
+  "aggregation": "centroid",
+  "leakage_policy": "INDICATION-derived drug features use train triples only; validation and test are used only for evaluation, except validation-only tuning.",
+  "diagnostics": {
+    "evaluated_triples": 723,
+    "zero_signal_queries": 11,
+    "queries_without_train_drugs": 11,
+    "queries_without_disease_genes": 115,
+    "true_candidates_directly_contraindicated": 166
+  }
+}

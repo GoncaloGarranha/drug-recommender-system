@@ -1,0 +1,7 @@
+{
+  "evaluated_triples": 723,
+  "zero_signal_queries": 11,
+  "queries_without_train_drugs": 11,
+  "queries_without_disease_genes": 115,
+  "true_candidates_directly_contraindicated": 166
+}

@@ -64,3 +64,6 @@ timestamp,dataset,model_name,hits@1,hits@3,hits@10,mrr,notes
 2026-08-06T14:02:12.365611,six_months_main_random_split,R-GCN (disease_to_drug),0.692094,0.732316,0.775312,0.721325,Run: seed_42 | Split: valid
 2026-08-06T14:02:24.456410,six_months_main_random_split,R-GCN (disease_to_drug),0.724758,0.769018,0.806362,0.754104,Run: seed_42 | Split: test
 2026-08-06T10:35:51.793283,disease_to_drug_with_dgidb,Hybrid Content-Based,0.633472,0.770401,0.852006,0.715048,Shared sampled evaluation | split=test | negative_mode=random | num_negatives=50 | seed=42
+2026-08-07T09:40:46.569464,six_months_main_random_split,R-GCN (disease_to_drug),0.690707,0.737864,0.793343,0.725996,Run: seed_42 | Split: valid
+2026-08-07T09:41:00.015960,six_months_main_random_split,R-GCN (disease_to_drug),0.726141,0.760719,0.810512,0.754933,Run: seed_42 | Split: test
+2026-08-07T13:15:09.692841,six_months_main_random_split,R-GCN (disease_to_drug),0.702628,0.735823,0.780083,0.727505,Run: seed_42 | Split: test

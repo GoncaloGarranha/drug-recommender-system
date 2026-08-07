@@ -1,0 +1,8 @@
+{
+  "evaluated_examples": 723,
+  "candidate_count_per_example": 51,
+  "zero_signal_examples": 11,
+  "queries_without_train_drugs": 11,
+  "queries_without_disease_genes": 115,
+  "true_candidates_directly_contraindicated": 166
+}

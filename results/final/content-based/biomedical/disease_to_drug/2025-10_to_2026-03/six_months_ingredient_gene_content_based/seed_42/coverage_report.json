@@ -1,0 +1,54 @@
+{
+  "components": {
+    "ingredients": {
+      "covered_candidates": 2395,
+      "candidate_count": 2472,
+      "coverage": 0.9688511326860841,
+      "mean_features": 10.104368932038835,
+      "median_features": 8.0,
+      "max_features": 71
+    },
+    "direct_genes": {
+      "covered_candidates": 511,
+      "candidate_count": 2472,
+      "coverage": 0.20671521035598706,
+      "mean_features": 1.8341423948220066,
+      "median_features": 0.0,
+      "max_features": 82
+    },
+    "train_indication_genes": {
+      "covered_candidates": 1647,
+      "candidate_count": 2472,
+      "coverage": 0.6662621359223301,
+      "mean_features": 33.159789644012946,
+      "median_features": 25.0,
+      "max_features": 668
+    },
+    "contraindications": {
+      "covered_candidates": 1052,
+      "candidate_count": 2472,
+      "coverage": 0.4255663430420712,
+      "mean_features": 1.1132686084142396,
+      "median_features": 0.0,
+      "max_features": 16
+    }
+  },
+  "summary": {
+    "candidate_count": 2472,
+    "candidates_with_any_profile": 2466,
+    "candidates_without_profile": 6,
+    "diseases_with_train_drugs": 722,
+    "diseases_with_gene_profile": 599,
+    "train_indication_count": 5772
+  },
+  "leakage_policy": {
+    "static_relations": [
+      "HAS_INGREDIENT",
+      "INTERACTS_WITH_GENE",
+      "ASSOCIATED_WITH_GENE",
+      "CONTRAINDICATION"
+    ],
+    "target_relation": "INDICATION",
+    "target_derived_features": "train split only"
+  }
+}

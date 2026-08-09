@@ -1,0 +1,21 @@
+{
+  "build_id": "2025-10_to_2026-03_publication",
+  "status": "publication_candidate",
+  "source_build": "2025-10_to_2026-03_corrected",
+  "graph": "kg_constructor/data/builds/2025-10_to_2026-03_publication/triples/triples_with_dgidb.csv",
+  "graph_sha256": "8bb8dc81201cc149024d2eb8f814fb1ea6e1174c44a1553fa178f84dbed2756a",
+  "triples": 47946,
+  "relation_distribution": {
+    "CONTRAINDICATION": 2287,
+    "HAS_INGREDIENT": 24513,
+    "INDICATION": 6239,
+    "ASSOCIATED_WITH_GENE": 10373,
+    "INTERACTS_WITH_GENE": 4534
+  },
+  "corrections": {
+    "drugbank_identifier_normalization": true,
+    "deduplication_after_normalization": true,
+    "generic_disease_blacklist_applied": true,
+    "indication_contraindication_conflicts_removed": false
+  }
+}

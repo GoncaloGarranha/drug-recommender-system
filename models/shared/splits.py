@@ -204,6 +204,41 @@ def get_or_create_splits(
         and (output_dir / "valid_triples.json").exists()
         and (output_dir / "test_triples.json").exists()
     )
+
+    # Precomputed splits are immutable by design. They are used for
+    # controlled experiments where the exact train/valid/test assignment
+    # must be preserved even when integrity validation requests force=True.
+    if split_mode == "precomputed":
+        if not splits_exist:
+            raise FileNotFoundError(
+                f"Precomputed split mode requires existing split files in {output_dir}"
+            )
+
+        metadata_file = output_dir / "split_metadata.json"
+        if metadata_file.exists():
+            stored_meta = read_json(metadata_file)
+            stored_mode = stored_meta.get("mode")
+
+            if stored_mode != "precomputed":
+                raise ValueError(
+                    "Precomputed splits found but split_metadata.json "
+                    f"declares mode={stored_mode!r} instead of 'precomputed'."
+                )
+
+        train_triples, valid_triples, test_triples = load_splits(output_dir)
+
+        non_target_triples = [
+            row
+            for row in triples
+            if (row.get("rel") or "").strip() != (target_relation or "")
+        ]
+
+        return (
+            train_triples,
+            valid_triples,
+            test_triples,
+            non_target_triples,
+        )
     
     if splits_exist and not force:
         # Validate stored metadata to ensure splits match current config

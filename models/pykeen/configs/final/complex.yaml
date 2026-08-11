@@ -1,0 +1,21 @@
+model:
+  disable_regularizer: false
+  embedding_dim: 128
+  loss: softplus
+  name: ComplEx
+runs:
+  experiment_name: six_months_publication_complex_filtered_v1_hpo_softplus_dim128_lr0p01
+  out_dir: results/runs/pykeen
+seed: 42
+training:
+  batch_size: 1024
+  eval_every: 10
+  filtered_negative_sampling: true
+  lr: 0.01
+  max_epochs: 1000
+  negative_sampler: pseudo_typed
+  num_negs_per_pos: 1
+  optimizer: Adam
+  patience_evals: 20
+  pin_memory: false
+  weight_decay: 0.0

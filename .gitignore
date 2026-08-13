@@ -78,3 +78,11 @@ kg_constructor/configs/input_manifests/
 /kg_constructor/data/input/medjsonify/*/xml_files/
 
 /kg_constructor/data/benchmarks/*/raw/
+
+# Generated KG build artifacts
+/kg_constructor/data/builds/*/dgidb/
+/kg_constructor/data/builds/*/gene_associations/
+/kg_constructor/data/builds/*/interim/
+/kg_constructor/data/builds/*/mappings/
+/kg_constructor/data/builds/*/reports/
+/kg_constructor/data/builds/*/processed/

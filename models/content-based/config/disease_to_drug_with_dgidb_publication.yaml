@@ -44,12 +44,6 @@ content_based:
     contraindication_knn: 0.0
     popularity: 0.0
     direct_contraindication: 0.0
-  weight_search:
-    step: 0.5
-    direct_contraindication_values:
-    - 0.0
-    - 0.5
-    - 1.0
 runs:
   out_dir: results/runs/content-based
   experiment_name: six_months_publication_ingredient_gene_content_based

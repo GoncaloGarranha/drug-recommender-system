@@ -10,12 +10,6 @@ from pykeen.triples import TriplesFactory
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 
-PROCESSED_DIR = (
-    REPO_ROOT
-    / "models/rgcn/data/processed/disease_to_drug/"
-    "six_months_publication_random_split"
-)
-
 TARGET_RELATION = "INDICATION"
 
 
@@ -23,19 +17,30 @@ def read_json(path: Path):
     return json.loads(path.read_text(encoding="utf-8"))
 
 
-def load_publication_factories():
-    entity2id = read_json(PROCESSED_DIR / "entity2id.json")
-    rel2id = read_json(PROCESSED_DIR / "rel2id.json")
-    entity_types = read_json(PROCESSED_DIR / "entity_types.json")
+def load_publication_factories(processed_dir=None):
+    if processed_dir is None:
+        processed_dir = (
+            REPO_ROOT
+            / "models/rgcn/data/processed/disease_to_drug/"
+            "six_months_publication_random_split"
+        )
+    else:
+        processed_dir = Path(processed_dir)
+        if not processed_dir.is_absolute():
+            processed_dir = REPO_ROOT / processed_dir
 
-    splits_dir = PROCESSED_DIR / "splits"
+    entity2id = read_json(processed_dir / "entity2id.json")
+    rel2id = read_json(processed_dir / "rel2id.json")
+    entity_types = read_json(processed_dir / "entity_types.json")
+
+    splits_dir = processed_dir / "splits"
 
     train = read_json(splits_dir / "train_triples.json")
     valid = read_json(splits_dir / "valid_triples.json")
     test = read_json(splits_dir / "test_triples.json")
 
     indexed_graph = pd.read_csv(
-        PROCESSED_DIR / "triples_indexed.csv",
+        processed_dir / "triples_indexed.csv",
         dtype=str,
     )
 
@@ -126,4 +131,5 @@ def load_publication_factories():
         "train_rows": train,
         "valid_rows": valid,
         "test_rows": test,
+        "processed_dir": processed_dir,
     }

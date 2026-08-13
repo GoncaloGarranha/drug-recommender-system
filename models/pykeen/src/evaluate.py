@@ -75,7 +75,12 @@ def main() -> None:
     cfg = checkpoint["config"]
     seed = int(cfg.get("seed", 42))
 
-    data = load_publication_factories()
+    data_cfg = cfg.get("data", {})
+    processed_dir = data_cfg.get("processed_dir")
+
+    data = load_publication_factories(
+        processed_dir=processed_dir,
+    )
 
     model = build_model(
         model_cfg=cfg["model"],

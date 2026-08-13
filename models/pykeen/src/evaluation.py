@@ -13,7 +13,7 @@ from models.shared.evaluate_negative_set import (
 )
 from models.shared.metrics import compute_ranking_metrics
 
-from .data import PROCESSED_DIR, TARGET_RELATION
+from .data import TARGET_RELATION
 
 
 def build_known_indications(
@@ -130,8 +130,10 @@ def evaluate_fixed_1v50(
     if split not in {"valid", "test"}:
         raise ValueError("split must be 'valid' or 'test'")
 
+    processed_dir = data["processed_dir"]
+
     evaluation_path = (
-        PROCESSED_DIR
+        processed_dir
         / "evaluation_sets"
         / f"{split}_random_neg50_seed42.json"
     )

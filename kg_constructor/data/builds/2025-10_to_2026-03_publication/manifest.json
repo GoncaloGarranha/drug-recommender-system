@@ -1,21 +1,29 @@
 {
   "build_id": "2025-10_to_2026-03_publication",
-  "status": "publication_candidate",
-  "source_build": "2025-10_to_2026-03_corrected",
+  "status": "publication",
   "graph": "kg_constructor/data/builds/2025-10_to_2026-03_publication/triples/triples_with_dgidb.csv",
-  "graph_sha256": "8bb8dc81201cc149024d2eb8f814fb1ea6e1174c44a1553fa178f84dbed2756a",
-  "triples": 47946,
+  "graph_sha256": "3d5c7df7d021a077b3d5c7fdd986ee6ac1343fec57d585b66d2f622eb387ad72",
+  "triples": 51759,
+  "entities": 10380,
+  "relations": 5,
+  "candidate_drugs": 2347,
   "relation_distribution": {
-    "CONTRAINDICATION": 2287,
-    "HAS_INGREDIENT": 24513,
-    "INDICATION": 6239,
-    "ASSOCIATED_WITH_GENE": 10373,
-    "INTERACTS_WITH_GENE": 4534
+    "ASSOCIATED_WITH_GENE": 9951,
+    "CONTRAINDICATION": 2221,
+    "HAS_INGREDIENT": 24030,
+    "INDICATION": 6143,
+    "INTERACTS_WITH_GENE": 9414
   },
-  "corrections": {
-    "drugbank_identifier_normalization": true,
-    "deduplication_after_normalization": true,
+  "construction": {
+    "end_to_end_pipeline": true,
+    "entity_resolution": "conservative_identifier_resolution",
     "generic_disease_blacklist_applied": true,
-    "indication_contraindication_conflicts_removed": false
+    "indication_contraindication_conflicts_removed": false,
+    "gene_associations_included": true,
+    "drug_gene_interactions_included": true
+  },
+  "reports": {
+    "quality_gate": "kg_constructor/data/builds/2025-10_to_2026-03_publication/reports/quality_gate_report.json",
+    "entity_resolution": "kg_constructor/data/builds/2025-10_to_2026-03_publication/mappings/resolution_report.json"
   }
 }

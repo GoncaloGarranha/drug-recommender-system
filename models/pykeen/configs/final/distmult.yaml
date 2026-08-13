@@ -4,7 +4,6 @@ model:
   loss: bce
   name: DistMult
 runs:
-  experiment_name: six_months_publication_distmult_filtered_v1_hpo_bce_dim128_lr0p001
   out_dir: results/runs/pykeen
 seed: 42
 training:
@@ -19,3 +18,5 @@ training:
   patience_evals: 20
   pin_memory: false
   weight_decay: 0.0
+data:
+  processed_dir: models/rgcn/data/processed/disease_to_drug/six_months_publication_random_split

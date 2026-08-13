@@ -220,15 +220,10 @@ def main() -> None:
     model_name = str(model_cfg["name"])
     model_key = model_name.lower()
 
-    experiment_name = str(
-        runs_cfg["experiment_name"]
-    )
-
     run_dir = (
         REPO_ROOT
         / str(runs_cfg["out_dir"])
         / model_key
-        / experiment_name
         / f"seed_{seed}"
     )
 
@@ -259,7 +254,12 @@ def main() -> None:
         run_dir / "config.yaml",
     )
 
-    data = load_publication_factories()
+    data_cfg = cfg.get("data", {})
+    processed_dir = data_cfg.get("processed_dir")
+
+    data = load_publication_factories(
+        processed_dir=processed_dir,
+    )
 
     training = data["training"]
 

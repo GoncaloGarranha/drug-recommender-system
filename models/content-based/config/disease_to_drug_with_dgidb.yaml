@@ -1,7 +1,7 @@
 seed: 42
 data:
   triples_path: kg_constructor/data/builds/2025-10_to_2026-03/triples/triples_with_dgidb.csv
-  processed_dir: models/rgcn/data/processed/disease_to_drug/six_months_main_random_split
+  processed_dir: models/rgcn/data/processed/disease_to_drug/six_months_random_split
 model:
   add_inverse_edges: true
 task:

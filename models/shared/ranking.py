@@ -193,9 +193,10 @@ def evaluate_ranking(
     device: torch.device,
     hits_k: Tuple[int, ...] = (1, 3, 10),
     direction: str = "tail",
+    filtered: bool = True,
 ) -> Dict[str, float]:
     """
-    Evaluate filtered ranking metrics for a configured task.
+    Evaluate filtered or unfiltered ranking metrics for a configured task.
 
     direction: one of 'tail', 'head', or 'both'. When 'both' is used the
     function computes metrics for tail and head prediction and returns
@@ -267,11 +268,17 @@ def evaluate_ranking(
                 device=device,
             )
 
+            known_positive_ids = (
+                kp.get(query_key, set())
+                if filtered
+                else set()
+            )
+
             rank = filtered_rank(
                 candidate_ids=candidate_list,
                 scores=scores.detach().cpu().tolist(),
                 true_candidate_id=true_candidate_id,
-                known_positive_ids=kp.get(query_key, set()),
+                known_positive_ids=known_positive_ids,
             )
             ranks.append(rank)
 

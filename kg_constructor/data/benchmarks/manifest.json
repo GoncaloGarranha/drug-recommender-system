@@ -150,5 +150,51 @@
         "models/rgcn/configs/benchmarks/wn18rr_sampled.yaml"
       ]
     }
-  ]
+  ],
+  "benchmarks": {
+    "fb15k237_sampled": {
+      "status": "final",
+      "source_benchmark": "fb15k237",
+      "sampling": {
+        "strategy": "relation_stratified",
+        "seed": 42,
+        "target_total_triples": 51759,
+        "preserve_original_split_proportions": true,
+        "train_vocabulary_constraint_for_valid_test": true
+      },
+      "triples_path": "kg_constructor/data/benchmarks/fb15k237_sampled/triples.csv",
+      "summary_path": "kg_constructor/data/benchmarks/fb15k237_sampled/summary.json",
+      "sha256": "3fb7ff622e6c63737999d7d0d65815dafce59aa74ef6dcee4609769855dd77b4",
+      "triple_count": 51759,
+      "entity_count": 12745,
+      "relation_count": 237,
+      "split_counts": {
+        "train": 45416,
+        "valid": 2927,
+        "test": 3416
+      }
+    },
+    "wn18rr_sampled": {
+      "status": "final",
+      "source_benchmark": "wn18rr",
+      "sampling": {
+        "strategy": "relation_stratified",
+        "seed": 42,
+        "target_total_triples": 51759,
+        "preserve_original_split_proportions": true,
+        "train_vocabulary_constraint_for_valid_test": true
+      },
+      "triples_path": "kg_constructor/data/benchmarks/wn18rr_sampled/triples.csv",
+      "summary_path": "kg_constructor/data/benchmarks/wn18rr_sampled/summary.json",
+      "sha256": "98985da83d7101bcc90d42de2b17f14e7e5f3b398bd18218d5971227265b4afe",
+      "triple_count": 51759,
+      "entity_count": 34667,
+      "relation_count": 11,
+      "split_counts": {
+        "train": 48326,
+        "valid": 1689,
+        "test": 1744
+      }
+    }
+  }
 }

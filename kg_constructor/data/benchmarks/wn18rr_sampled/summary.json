@@ -1,0 +1,123 @@
+{
+  "dataset_original": "kg_constructor/data/benchmarks/wn18rr/raw",
+  "sampling_strategy": "relation_stratified",
+  "seed": 42,
+  "requested_total_triples": 51759,
+  "preserve_split_proportions": true,
+  "split_ratios": {
+    "train": 0.9336795587239122,
+    "valid": 0.03262260357192779,
+    "test": 0.03369783770416008
+  },
+  "original_triples_by_split": {
+    "train": 86835,
+    "valid": 3034,
+    "test": 3134
+  },
+  "target_triples_by_split": {
+    "train": 48326,
+    "valid": 1689,
+    "test": 1744
+  },
+  "final_triples_by_split": {
+    "train": 48326,
+    "valid": 1689,
+    "test": 1744
+  },
+  "eligible_after_train_vocabulary_filter": {
+    "valid": 2314,
+    "test": 2374
+  },
+  "num_entities_in_train": 34667,
+  "num_relations_in_train": 11,
+  "percent_kept_vs_original": 55.65304345021128,
+  "relation_distribution_original": {
+    "train": {
+      "_also_see": 1299,
+      "_derivationally_related_form": 29715,
+      "_has_part": 4816,
+      "_hypernym": 34796,
+      "_instance_hypernym": 2921,
+      "_member_meronym": 7402,
+      "_member_of_domain_region": 923,
+      "_member_of_domain_usage": 629,
+      "_similar_to": 80,
+      "_synset_domain_topic_of": 3116,
+      "_verb_group": 1138
+    },
+    "valid": {
+      "_also_see": 41,
+      "_derivationally_related_form": 1078,
+      "_has_part": 154,
+      "_hypernym": 1174,
+      "_instance_hypernym": 107,
+      "_member_meronym": 273,
+      "_member_of_domain_region": 34,
+      "_member_of_domain_usage": 22,
+      "_similar_to": 3,
+      "_synset_domain_topic_of": 105,
+      "_verb_group": 43
+    },
+    "test": {
+      "_also_see": 56,
+      "_derivationally_related_form": 1074,
+      "_has_part": 172,
+      "_hypernym": 1251,
+      "_instance_hypernym": 122,
+      "_member_meronym": 253,
+      "_member_of_domain_region": 26,
+      "_member_of_domain_usage": 24,
+      "_similar_to": 3,
+      "_synset_domain_topic_of": 114,
+      "_verb_group": 39
+    }
+  },
+  "relation_distribution_sampled": {
+    "train": {
+      "_also_see": 723,
+      "_derivationally_related_form": 16536,
+      "_has_part": 2680,
+      "_hypernym": 19363,
+      "_instance_hypernym": 1626,
+      "_member_meronym": 4120,
+      "_member_of_domain_region": 514,
+      "_member_of_domain_usage": 351,
+      "_similar_to": 45,
+      "_synset_domain_topic_of": 1734,
+      "_verb_group": 634
+    },
+    "valid": {
+      "_also_see": 29,
+      "_derivationally_related_form": 707,
+      "_has_part": 82,
+      "_hypernym": 580,
+      "_instance_hypernym": 47,
+      "_member_meronym": 128,
+      "_member_of_domain_region": 12,
+      "_member_of_domain_usage": 12,
+      "_similar_to": 1,
+      "_synset_domain_topic_of": 60,
+      "_verb_group": 31
+    },
+    "test": {
+      "_also_see": 37,
+      "_derivationally_related_form": 697,
+      "_has_part": 98,
+      "_hypernym": 623,
+      "_instance_hypernym": 58,
+      "_member_meronym": 122,
+      "_member_of_domain_region": 12,
+      "_member_of_domain_usage": 7,
+      "_similar_to": 2,
+      "_synset_domain_topic_of": 60,
+      "_verb_group": 28
+    }
+  },
+  "constraints": {
+    "relation_stratified": true,
+    "all_train_relations_preserved": true,
+    "valid_test_entities_seen_in_train": true,
+    "valid_test_relations_seen_in_train": true,
+    "strict_target_sizes": true
+  }
+}

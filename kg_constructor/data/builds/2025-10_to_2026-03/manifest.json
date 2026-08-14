@@ -1,8 +1,8 @@
 {
   "manifest_version": 1,
   "build_id": "2025-10_to_2026-03",
-  "status": "canonical",
-  "description": "Six-month identifier-preserving biomedical graph.",
+  "status": "final",
+  "description": "Final six-month biomedical knowledge graph used in the disease-to-drug recommendation experiments.",
   "period": {
     "start": "2025-10",
     "end": "2026-03",
@@ -27,76 +27,58 @@
     "path": "triples/triples_with_dgidb.csv",
     "repository_path": "kg_constructor/data/builds/2025-10_to_2026-03/triples/triples_with_dgidb.csv",
     "format": "CSV",
-    "sha256": "713df059da00efa45479aa4179fea533211c2ed0571abf128470caaee10126bb",
-    "size_bytes": 2551718,
-    "triple_count": 49903,
-    "line_count_including_header": 49904,
+    "sha256": "3d5c7df7d021a077b3d5c7fdd986ee6ac1343fec57d585b66d2f622eb387ad72",
+    "triple_count": 51759,
+    "entity_count": 10380,
+    "relation_count": 5,
+    "candidate_drug_count": 2347,
     "relation_counts": {
-      "ASSOCIATED_WITH_GENE": 10423,
-      "CONTRAINDICATION": 2752,
-      "HAS_INGREDIENT": 24978,
-      "INDICATION": 7216,
-      "INTERACTS_WITH_GENE": 4534
+      "ASSOCIATED_WITH_GENE": 9951,
+      "CONTRAINDICATION": 2221,
+      "HAS_INGREDIENT": 24030,
+      "INDICATION": 6143,
+      "INTERACTS_WITH_GENE": 9414
     }
   },
-  "provenance": {
-    "source_host": "biopython.dyn.fil.isel.pt",
-    "source_path": "/home/vroot/drug-recommender-system-nightly/kg_constructor/data/graph_builds/identifier_preserving_plus_3_months/triples/triples_with_dgidb.csv",
-    "source_reference": "identifier_preserving_plus_3_months",
-    "transfer_method": "scp"
+  "construction": {
+    "strategy": "end_to_end",
+    "entity_resolution": "conservative_identifier_resolution",
+    "prefer_drugbank_id": true,
+    "prefer_chebi_id": true,
+    "reject_ambiguous_chebi_ids": true,
+    "generic_disease_blacklist_applied": true,
+    "indication_contraindication_conflicts_removed": false,
+    "gene_associations_included": true,
+    "drug_gene_interactions_included": true
   },
   "storage": {
     "graph_tracked_by_git": false,
     "manifest_tracked_by_git": true,
     "generated_directories": [
+      "dgidb/",
+      "gene_associations/",
       "interim/",
       "mappings/",
       "processed/",
-      "triples/",
-      "reports/"
+      "reports/",
+      "triples/"
     ]
   },
-  "build_provenance": {
-    "strategy": "identifier_preserving_incremental",
-    "historical_base": {
-      "path": "kg_constructor/data/snapshots/commit_72df15d/triples_with_dgidb.csv",
-      "sha256": "77603322dc1777c4fa231338af58a82734844fec86cfaa70d650ae386fb7b71d",
-      "triple_count": 40746
-    },
-    "historical_triples_missing": 0,
-    "new_triples": 9157,
-    "final_triples": 49903,
-    "source_commits": {
-      "additional_period_data": "b89ead9596d21a1832680f78d2c99247666d8ecf",
-      "identifier_preserving_support": "73c0abf35cdef04c8b7cc3721bb4c24bc6bf0655"
-    }
-  },
-  "validation_reports": {
-    "historical_containment": {
-      "relative_path": "reports/historical_containment_report.json",
-      "sha256": "74b9b2418e52138fbeeabac5936ac39640aaee3642e4f258622d8f0760bb671a",
-      "size_bytes": 1062,
-      "status": "passed"
-    },
-    "quality_gate_final": {
-      "relative_path": "reports/quality_gate_report_final.json",
-      "sha256": "8e983ef696d9463324b73aac1a0b7d96510d85edff16e22f861f77dcefaec511",
-      "size_bytes": 1457,
+  "validation": {
+    "quality_gate": {
+      "report": "kg_constructor/data/builds/2025-10_to_2026-03/reports/quality_gate_report.json",
       "status": "passed",
       "checks": {
         "duplicate_triples": 0,
         "self_loops": 0,
-        "blacklisted_rows": 1204,
+        "blacklisted_rows": 0,
         "empty_field_rows": 0,
-        "indication_contraindication_conflicts": 1748,
-        "bad_drugbank_entities": 360,
+        "indication_contraindication_conflicts": 1427,
+        "bad_drugbank_entities": 0,
         "schema_errors": 0
       },
-      "warnings": [
-        "blacklisted_rows",
-        "indication_contraindication_conflicts",
-        "bad_drugbank_entities"
-      ]
-    }
+      "contraindication_conflicts_are_warnings": true
+    },
+    "entity_resolution_report": "kg_constructor/data/builds/2025-10_to_2026-03/mappings/resolution_report.json"
   }
 }

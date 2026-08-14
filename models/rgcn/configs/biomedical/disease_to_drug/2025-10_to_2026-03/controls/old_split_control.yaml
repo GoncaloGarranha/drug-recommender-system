@@ -1,7 +1,7 @@
 seed: 42
 data:
-  triples_path: kg_constructor/data/builds/2025-10_to_2026-03_publication/triples/triples_with_dgidb.csv
-  processed_dir: models/rgcn/data/processed/disease_to_drug/six_months_publication_random_split
+  triples_path: kg_constructor/data/builds/2025-10_to_2026-03/triples/triples_with_dgidb.csv
+  processed_dir: models/rgcn/data/processed/disease_to_drug/six_months_old_split_control
 model:
   add_inverse_edges: true
   use_layer_norm: true
@@ -16,9 +16,10 @@ task:
   - INDICATION
   - CONTRAINDICATION
   - HAS_INGREDIENT
+  - ASSOCIATED_WITH_GENE
   - INTERACTS_WITH_GENE
 split:
-  mode: random
+  mode: precomputed
   train_ratio: 0.8
   val_ratio: 0.1
   test_ratio: 0.1
@@ -63,4 +64,4 @@ metapath_baseline:
   top_k: 3
 runs:
   out_dir: results/runs/rgcn
-  experiment_name: six_months_publication_without_associated_with_gene
+  experiment_name: six_months_old_split_control

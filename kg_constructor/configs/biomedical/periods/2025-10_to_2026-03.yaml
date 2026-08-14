@@ -1,17 +1,59 @@
 project:
   name: drug-recommender-kg
   seed: 42
+
 period:
   id: 2025-10_to_2026-03
   mode: canonical_validation
+
 paths:
   kg_root: kg_constructor
   input_dir: kg_constructor/data/input/medjsonify/2025-10_to_2026-03
   output_dir: kg_constructor/data/builds/2025-10_to_2026-03
   processed_dir: kg_constructor/data/builds/2025-10_to_2026-03/processed
+
 pipeline:
   steps:
-  - 12_quality_gate
+    - 02_parse_sources
+    - 03_resolve_entities
+    - 04_build_triples
+    - 05_filter_graph
+    - 06_add_gene_associations
+    - 11_build_drug_gene_targets
+    - 12_quality_gate
+
+entity_resolution:
+  prefer_drugbank_id: true
+  prefer_chebi_id: true
+  reject_ambiguous_chebi_ids: true
+
+filters:
+  blacklist_path: kg_constructor/configs/biomedical/historical_generic_diseases.txt
+  blacklist_scope: both
+  remove_obsolete_doid_labels: true
+  remove_has_ingredient: false
+  contraindication_policy: keep_all
+
+gene_associations:
+  enabled: true
+  input_triples_path: kg_constructor/data/builds/2025-10_to_2026-03/triples/triples.filtered.csv
+  output_triples_path: kg_constructor/data/builds/2025-10_to_2026-03/triples/triples_with_genes.csv
+  diseases_for_genes_path: kg_constructor/data/external/diseases_for_genes.csv
+  open_targets_disease_path: kg_constructor/data/external/open_targets/disease/disease.parquet
+  open_targets_association_path: kg_constructor/data/external/open_targets/association_overall_direct
+  open_targets_target_path: kg_constructor/data/external/open_targets/target
+  top_k_genes_per_disease: 25
+  min_score: 0.1
+
+dgidb_interactions:
+  enabled: true
+  input_triples_path: kg_constructor/data/builds/2025-10_to_2026-03/triples/triples_with_genes.csv
+  interactions_path: kg_constructor/data/external/dgidb/interactions.tsv
+  output_dir: kg_constructor/data/builds/2025-10_to_2026-03/dgidb
+  output_triples_path: kg_constructor/data/builds/2025-10_to_2026-03/triples/triples_with_dgidb.csv
+  aliases_path: kg_constructor/data/builds/2025-10_to_2026-03/mappings/aliases.csv
+  drug_name_map_path: kg_constructor/data/builds/2025-10_to_2026-03/mappings/drug_name_to_entity.json
+
 quality_gate:
   enabled: true
   input_triples_path: kg_constructor/data/builds/2025-10_to_2026-03/triples/triples_with_dgidb.csv
@@ -21,6 +63,6 @@ quality_gate:
   fail_on_self_loops: true
   fail_on_empty_fields: true
   fail_on_schema_errors: true
-  fail_on_blacklisted_entities: false
+  fail_on_blacklisted_entities: true
   fail_on_contraindication_conflicts: false
-  fail_on_bad_drugbank_urls: false
+  fail_on_bad_drugbank_urls: true

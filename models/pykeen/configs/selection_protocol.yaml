@@ -1,0 +1,62 @@
+dataset:
+  build: 2025-10_to_2026-03_publication
+  target_relation: INDICATION
+  prediction_direction: head
+  candidate_type: Drug
+  candidate_count: 2380
+
+evaluation:
+  validation_metric: MRR
+  full_ranking: filtered
+  fixed_1v50: true
+
+training:
+  seed: 42
+  optimizer: Adam
+  batch_size: 1024
+  negative_sampler: pseudo_typed
+  filtered_negative_sampling: true
+  num_negs_per_pos: 1
+  weight_decay: 0.0
+  max_epochs: 1000
+  eval_every: 10
+  patience_evals: 20
+
+loss_selection:
+  embedding_dim: 128
+  learning_rate: 0.001
+
+  candidates:
+    DistMult:
+      - bce
+      - softplus
+
+    TransE:
+      - margin_ranking
+      - soft_margin_ranking
+
+    ComplEx:
+      - softplus
+      - bce
+
+    RGCN:
+      - bce
+      - soft_margin_ranking
+
+parameter_search:
+  embedding_dim:
+    - 64
+    - 128
+
+  learning_rate:
+    - 0.001
+    - 0.01
+
+  selection_metric: validation_mrr
+
+rgcn:
+  num_layers: 2
+  interaction: distmult
+  edge_dropout: 0.4
+  self_loop_dropout: 0.2
+  use_bias: true

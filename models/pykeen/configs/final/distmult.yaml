@@ -1,0 +1,22 @@
+model:
+  disable_regularizer: true
+  embedding_dim: 128
+  loss: bce
+  name: DistMult
+runs:
+  out_dir: results/runs/pykeen
+seed: 42
+training:
+  batch_size: 1024
+  eval_every: 10
+  filtered_negative_sampling: true
+  lr: 0.001
+  max_epochs: 1000
+  negative_sampler: pseudo_typed
+  num_negs_per_pos: 1
+  optimizer: Adam
+  patience_evals: 20
+  pin_memory: false
+  weight_decay: 0.0
+data:
+  processed_dir: models/rgcn/data/processed/disease_to_drug/six_months_publication_random_split

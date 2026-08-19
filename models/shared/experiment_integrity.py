@@ -83,11 +83,11 @@ def validate_experiment_integrity(
 ) -> Dict[str, Any]:
 	"""Validate split integrity and persist a machine-readable report.
 	
-	Note: This function always recreates splits fresh to guarantee consistency
-	with the current config, which helps catch data leakage issues.
+	Note: This function validates the persisted experimental splits without recreating them
+	or modifying their contents.
 	"""
-	# Validation always uses force=True to ensure splits match current config
-	force_val = True
+	# Integrity validation must not recreate or mutate the experimental splits.
+	force_val = False
 	processed_dir = resolve_processed_dir(cfg["data"]["processed_dir"], task_name=cfg.get("task", {}).get("name"))
 	prepared = load_prepared_graph(processed_dir)
 	triples = prepared["triples"]
@@ -99,6 +99,7 @@ def validate_experiment_integrity(
 	target_relation = task_cfg.get("target_relation")
 	split_cfg = cfg["split"]
 	seed = int(cfg.get("seed", 42))
+	split_seed = int(split_cfg.get("seed", seed))
 	candidate_entity_type = task_cfg.get("candidate_entity_type", "ALL")
 
 	splits_dir = Path(processed_dir) / "splits"
@@ -106,7 +107,7 @@ def validate_experiment_integrity(
 		output_dir=splits_dir,
 		triples=triples,
 		target_relation=target_relation,
-		seed=seed,
+		seed=split_seed,
 		train_ratio=float(split_cfg["train_ratio"]),
 		val_ratio=float(split_cfg["val_ratio"]),
 		test_ratio=float(split_cfg["test_ratio"]),

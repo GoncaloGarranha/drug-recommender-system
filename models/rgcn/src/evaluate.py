@@ -2,7 +2,7 @@
 R-GCN model evaluation script.
 
 Evaluate a trained R-GCN model on the validation or test split using filtered
-ranking metrics for a configurable task.
+or unfiltered ranking metrics for a configurable task.
 
 Supported task modes:
     - disease_to_drug
@@ -42,6 +42,12 @@ def main() -> None:
     parser.add_argument("--runs_dir", default="results/runs/rgcn")
     parser.add_argument("--run_dir", default=None)
     parser.add_argument("--split", default="test", choices=["valid", "test"])
+    parser.add_argument(
+        "--ranking_mode",
+        default="filtered",
+        choices=["filtered", "unfiltered"],
+        help="Use filtered ranking (default) or raw/unfiltered ranking.",
+    )
     args = parser.parse_args()
 
     run_dir = args.run_dir if args.run_dir else find_latest_run(args.runs_dir)
@@ -51,7 +57,16 @@ def main() -> None:
         raise FileNotFoundError(f"Checkpoint not found: {checkpoint_path}")
 
     checkpoint = torch.load(checkpoint_path, map_location="cpu")
-    cfg = checkpoint["config"]
+
+    run_config_path = Path(run_dir) / "config.yaml"
+    if run_config_path.exists():
+        import yaml
+        with run_config_path.open("r", encoding="utf-8") as file_obj:
+            cfg = yaml.safe_load(file_obj)
+        print(f"Using run config: {run_config_path}")
+    else:
+        cfg = checkpoint["config"]
+        print("Using config embedded in checkpoint.")
 
     seed = int(cfg.get("seed", 42))
     set_seed(seed)
@@ -188,7 +203,7 @@ def main() -> None:
         encoder_num_relations,
         cfg["training"]["num_bases"],
         cfg["training"]["num_layers"],
-        0.0,
+        cfg["training"]["dropout"],
         use_layer_norm=cfg.get("model", {}).get("use_layer_norm", True),
         use_residual=cfg.get("model", {}).get("use_residual", True),
         use_relation_gates=cfg.get("model", {}).get("use_relation_gates", False),
@@ -219,12 +234,14 @@ def main() -> None:
             device=device,
             hits_k=tuple(cfg["training"]["hits_k"]),
             direction="both" if task_name == "tail_prediction" else "tail",
+            filtered=args.ranking_mode == "filtered",
         )
 
     print("-" * 60)
     print(f"RUN: {run_dir}")
     print(f"TASK: {task_name}")
     print(f"SPLIT: {args.split}")
+    print(f"RANKING MODE: {args.ranking_mode}")
     print("-" * 60)
     print(f"MRR: {results['mrr']:.4f}")
 
@@ -240,12 +257,28 @@ def main() -> None:
         hits3=results["hits@3"],
         hits10=results["hits@10"],
         mrr=results["mrr"],
-        notes=f"Run: {Path(run_dir).name} | Split: {args.split}",
+        notes=(
+            f"Run: {Path(run_dir).name} | Split: {args.split} | "
+            f"Ranking: {args.ranking_mode}"
+        ),
     )
 
-    save_metrics(run_dir, args.split, results)
+    metrics_split = (
+        args.split
+        if args.ranking_mode == "filtered"
+        else f"{args.split}_unfiltered"
+    )
+    save_metrics(run_dir, metrics_split, results)
 
-    output_path = os.path.join(run_dir, f"final_metrics_{task_name}_{args.split}.json")
+    output_suffix = (
+        args.split
+        if args.ranking_mode == "filtered"
+        else f"{args.split}_unfiltered"
+    )
+    output_path = os.path.join(
+        run_dir,
+        f"final_metrics_{task_name}_{output_suffix}.json",
+    )
 
     with open(output_path, "w", encoding="utf-8") as file_obj:
         json.dump(results, file_obj, indent=2)

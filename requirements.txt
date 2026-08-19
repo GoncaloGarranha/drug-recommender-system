@@ -49,3 +49,4 @@ tzdata==2025.3
 urllib3==2.6.3
 wcwidth==0.6.0
 pyarrow==25.0.0
+pykeen==1.11.1

@@ -1,0 +1,28 @@
+model:
+  name: RGCN
+  embedding_dim: 128
+  num_layers: 2
+  interaction: distmult
+  loss: bce
+  disable_regularizer: true
+  use_bias: true
+  edge_dropout: 0.4
+  self_loop_dropout: 0.2
+  decomposition: null
+training:
+  optimizer: Adam
+  lr: 0.001
+  weight_decay: 0.0
+  batch_size: 1024
+  negative_sampler: pseudo_typed
+  filtered_negative_sampling: true
+  num_negs_per_pos: 1
+  max_epochs: 1000
+  eval_every: 10
+  patience_evals: 20
+  pin_memory: false
+runs:
+  out_dir: results/runs/pykeen
+seed: 42
+data:
+  processed_dir: models/rgcn/data/processed/disease_to_drug/six_months_publication_random_split

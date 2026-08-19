@@ -1,0 +1,5 @@
+model,loss,embedding_dim,learning_rate,seed,best_epoch,valid_mrr,full_mrr,full_hits1,full_hits3,full_hits10,full_candidates,1v50_mrr,1v50_hits1,1v50_hits3,1v50_hits10,1v50_auc_roc,1v50_average_precision
+DistMult,BCEWithLogitsLoss,128,0.001,42,310,0.448555,0.4109,0.2959,0.4650,0.6146,2347,0.7951,0.7106,0.8569,0.9333,0.9584,0.6494
+TransE,SoftMarginRankingLoss,128,0.001,42,350,0.446911,0.4171,0.3057,0.4780,0.6146,2347,0.7844,0.7008,0.8407,0.9317,0.9492,0.6501
+RGCN,BCEWithLogitsLoss,128,0.001,42,610,0.390144,0.3693,0.2634,0.4211,0.5772,2347,0.7572,0.6634,0.8244,0.9138,0.9443,0.5965
+ComplEx,SoftplusLoss,128,0.01,42,970,0.136330,0.1376,0.0163,0.2130,0.4033,2347,0.6013,0.4992,0.6455,0.8016,0.8616,0.2409

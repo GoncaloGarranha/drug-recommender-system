@@ -10,6 +10,7 @@ from typing import Any
 
 import numpy as np
 import torch
+import yaml
 
 from models.shared.evaluate_negative_set import (
     build_metrics_payload,
@@ -25,7 +26,7 @@ from models.shared.runs import find_latest_run
 from models.shared.splits import get_or_create_splits, load_splits
 
 from .components import DistMultDecoder, RGCNEncoder
-from .negative_set_evaluation import score_batch
+from .evaluation_utils import score_batch
 from .utils.seed import set_seed
 
 
@@ -153,7 +154,16 @@ def main() -> None:
         map_location="cpu",
     )
 
-    cfg = checkpoint["config"]
+    run_config_path = run_dir / "config.yaml"
+
+    if run_config_path.is_file():
+        with run_config_path.open("r", encoding="utf-8") as handle:
+            cfg = yaml.safe_load(handle)
+        print(f"Using run config: {run_config_path}")
+    else:
+        cfg = checkpoint["config"]
+        print("Using config embedded in checkpoint")
+
     seed = int(cfg.get("seed", 42))
 
     set_seed(seed)

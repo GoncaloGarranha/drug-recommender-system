@@ -119,15 +119,20 @@ def resolve_entities(cfg: Dict[str, Any], paths, force: bool = False) -> None:
     entity_resolution_cfg = cfg.get("entity_resolution", {})
     prefer_drugbank_id = bool(entity_resolution_cfg.get("prefer_drugbank_id", True))
     prefer_chebi_id = bool(entity_resolution_cfg.get("prefer_chebi_id", True))
+    reject_ambiguous_chebi_ids = bool(
+        entity_resolution_cfg.get("reject_ambiguous_chebi_ids", True)
+    )
 
     logger.info(
-        "Drug entity resolution config | prefer_drugbank_id=%s | prefer_chebi_id=%s",
+        "Drug entity resolution config | prefer_drugbank_id=%s | prefer_chebi_id=%s | reject_ambiguous_chebi_ids=%s",
         prefer_drugbank_id,
         prefer_chebi_id,
+        reject_ambiguous_chebi_ids,
     )
 
     normalized_name_to_drugbank_ids: Dict[str, Counter] = defaultdict(Counter)
     normalized_name_to_chebi_ids: Dict[str, Counter] = defaultdict(Counter)
+    chebi_id_to_names: Dict[str, set] = defaultdict(set)
 
     for row in drug_rows:
         name_norm = (row.get("name_norm") or "").strip()
@@ -139,8 +144,24 @@ def resolve_entities(cfg: Dict[str, Any], paths, force: bool = False) -> None:
 
         if drugbank_id:
             normalized_name_to_drugbank_ids[name_norm][drugbank_id] += 1
+
         if chebi_id:
             normalized_name_to_chebi_ids[name_norm][chebi_id] += 1
+            chebi_id_to_names[chebi_id].add(name_norm)
+
+    ambiguous_chebi_ids = set()
+
+    if reject_ambiguous_chebi_ids:
+        ambiguous_chebi_ids = {
+            identifier
+            for identifier, names in chebi_id_to_names.items()
+            if len(names) > 1
+        }
+
+    logger.info(
+        "Ambiguous ChEBI identifiers rejected: %d",
+        len(ambiguous_chebi_ids),
+    )
 
     drug_name_to_entity: Dict[str, str] = {}
 
@@ -149,13 +170,23 @@ def resolve_entities(cfg: Dict[str, Any], paths, force: bool = False) -> None:
         if not name_norm:
             continue
 
+        entity_id = None
+
         if prefer_drugbank_id and normalized_name_to_drugbank_ids.get(name_norm):
             best_drugbank_id, _ = normalized_name_to_drugbank_ids[name_norm].most_common(1)[0]
             entity_id = format_prefixed_identifier(best_drugbank_id, "DRUGBANK")
-        elif prefer_chebi_id and normalized_name_to_chebi_ids.get(name_norm):
+
+        if (
+            entity_id is None
+            and prefer_chebi_id
+            and normalized_name_to_chebi_ids.get(name_norm)
+        ):
             best_chebi_id, _ = normalized_name_to_chebi_ids[name_norm].most_common(1)[0]
-            entity_id = format_prefixed_identifier(best_chebi_id, "CHEBI")
-        else:
+
+            if best_chebi_id not in ambiguous_chebi_ids:
+                entity_id = format_prefixed_identifier(best_chebi_id, "CHEBI")
+
+        if entity_id is None:
             entity_id = f"DRUG:{name_norm}"
 
         drug_name_to_entity[name_norm] = entity_id

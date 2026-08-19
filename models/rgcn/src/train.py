@@ -283,6 +283,11 @@ def main() -> None:
     task_cfg = cfg["task"]
     split_cfg = cfg["split"]
 
+    # Keep dataset partitioning independent from training randomness.
+    # This allows robustness studies where only the training seed changes
+    # while train/valid/test remain fixed.
+    split_seed = int(split_cfg.get("seed", seed))
+
     task_name = task_cfg["name"]
     target_relation = task_cfg["target_relation"]
     candidate_entity_type = task_cfg["candidate_entity_type"]
@@ -303,7 +308,7 @@ def main() -> None:
         output_dir=splits_dir,
         triples=triples,
         target_relation=target_relation,
-        seed=seed,
+        seed=split_seed,
         train_ratio=float(split_cfg["train_ratio"]),
         val_ratio=float(split_cfg["val_ratio"]),
         test_ratio=float(split_cfg["test_ratio"]),

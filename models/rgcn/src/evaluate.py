@@ -203,7 +203,7 @@ def main() -> None:
         encoder_num_relations,
         cfg["training"]["num_bases"],
         cfg["training"]["num_layers"],
-        0.0,
+        cfg["training"]["dropout"],
         use_layer_norm=cfg.get("model", {}).get("use_layer_norm", True),
         use_residual=cfg.get("model", {}).get("use_residual", True),
         use_relation_gates=cfg.get("model", {}).get("use_relation_gates", False),

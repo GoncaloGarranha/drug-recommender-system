@@ -1,0 +1,68 @@
+seed: 42
+data:
+  triples_path: kg_constructor/data/builds/2025-10_to_2026-03/triples/triples_with_dgidb.csv
+  processed_dir: models/rgcn/data/processed/disease_to_drug/six_months_random_split
+model:
+  add_inverse_edges: true
+  use_layer_norm: true
+  use_residual: true
+  use_relation_gates: true
+task:
+  name: disease_to_drug
+  target_relation: INDICATION
+  query_entity_type: DISEASE
+  candidate_entity_type: DRUG
+  context_relations:
+  - INDICATION
+  - CONTRAINDICATION
+  - HAS_INGREDIENT
+  - ASSOCIATED_WITH_GENE
+  - INTERACTS_WITH_GENE
+split:
+  mode: random
+  train_ratio: 0.8
+  val_ratio: 0.1
+  test_ratio: 0.1
+  seed: 42
+training:
+  epochs: 10000
+  max_epochs: 10000
+  early_stopping:
+    monitor: valid_mrr
+    patience: 6000
+    mode: max
+  lr: 0.0001
+  weight_decay: 0.0001
+  dropout: 0.1
+  emb_dim: 128
+  num_bases: 5
+  num_layers: 2
+  neg_k: 50
+  negative_sampling: mixed
+  hard_negative_ratio: 0.5
+  eval_every: 10
+  hits_k:
+  - 1
+  - 3
+  - 10
+  device: cpu
+baseline:
+  use_ingredients: true
+  feature_relations:
+  - CONTRAINDICATION
+  - HAS_INGREDIENT
+  use_train_indication_genes: true
+  gene_relation: ASSOCIATED_WITH_GENE
+  gene_feature_prefix: TRAIN_INDICATION_GENE
+metapath_baseline:
+  use_ingredients: true
+  use_contraindications: true
+  use_train_indication_genes: true
+  w_ingredients: 0.8
+  w_contraindications: 0.2
+  w_genes: 1.2
+  aggregation: topk_mean
+  top_k: 3
+runs:
+  out_dir: results/runs/rgcn
+  experiment_name: hyperparam_dropout_0.1

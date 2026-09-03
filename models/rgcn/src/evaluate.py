@@ -111,10 +111,18 @@ def main() -> None:
         print(f"Using splits saved in run: {run_splits_dir}")
         train_target, valid_target, test_target = load_splits(run_splits_dir)
 
-        non_target_triples = [
-            row for row in triples
-            if (row.get("rel") or "").strip() != (target_relation or "")
-        ]
+        # In generic link prediction (target_relation=None), the saved
+        # train/valid/test splits partition the complete graph. Only the
+        # training split may be used to construct the encoder graph;
+        # including the remaining triples here would leak validation/test
+        # edges into evaluation.
+        if target_relation is None:
+            non_target_triples = []
+        else:
+            non_target_triples = [
+                row for row in triples
+                if (row.get("rel") or "").strip() != target_relation
+            ]
     else:
         print(f"Using global splits: {global_splits_dir}")
         train_target, valid_target, test_target, non_target_triples = get_or_create_splits(
@@ -155,28 +163,36 @@ def main() -> None:
     # Isto evita depender da orientação assumida pelo nome da tarefa.
     required_candidate_ids = set()
 
-    for row in valid_target + test_target:
-        src_entity = str(row.get("src", ""))
-        dst_entity = str(row.get("dst", ""))
+    if task_name == "tail_prediction":
+        # Generic link-prediction benchmarks evaluate both head and tail
+        # prediction. Candidate entities are therefore not inferred from
+        # semantic entity types.
+        for row in valid_target + test_target:
+            required_candidate_ids.add(int(row["src_id"]))
+            required_candidate_ids.add(int(row["dst_id"]))
+    else:
+        for row in valid_target + test_target:
+            src_entity = str(row.get("src", ""))
+            dst_entity = str(row.get("dst", ""))
 
-        matching_ids = []
+            matching_ids = []
 
-        if entity_types.get(src_entity) == candidate_entity_type:
-            matching_ids.append(int(row["src_id"]))
+            if entity_types.get(src_entity) == candidate_entity_type:
+                matching_ids.append(int(row["src_id"]))
 
-        if entity_types.get(dst_entity) == candidate_entity_type:
-            matching_ids.append(int(row["dst_id"]))
+            if entity_types.get(dst_entity) == candidate_entity_type:
+                matching_ids.append(int(row["dst_id"]))
 
-        if len(matching_ids) != 1:
-            raise ValueError(
-                "Could not determine exactly one candidate entity for "
-                f"triple {src_entity} --{row.get('rel')}--> {dst_entity}. "
-                f"candidate_entity_type={candidate_entity_type!r}, "
-                f"src_type={entity_types.get(src_entity)!r}, "
-                f"dst_type={entity_types.get(dst_entity)!r}"
-            )
+            if len(matching_ids) != 1:
+                raise ValueError(
+                    "Could not determine exactly one candidate entity for "
+                    f"triple {src_entity} --{row.get('rel')}--> {dst_entity}. "
+                    f"candidate_entity_type={candidate_entity_type!r}, "
+                    f"src_type={entity_types.get(src_entity)!r}, "
+                    f"dst_type={entity_types.get(dst_entity)!r}"
+                )
 
-        required_candidate_ids.add(matching_ids[0])
+            required_candidate_ids.add(matching_ids[0])
 
     candidate_pool = build_candidate_pool(
         entity_types=entity_types,

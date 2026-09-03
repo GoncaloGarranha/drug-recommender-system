@@ -71,3 +71,36 @@ timestamp,dataset,model_name,hits@1,hits@3,hits@10,mrr,notes
 2026-08-13T01:43:28.597389,disease_to_drug_with_dgidb_publication,Hybrid Content-Based,0.345277,0.452769,0.563518,0.418780,"Same splits/candidates/filtered ranking as R-GCN | split=valid | weights={""contraindication_knn"": 0.0, ""direct_contraindication"": 0.0, ""direct_gene_knn"": 0.0, ""disease_gene_overlap"": 0.0, ""ingredient_knn"": 0.5, ""popularity"": 0.0, ""train_indication_gene_knn"": 0.5}"
 2026-08-13T01:43:34.826456,disease_to_drug_with_dgidb_publication,Hybrid Content-Based,0.356098,0.455285,0.562602,0.425286,"Same splits/candidates/filtered ranking as R-GCN | split=test | weights={""contraindication_knn"": 0.0, ""direct_contraindication"": 0.0, ""direct_gene_knn"": 0.0, ""disease_gene_overlap"": 0.0, ""ingredient_knn"": 0.5, ""popularity"": 0.0, ""train_indication_gene_knn"": 0.5}"
 2026-08-13T01:44:12.361988,disease_to_drug_with_dgidb_publication,Hybrid Content-Based,0.655285,0.772358,0.853659,0.728969,Shared sampled evaluation | split=test | negative_mode=random | num_negatives=50 | seed=42
+2026-08-21T15:59:28.171748,six_months_random_split,R-GCN (disease_to_drug),0.712195,0.762602,0.796748,0.745225,Run: seed_42 | Split: test | Ranking: filtered
+2026-08-21T16:00:20.791600,six_months_random_split,R-GCN (disease_to_drug),0.745928,0.765472,0.802932,0.763071,Run: seed_42 | Split: valid | Ranking: filtered
+2026-08-21T20:10:24.927454,six_months_random_split,R-GCN (disease_to_drug),0.641694,0.708469,0.770358,0.687676,Run: seed_42 | Split: valid | Ranking: filtered
+2026-08-22T19:04:36.715461,six_months_random_split,R-GCN (disease_to_drug),0.627036,0.687296,0.737785,0.667909,Run: seed_42 | Split: valid | Ranking: filtered
+2026-08-22T22:31:29.308894,six_months_random_split,R-GCN (disease_to_drug),0.703583,0.734528,0.768730,0.725850,Run: seed_42 | Split: valid | Ranking: filtered
+2026-08-23T11:24:17.038291,six_months_random_split,R-GCN (disease_to_drug),0.714984,0.747557,0.785016,0.739733,Run: seed_42 | Split: valid | Ranking: filtered
+2026-08-23T15:08:00.883040,six_months_random_split,R-GCN (disease_to_drug),0.690554,0.719870,0.768730,0.715307,Run: seed_42 | Split: valid | Ranking: filtered
+2026-08-23T18:57:04.321064,six_months_random_split,R-GCN (disease_to_drug),0.703583,0.744300,0.776873,0.729382,Run: seed_42 | Split: valid | Ranking: filtered
+2026-08-23T21:40:45.062550,six_months_random_split,R-GCN (disease_to_drug),0.698697,0.734528,0.767101,0.724235,Run: seed_42 | Split: valid | Ranking: filtered
+2026-08-24T08:00:40.163478,six_months_random_split,R-GCN (disease_to_drug),0.714984,0.770358,0.806189,0.748437,Run: seed_42 | Split: valid | Ranking: filtered
+2026-08-24T11:00:51.996227,six_months_random_split,R-GCN (disease_to_drug),0.661238,0.729642,0.781759,0.705574,Run: seed_42 | Split: valid | Ranking: filtered
+2026-08-24T11:01:51.015878,six_months_random_split,R-GCN (disease_to_drug),0.718241,0.758958,0.798046,0.747155,Run: seed_42 | Split: valid | Ranking: filtered
+2026-08-24T11:08:45.339047,six_months_random_split,R-GCN (disease_to_drug),0.712195,0.762602,0.796748,0.745225,Run: seed_42 | Split: test | Ranking: filtered
+2026-08-24T11:08:49.116114,six_months_random_split,R-GCN (disease_to_drug),0.715447,0.764228,0.801626,0.746801,Run: seed_42 | Split: test | Ranking: filtered
+2026-08-24T13:57:05.321874,six_months_random_split,R-GCN (disease_to_drug),0.747557,0.773616,0.802932,0.766502,Run: seed_42 | Split: valid | Ranking: filtered
+2026-08-24T13:58:13.558293,six_months_random_split,R-GCN (disease_to_drug),0.739837,0.773984,0.796748,0.762246,Run: seed_42 | Split: test | Ranking: filtered
+2026-08-25T16:32:11.598285,six_months_random_split,R-GCN (disease_to_drug),0.738211,0.778862,0.808130,0.762629,Run: seed_42 | Split: test | Ranking: filtered
+2026-08-25T19:34:58.394837,six_months_random_split,R-GCN (disease_to_drug),0.692683,0.728455,0.772358,0.718643,Run: seed_42 | Split: test | Ranking: filtered
+2026-08-26T10:13:16.714488,six_months_random_split,R-GCN (disease_to_drug),0.728455,0.752846,0.788618,0.748429,Run: seed_42 | Split: test | Ranking: filtered
+2026-08-26T12:55:27.470377,six_months_random_split,R-GCN (disease_to_drug),0.738211,0.773984,0.806504,0.763797,Run: seed_42 | Split: test | Ranking: filtered
+2026-08-26T18:13:37.354442,three_months_random_split,R-GCN (disease_to_drug),0.667335,0.721443,0.745491,0.698248,Run: seed_42 | Split: test | Ranking: filtered
+2026-08-27T13:53:24.216832,six_months_random_split,R-GCN (disease_to_drug),0.760976,0.788618,0.826016,0.781613,Run: seed_45 | Split: test | Ranking: filtered
+2026-08-29T11:21:43.871864,six_months_random_split,R-GCN (disease_to_drug),0.720325,0.762602,0.795122,0.748006,Run: seed_41 | Split: test | Ranking: filtered
+2026-08-29T14:37:37.800606,six_months_random_split,R-GCN (disease_to_drug),0.736585,0.775610,0.809756,0.761802,Run: seed_43 | Split: test | Ranking: filtered
+2026-08-29T18:55:44.245300,six_months_random_split,R-GCN (disease_to_drug),0.734959,0.759350,0.796748,0.756262,Run: seed_44 | Split: test | Ranking: filtered
+2026-09-02T10:49:35.049605,hetionet_enriched,R-GCN (tail_prediction),0.525134,0.672479,0.820295,0.623529,Run: seed_42 | Split: test | Ranking: filtered | INVALID_EVALUATION_LEAKAGE: validation/test edges were included in the encoder graph before evaluate.py fix
+2026-09-02T10:50:31.096377,hetionet_enriched,R-GCN (tail_prediction),0.514613,0.656977,0.811596,0.611834,Run: seed_42 | Split: valid | Ranking: filtered | INVALID_EVALUATION_LEAKAGE: validation/test edges were included in the encoder graph before evaluate.py fix
+2026-09-02T11:05:15.936688,six_months_random_split,R-GCN (disease_to_drug),0.739837,0.773984,0.796748,0.762246,Run: seed_42 | Split: test | Ranking: filtered
+2026-09-03T16:40:36.826603,hetionet_enriched,R-GCN (tail_prediction),0.518699,0.658548,0.810182,0.613705,Run: seed_42 | Split: valid | Ranking: filtered | INVALID_EVALUATION_LEAKAGE: validation/test edges were included in the encoder graph before evaluate.py fix
+2026-09-03T16:40:47.813387,hetionet_enriched,R-GCN (tail_prediction),0.525448,0.674207,0.820767,0.623887,Run: seed_42 | Split: test | Ranking: filtered | INVALID_EVALUATION_LEAKAGE: validation/test edges were included in the encoder graph before evaluate.py fix
+2026-09-03T17:14:09.530631,hetionet_enriched,R-GCN (tail_prediction),0.158862,0.263828,0.422690,0.241151,Run: seed_42 | Split: valid | Ranking: filtered
+2026-09-03T17:14:20.323353,hetionet_enriched,R-GCN (tail_prediction),0.176720,0.289507,0.442507,0.260464,Run: seed_42 | Split: test | Ranking: filtered
+2026-09-03T17:17:34.260449,six_months_random_split,R-GCN (disease_to_drug),0.739837,0.773984,0.796748,0.762246,Run: seed_42 | Split: test | Ranking: filtered

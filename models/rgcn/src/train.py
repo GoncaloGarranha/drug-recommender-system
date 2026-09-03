@@ -412,6 +412,21 @@ def main() -> None:
             candidate_key="dst_id" if task_name == "tail_prediction" else None,
         )
 
+    # Keep the training known-positive structure unchanged.
+    # For generic link-prediction evaluation, evaluate_ranking() expects
+    # a forward map (src, relation) -> positive dst entities and derives
+    # the reverse map itself for head prediction.
+    if task_name == "tail_prediction":
+        evaluation_known_positives = build_known_positives(
+            triples=train_target + valid_target + test_target,
+            task_name=None,
+            query_key="src_id",
+            relation_key="rel_id",
+            candidate_key="dst_id",
+        )
+    else:
+        evaluation_known_positives = known_positives
+
     negative_sampling_strategy = str(cfg["training"].get("negative_sampling", "random"))
     hard_negative_ratio = float(cfg["training"].get("hard_negative_ratio", 0.0))
 
@@ -675,10 +690,15 @@ def main() -> None:
                 eval_triples=valid_target,
                 relation_id=relation_id,
                 task_name=task_name,
-                known_positives=known_positives,
+                known_positives=evaluation_known_positives,
                 candidate_ids=evaluation_candidate_pool,
                 device=device,
                 hits_k=tuple(cfg["training"]["hits_k"]),
+                direction=(
+                    corrupt_mode
+                    if task_name == "tail_prediction"
+                    else "tail"
+                ),
             )
 
             log_entry["valid_mrr"] = float(metrics["mrr"])

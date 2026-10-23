@@ -22,6 +22,7 @@ split:
   train_ratio: 0.8
   val_ratio: 0.1
   test_ratio: 0.1
+  seed: 42
 training:
   epochs: 10000
   max_epochs: 10000
@@ -31,13 +32,13 @@ training:
     mode: max
   lr: 0.0001
   weight_decay: 0.0001
-  dropout: 0.2
+  dropout: 0.1
   emb_dim: 128
   num_bases: 5
   num_layers: 2
   neg_k: 50
   negative_sampling: mixed
-  hard_negative_ratio: 0.5
+  hard_negative_ratio: 0.0
   eval_every: 10
   hits_k:
   - 1
@@ -63,4 +64,4 @@ metapath_baseline:
   top_k: 3
 runs:
   out_dir: results/runs/rgcn
-  experiment_name: six_months_without_has_ingredient
+  experiment_name: six_months_final_without_has_ingredient

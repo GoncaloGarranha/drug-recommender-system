@@ -12,14 +12,25 @@
     "primary_source": "MedJsonify",
     "external_sources": [
       {
-        "name": "Open Targets",
+        "name": "Open Targets Platform",
         "purpose": "Disease-gene associations",
-        "version": "not recorded"
+        "version": "26.03",
+        "retrieved_on": "2026-06-12",
+        "source_url": "https://ftp.ebi.ac.uk/pub/databases/opentargets/platform/26.03/output/",
+        "datasets": [
+          "disease",
+          "association_overall_direct",
+          "target"
+        ]
       },
       {
         "name": "DGIdb",
         "purpose": "Drug-gene interactions",
-        "version": "not recorded"
+        "version": "v.5.0.7",
+        "data_version": "Dec-2024",
+        "retrieved_on": "2026-07-06",
+        "input_file": "kg_constructor/data/external/dgidb/interactions.tsv",
+        "sha256": "ee255dce75924ef5075d8204fc7d0276a463984c555e41b9d55f6a46473db70b"
       }
     ]
   },

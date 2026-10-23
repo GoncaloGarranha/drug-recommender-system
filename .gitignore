@@ -66,6 +66,9 @@ kg_constructor/configs/input_manifests/
 /kg_constructor/data/builds/*/interim/
 /kg_constructor/data/builds/*/mappings/
 /kg_constructor/data/builds/*/processed/
+
+# Generated Zenodo publication packages
+/docs/publication/zenodo/dist/
 /kg_constructor/data/builds/*/triples/
 /kg_constructor/data/builds/*/reports/
 
@@ -84,3 +87,6 @@ kg_constructor/configs/input_manifests/
 /kg_constructor/data/builds/*/mappings/
 /kg_constructor/data/builds/*/reports/
 /kg_constructor/data/builds/*/processed/
+/.tools
+/output
+/tmp

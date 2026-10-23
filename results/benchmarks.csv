@@ -104,3 +104,7 @@ timestamp,dataset,model_name,hits@1,hits@3,hits@10,mrr,notes
 2026-09-03T17:14:09.530631,hetionet_enriched,R-GCN (tail_prediction),0.158862,0.263828,0.422690,0.241151,Run: seed_42 | Split: valid | Ranking: filtered
 2026-09-03T17:14:20.323353,hetionet_enriched,R-GCN (tail_prediction),0.176720,0.289507,0.442507,0.260464,Run: seed_42 | Split: test | Ranking: filtered
 2026-09-03T17:17:34.260449,six_months_random_split,R-GCN (disease_to_drug),0.739837,0.773984,0.796748,0.762246,Run: seed_42 | Split: test | Ranking: filtered
+2026-09-04T16:57:00.777271,hetionet_enriched,R-GCN (tail_prediction),0.197203,0.291640,0.425204,0.269698,Run: seed_42 | Split: valid | Ranking: filtered
+2026-09-04T16:57:19.385604,hetionet_enriched,R-GCN (tail_prediction),0.207666,0.305372,0.437795,0.281146,Run: seed_42 | Split: test | Ranking: filtered
+2026-09-06T22:26:03.298468,fb15k237_sampled,R-GCN (tail_prediction),0.032798,0.064571,0.128972,0.066362,Run: seed_42 | Split: valid | Ranking: filtered
+2026-09-06T22:26:34.619588,fb15k237_sampled,R-GCN (tail_prediction),0.029713,0.059719,0.133489,0.064135,Run: seed_42 | Split: test | Ranking: filtered

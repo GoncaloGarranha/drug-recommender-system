@@ -525,14 +525,39 @@ python -m models.rgcn.src.evaluate --runs_dir results/runs/rgcn --split test
 ### 5. Inference
 
 ```bash
-python -m models.rgcn.src.infer --query "Albuterol" --topk 10
+python -m models.rgcn.src.infer --query "asthma" --topk 10
 ```
 
-or:
+This uses the designated biomedical run and defaults to `exploration`, which
+excludes every known `INDICATION` association.
+
+If no exact disease name is found in an interactive terminal, the command
+shows up to five close matches. Enter the corresponding number to continue,
+`R` to refine the query, or `0` to cancel. In non-interactive executions the
+same suggestions are returned without opening a prompt.
+
+For an unambiguous selection by canonical ID and a ranking that excludes every
+known `INDICATION` association:
 
 ```bash
-python -m models.rgcn.src.infer --entity_id "DRUG:ALBUTEROL SULFATE" --topk 10
+python -m models.rgcn.src.infer \
+  --run_dir results/runs/rgcn/biomedical/disease_to_drug/hyperparam_combined_best/seed_42 \
+  --entity_id "DOID:9352" \
+  --mode exploration \
+  --topk 10 \
+  --json_out predictions.json
 ```
+
+In `audit` mode, results are labelled `TRAIN`, `VALIDATION`, `TEST`, or
+`UNOBSERVED`; validation and test candidates also receive the filtered rank
+used by the evaluation definition. Use `--details` to display raw scores.
+Those scores are ranking values, not calibrated probabilities. `UNOBSERVED`
+means absent from the target-relation
+triples in the current graph, not a clinically validated new association. The
+Contraindications are not displayed as a terminal output column. The JSON can
+record whether the pair also has a `CONTRAINDICATION` relation. This must be
+treated as contextual graph information, not as a clinical safety conclusion. Use
+`--exclude_contraindications` to remove those pairs from the displayed results.
 
 ---
 

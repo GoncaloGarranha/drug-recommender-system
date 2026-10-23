@@ -522,25 +522,72 @@ This module is intentionally **link prediction only** and is separate from the b
 
 ## Inference
 
-Generate predictions for a specific drug or disease, depending on the configured task.
-
-Example using a drug query:
-
-```bash
-python -m models.rgcn.src.infer --query "Albuterol" --topk 10
-```
-
-Example using an exact entity ID:
+For the main biomedical model, a disease name is sufficient. By default, known
+`INDICATION` associations are excluded and only unobserved pairs are ranked:
 
 ```bash
-python -m models.rgcn.src.infer --entity_id "DRUG:ALBUTEROL SULFATE" --topk 10
+python -m models.rgcn.src.infer --query "asthma" --topk 10
 ```
 
-Save results to JSON:
+The designated `disease_to_drug` run is selected automatically. Use
+`--run_dir` only to select a different trained run.
+
+When an exact disease name is not found, an interactive terminal shows up to
+five close matches. Select one by number, enter `R` to refine the query, or
+enter `0` to cancel. For example, `--query "astma"` suggests `asthma` and its
+closest related labels. Non-interactive executions return the suggestions as
+an error instead of waiting for input. Exact canonical IDs remain available
+through `--entity_id`. If no sufficiently close disease exists, the command
+returns a short explanation that queries are limited to entities represented
+in the current graph.
+
+Audit the ranking and distinguish associations from each experimental split:
 
 ```bash
-python -m models.rgcn.src.infer --query "Metformin" --topk 10 --json_out predictions.json
+python -m models.rgcn.src.infer \
+  --run_dir results/runs/rgcn/biomedical/disease_to_drug/hyperparam_combined_best/seed_42 \
+  --query "type 2 diabetes" \
+  --mode audit \
+  --topk 10
 ```
+
+Use the canonical ID when a name is ambiguous:
+
+```bash
+python -m models.rgcn.src.infer \
+  --run_dir results/runs/rgcn/biomedical/disease_to_drug/hyperparam_combined_best/seed_42 \
+  --entity_id "DOID:9352" \
+  --mode audit \
+  --topk 10
+```
+
+Exclude every `INDICATION` association present in the train, validation, or
+test split, remove pairs with a recorded `CONTRAINDICATION`, and save the
+remaining ranked candidates to JSON:
+
+```bash
+python -m models.rgcn.src.infer \
+  --run_dir results/runs/rgcn/biomedical/disease_to_drug/hyperparam_combined_best/seed_42 \
+  --entity_id "DOID:9352" \
+  --exclude_contraindications \
+  --topk 10 \
+  --json_out predictions.json
+```
+
+`audit` reports `TRAIN`, `VALIDATION`, `TEST`, or `UNOBSERVED` for every
+candidate and includes the evaluation-compatible filtered rank for validation
+and test associations. `exploration` is the default and only returns
+`UNOBSERVED` pairs. Use `--details` to expose raw scores and internal fields.
+Scores are raw
+DistMult ranking values; they are not calibrated probabilities or evidence of
+clinical efficacy. `UNOBSERVED` only means that the pair has no `INDICATION`
+triple in the current graph; it does not establish that the association is
+novel or clinically valid. Contraindications are not shown as a terminal output
+column. The JSON field records whether the pair also has a `CONTRAINDICATION`
+relation in the graph, and `--exclude_contraindications` can be used as an
+explicit structural filter. The JSON output also records every original name associated
+with each canonical entity so that synonyms, brands, formulations, and possible
+mapping problems can be inspected separately.
 
 ---
 

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="1000" height="980" preserveAspectRatio="xMinYMin meet" viewBox="0 0 1000 980" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="1000" height="980"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-980)" style="clip-path: url(#clip)">
+		<g transform="">
+			<rect x="70" y="830" width="860" height="115" rx="12" ry="12" style="stroke: rgb(18%,37%,54%); stroke-linecap: butt; stroke-width: 1.6; fill: rgb(91%,94%,97%); fill-rule: evenodd;"/>
+			<text x="367.115478515625" y="912" style="font-family: FigureSans-Bold; font-size: 23px;fill: rgb(9%,12%,20%); stroke:none;" transform="translate(0,1824) scale(1,-1)">Grafo utilizado no treino</text>
+			<text x="261.76171875" y="881" style="font-family: FigureSans; font-size: 16px;fill: rgb(9%,12%,20%); stroke:none;" transform="translate(0,1762) scale(1,-1)">INDICATION (treino) · CONTRAINDICATION · HAS_INGREDIENT</text>
+			<text x="222.61328125" y="855" style="font-family: FigureSans; font-size: 16px;fill: rgb(9%,12%,20%); stroke:none;" transform="translate(0,1710) scale(1,-1)">ASSOCIATED_WITH_GENE · INTERACTS_WITH_GENE · relações inversas</text>
+			<path d="M 500,830 L 500,811 Z" style="stroke: rgb(18%,37%,54%); stroke-linecap: butt; stroke-width: 2.2;"/>
+			<polygon points="493 813, 500 800, 507 813" style="stroke: rgb(18%,37%,54%); stroke-linecap: butt; stroke-width: 1; fill: rgb(18%,37%,54%); fill-rule: evenodd;"/>
+			<rect x="245" y="728" width="510" height="72" rx="12" ry="12" style="stroke: rgb(46%,52%,60%); stroke-linecap: butt; stroke-width: 1.6; fill: rgb(95%,96%,97%); fill-rule: evenodd;"/>
+			<text x="346.6357421875" y="770" style="font-family: FigureSans-Bold; font-size: 20px;fill: rgb(9%,12%,20%); stroke:none;" transform="translate(0,1540) scale(1,-1)">Embeddings iniciais aprendidos</text>
+			<text x="375.23828125" y="744" style="font-family: FigureSans; font-size: 16px;fill: rgb(32%,37%,45%); stroke:none;" transform="translate(0,1488) scale(1,-1)">10 380 entidades × 128 dimensões</text>
+			<path d="M 500,728 L 500,708 Z" style="stroke: rgb(18%,37%,54%); stroke-linecap: butt; stroke-width: 2.2;"/>
+			<polygon points="493 710, 500 697, 507 710" style="stroke: rgb(18%,37%,54%); stroke-linecap: butt; stroke-width: 1; fill: rgb(18%,37%,54%); fill-rule: evenodd;"/>
+			<rect x="70" y="368" width="860" height="329" rx="14" ry="14" style="stroke: rgb(18%,37%,54%); stroke-linecap: butt; stroke-width: 2.2; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="413.104248046875" y="661" style="font-family: FigureSans-Bold; font-size: 23px;fill: rgb(18%,37%,54%); stroke:none;" transform="translate(0,1322) scale(1,-1)">Encoder R-GCN</text>
+			<rect x="105" y="438" width="350" height="184" rx="12" ry="12" style="stroke: rgb(18%,37%,54%); stroke-linecap: butt; stroke-width: 1.6; fill: rgb(91%,94%,97%); fill-rule: evenodd;"/>
+			<text x="197.2021484375" y="587" style="font-family: FigureSans-Bold; font-size: 20px;fill: rgb(9%,12%,20%); stroke:none;" transform="translate(0,1174) scale(1,-1)">Camada R-GCN 1</text>
+			<text x="153.2763671875" y="554" style="font-family: FigureSans; font-size: 15px;fill: rgb(9%,12%,20%); stroke:none;" transform="translate(0,1108) scale(1,-1)">Transformações por relação · 5 bases</text>
+			<text x="159.110107421875" y="528" style="font-family: FigureSans; font-size: 15px;fill: rgb(9%,12%,20%); stroke:none;" transform="translate(0,1056) scale(1,-1)">Pesos por relação (gates) · self-loop</text>
+			<path d="M 135,504 L 425,504 Z" style="stroke: rgb(72%,78%,84%); stroke-linecap: butt; stroke-width: 1;"/>
+			<text x="209.149169921875" y="477" style="font-family: FigureSans-Bold; font-size: 15px;fill: rgb(9%,12%,20%); stroke:none;" transform="translate(0,954) scale(1,-1)">LayerNorm → ReLU</text>
+			<text x="213.726806640625" y="451" style="font-family: FigureSans-Bold; font-size: 15px;fill: rgb(9%,12%,20%); stroke:none;" transform="translate(0,902) scale(1,-1)">→ ligação residual</text>
+			<rect x="545" y="438" width="350" height="184" rx="12" ry="12" style="stroke: rgb(18%,37%,54%); stroke-linecap: butt; stroke-width: 1.6; fill: rgb(91%,94%,97%); fill-rule: evenodd;"/>
+			<text x="637.2021484375" y="587" style="font-family: FigureSans-Bold; font-size: 20px;fill: rgb(9%,12%,20%); stroke:none;" transform="translate(0,1174) scale(1,-1)">Camada R-GCN 2</text>
+			<text x="593.2763671875" y="554" style="font-family: FigureSans; font-size: 15px;fill: rgb(9%,12%,20%); stroke:none;" transform="translate(0,1108) scale(1,-1)">Transformações por relação · 5 bases</text>
+			<text x="599.110107421875" y="528" style="font-family: FigureSans; font-size: 15px;fill: rgb(9%,12%,20%); stroke:none;" transform="translate(0,1056) scale(1,-1)">Pesos por relação (gates) · self-loop</text>
+			<path d="M 575,504 L 865,504 Z" style="stroke: rgb(72%,78%,84%); stroke-linecap: butt; stroke-width: 1;"/>
+			<text x="612.044677734375" y="477" style="font-family: FigureSans-Bold; font-size: 15px;fill: rgb(9%,12%,20%); stroke:none;" transform="translate(0,954) scale(1,-1)">LayerNorm → ligação residual</text>
+			<text x="653.7158203125" y="451" style="font-family: FigureSans; font-size: 15px;fill: rgb(32%,37%,45%); stroke:none;" transform="translate(0,902) scale(1,-1)">sem ReLU na saída</text>
+			<path d="M 455,530 L 534,530 Z" style="stroke: rgb(18%,37%,54%); stroke-linecap: butt; stroke-width: 2.2;"/>
+			<polygon points="532 523, 545 530, 532 537" style="stroke: rgb(18%,37%,54%); stroke-linecap: butt; stroke-width: 1; fill: rgb(18%,37%,54%); fill-rule: evenodd;"/>
+			<text x="282.80029296875" y="397" style="font-family: FigureSans; font-size: 15px;fill: rgb(32%,37%,45%); stroke:none;" transform="translate(0,794) scale(1,-1)">Sem normalização explícita pelo grau · regularização por dropout</text>
+			<path d="M 500,368 L 500,348 Z" style="stroke: rgb(18%,37%,54%); stroke-linecap: butt; stroke-width: 2.2;"/>
+			<polygon points="493 350, 500 337, 507 350" style="stroke: rgb(18%,37%,54%); stroke-linecap: butt; stroke-width: 1; fill: rgb(18%,37%,54%); fill-rule: evenodd;"/>
+			<rect x="245" y="269" width="510" height="68" rx="12" ry="12" style="stroke: rgb(46%,52%,60%); stroke-linecap: butt; stroke-width: 1.6; fill: rgb(95%,96%,97%); fill-rule: evenodd;"/>
+			<text x="341.630859375" y="308" style="font-family: FigureSans-Bold; font-size: 20px;fill: rgb(9%,12%,20%); stroke:none;" transform="translate(0,616) scale(1,-1)">Embeddings finais das entidades</text>
+			<text x="382.420654296875" y="283" style="font-family: FigureSans; font-size: 15px;fill: rgb(32%,37%,45%); stroke:none;" transform="translate(0,566) scale(1,-1)">representação relacional aprendida</text>
+			<path d="M 500,269 L 500,249 Z" style="stroke: rgb(18%,37%,54%); stroke-linecap: butt; stroke-width: 2.2;"/>
+			<polygon points="493 251, 500 238, 507 251" style="stroke: rgb(18%,37%,54%); stroke-linecap: butt; stroke-width: 1; fill: rgb(18%,37%,54%); fill-rule: evenodd;"/>
+			<rect x="120" y="132" width="760" height="106" rx="12" ry="12" style="stroke: rgb(60%,45%,13%); stroke-linecap: butt; stroke-width: 1.6; fill: rgb(100%,95%,83%); fill-rule: evenodd;"/>
+			<text x="397.33154296875" y="198" style="font-family: FigureSans-Bold; font-size: 22px;fill: rgb(9%,12%,20%); stroke:none;" transform="translate(0,396) scale(1,-1)">Pontuação DistMult</text>
+			<text x="285.51611328125" y="157" style="font-family: FigureSans; font-size: 17px;fill: rgb(9%,12%,20%); stroke:none;" transform="translate(0,314) scale(1,-1)">fármaco candidato m  ×  INDICATION  ×  patologia fixa d</text>
+			<path d="M 500,132 L 500,113 Z" style="stroke: rgb(18%,37%,54%); stroke-linecap: butt; stroke-width: 2.2;"/>
+			<polygon points="493 115, 500 102, 507 115" style="stroke: rgb(18%,37%,54%); stroke-linecap: butt; stroke-width: 1; fill: rgb(18%,37%,54%); fill-rule: evenodd;"/>
+			<rect x="235" y="38" width="530" height="64" rx="12" ry="12" style="stroke: rgb(26%,51%,35%); stroke-linecap: butt; stroke-width: 1.6; fill: rgb(91%,96%,93%); fill-rule: evenodd;"/>
+			<text x="392.7490234375" y="74" style="font-family: FigureSans-Bold; font-size: 20px;fill: rgb(9%,12%,20%); stroke:none;" transform="translate(0,148) scale(1,-1)">Ranking dos fármacos</text>
+			<text x="355.302734375" y="51" style="font-family: FigureSans; font-size: 15px;fill: rgb(32%,37%,45%); stroke:none;" transform="translate(0,102) scale(1,-1)">2 347 candidatos ordenados por pontuação</text>
+		</g>
+	</g>
+</svg>

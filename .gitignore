@@ -16,6 +16,10 @@ MedJsonify-main/jsonify/output/
 # KG constructor input/generated data
 # Legacy KG input payloads remain local.
 
+# External biomedical source snapshots
+/kg_constructor/data/external/open_targets/
+/kg_constructor/data/external/dgidb/
+
 # R-GCN generated artifacts
 models/rgcn/data/processed/
 models/rgcn_benchmark/rgcn_benchmark.zip
@@ -28,6 +32,12 @@ models/shared.zip
 Thumbs.db
 .vscode/
 .idea/
+
+# Local Codex working artefacts
+/.codex-*/
+
+# Temporary Microsoft Office lock files
+~$*
 
 
 # === Generated thesis experiment artifacts ===

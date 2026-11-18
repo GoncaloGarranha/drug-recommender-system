@@ -76,6 +76,14 @@ version 5.0.7 (data version December 2024), retrieved on 6 July 2026. Exact
 source information and checksums available at build time are recorded in
 `provenance/build_manifest.json`.
 
+The DailyMed component covers July, August, November and December 2025,
+and January and February 2026. The Orange Book and Purple Book inputs
+correspond to the February 2026 versions.
+
+The internal build identifier `2025-10_to_2026-03` is retained to preserve
+the repository paths and experiment configurations. It does not represent
+the exact temporal coverage of the regulatory data.
+
 The construction workflow depends on the JSON structure and extracted content
 produced by MedJsonify. Omissions, extraction errors or structural changes in
 that preprocessing stage may affect the entities and relations in this dataset.

@@ -4,9 +4,13 @@
   "status": "canonical",
   "description": "Historical identifier-preserving biomedical graph.",
   "period": {
-    "start": "2025-10",
-    "end": "2025-12",
-    "label": "2025-10_to_2025-12"
+    "months": [
+      "2025-07",
+      "2025-08",
+      "2025-11"
+    ],
+    "label": "July, August and November 2025",
+    "legacy_identifier": "2025-10_to_2025-12"
   },
   "input_scope": {
     "primary_source": "MedJsonify",
@@ -27,16 +31,18 @@
     "path": "triples/triples_with_dgidb.csv",
     "repository_path": "kg_constructor/data/builds/2025-10_to_2025-12/triples/triples_with_dgidb.csv",
     "format": "CSV",
-    "sha256": "77603322dc1777c4fa231338af58a82734844fec86cfaa70d650ae386fb7b71d",
-    "size_bytes": 2138355,
-    "triple_count": 40746,
-    "line_count_including_header": 40747,
+    "sha256": "f3ee51e22307d7e9c6106e47db6445322ec38fbfe9fa3c3c1fb5c1fb80d83321",
+    "size_bytes": 2049224,
+    "triple_count": 44088,
+    "line_count_including_header": 44089,
+    "entity_count": 9635,
+    "candidate_drug_count": 1942,
     "relation_counts": {
-      "ASSOCIATED_WITH_GENE": 9943,
-      "CONTRAINDICATION": 2220,
+      "ASSOCIATED_WITH_GENE": 9951,
+      "CONTRAINDICATION": 1822,
       "HAS_INGREDIENT": 18349,
-      "INDICATION": 5739,
-      "INTERACTS_WITH_GENE": 4495
+      "INDICATION": 4983,
+      "INTERACTS_WITH_GENE": 8983
     }
   },
   "provenance": {

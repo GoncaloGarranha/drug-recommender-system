@@ -62,10 +62,10 @@ source documents:
 Although the directories retain the original document type in their names,
 their contents are JSON entity files produced by MedJsonify.
 
-| Period | CSV-derived | TXT-derived | XML-derived | Total |
-|---|---:|---:|---:|---:|
-| 2025-10 to 2025-12 | 631 | 114 | 2650 | 3395 |
-| 2025-10 to 2026-03 | 1278 | 139 | 4248 | 5665 |
+| Dataset identifier | Source months | CSV-derived | TXT-derived | XML-derived | Total |
+|---|---|---:|---:|---:|---:|
+| `2025-10_to_2025-12` | July, August and November 2025 | 631 | 114 | 2,650 | 3,395 |
+| `2025-10_to_2026-03` | July, August, November and December 2025; January and February 2026 | 1,278 | 139 | 4,248 | 5,665 |
 
 Each period contains a `manifest.json` recording its temporal coverage, file
 counts, sizes and provenance.
@@ -84,53 +84,63 @@ graph:
 - `diseases_for_genes.csv`: disease identifiers used during the integration
   of gene associations.
 
-These datasets are stored locally because of their size and are not tracked
-by Git.
+These datasets are intended to be stored locally because of their size. Ignore
+rules prevent new untracked copies from being added accidentally. Exact source
+versions, expected paths and checksums are documented in
+[`external/README.md`](external/README.md). The repository history still
+contains the original snapshots.
 
 ## Canonical graph builds
 
 The `builds/` directory contains the canonical biomedical graphs used in the
 project.
 
-### 2025-10 to 2025-12
+### Initial three-month build (`2025-10_to_2025-12`)
 
 Historical graph used as the reference build.
 
 - Graph:
   `builds/2025-10_to_2025-12/triples/triples_with_dgidb.csv`
-- Number of triples: `40746`
+- Source months: July, August and November 2025
+- Number of triples: `44088`
 - SHA-256:
-  `77603322dc1777c4fa231338af58a82734844fec86cfaa70d650ae386fb7b71d`
+  `f3ee51e22307d7e9c6106e47db6445322ec38fbfe9fa3c3c1fb5c1fb80d83321`
 
 Relation distribution:
 
 | Relation | Triples |
 |---|---:|
-| `INDICATION` | 5739 |
-| `CONTRAINDICATION` | 2220 |
-| `HAS_INGREDIENT` | 18349 |
-| `ASSOCIATED_WITH_GENE` | 9943 |
-| `INTERACTS_WITH_GENE` | 4495 |
+| `HAS_INGREDIENT` | 18,349 |
+| `ASSOCIATED_WITH_GENE` | 9,951 |
+| `INTERACTS_WITH_GENE` | 8,983 |
+| `INDICATION` | 4,983 |
+| `CONTRAINDICATION` | 1,822 |
 
-### 2025-10 to 2026-03
+### Final six-month build (`2025-10_to_2026-03`)
 
 Main graph used for the final biomedical experiments.
 
 - Graph:
   `builds/2025-10_to_2026-03/triples/triples_with_dgidb.csv`
-- Number of triples: `49903`
+- Source months: July, August, November and December 2025; January and
+  February 2026
+- Number of triples: `51759`
 - SHA-256:
-  `713df059da00efa45479aa4179fea533211c2ed0571abf128470caaee10126bb`
+  `3d5c7df7d021a077b3d5c7fdd986ee6ac1343fec57d585b66d2f622eb387ad72`
 
 Relation distribution:
 
 | Relation | Triples |
 |---|---:|
-| `INDICATION` | 7216 |
-| `CONTRAINDICATION` | 2752 |
-| `HAS_INGREDIENT` | 24978 |
-| `ASSOCIATED_WITH_GENE` | 10423 |
-| `INTERACTS_WITH_GENE` | 4534 |
+| `HAS_INGREDIENT` | 24,030 |
+| `ASSOCIATED_WITH_GENE` | 9,951 |
+| `INTERACTS_WITH_GENE` | 9,414 |
+| `INDICATION` | 6,143 |
+| `CONTRAINDICATION` | 2,221 |
+
+The directory names `2025-10_to_2025-12` and `2025-10_to_2026-03` are legacy
+build identifiers retained to preserve the existing experiment configurations.
+They do not represent the exact temporal coverage of the regulatory data.
 
 The configuration files associated with these builds are located in:
 

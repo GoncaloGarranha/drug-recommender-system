@@ -4,9 +4,16 @@
   "status": "canonical_input",
   "description": "MedJsonify entity files grouped by the format of their original source documents.",
   "period": {
-    "start": "2025-10",
-    "end": "2026-03",
-    "label": "2025-10_to_2026-03"
+    "months": [
+      "2025-07",
+      "2025-08",
+      "2025-11",
+      "2025-12",
+      "2026-01",
+      "2026-02"
+    ],
+    "label": "July 2025 to February 2026 (six selected months)",
+    "legacy_identifier": "2025-10_to_2026-03"
   },
   "producer": {
     "name": "MedJsonify",

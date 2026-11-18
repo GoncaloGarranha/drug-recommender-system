@@ -108,16 +108,17 @@ The biomedical dataset is represented as triples in the following format:
 src,rel,dst
 ```
 
-The project preserves two canonical graph builds with different temporal
-coverage.
+The project preserves two canonical graph builds with different regulatory
+data coverage.
 
-| Build | Months included | Coverage | Purpose | Triples |
-|---|---|---:|---|---:|
-| `2025-10_to_2025-12` | October, November and December 2025 | 3 months | Historical reference build | 40746 |
-| `2025-10_to_2026-03` | October 2025 to March 2026 | 6 months | Main build used in the final experiments | 49903 |
+| Build identifier | Regulatory data used | Purpose | Triples |
+|---|---|---|---:|
+| `2025-10_to_2025-12` | DailyMed: July, August and November 2025; Orange Book and Purple Book: November 2025 | Initial three-month build | 44,088 |
+| `2025-10_to_2026-03` | DailyMed: July, August, November and December 2025, January and February 2026; Orange Book and Purple Book: February 2026 | Final six-month build used in the experiments | 51,759 |
 
-The six-month build is cumulative. It contains the data from October,
-November and December 2025, extended with January, February and March 2026.
+The directory names are legacy build identifiers retained to preserve the
+existing experiment configurations. They do not represent the exact temporal
+coverage of the regulatory data.
 
 #### Historical reference build
 
@@ -135,11 +136,14 @@ The main graph contains the following relations:
 
 | Relation | Triples |
 |---|---:|
-| `INDICATION` | 7216 |
-| `CONTRAINDICATION` | 2752 |
-| `HAS_INGREDIENT` | 24978 |
-| `ASSOCIATED_WITH_GENE` | 10423 |
-| `INTERACTS_WITH_GENE` | 4534 |
+| `HAS_INGREDIENT` | 24,030 |
+| `ASSOCIATED_WITH_GENE` | 9,951 |
+| `INTERACTS_WITH_GENE` | 9,414 |
+| `INDICATION` | 6,143 |
+| `CONTRAINDICATION` | 2,221 |
+
+The final graph contains 10,380 entities: 2,347 drugs, 2,278 ingredients,
+793 diseases and 4,962 genes.
 
 `INDICATION` is the target relation for disease-to-drug recommendation.
 The remaining relations provide contextual information during message
@@ -340,30 +344,34 @@ pip install -r requirements.txt
 ### 1. Build the biomedical knowledge graph
 
 ```bash
-python -m kg_constructor.src.run_kg_pipeline --config kg_constructor/configs/config.yaml
+python -m kg_constructor.src.run_kg_pipeline \
+  --config kg_constructor/configs/biomedical/periods/2025-10_to_2026-03.yaml
 ```
 
 This generates the biomedical triple files, including:
 
 ```text
-kg_constructor/data/output/triples/triples.csv
-kg_constructor/data/output/triples/triples.filtered.csv
+kg_constructor/data/builds/2025-10_to_2026-03/triples/triples.filtered.csv
+kg_constructor/data/builds/2025-10_to_2026-03/triples/triples_with_genes.csv
+kg_constructor/data/builds/2025-10_to_2026-03/triples/triples_with_dgidb.csv
 ```
 
 ---
 
 ### 2. Prepare graph artefacts for R-GCN
 
-Example using the full biomedical graph (`disease_to_drug_full`):
+Example using the final six-month biomedical graph:
 
 ```bash
-python -m models.rgcn.src.prepare_graph --config models/rgcn/configs/disease_to_drug.yaml --force
+python -m models.rgcn.src.prepare_graph \
+  --config models/rgcn/configs/biomedical/disease_to_drug/2025-10_to_2026-03/main/all_supported_relations.yaml \
+  --force
 ```
 
 This creates indexed artefacts in the configured `processed_dir`, for example:
 
 ```text
-models/rgcn/data/processed/disease_to_drug_full/
+models/rgcn/data/processed/disease_to_drug/six_months_random_split/
 ```
 
 ---
@@ -371,7 +379,8 @@ models/rgcn/data/processed/disease_to_drug_full/
 ### 3. Validate processed artefacts
 
 ```bash
-python -m models.rgcn.src.load_data --processed_dir models/rgcn/data/processed/disease_to_drug_full
+python -m models.rgcn.src.load_data \
+  --processed_dir models/rgcn/data/processed/disease_to_drug/six_months_random_split
 ```
 
 ---
@@ -379,7 +388,8 @@ python -m models.rgcn.src.load_data --processed_dir models/rgcn/data/processed/d
 ### 4. Train R-GCN
 
 ```bash
-python -m models.rgcn.src.train --config models/rgcn/configs/disease_to_drug.yaml
+python -m models.rgcn.src.train \
+  --config models/rgcn/configs/biomedical/disease_to_drug/2025-10_to_2026-03/main/all_supported_relations.yaml
 ```
 
 ---
@@ -401,29 +411,24 @@ results/benchmarks.csv
 ### 6. Run Content-Based baseline
 
 ```bash
-python -m models.content-based.src.baseline --config models/rgcn/configs/disease_to_drug.yaml --split test
+python -m models.content-based.src.baseline \
+  --config models/rgcn/configs/biomedical/disease_to_drug/2025-10_to_2026-03/main/all_supported_relations.yaml \
+  --split test
 ```
 
 The baseline uses the same config, splits and evaluation protocol as the R-GCN.
 
 ---
 
-### Biomedical filtered graph (`disease_to_drug_filtered`)
+### Relation-study variants
 
-For the filtered biomedical setting, use the same task name (`disease_to_drug`)
-but point the processed artefacts to:
-
-```text
-models/rgcn/data/processed/disease_to_drug_filtered/
-```
-
-The corresponding triple file is:
+The relation studies reuse the same canonical graph and processed split while
+excluding one contextual relation at a time through their configuration. The
+maintained configurations are located in:
 
 ```text
-kg_constructor/data/output/triples/triples.filtered.csv
+models/rgcn/configs/biomedical/disease_to_drug/2025-10_to_2026-03/relation_studies/
 ```
-
-This setting excludes `HAS_INGREDIENT` and is mainly used for ablation studies.
 
 ---
 
@@ -434,7 +439,7 @@ This setting excludes `HAS_INGREDIENT` and is mainly used for ablation studies.
 #### 1. Convert benchmark splits
 
 ```bash
-python -m kg_constructor.src.benchmarks.convert_benchmark --config kg_constructor/configs/wn18rr.yaml --force
+python -m kg_constructor.src.benchmarks.convert_benchmark --config kg_constructor/configs/benchmarks/wn18rr.yaml --force
 ```
 
 Expected output:
@@ -446,7 +451,7 @@ kg_constructor/data/benchmarks/wn18rr/triples.csv
 #### 2. Prepare graph artefacts
 
 ```bash
-python -m models.rgcn.src.prepare_graph --config models/rgcn/configs/wn18rr.yaml --force
+python -m models.rgcn.src.prepare_graph --config models/rgcn/configs/benchmarks/wn18rr.yaml --force
 ```
 
 #### 3. Validate processed artefacts
@@ -458,7 +463,7 @@ python -m models.rgcn.src.load_data --processed_dir models/rgcn/data/processed/w
 #### 4. Train
 
 ```bash
-python -m models.rgcn.src.train --config models/rgcn/configs/wn18rr.yaml
+python -m models.rgcn.src.train --config models/rgcn/configs/benchmarks/wn18rr.yaml
 ```
 
 #### 5. Evaluate
@@ -474,7 +479,7 @@ python -m models.rgcn.src.evaluate --runs_dir results/runs/rgcn --split test
 #### 1. Convert benchmark splits
 
 ```bash
-python -m kg_constructor.src.benchmarks.convert_benchmark --config kg_constructor/configs/fb15k237.yaml --force
+python -m kg_constructor.src.benchmarks.convert_benchmark --config kg_constructor/configs/benchmarks/fb15k237.yaml --force
 ```
 
 Expected output:
@@ -486,7 +491,7 @@ kg_constructor/data/benchmarks/fb15k237/triples.csv
 #### 2. Prepare graph artefacts
 
 ```bash
-python -m models.rgcn.src.prepare_graph --config models/rgcn/configs/fb15k237.yaml --force
+python -m models.rgcn.src.prepare_graph --config models/rgcn/configs/benchmarks/fb15k237.yaml --force
 ```
 
 #### 3. Validate processed artefacts
@@ -498,7 +503,7 @@ python -m models.rgcn.src.load_data --processed_dir models/rgcn/data/processed/f
 #### 4. Train
 
 ```bash
-python -m models.rgcn.src.train --config models/rgcn/configs/fb15k237.yaml
+python -m models.rgcn.src.train --config models/rgcn/configs/benchmarks/fb15k237.yaml
 ```
 
 #### 5. Evaluate
@@ -723,29 +728,36 @@ Where datasets differ significantly in size, prefer a common training protocol w
 ### Biomedical full graph
 
 ```bash
-python -m kg_constructor.src.run_kg_pipeline --config kg_constructor/configs/config.yaml
+python -m kg_constructor.src.run_kg_pipeline \
+  --config kg_constructor/configs/biomedical/periods/2025-10_to_2026-03.yaml
 
-python -m models.rgcn.src.prepare_graph --config models/rgcn/configs/disease_to_drug.yaml --force
+python -m models.rgcn.src.prepare_graph \
+  --config models/rgcn/configs/biomedical/disease_to_drug/2025-10_to_2026-03/main/all_supported_relations.yaml \
+  --force
 
-python -m models.rgcn.src.load_data --processed_dir models/rgcn/data/processed/disease_to_drug_full
+python -m models.rgcn.src.load_data \
+  --processed_dir models/rgcn/data/processed/disease_to_drug/six_months_random_split
 
-python -m models.rgcn.src.train --config models/rgcn/configs/disease_to_drug.yaml
+python -m models.rgcn.src.train \
+  --config models/rgcn/configs/biomedical/disease_to_drug/2025-10_to_2026-03/main/all_supported_relations.yaml
 
 python -m models.rgcn.src.evaluate --runs_dir results/runs/rgcn --split test
 
-python -m models.content-based.src.baseline --config models/rgcn/configs/disease_to_drug.yaml --split test
+python -m models.content-based.src.baseline \
+  --config models/rgcn/configs/biomedical/disease_to_drug/2025-10_to_2026-03/main/all_supported_relations.yaml \
+  --split test
 ```
 
 ### WN18RR
 
 ```bash
-python -m kg_constructor.src.benchmarks.convert_benchmark --config kg_constructor/configs/wn18rr.yaml --force
+python -m kg_constructor.src.benchmarks.convert_benchmark --config kg_constructor/configs/benchmarks/wn18rr.yaml --force
 
-python -m models.rgcn.src.prepare_graph --config models/rgcn/configs/wn18rr.yaml --force
+python -m models.rgcn.src.prepare_graph --config models/rgcn/configs/benchmarks/wn18rr.yaml --force
 
 python -m models.rgcn.src.load_data --processed_dir models/rgcn/data/processed/wn18rr
 
-python -m models.rgcn.src.train --config models/rgcn/configs/wn18rr.yaml
+python -m models.rgcn.src.train --config models/rgcn/configs/benchmarks/wn18rr.yaml
 
 python -m models.rgcn.src.evaluate --runs_dir results/runs/rgcn --split test
 ```
@@ -753,13 +765,13 @@ python -m models.rgcn.src.evaluate --runs_dir results/runs/rgcn --split test
 ### FB15k-237
 
 ```bash
-python -m kg_constructor.src.benchmarks.convert_benchmark --config kg_constructor/configs/fb15k237.yaml --force
+python -m kg_constructor.src.benchmarks.convert_benchmark --config kg_constructor/configs/benchmarks/fb15k237.yaml --force
 
-python -m models.rgcn.src.prepare_graph --config models/rgcn/configs/fb15k237.yaml --force
+python -m models.rgcn.src.prepare_graph --config models/rgcn/configs/benchmarks/fb15k237.yaml --force
 
 python -m models.rgcn.src.load_data --processed_dir models/rgcn/data/processed/fb15k237
 
-python -m models.rgcn.src.train --config models/rgcn/configs/fb15k237.yaml
+python -m models.rgcn.src.train --config models/rgcn/configs/benchmarks/fb15k237.yaml
 
 python -m models.rgcn.src.evaluate --runs_dir results/runs/rgcn --split test
 ```

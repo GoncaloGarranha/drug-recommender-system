@@ -87,13 +87,20 @@ graph:
 These datasets are intended to be stored locally because of their size. Ignore
 rules prevent new untracked copies from being added accidentally. Exact source
 versions, expected paths and checksums are documented in
-[`external/README.md`](external/README.md). The repository history still
-contains the original snapshots.
+[`external/README.md`](external/README.md). Do not rely on historical Git
+objects as a distribution mechanism for these snapshots.
 
 ## Canonical graph builds
 
 The `builds/` directory contains the canonical biomedical graphs used in the
 project.
+
+The final graph is distributed separately through
+[Zenodo](https://doi.org/10.5281/zenodo.22687285). In a new clone, extract the
+published package and copy `data/triples.csv` to
+`builds/2025-10_to_2026-03/triples/triples_with_dgidb.csv` before preparing the
+model artefacts. The graph checksum can then be verified against the build
+manifest documented below.
 
 ### Initial three-month build (`2025-10_to_2025-12`)
 

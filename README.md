@@ -132,6 +132,11 @@ kg_constructor/data/builds/2025-10_to_2025-12/triples/triples_with_dgidb.csv
 kg_constructor/data/builds/2025-10_to_2026-03/triples/triples_with_dgidb.csv
 ```
 
+The canonical final graph is distributed through
+[Zenodo](https://doi.org/10.5281/zenodo.22687285), rather than inside the source
+repository. Installation and checksum-verification instructions are provided
+in the [Biomedical Dataset Workflow](#biomedical-dataset-workflow).
+
 The main graph contains the following relations:
 
 | Relation | Triples |
@@ -308,6 +313,15 @@ evaluation.
 
 ### 1. Environment Setup
 
+The repository has a large historical Git archive. For a new source-code
+checkout, a shallow clone avoids downloading obsolete generated artefacts:
+
+```bash
+git clone --depth 1 \
+  https://github.com/GoncaloGarranha/drug-recommender-system.git
+cd drug-recommender-system
+```
+
 #### Create virtual environment
 
 Windows PowerShell:
@@ -405,8 +419,6 @@ Then run Step 1 below. This reconstruction is optional when working from the
 published canonical graph.
 
 ---
-
-
 
 ### 1. Build the biomedical knowledge graph (Option B only)
 

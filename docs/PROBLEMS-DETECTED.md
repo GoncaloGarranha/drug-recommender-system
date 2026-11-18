@@ -33,6 +33,7 @@ a list of defects that are all still active.
 | REPRO-002 | Open Targets and DGIdb source versions are not recorded | High | Mitigated |
 | REPRO-003 | Final configurations reference a missing six-month `publication` build | High | Resolved |
 | REPRO-004 | Six-month quality report records an inconsistent input path | Medium | Resolved |
+| REPO-001 | Historical Git archive contains obsolete generated artefacts | Medium | Mitigated |
 | CODE-001 | CSV read/write helpers are duplicated across KG steps | Low/Medium | Open |
 | TEST-001 | Automated test coverage and test-runner configuration are insufficient | Medium | Mitigated |
 
@@ -154,6 +155,19 @@ tests without requiring an additional test-runner dependency.
 Remaining work: add negative-sampling and miniature end-to-end experiment
 tests, verify publication artefacts in a data-enabled environment, and run the
 suite automatically in continuous integration.
+
+### REPO-001 — Large historical Git archive
+
+The current working tree excludes generated biomedical data and model
+artefacts, but earlier commits retain obsolete datasets, checkpoints and ZIP
+archives. A full fresh clone therefore downloads a Git pack of approximately
+1.9 GiB even though the current tracked working tree is approximately 162 MiB.
+
+The Quick Start now recommends `git clone --depth 1`, which reduces the Git
+pack to approximately 62 MiB while preserving the complete current source
+tree. Fully resolving the historical size would require a coordinated rewrite
+of the public repository history and forced replacement of remote references;
+that disruptive operation is deferred.
 
 ## Accepted limitations
 

@@ -34,7 +34,7 @@ a list of defects that are all still active.
 | REPRO-003 | Final configurations reference a missing six-month `publication` build | High | Resolved |
 | REPRO-004 | Six-month quality report records an inconsistent input path | Medium | Resolved |
 | CODE-001 | CSV read/write helpers are duplicated across KG steps | Low/Medium | Open |
-| TEST-001 | Automated test coverage and test-runner configuration are insufficient | Medium | Open |
+| TEST-001 | Automated test coverage and test-runner configuration are insufficient | Medium | Mitigated |
 
 ## Resolved
 
@@ -143,6 +143,18 @@ not recorded at construction time and cannot be reconstructed reliably from
 the available artefacts. That remaining provenance gap prevents this item from
 being marked as fully resolved.
 
+### TEST-001 — Automated test coverage
+
+A central `unittest` suite now exercises filtered and tie-aware ranking,
+batched-input validation, deterministic and disjoint target splits,
+known-positive direction, candidate typing, inverse-edge construction, and the
+existing inference-query regressions. The documented command currently runs 27
+tests without requiring an additional test-runner dependency.
+
+Remaining work: add negative-sampling and miniature end-to-end experiment
+tests, verify publication artefacts in a data-enabled environment, and run the
+suite automatically in continuous integration.
+
 ## Accepted limitations
 
 ### KG-005 — One primary drug per input file
@@ -202,14 +214,3 @@ effect.
 Several KG steps contain overlapping CSV manipulation logic. Consolidating
 these operations in the shared I/O and validation modules would reduce drift,
 but this does not currently affect the validity of the final results.
-
-### TEST-001 — Insufficient automated tests
-
-The Python modules compile and the two encoder diagnostic scripts execute, but
-the project does not currently provide a configured automated test suite. The
-diagnostic scripts print tensors without asserting expected behaviour, and
-`pytest` is not installed in the project environment.
-
-Priority tests should cover split disjointness, filtered ranking, tie handling,
-negative sampling, inverse-edge construction, candidate typing, manifest/hash
-consistency, and an end-to-end miniature experiment.

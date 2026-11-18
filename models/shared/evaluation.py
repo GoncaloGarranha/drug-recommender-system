@@ -38,8 +38,17 @@ def filtered_ranks_from_batches(
     known_positive_ids_per_query: Sequence[Set[int]],
 ) -> List[float]:
     """Compute filtered ranks for a batch of independent queries."""
-    if len(true_candidate_ids) != len(known_positive_ids_per_query):
-        raise ValueError("Mismatched lengths between true candidates and known positives.")
+    batch_scores = list(batch_scores)
+    expected_length = len(true_candidate_ids)
+    if not (
+        len(batch_scores)
+        == expected_length
+        == len(known_positive_ids_per_query)
+    ):
+        raise ValueError(
+            "Mismatched lengths between score batches, true candidates, "
+            "and known positives."
+        )
 
     ranks: List[float] = []
     for scores, true_id, known_ids in zip(batch_scores, true_candidate_ids, known_positive_ids_per_query):

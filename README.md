@@ -823,6 +823,21 @@ For final experiments, increase the configuration gradually.
 
 ---
 
+## Automated Tests
+
+Activate the project environment and run the central regression suite from the
+repository root:
+
+```bash
+python -m unittest discover -s tests -p "test_*.py" -v
+```
+
+The suite covers filtered and tie-aware ranking, deterministic and disjoint
+splits, known-positive direction, candidate typing, inverse-edge construction,
+and inference-query behaviour.
+
+---
+
 ## Requirements
 
 - Python 3.8+

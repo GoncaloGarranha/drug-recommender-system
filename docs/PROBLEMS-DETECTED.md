@@ -23,14 +23,14 @@ a list of defects that are all still active.
 | KG-004 | Loss of provenance when building final triples | High | Mitigated |
 | KG-005 | Assumption that each input file has one primary drug | Medium/High | Accepted limitation |
 | KG-006 | Drugs may be resolved by normalized name when an external identifier is unavailable | Medium | Accepted limitation |
-| DOC-001 | README references missing `kg_constructor/configs/config.yaml` | High | Open |
+| DOC-001 | README references missing `kg_constructor/configs/config.yaml` | High | Resolved |
 | DOC-002 | Inconsistent processed-directory names | Medium/High | Mitigated |
 | METH-001 | Biomedical results affected by target-edge split leakage | Critical | Resolved |
 | METH-002 | Generic benchmark evaluation protocol | High | Resolved |
 | METH-003 | `INDICATION` and `CONTRAINDICATION` coexist for the same drug-disease pairs | High | Accepted limitation |
 | EVAL-001 | Need explicit split-integrity validation | Critical | Resolved |
-| REPRO-001 | Three-month graph does not match its tracked manifest | High | Open |
-| REPRO-002 | Open Targets and DGIdb source versions are not recorded | High | Open |
+| REPRO-001 | Three-month graph does not match its tracked manifest | High | Resolved |
+| REPRO-002 | Open Targets and DGIdb source versions are not recorded | High | Mitigated |
 | REPRO-003 | Final configurations reference a missing six-month `publication` build | High | Open |
 | REPRO-004 | Six-month quality report records an inconsistent input path | Medium | Open |
 | CODE-001 | CSV read/write helpers are duplicated across KG steps | Low/Medium | Open |
@@ -74,6 +74,22 @@ split disjointness, known-positive completeness, candidate-pool coverage, and
 preservation of official benchmark splits. It emits a machine-readable report
 and stops the experiment when a required check fails.
 
+### DOC-001 — Missing default KG configuration
+
+The root README, KG constructor README and reproducibility runbook now use the
+maintained period-specific Knowledge Graph configurations. Biomedical and
+benchmark examples point to paths that exist in the repository, and the
+documented command-line options were checked against the corresponding module
+interfaces.
+
+### REPRO-001 — Three-month manifest mismatch
+
+The three-month build manifest now records the graph currently preserved in the
+workspace: 44,088 triples, 44,089 lines including the header, 9,635 entities
+and SHA-256
+`f3ee51e22307d7e9c6106e47db6445322ec38fbfe9fa3c3c1fb5c1fb80d83321`.
+The manifest hash and line count were verified against the canonical CSV.
+
 ## Mitigated
 
 ### KG-004 — Provenance in final triples
@@ -94,6 +110,18 @@ and newer processed-directory layouts. This reduces runtime failures, but the
 repository still contains historical names such as `publication`, `legacy`,
 `corrected`, and `main`. Documentation and final configurations should converge
 on one canonical layout.
+
+### REPRO-002 — External-source version recording
+
+The final six-month build now records Open Targets Platform release 26.03 and
+DGIdb version 5.0.7 with the December 2024 data release. Retrieval dates,
+source location and the DGIdb interaction-file checksum are preserved in the
+build manifest and external-data documentation.
+
+The original release versions used by the historical three-month build were
+not recorded at construction time and cannot be reconstructed reliably from
+the available artefacts. That remaining provenance gap prevents this item from
+being marked as fully resolved.
 
 ## Accepted limitations
 
@@ -149,20 +177,6 @@ effect.
 
 ## Open reproducibility issues
 
-### REPRO-001 — Three-month manifest mismatch
-
-The current `2025-10_to_2025-12` canonical CSV contains 44,088 triples, while
-its tracked manifest declares 40,746 triples and a different SHA-256 hash. The
-quality report and temporal result table use 44,088 triples. Either the manifest
-must be regenerated for the current graph or the graph matching the manifest
-must be restored and clearly versioned.
-
-### REPRO-002 — External-source versions are missing
-
-The canonical manifests identify Open Targets and DGIdb as sources but record
-their versions as `not recorded`. Record the release or download date, source
-URL, file hashes, and any extraction filters used.
-
 ### REPRO-003 — Missing six-month publication build
 
 Final PyKEEN and content-based configurations reference
@@ -180,13 +194,6 @@ current six-month graph, but the recorded provenance path should be corrected or
 explained.
 
 ## Other open issues
-
-### DOC-001 — Missing default KG configuration
-
-The root and KG constructor READMEs still show commands using
-`kg_constructor/configs/config.yaml`, which is not present. Replace these
-examples with one of the period-specific configurations or add a maintained
-default configuration.
 
 ### CODE-001 — Duplicated CSV utilities
 

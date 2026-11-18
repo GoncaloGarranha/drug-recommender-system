@@ -851,7 +851,9 @@ docs/
 
 ## License
 
-This project is developed for academic research purposes.
+No software license has been granted for this repository. All rights are
+reserved by the author. Third-party datasets and dependencies remain subject
+to their respective terms.
 
 ---
 

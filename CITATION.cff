@@ -1,0 +1,40 @@
+cff-version: 1.2.0
+message: >-
+  If you use this software, please cite it using the metadata in this file.
+  Cite the published Knowledge Graph dataset separately when using the data.
+title: Knowledge Graph-Based Recommender Systems for Drug Repositioning
+type: software
+authors:
+  - given-names: Gonçalo
+    family-names: dos Reis Garranha
+    affiliation: Instituto Superior de Engenharia de Lisboa, Instituto Politécnico de Lisboa
+repository-code: https://github.com/GoncaloGarranha/drug-recommender-system
+url: https://github.com/GoncaloGarranha/drug-recommender-system
+abstract: >-
+  Software for constructing a biomedical Knowledge Graph and training and
+  evaluating recommendation models that rank candidate drugs for a queried
+  disease. The repository includes the graph-construction workflow, an R-GCN
+  model with a DistMult decoder, reference methods and reproducible evaluation
+  configurations.
+keywords:
+  - drug repositioning
+  - knowledge graph
+  - recommender system
+  - link prediction
+  - R-GCN
+references:
+  - type: dataset
+    title: Biomedical Knowledge Graph for Disease-to-Drug Recommendation in Drug Repositioning
+    authors:
+      - given-names: Gonçalo
+        family-names: dos Reis Garranha
+      - given-names: Matilde
+        family-names: Pós-de-Mina Pato
+      - given-names: Nuno
+        family-names: Datia
+    doi: 10.5281/zenodo.22687285
+    version: 1.0.0
+    date-released: "2026-09-15"
+    publisher:
+      name: Zenodo
+    url: https://zenodo.org/records/22687285

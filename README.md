@@ -857,7 +857,21 @@ This project is developed for academic research purposes.
 
 ## Citation
 
-If you use the R-GCN implementation, please cite:
+GitHub exposes the software citation recorded in [`CITATION.cff`](CITATION.cff)
+through the repository's **Cite this repository** option.
+
+The published Knowledge Graph is available on Zenodo:
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22687285.svg)](https://doi.org/10.5281/zenodo.22687285)
+
+When using the graph data, cite:
+
+> dos Reis Garranha, G., Pós-de-Mina Pato, M., & Datia, N. (2026).
+> *Biomedical Knowledge Graph for Disease-to-Drug Recommendation in Drug
+> Repositioning* (Version 1.0.0) [Data set]. Zenodo.
+> <https://doi.org/10.5281/zenodo.22687285>
+
+If you use the R-GCN implementation, also cite the original architecture:
 
 ```bibtex
 @inproceedings{schlichtkrull2018modeling,

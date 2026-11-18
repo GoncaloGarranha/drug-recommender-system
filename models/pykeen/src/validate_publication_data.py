@@ -13,28 +13,28 @@ REPO_ROOT = Path(__file__).resolve().parents[3]
 PROCESSED_DIR = (
     REPO_ROOT
     / "models/rgcn/data/processed/disease_to_drug/"
-    "six_months_publication_random_split"
+    "six_months_random_split"
 )
 
 TRIPLES_PATH = (
     REPO_ROOT
     / "kg_constructor/data/builds/"
-    "2025-10_to_2026-03_publication/"
+    "2025-10_to_2026-03/"
     "triples/triples_with_dgidb.csv"
 )
 
 TARGET_RELATION = "INDICATION"
 
 EXPECTED = {
-    "graph_triples": 47946,
-    "entities": 9277,
+    "graph_triples": 51759,
+    "entities": 10380,
     "relations": 5,
-    "target_triples": 6239,
-    "train_target": 4991,
-    "valid_target": 623,
-    "test_target": 625,
-    "candidate_drugs": 2380,
-    "train_graph_triples": 46698,
+    "target_triples": 6143,
+    "train_target": 4914,
+    "valid_target": 614,
+    "test_target": 615,
+    "candidate_drugs": 2347,
+    "train_graph_triples": 50530,
 }
 
 

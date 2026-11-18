@@ -19,4 +19,4 @@ training:
   pin_memory: false
   weight_decay: 0.0
 data:
-  processed_dir: models/rgcn/data/processed/disease_to_drug/six_months_publication_random_split
+  processed_dir: models/rgcn/data/processed/disease_to_drug/six_months_random_split

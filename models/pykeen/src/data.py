@@ -22,7 +22,7 @@ def load_publication_factories(processed_dir=None):
         processed_dir = (
             REPO_ROOT
             / "models/rgcn/data/processed/disease_to_drug/"
-            "six_months_publication_random_split"
+            "six_months_random_split"
         )
     else:
         processed_dir = Path(processed_dir)

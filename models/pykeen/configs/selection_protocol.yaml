@@ -1,9 +1,9 @@
 dataset:
-  build: 2025-10_to_2026-03_publication
+  build: 2025-10_to_2026-03
   target_relation: INDICATION
   prediction_direction: head
   candidate_type: Drug
-  candidate_count: 2380
+  candidate_count: 2347
 
 evaluation:
   validation_metric: MRR

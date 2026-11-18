@@ -31,8 +31,8 @@ a list of defects that are all still active.
 | EVAL-001 | Need explicit split-integrity validation | Critical | Resolved |
 | REPRO-001 | Three-month graph does not match its tracked manifest | High | Resolved |
 | REPRO-002 | Open Targets and DGIdb source versions are not recorded | High | Mitigated |
-| REPRO-003 | Final configurations reference a missing six-month `publication` build | High | Open |
-| REPRO-004 | Six-month quality report records an inconsistent input path | Medium | Open |
+| REPRO-003 | Final configurations reference a missing six-month `publication` build | High | Resolved |
+| REPRO-004 | Six-month quality report records an inconsistent input path | Medium | Resolved |
 | CODE-001 | CSV read/write helpers are duplicated across KG steps | Low/Medium | Open |
 | TEST-001 | Automated test coverage and test-runner configuration are insufficient | Medium | Open |
 
@@ -89,6 +89,26 @@ workspace: 44,088 triples, 44,089 lines including the header, 9,635 entities
 and SHA-256
 `f3ee51e22307d7e9c6106e47db6445322ec38fbfe9fa3c3c1fb5c1fb80d83321`.
 The manifest hash and line count were verified against the canonical CSV.
+
+### REPRO-003 — Missing six-month publication build
+
+Final PyKEEN and content-based configurations now reference the canonical
+six-month build at `kg_constructor/data/builds/2025-10_to_2026-03` and the
+corresponding processed split at
+`models/rgcn/data/processed/disease_to_drug/six_months_random_split`. The
+publication-data validator records the verified canonical counts: 51,759
+triples, 10,380 entities, 6,143 target triples and 2,347 candidate drugs.
+
+The earlier 47,946-triple processed graph remains preserved under the explicit
+`six_months_publication_random_split_legacy` name and is not used by the final
+configurations.
+
+### REPRO-004 — Inconsistent quality-report path
+
+The current six-month quality report records
+`kg_constructor/data/builds/2025-10_to_2026-03/triples/triples_with_dgidb.csv`
+as its input. Its counts and graph hash match the canonical build manifest and
+the published dataset package.
 
 ## Mitigated
 
@@ -174,24 +194,6 @@ Reporting requirement: disclose the retained conflicts, their frequency, and
 their possible effect on performance. Results should be described as applying
 to the graph as constructed, rather than as evidence that the ambiguity has no
 effect.
-
-## Open reproducibility issues
-
-### REPRO-003 — Missing six-month publication build
-
-Final PyKEEN and content-based configurations reference
-`kg_constructor/data/builds/2025-10_to_2026-03_publication`, but that canonical
-build directory is not present in the current workspace. Processed artifacts
-and results exist, but those executions cannot be reconstructed solely from the
-saved configuration unless the source build is restored or the paths are
-updated to a hash-equivalent canonical graph.
-
-### REPRO-004 — Inconsistent quality-report path
-
-The quality report stored under `2025-10_to_2026-03/reports` declares its input
-as the missing `2025-10_to_2026-03_publication` path. Its counts match the
-current six-month graph, but the recorded provenance path should be corrected or
-explained.
 
 ## Other open issues
 
